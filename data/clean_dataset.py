@@ -34,7 +34,9 @@ def filter_debayered_images(df, dataset_path, df_path):
     not_nan_size = len(df2)
     if not_nan_size != orig_size:
         print(f"Found {orig_size - not_nan_size} nan values of debayeredrgb save path")
-    valid_debayered = df2[df2.parallel_apply(debayered_is_valid, axis=1)]
+    tqdm.tqdm.pandas()
+    valid_debayered = df2[df2.progress_apply(debayered_is_valid, axis=1)]
+    # valid_debayered = df2[df2.parallel_apply(debayered_is_valid, axis=1)]
     if len(valid_debayered) != len(df):
         while True:
             confirm = 'y' if AUTOCONFIRM else input(f"Found only {len(valid_debayered)} out of {len(df)} debayered images, delete  {len(df) - len(valid_debayered)} lines of {df_path}? (y/n)")
@@ -45,6 +47,7 @@ def filter_debayered_images(df, dataset_path, df_path):
                 break
             elif confirm == 'n':
                 break
+    print(f"Filter successful, {len(df)} files remain")
     return df
 
 
@@ -130,6 +133,7 @@ def main(dataset_folder: Path, annotations_path: Optional[str], master_annotatio
         to_delete = set(all_folders) - set(image_ids)
         while True:
             confirm = 'y' if AUTOCONFIRM else input(f"Press 'y' to remove {len(to_delete)} folders in {clean_path}, leaving {len(image_ids)}")
+            print(confirm)
             if confirm == 'y':
                 for image_id in tqdm.tqdm(set(all_folders) - set(image_ids), desc="Removing files that are not in the annotations csv..."):
                     remove_path = dataset_folder / "images" / image_id
