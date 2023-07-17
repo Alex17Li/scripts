@@ -1,0 +1,27 @@
+{
+	"folders": [
+		{
+			"name": "europa",
+			"path": "../JupiterCVML/europa/base/src/europa"
+		},
+		{
+			"name": "git",
+			"path": "../"
+		},
+		{
+			"path": "scripts"
+			"path": "."
+		}
+	],
+	"settings": {
+		"extensions.experimental.affinity": {
+			"asvetliakov.vscode-neovim": 1
+		},
+		"python.formatting.provider": "black",
+		"[python]":  {
+			// black formatter
+			"editor.defaultFormatter":  "ms-python.black-formatter",
+		},
+		"terminal.integrate.gpuAcceleration": "on"
+	},
+}
