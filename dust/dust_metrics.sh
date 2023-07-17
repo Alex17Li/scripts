@@ -12,7 +12,6 @@ source /home/$USER/.bashrc
 module load pytorch/1.12.0+cuda11.3
 conda activate cvml
 
-DATASET_PATH=/data/jupiter/datasets
 OUTPUT_PATH=/data/jupiter/$USER/results
 #DATASET="Spring_hitchhiker_random"
 DATASET=Jupiter_halo_rgbnir_stereo_train_20230710/

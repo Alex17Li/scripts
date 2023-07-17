@@ -10,7 +10,8 @@ source /home/${USER}/.bashrc
 cd /home/${USER}/git/scripts/data
 
 DATASET_NAME=hhh_field_data_stratified
+DATASET_PATH=/data/jupiter/datasets
 
-python data_downloader.py $DATASET_NAME /data/jupiter/datasets
+python data_downloader.py $DATASET_NAME $DATASET_PATH
 
-python clean_dataset.py /data/jupiter/datasets/$DATASET_NAME
+python clean_dataset.py $DATASET_PATH/$DATASET_NAME

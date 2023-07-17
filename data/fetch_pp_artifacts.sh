@@ -12,7 +12,9 @@ source ~/.bashrc
 
 cd /home/${USER}/git/JupiterCVML/europa/base/src/europa/dl/dataset
 
+DATASET_PATH=/data/jupiter/datasets
+
 python fetch_pp_artifacts.py \
---output-path /data/jupiter/${USER}/datasets/spring_dust_data_test \
+--output-path ${DATASET_PATH}/spring_dust_data_test \
 --master-csv-s3-uri s3://blueriver-jupiter-data/pack_perception/ml/3ea359f0c3fd28d093bf41b44a016d15_d76b3d3f580bfc71d0f9e6ad8d992f2f/64a87abee30a2c394883bc62_master_annotations.csv
 
