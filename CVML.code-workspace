@@ -9,7 +9,7 @@
 			"path": "../"
 		},
 		{
-			"path": "scripts"
+			"name": "scripts",
 			"path": "."
 		}
 	],
@@ -22,6 +22,5 @@
 			// black formatter
 			"editor.defaultFormatter":  "ms-python.black-formatter",
 		},
-		"terminal.integrate.gpuAcceleration": "on"
 	},
 }
