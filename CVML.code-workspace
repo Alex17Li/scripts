@@ -5,12 +5,12 @@
 			"path": "../JupiterCVML/europa/base/src/europa"
 		},
 		{
-			"name": "git",
-			"path": "../"
-		},
-		{
 			"name": "scripts",
 			"path": "."
+		},
+		{
+			"name": "git",
+			"path": "../"
 		}
 	],
 	"settings": {

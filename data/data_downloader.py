@@ -7,7 +7,7 @@ if os.path.exists("/data"):
 else:
     DEFAULT_DESTINATION = os.path.expanduser("~/BRT/data/")
 DEFAULT_DESTINATION = os.getenv(
-    "BRT_JUPITER_DATASETS_DIR",
+    "DATASET_PATH",
     DEFAULT_DESTINATION,
 )
 
@@ -23,7 +23,7 @@ parser.add_argument(
 
 args = parser.parse_args()
 dataset_name, destination = args.dataset_name, args.datasets_directory
-print(f"Dataset name - {dataset_name}")
+print(f"Saving dataset {dataset_name} to {destination}")
 
 from brtdevkit.data import Dataset
 
