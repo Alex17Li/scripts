@@ -11,6 +11,10 @@
 		{
 			"name": "git",
 			"path": "../"
+		},
+		{
+			"name": "logs",
+			"path": "../../logs"
 		}
 	],
 	"settings": {

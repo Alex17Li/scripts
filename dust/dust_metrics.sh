@@ -13,14 +13,14 @@ module load pytorch/1.12.0+cuda11.3
 conda activate cvml
 
 OUTPUT_PATH=/data/jupiter/$USER/results
-#DATASET="Spring_hitchhiker_random"
-DATASET=Jupiter_halo_rgbnir_stereo_train_20230710/
+DATASET="hhh_field_data_stratified"
+# DATASET=Jupiter_halo_rgbnir_stereo_train_20230710/
 JCVML_PATH=/home/$USER/git/JupiterCVML/europa/base/src/europa
 # SUBSAMPLE=1000000
 cd $JCVML_PATH
-# python /home/$USER/git/scripts/data/fake_master.py $SUBSAMPLE
+python /home/$USER/git/scripts/data/fake_master.py ${DATASET_PATH}/$DATASET $SUBSAMPLE
 python dl/scripts/predictor.py \
-    --csv-path ${DATASET_PATH}/${DATASET}/64ac85c10c98f3c1acb8a408_master_annotations.csv \
+    --csv-path ${DATASET_PATH}/${DATASET}/fake_master_annotations.csv \
     --data-dir ${DATASET_PATH}/${DATASET} \
     --dataset ${DATASET} \
     --label-map-file ${JCVML_PATH}/dl/config/label_maps/binary_dust.csv \
@@ -33,12 +33,11 @@ python dl/scripts/predictor.py \
     --states-to-save '' \
     --input-dims 3 \
     --run-productivity-metrics \
-    --batch-size 20 \
+    --batch-size 32 \
     --num-workers 32 \
     --dust-class-metrics \
     --dust-mask "NO MASK INVALID PATH" \
-    --input-mode debayeredRGB \
-    --gpu all;
+    --input-mode debayeredRGB;
 
 # --dust-mask ${JCVML_PATH}/dl/config/tire_masks/dust_rear_triangle_mask_fullres.png \
 # --use-depth-threshold \
