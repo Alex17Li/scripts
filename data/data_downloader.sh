@@ -1,13 +1,13 @@
 #!/bin/bash
 #SBATCH --job-name=download_data
 #SBATCH --partition=cpu
-#SBATCH --output=/home/%u/workspace/logs/%A_%x
+#SBATCH --output=/home/%u/logs/%A_%x.txt
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 
-source /home/alex.li/.bashrc
+source /home/${USER}/.bashrc
 
-cd /home/alex.li/workspace/scripts/data
+cd /home/${USER}/git/scripts/data
 
 DATASET_NAME=hhh_field_data_stratified
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=dust_analysis
-#SBATCH --output=/home/alex.li/workspace/logs/%A_%x
+#SBATCH --output=/home/%u/logs/%A_%x
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --gres=gpu:4
@@ -8,18 +8,18 @@
 #SBATCH --mem-per-gpu=30G
 #SBATCH --time=150:00:00
 
-source /home/alex.li/.bashrc
+source /home/$USER/.bashrc
 module load pytorch/1.12.0+cuda11.3
 conda activate cvml
 
 DATASET_PATH=/data/jupiter/datasets
-OUTPUT_PATH=/data/jupiter/alex.li/results
+OUTPUT_PATH=/data/jupiter/$USER/results
 #DATASET="Spring_hitchhiker_random"
 DATASET=Jupiter_halo_rgbnir_stereo_train_20230710/
-JCVML_PATH=/home/alex.li/workspace/JupiterCVML/europa/base/src/europa
+JCVML_PATH=/home/$USER/git/JupiterCVML/europa/base/src/europa
 # SUBSAMPLE=1000000
 cd $JCVML_PATH
-# python /home/alex.li/workspace/scripts/data/fake_master.py $SUBSAMPLE
+# python /home/$USER/git/scripts/data/fake_master.py $SUBSAMPLE
 python dl/scripts/predictor.py \
     --csv-path ${DATASET_PATH}/${DATASET}/64ac85c10c98f3c1acb8a408_master_annotations.csv \
     --data-dir ${DATASET_PATH}/${DATASET} \

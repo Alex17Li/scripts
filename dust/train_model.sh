@@ -1,24 +1,24 @@
 #!/bin/bash
 #SBATCH --job-name=dust_train
-#SBATCH --output=/home/alex.li/workspace/logs/%A_%x
+#SBATCH --output=/home/%u/logs/%A_%x
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --time=150:00:00
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:4
 #SBATCH --cpus-per-gpu=8
+#SBATCH --time=150:00:00
 
 # --SBATCH --partition=cpu
-source /home/alex.li/.bashrc
+source /home/$USER/.bashrc
 
-cd /home/alex.li/workspace/JupiterCVML/europa/base/src/europa
+cd /home/$USER/git/JupiterCVML/europa/base/src/europa
 
 EXP=dust_trivial_augment
-SNAPSHOT_DIR=/mnt/sandbox1/alex.li/dust
+SNAPSHOT_DIR=/mnt/sandbox1/$USER/dust
 OUTPUT_DIR=${SNAPSHOT_DIR}/${EXP}
 
 # --tqdm \
-# --restore-from /home/alex.li/models/prelabelling/3_class_segformer_5_v0/prelabelling_60_epoch_model.pth \
+# --restore-from /home/$USER/models/prelabelling/3_class_segformer_5_v0/prelabelling_60_epoch_model.pth \
 # --model-params '{"widening_factor": 2, "num_block_layers": 2, "activation": "selu", "upsample_mode": "bilinear"}' \
 # --augmentations CustomCrop SmartCrop HorizontalFlip TorchColorJitter Resize \
 
