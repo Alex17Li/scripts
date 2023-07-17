@@ -14,10 +14,10 @@ Expected directory struture
 .bashrc contents
 
 ```
-# .bashrc
 export WANDB_API_KEY=...
 export PYTHONPATH=/home/$USER/git/JupiterCVML/europa/base/src/europa
 export AWS_PROFILE=jupiter_prod
 set -o vi
+# conda setup #
 conda activate cvml
 ```
