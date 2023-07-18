@@ -1,0 +1,6 @@
+INFO:root:Creating snapshot directory test/b3c5e8f0
+INFO:root:training a model from scratch
+INFO:root:Using these classes for training: {0: 'Background', 1: 'Humans', 2: 'Vehicles', 3: 'Dust'}
+INFO:root:Initial learning rate: 0.001
+/home/alex.li/.conda/envs/cvml/lib/python3.10/site-packages/torch/cuda/amp/grad_scaler.py:115: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.
+  warnings.warn("torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.")

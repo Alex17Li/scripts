@@ -13,31 +13,30 @@ module load pytorch/1.12.0+cuda11.3
 conda activate cvml
 
 OUTPUT_PATH=/data/jupiter/$USER/results
-DATASET="hhh_field_data_stratified"
+# DATASET="hhh_field_data_stratified"
 # DATASET=Jupiter_halo_rgbnir_stereo_train_20230710/
+DATASET=Jupiter_halo_rgbnir_stereo_train_20230710_cleaned_20230712_tractor_only_withArtifactFix
+ANNOTATIONS_PATH=64b0197137e915581adec2d5_master_annotations.csv
 JCVML_PATH=/home/$USER/git/JupiterCVML/europa/base/src/europa
 # SUBSAMPLE=1000000
 cd $JCVML_PATH
 python /home/$USER/git/scripts/data/fake_master.py ${DATASET_PATH}/$DATASET $SUBSAMPLE
+# --restore-from /data/jupiter/li.yu/exps/driveable_terrain_model/v471_rd_2cls_dustseghead_0808/job_quality_val_bestmodel.pth \
 python dl/scripts/predictor.py \
-    --csv-path ${DATASET_PATH}/${DATASET}/fake_master_annotations.csv \
+    --csv-path ${DATASET_PATH}/${DATASET}/$ANNOTATIONS_PATH \
     --data-dir ${DATASET_PATH}/${DATASET} \
-    --dataset ${DATASET} \
-    --label-map-file ${JCVML_PATH}/dl/config/label_maps/binary_dust.csv \
-    --restore-from /data/jupiter/li.yu/exps/driveable_terrain_model/v471_rd_2cls_dustseghead_0808/job_quality_val_bestmodel.pth \
+    --dataset "Yo does the value of this variable actually even matter" \
+    --label-map-file ${JCVML_PATH}/dl/config/label_maps/seven_class_train.csv \
+    --restore-from /mnt/sandbox1/rakhil.immidisetti/logs/driveable_terrain_model/v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30/driveable_terrain_model_val_bestmodel.pth \
     --output-dir ${OUTPUT_PATH}/${DATASET}/results_0808 \
-    --side-left-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_left_mask.png \
-    --side-right-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_right_mask.png \
-    --model brtresnetpyramid_lite12 \
     --merge-stop-class-confidence 0.35 \
-    --states-to-save '' \
     --input-dims 3 \
     --run-productivity-metrics \
     --batch-size 32 \
-    --num-workers 32 \
     --dust-class-metrics \
     --dust-mask "NO MASK INVALID PATH" \
     --input-mode debayeredRGB;
 
+# --states-to-save '' \
 # --dust-mask ${JCVML_PATH}/dl/config/tire_masks/dust_rear_triangle_mask_fullres.png \
 # --use-depth-threshold \

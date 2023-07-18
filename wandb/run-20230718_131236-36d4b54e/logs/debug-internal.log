@@ -1,0 +1,107 @@
+2023-07-18 13:12:36,357 INFO    StreamThr :253298 [internal.py:wandb_internal():86] W&B internal server running at pid: 253298, started at: 2023-07-18 13:12:36.356297
+2023-07-18 13:12:36,360 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status
+2023-07-18 13:12:36,363 INFO    WriterThread:253298 [datastore.py:open_for_write():85] open: /home/alex.li/git/scripts/wandb/run-20230718_131236-36d4b54e/run-36d4b54e.wandb
+2023-07-18 13:12:36,366 DEBUG   SenderThread:253298 [sender.py:send():369] send: header
+2023-07-18 13:12:36,376 DEBUG   SenderThread:253298 [sender.py:send():369] send: run
+2023-07-18 13:12:37,031 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: check_version
+2023-07-18 13:12:37,034 INFO    SenderThread:253298 [dir_watcher.py:__init__():211] watching files in: /home/alex.li/git/scripts/wandb/run-20230718_131236-36d4b54e/files
+2023-07-18 13:12:37,034 INFO    SenderThread:253298 [sender.py:_start_run_threads():1100] run started: 36d4b54e with start time 1689711156.355019
+2023-07-18 13:12:37,034 DEBUG   SenderThread:253298 [sender.py:send_request():396] send_request: summary_record
+2023-07-18 13:12:37,036 INFO    SenderThread:253298 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-07-18 13:12:37,037 DEBUG   SenderThread:253298 [sender.py:send_request():396] send_request: check_version
+2023-07-18 13:12:37,112 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: run_start
+2023-07-18 13:12:37,114 DEBUG   HandlerThread:253298 [system_info.py:__init__():31] System info init
+2023-07-18 13:12:37,114 DEBUG   HandlerThread:253298 [system_info.py:__init__():46] System info init done
+2023-07-18 13:12:37,114 INFO    HandlerThread:253298 [system_monitor.py:start():181] Starting system monitor
+2023-07-18 13:12:37,114 INFO    HandlerThread:253298 [system_monitor.py:probe():201] Collecting system info
+2023-07-18 13:12:37,115 INFO    SystemMonitor:253298 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-07-18 13:12:37,117 INFO    SystemMonitor:253298 [interfaces.py:start():190] Started cpu monitoring
+2023-07-18 13:12:37,118 INFO    SystemMonitor:253298 [interfaces.py:start():190] Started disk monitoring
+2023-07-18 13:12:37,121 INFO    SystemMonitor:253298 [interfaces.py:start():190] Started memory monitoring
+2023-07-18 13:12:37,122 INFO    SystemMonitor:253298 [interfaces.py:start():190] Started network monitoring
+2023-07-18 13:12:37,146 DEBUG   HandlerThread:253298 [system_info.py:probe():195] Probing system
+2023-07-18 13:12:37,149 DEBUG   HandlerThread:253298 [system_info.py:_probe_git():180] Probing git
+2023-07-18 13:12:37,163 DEBUG   HandlerThread:253298 [system_info.py:_probe_git():188] Probing git done
+2023-07-18 13:12:37,163 DEBUG   HandlerThread:253298 [system_info.py:probe():240] Probing system done
+2023-07-18 13:12:37,163 DEBUG   HandlerThread:253298 [system_monitor.py:probe():210] {'os': 'Linux-3.10.0-1160.62.1.el7.x86_64-x86_64-with-glibc2.17', 'python': '3.10.12', 'heartbeatAt': '2023-07-18T20:12:37.146249', 'startedAt': '2023-07-18T20:12:36.340029', 'docker': None, 'cuda': None, 'args': ('--csv-path', '/data/jupiter/li.yu/data/Jupiter_train_v5_11/epoch0_5_30_focal05_master_annotations.csv', '--data-dir', '/data/jupiter/datasets/Jupiter_train_v5_11/', '--label-map-file', '/home/alex.li/git/JupiterCVML/europa/base/src/europa/dl/config/label_maps/four_class_train.csv', '--exp-name', 'test', '--val-set-ratio', '.2', '--trivial-augment', '{"use": true, "fill": 0}', '--output-dir', '/data/jupiter/alex.li/test/results', '--input-dims', '4', '--run-productivity-metrics', '--batch-size', '32', '--dust-class-metrics', '--dust-mask', 'NO MASK INVALID PATH', '--input-mode', 'RGBD', '--human-augmentation', '{"use": false}'), 'state': 'running', 'program': '/home/alex.li/git/JupiterCVML/europa/base/src/europa/dl/scripts/trainer.py', 'git': {'remote': 'git@github.com:Alex17Li/scripts.git', 'commit': '325c45d95fdcd1eae06c8281a5dadc4f54e68ae3'}, 'email': 'alex.li@bluerivertech.com', 'root': '/home/alex.li/git/scripts', 'host': 'stc01spplogin001', 'username': 'alex.li', 'executable': '/home/alex.li/.conda/envs/cvml/bin/python', 'cpu_count': 32, 'cpu_count_logical': 64, 'cpu_freq': {'current': 3888.506890624999, 'min': 1200.0, 'max': 4100.0}, 'cpu_freq_per_core': [{'current': 3967.15, 'min': 1200.0, 'max': 4100.0}, {'current': 3778.1, 'min': 1200.0, 'max': 4100.0}, {'current': 3500.439, 'min': 1200.0, 'max': 4100.0}, {'current': 3999.938, 'min': 1200.0, 'max': 4100.0}, {'current': 3980.017, 'min': 1200.0, 'max': 4100.0}, {'current': 3998.901, 'min': 1200.0, 'max': 4100.0}, {'current': 3999.938, 'min': 1200.0, 'max': 4100.0}, {'current': 3950.756, 'min': 1200.0, 'max': 4100.0}, {'current': 3923.779, 'min': 1200.0, 'max': 4100.0}, {'current': 3996.411, 'min': 1200.0, 'max': 4100.0}, {'current': 3999.938, 'min': 1200.0, 'max': 4100.0}, {'current': 3792.834, 'min': 1200.0, 'max': 4100.0}, {'current': 3884.765, 'min': 1200.0, 'max': 4100.0}, {'current': 3562.487, 'min': 1200.0, 'max': 4100.0}, {'current': 3866.088, 'min': 1200.0, 'max': 4100.0}, {'current': 3759.008, 'min': 1200.0, 'max': 4100.0}, {'current': 3674.34, 'min': 1200.0, 'max': 4100.0}, {'current': 3868.164, 'min': 1200.0, 'max': 4100.0}, {'current': 3999.938, 'min': 1200.0, 'max': 4100.0}, {'current': 3782.458, 'min': 1200.0, 'max': 4100.0}, {'current': 3942.456, 'min': 1200.0, 'max': 4100.0}, {'current': 3939.135, 'min': 1200.0, 'max': 4100.0}, {'current': 3735.974, 'min': 1200.0, 'max': 4100.0}, {'current': 3999.108, 'min': 1200.0, 'max': 4100.0}, {'current': 3751.953, 'min': 1200.0, 'max': 4100.0}, {'current': 3999.938, 'min': 1200.0, 'max': 4100.0}, {'current': 3996.618, 'min': 1200.0, 'max': 4100.0}, {'current': 3957.604, 'min': 1200.0, 'max': 4100.0}, {'current': 3740.954, 'min': 1200.0, 'max': 4100.0}, {'current': 3923.571, 'min': 1200.0, 'max': 4100.0}, {'current': 3724.768, 'min': 1200.0, 'max': 4100.0}, {'current': 3840.563, 'min': 1200.0, 'max': 4100.0}, {'current': 3876.049, 'min': 1200.0, 'max': 4100.0}, {'current': 3998.901, 'min': 1200.0, 'max': 4100.0}, {'current': 3871.691, 'min': 1200.0, 'max': 4100.0}, {'current': 3999.938, 'min': 1200.0, 'max': 4100.0}, {'current': 3995.996, 'min': 1200.0, 'max': 4100.0}, {'current': 3995.996, 'min': 1200.0, 'max': 4100.0}, {'current': 3959.472, 'min': 1200.0, 'max': 4100.0}, {'current': 3984.582, 'min': 1200.0, 'max': 4100.0}, {'current': 3859.24, 'min': 1200.0, 'max': 4100.0}, {'current': 3984.582, 'min': 1200.0, 'max': 4100.0}, {'current': 3871.484, 'min': 1200.0, 'max': 4100.0}, {'current': 3442.333, 'min': 1200.0, 'max': 4100.0}, {'current': 3701.94, 'min': 1200.0, 'max': 4100.0}, {'current': 3998.693, 'min': 1200.0, 'max': 4100.0}, {'current': 3999.938, 'min': 1200.0, 'max': 4100.0}, {'current': 3999.938, 'min': 1200.0, 'max': 4100.0}, {'current': 3956.982, 'min': 1200.0, 'max': 4100.0}, {'current': 3999.938, 'min': 1200.0, 'max': 4100.0}, {'current': 3999.938, 'min': 1200.0, 'max': 4100.0}, {'current': 3998.486, 'min': 1200.0, 'max': 4100.0}, {'current': 3925.231, 'min': 1200.0, 'max': 4100.0}, {'current': 4038.952, 'min': 1200.0, 'max': 4100.0}, {'current': 3766.894, 'min': 1200.0, 'max': 4100.0}, {'current': 3999.938, 'min': 1200.0, 'max': 4100.0}, {'current': 3937.06, 'min': 1200.0, 'max': 4100.0}, {'current': 3999.731, 'min': 1200.0, 'max': 4100.0}, {'current': 3992.675, 'min': 1200.0, 'max': 4100.0}, {'current': 3800.72, 'min': 1200.0, 'max': 4100.0}, {'current': 3826.867, 'min': 1200.0, 'max': 4100.0}, {'current': 3999.938, 'min': 1200.0, 'max': 4100.0}, {'current': 4000.976, 'min': 1200.0, 'max': 4100.0}, {'current': 3941.833, 'min': 1200.0, 'max': 4100.0}], 'disk': {'total': 441.21024322509766, 'used': 11.27127456665039}, 'memory': {'total': 502.3972053527832}}
+2023-07-18 13:12:37,163 INFO    HandlerThread:253298 [system_monitor.py:probe():211] Finished collecting system info
+2023-07-18 13:12:37,163 INFO    HandlerThread:253298 [system_monitor.py:probe():214] Publishing system info
+2023-07-18 13:12:37,163 DEBUG   HandlerThread:253298 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-07-18 13:12:37,165 DEBUG   HandlerThread:253298 [system_info.py:_save_pip():67] Saving pip packages done
+2023-07-18 13:12:37,165 DEBUG   HandlerThread:253298 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2023-07-18 13:12:38,038 INFO    Thread-17 :253298 [dir_watcher.py:_on_file_created():272] file/dir created: /home/alex.li/git/scripts/wandb/run-20230718_131236-36d4b54e/files/conda-environment.yaml
+2023-07-18 13:12:38,039 INFO    Thread-17 :253298 [dir_watcher.py:_on_file_created():272] file/dir created: /home/alex.li/git/scripts/wandb/run-20230718_131236-36d4b54e/files/requirements.txt
+2023-07-18 13:12:38,039 INFO    Thread-17 :253298 [dir_watcher.py:_on_file_created():272] file/dir created: /home/alex.li/git/scripts/wandb/run-20230718_131236-36d4b54e/files/wandb-summary.json
+2023-07-18 13:12:40,039 INFO    Thread-17 :253298 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/alex.li/git/scripts/wandb/run-20230718_131236-36d4b54e/files/conda-environment.yaml
+2023-07-18 13:12:40,113 DEBUG   HandlerThread:253298 [system_info.py:_save_conda():86] Saving conda packages done
+2023-07-18 13:12:40,114 DEBUG   HandlerThread:253298 [system_info.py:_save_code():89] Saving code
+2023-07-18 13:12:40,114 WARNING HandlerThread:253298 [system_info.py:_save_code():91] unable to save code -- program entry not found
+2023-07-18 13:12:40,114 DEBUG   HandlerThread:253298 [system_info.py:_save_patches():127] Saving git patches
+2023-07-18 13:12:40,309 DEBUG   HandlerThread:253298 [system_info.py:_save_patches():169] Saving git patches done
+2023-07-18 13:12:40,313 INFO    HandlerThread:253298 [system_monitor.py:probe():216] Finished publishing system info
+2023-07-18 13:12:40,327 DEBUG   SenderThread:253298 [sender.py:send():369] send: files
+2023-07-18 13:12:40,327 INFO    SenderThread:253298 [sender.py:_save_file():1354] saving file wandb-metadata.json with policy now
+2023-07-18 13:12:40,328 INFO    SenderThread:253298 [sender.py:_save_file():1354] saving file diff.patch with policy now
+2023-07-18 13:12:40,335 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-18 13:12:40,336 DEBUG   SenderThread:253298 [sender.py:send_request():396] send_request: stop_status
+2023-07-18 13:12:40,625 DEBUG   SenderThread:253298 [sender.py:send():369] send: telemetry
+2023-07-18 13:12:40,627 DEBUG   SenderThread:253298 [sender.py:send():369] send: telemetry
+2023-07-18 13:12:40,967 INFO    wandb-upload_0:253298 [upload_job.py:push():133] Uploaded file /tmp/tmpo3nj9rg_wandb/5ag5osxm-wandb-metadata.json
+2023-07-18 13:12:41,040 INFO    Thread-17 :253298 [dir_watcher.py:_on_file_created():272] file/dir created: /home/alex.li/git/scripts/wandb/run-20230718_131236-36d4b54e/files/output.log
+2023-07-18 13:12:41,040 INFO    Thread-17 :253298 [dir_watcher.py:_on_file_created():272] file/dir created: /home/alex.li/git/scripts/wandb/run-20230718_131236-36d4b54e/files/diff.patch
+2023-07-18 13:12:41,041 INFO    Thread-17 :253298 [dir_watcher.py:_on_file_created():272] file/dir created: /home/alex.li/git/scripts/wandb/run-20230718_131236-36d4b54e/files/wandb-metadata.json
+2023-07-18 13:12:41,627 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:12:41,778 INFO    wandb-upload_1:253298 [upload_job.py:push():133] Uploaded file /tmp/tmpo3nj9rg_wandb/xvaqllxa-diff.patch
+2023-07-18 13:12:43,043 INFO    Thread-17 :253298 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/alex.li/git/scripts/wandb/run-20230718_131236-36d4b54e/files/output.log
+2023-07-18 13:12:46,628 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:12:51,633 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:12:55,335 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-18 13:12:55,336 DEBUG   SenderThread:253298 [sender.py:send_request():396] send_request: stop_status
+2023-07-18 13:12:57,437 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:13:02,438 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:13:07,444 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:13:08,081 INFO    Thread-17 :253298 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/alex.li/git/scripts/wandb/run-20230718_131236-36d4b54e/files/config.yaml
+2023-07-18 13:13:10,335 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-18 13:13:10,336 DEBUG   SenderThread:253298 [sender.py:send_request():396] send_request: stop_status
+2023-07-18 13:13:13,459 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:13:18,460 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:13:23,461 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:13:25,335 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-18 13:13:25,336 DEBUG   SenderThread:253298 [sender.py:send_request():396] send_request: stop_status
+2023-07-18 13:13:29,445 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:13:34,446 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:13:37,123 DEBUG   SystemMonitor:253298 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-07-18 13:13:37,125 DEBUG   SenderThread:253298 [sender.py:send():369] send: stats
+2023-07-18 13:13:40,126 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:13:40,335 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-18 13:13:40,336 DEBUG   SenderThread:253298 [sender.py:send_request():396] send_request: stop_status
+2023-07-18 13:13:45,437 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:13:50,438 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:13:55,336 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-18 13:13:55,336 DEBUG   SenderThread:253298 [sender.py:send_request():396] send_request: stop_status
+2023-07-18 13:13:56,429 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:14:01,430 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:14:06,431 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:14:07,126 DEBUG   SenderThread:253298 [sender.py:send():369] send: stats
+2023-07-18 13:14:10,336 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-18 13:14:10,337 DEBUG   SenderThread:253298 [sender.py:send_request():396] send_request: stop_status
+2023-07-18 13:14:11,440 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:14:16,440 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:14:21,441 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:14:25,336 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-18 13:14:25,336 DEBUG   SenderThread:253298 [sender.py:send_request():396] send_request: stop_status
+2023-07-18 13:14:26,452 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:14:31,457 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:14:36,462 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:14:37,128 DEBUG   SenderThread:253298 [sender.py:send():369] send: stats
+2023-07-18 13:14:40,336 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-18 13:14:40,337 DEBUG   SenderThread:253298 [sender.py:send_request():396] send_request: stop_status
+2023-07-18 13:14:42,439 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:14:47,444 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:14:52,445 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:14:55,337 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-18 13:14:55,337 DEBUG   SenderThread:253298 [sender.py:send_request():396] send_request: stop_status
+2023-07-18 13:14:57,472 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:15:02,473 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
+2023-07-18 13:15:07,129 DEBUG   SenderThread:253298 [sender.py:send():369] send: stats
+2023-07-18 13:15:08,130 DEBUG   HandlerThread:253298 [handler.py:handle_request():144] handle_request: status_report
