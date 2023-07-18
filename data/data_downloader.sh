@@ -11,6 +11,6 @@ cd /home/${USER}/git/scripts/data
 
 DATASET_NAME=hhh_field_data_stratified
 
-python data_downloader.py $DATASET_NAME -d $DATASET_PATH
+# python data_downloader.py $DATASET_NAME -d $DATASET_PATH
 
 python clean_dataset.py $DATASET_PATH/$DATASET_NAME
