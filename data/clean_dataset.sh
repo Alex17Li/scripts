@@ -3,7 +3,6 @@
 #SBATCH --output=/home/%u/logs/%A_%x.txt
 #SBATCH --partition=cpu
 #SBATCH --ntasks=1
-#SBATCH --nodes=1
 #SBATCH --cpus-per-task=16
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=%u@bluerivertech.com

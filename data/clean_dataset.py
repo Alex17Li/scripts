@@ -2,7 +2,6 @@
 Simple Utility to check that a dataset contains all required files
 and remove excess files
 """
-from numpy import imag
 import pandas
 from pathlib import Path
 from typing import Optional
@@ -22,7 +21,13 @@ def filter_debayered_images(df, dataset_path, df_path):
                 image_path = os.path.join(dataset_path, df_row.stereo_left_image)
             # imread is slow but I have had some examples where the path exists and looks valid,
             # but imread crashes
-            return os.path.exists(image_path) and imageio.imread(image_path)
+            if not os.path.exists(image_path):
+                return False
+            im = imageio.imread(image_path) # check that we can read the image
+            # delete the image to avoid nasty silent OOM errors; pandarell doesn't call the garbarge collector for you
+            # and the code will just get stuck
+            del im
+            return True
         except Exception as e:
             print(e)
             print(df_row.artifact_debayeredrgb_0_save_path)
@@ -34,6 +39,8 @@ def filter_debayered_images(df, dataset_path, df_path):
     not_nan_size = len(df2)
     if not_nan_size != orig_size:
         print(f"Found {orig_size - not_nan_size} nan values of debayeredrgb save path")
+    # tqdm.tqdm.pandas()
+    # valid_debayered = df2[df2.progress_apply(debayered_is_valid, axis=1)]
     valid_debayered = df2[df2.parallel_apply(debayered_is_valid, axis=1)]
     if len(valid_debayered) != len(df):
         while True:
@@ -130,6 +137,7 @@ def main(dataset_folder: Path, annotations_path: Optional[str], master_annotatio
         to_delete = set(all_folders) - set(image_ids)
         while True:
             confirm = 'y' if AUTOCONFIRM else input(f"Press 'y' to remove {len(to_delete)} folders in {clean_path}, leaving {len(image_ids)}")
+            print(confirm)
             if confirm == 'y':
                 for image_id in tqdm.tqdm(set(all_folders) - set(image_ids), desc="Removing files that are not in the annotations csv..."):
                     remove_path = dataset_folder / "images" / image_id

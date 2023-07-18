@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH --job-name=download_data
 #SBATCH --partition=cpu
+#SBATCH --mem-per-cpu=4G
 #SBATCH --output=/home/%u/logs/%A_%x.txt
-#SBATCH --nodes=1
 #SBATCH --ntasks=1
 
 source /home/${USER}/.bashrc
