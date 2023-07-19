@@ -10,6 +10,7 @@
 
 # --SBATCH --partition=cpu
 source /home/$USER/.bashrc
+module load pytorch/1.12.0+cuda11.3
 
 cd /home/$USER/git/JupiterCVML/europa/base/src/europa
 
@@ -44,7 +45,7 @@ python -m dl.scripts.trainer \
     --focalloss-parameters '{"alpha":[1.0,1.0,1.0,1.0], "gamma":2.0}' \
     --tversky-parameters '{"fp_weight":[0.6,0.3,0.3,0.6], "fn_weight":[0.4,0.7,0.7,0.4], "class_weight":[1.5,3.0,2.0,1.0], "gamma":1.0}' \
     --productivity-loss-params '{"depth_thresh": 0.35, "prob_thresh": 0.01}' \
-    --trivial-augment '{"use": true, "fill": 0}' \
+    --trivial-augment '{"use": true}' \
     --night-model '{"use": false, "dark_pix_threshold": 10}' \
     --num-workers 16 \
     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \

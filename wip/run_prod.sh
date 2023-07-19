@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=test_productivity
-#SBATCH --output=/home/alex.li/workspace/logs/%A_%x
+#SBATCH --output=/home/alex.li/logs/%A_%x
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --partition=gpu
@@ -14,14 +14,21 @@ source /home/alex.li/.bashrc
 # conda activate shank
 # conda activate knowledgedistillation
 # conda activate pytorch1.10
-conda activate pytorchlightning
+module load pytorch/1.12.0+cuda11.3
+conda activate cvml
 
 
 cd /home/alex.li/workspace/JupiterCVML/europa/base/src/europa
 
 # experiment name
-EXP='dust_test_small_prod'
-CHECKPOINT_PREFIX='vehicle_cls'  # driveable_terrain_model or job_quality or vehicle_cls
+# EXP='dust_test_small_prod'
+EXP=v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30
+CHECKPOINT_PREFIX='drivable_terrain_model'
+CHECKPOINT_FULL_DIR=/mnt/sandbox1/rakhil.immidisetti/logs/driveable_terrain_model/${EXP}
+if [ ! -d $CHECKPOINT_FULL_DIR ]; then
+    echo checkpoint dir does not exist
+    exit 1
+fi
 
 
 for EPOCH in -1
@@ -39,12 +46,6 @@ else
     exit 1
 fi
 
-# check if dir and file exists
-CHECKPOINT_FULL_DIR=/data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}
-if [ ! -d $CHECKPOINT_FULL_DIR ]; then
-    echo checkpoint dir does not exist, will create the dir
-    mkdir $CHECKPOINT_FULL_DIR
-fi
 CHECKPOINT_FULL_PATH=${CHECKPOINT_FULL_DIR}/${CHECKPOINT}
 if [ ! -f $CHECKPOINT_FULL_PATH ]; then
     echo checkpoint does not exist, please run the cmd below to download
@@ -65,10 +66,8 @@ python predictor_pl.py \
     --data-dir /data/jupiter/datasets/${DATASET} \
     --dataset ${DATASET}/ \
     --label-map-file /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/config/label_maps/four_class_train.csv \
-    --restore-from /data/jupiter/li.yu/exps/driveable_terrain_modelv58rd_4cls_0314/vehicle_cls_val_bestmodel.pth \
+    --restore-from $CHECKPOINT_FULL_PATH \
     --output-dir /data/jupiter/alex.li//datasets/spring_dust_data_test/results \
-    --side-left-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_left_mask.png \
-    --side-right-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_right_mask.png \
     --model brtresnetpyramid_lite12 \
     --merge-stop-class-confidence 0.35 \
     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
@@ -77,8 +76,7 @@ python predictor_pl.py \
     --input-dims 4 \
     --run-productivity-metrics \
     --batch-size 20 \
-    --num-workers 4 \
-    --gpu 0,1,2,3;
+    --num-workers 4;
 done
 
 
@@ -89,10 +87,8 @@ done
 #     --data-dir /data/jupiter/datasets/ \
 #     --dataset dust_test_2022_v4_anno_HEAVY_DUST/ \
 #     --label-map-file /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/config/label_maps/binary_dust.csv \
-#     --restore-from /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/${CHECKPOINT} \
+#     --restore-from $CHECKPOINT_FULL_PATH \
 #     --output-dir /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/dust_test_2022_v4_anno_HEAVY_DUST${SAVE_PRED_SUFFIX} \
-#     --side-left-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_left_mask.png \
-#     --side-right-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_right_mask.png \
 #     --model brtresnetpyramid_lite12 \
 #     --use-depth-threshold \
 #     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
@@ -114,8 +110,6 @@ done
 #     --label-map-file /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/config/label_maps/binary_dust.csv \
 #     --restore-from /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/${CHECKPOINT} \
 #     --output-dir /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/dust_test_2022_v4_anno_HEAVY_DUST${SAVE_PRED_SUFFIX} \
-#     --side-left-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_left_mask.png \
-#     --side-right-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_right_mask.png \
 #     --model brtresnetpyramid_lite12 \
 #     --use-depth-threshold \
 #     --run-productivity-metrics \
@@ -125,7 +119,6 @@ done
 #     --night-model '{"use": false, "dark_pix_threshold": 10}' \
 #     --batch-size 20 \
 #     --num-workers 12 \
-#     --gpu 0,1 \
 #     --freeze-encoder \
 #     --additional-head-output \
 #     --num-classes 8 \
@@ -140,8 +133,6 @@ done
 #     --label-map-file /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/config/label_maps/four_class_train.csv \
 #     --restore-from /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/${CHECKPOINT} \
 #     --output-dir /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/dust_test_2022_v4_anno_HEAVY_DUST${SAVE_PRED_SUFFIX} \
-#     --side-left-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_left_mask.png \
-#     --side-right-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_right_mask.png \
 #     --model brtresnetpyramid_lite12 \
 #     --merge-stop-class-confidence 0.35 \
 #     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
@@ -150,8 +141,7 @@ done
 #     --use-depth-threshold \
 #     --input-dims 4 \
 #     --batch-size 20 \
-#     --num-workers 12 \
-#     --gpu 0,1;
+#     --num-workers 12;
 # mv /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/dust_test_2022_v4_anno_HEAVY_DUST${SAVE_PRED_SUFFIX}/output.csv /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/dust_test_2022_v4_anno_HEAVY_DUST${SAVE_PRED_SUFFIX}/output.csv.labeled;
 # python predictor.py \
 #     --csv-path /data/jupiter/datasets/dust_test_2022_v4_anno_HEAVY_DUST/master_annotations_skipped.csv \
@@ -160,8 +150,6 @@ done
 #     --label-map-file /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/config/label_maps/four_class_train.csv \
 #     --restore-from /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/${CHECKPOINT} \
 #     --output-dir /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/dust_test_2022_v4_anno_HEAVY_DUST${SAVE_PRED_SUFFIX} \
-#     --side-left-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_left_mask.png \
-#     --side-right-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_right_mask.png \
 #     --model brtresnetpyramid_lite12 \
 #     --merge-stop-class-confidence 0.35 \
 #     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
@@ -171,8 +159,7 @@ done
 #     --use-depth-threshold \
 #     --input-dims 4 \
 #     --batch-size 20 \
-#     --num-workers 12 \
-#     --gpu 0,1;
+#     --num-workers 12;
 # mv /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/dust_test_2022_v4_anno_HEAVY_DUST${SAVE_PRED_SUFFIX}/output.csv /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/dust_test_2022_v4_anno_HEAVY_DUST${SAVE_PRED_SUFFIX}/output.csv.skipped;
 
 
@@ -185,8 +172,6 @@ done
 #     --label-map-file /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv \
 #     --restore-from /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/${CHECKPOINT} \
 #     --output-dir /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/iq_2022_v8_anno${SAVE_PRED_SUFFIX} \
-#     --side-left-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_left_mask.png \
-#     --side-right-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_right_mask.png \
 #     --model brtresnetpyramid_lite12 \
 #     --merge-stop-class-confidence 0.35 \
 #     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
@@ -195,8 +180,7 @@ done
 #     --input-dims 4 \
 #     --run-productivity-metrics \
 #     --batch-size 20 \
-#     --num-workers 12 \
-#     --gpu 0,1;
+#     --num-workers 12;
 # # run testing on dust test set v4, master branch
 # python predictor.py \
 #     --csv-path /data/jupiter/datasets/dust_test_2022_v4_anno_HEAVY_DUST/master_annotations_labeled.csv \
@@ -205,8 +189,6 @@ done
 #     --label-map-file /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv \
 #     --restore-from /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/${CHECKPOINT} \
 #     --output-dir /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/dust_test_2022_v4_anno_HEAVY_DUST${SAVE_PRED_SUFFIX} \
-#     --side-left-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_left_mask.png \
-#     --side-right-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_right_mask.png \
 #     --model brtresnetpyramid_lite12 \
 #     --merge-stop-class-confidence 0.35 \
 #     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
@@ -215,8 +197,7 @@ done
 #     --input-dims 4 \
 #     --run-productivity-metrics \
 #     --batch-size 20 \
-#     --num-workers 12 \
-#     --gpu 0,1;
+#     --num-workers 12;
 
 
 # # run testing on IQ testset, on dust head GRETZKY_1385_dust_head
@@ -227,8 +208,6 @@ done
 #     --label-map-file /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/config/label_maps/binary_dust.csv \
 #     --restore-from /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/${CHECKPOINT} \
 #     --output-dir /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/iq_2022_v8_anno${SAVE_PRED_SUFFIX}_dust \
-#     --side-left-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_left_mask.png \
-#     --side-right-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_right_mask.png \
 #     --model brtresnetpyramid_lite12 \
 #     --use-depth-threshold \
 #     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
@@ -237,7 +216,6 @@ done
 #     --night-model '{"use": false, "dark_pix_threshold": 10}' \
 #     --batch-size 20 \
 #     --num-workers 12 \
-#     --gpu 0,1 \
 #     --freeze-encoder \
 #     --additional-head-output \
 #     --num-classes 7 \
@@ -250,8 +228,6 @@ done
 #     --label-map-file /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/config/label_maps/binary_dust.csv \
 #     --restore-from /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/${CHECKPOINT} \
 #     --output-dir /data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}/dust_test_2022_v4_anno_HEAVY_DUST${SAVE_PRED_SUFFIX}_dust \
-#     --side-left-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_left_mask.png \
-#     --side-right-tire-mask /home/li.yu/code/JupiterEmbedded/src/dnn_engine/data/side_right_mask.png \
 #     --model brtresnetpyramid_lite12 \
 #     --use-depth-threshold \
 #     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
@@ -260,7 +236,6 @@ done
 #     --night-model '{"use": false, "dark_pix_threshold": 10}' \
 #     --batch-size 20 \
 #     --num-workers 12 \
-#     --gpu 0,1 \
 #     --freeze-encoder \
 #     --additional-head-output \
 #     --num-classes 7 \

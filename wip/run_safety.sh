@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=test_safety
-#SBATCH --output=/home/alex.li/workspace/logs/%A_%x
+#SBATCH --output=/home/alex.li/logs/%A_%x
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --partition=gpu
@@ -14,7 +14,8 @@ source /home/alex.li/.bashrc
 # conda activate shank
 # conda activate knowledgedistillation
 # conda activate pytorch1.10
-conda activate pytorchlightning
+module load pytorch/1.12.0+cuda11.3
+conda activate cvml
 
 # add working dir
 export PYTHONPATH=/home/li.yu/code/JupiterCVML/europa/base/src/europa
@@ -22,9 +23,18 @@ export PYTHONPATH=/home/li.yu/code/JupiterCVML/europa/base/src/europa
 cd /home/alex.li/workspace/JupiterCVML/europa/base/src/europa
 
 # experiment name
-EXP='dust_test_smalL_prod'
-CHECKPOINT_PREFIX='vehicle_cls'  # driveable_terrain_model or job_quality or vehicle_cls or bc_sandbox_2023
+# EXP='dust_test_smalL_prod'
+EXP=v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30
+# CHECKPOINT_PREFIX='vehicle_cls'  # driveable_terrain_model or job_quality or vehicle_cls or bc_sandbox_2023
+CHECKPOINT_PREFIX='drivable_terrain_model'
 EXTRA_SUFFIX=''  # default empty str or _newmask
+# check if dir and file exists
+# CHECKPOINT_FULL_DIR=/data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}
+CHECKPOINT_FULL_DIR=/mnt/sandbox1/rakhil.immidisetti/logs/driveable_terrain_model/${EXP}
+if [ ! -d $CHECKPOINT_FULL_DIR ]; then
+    echo checkpoint dir does not exist
+    exit 1
+fi
 
 for EPOCH in -1
 do 
@@ -41,13 +51,9 @@ else
     exit 1
 fi
 
-# check if dir and file exists
-CHECKPOINT_FULL_DIR=/data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}
-if [ ! -d $CHECKPOINT_FULL_DIR ]; then
-    echo checkpoint dir does not exist, will create the dir
-    mkdir $CHECKPOINT_FULL_DIR
-fi
+
 CHECKPOINT_FULL_PATH=${CHECKPOINT_FULL_DIR}/${CHECKPOINT}
+
 if [ ! -f $CHECKPOINT_FULL_PATH ]; then
     echo checkpoint does not exist, please run the cmd below to download
     # echo aws s3 cp s3://mesa-states/prod/jupiter/model_training/${EXP}/${CHECKPOINT} ${CHECKPOINT_FULL_DIR}/
@@ -153,8 +159,7 @@ echo start epoch $EPOCH with $CHECKPOINT_FULL_PATH
 #     --merge-stop-class-confidence -1 \
 #     --input-dims 4 \
 #     --batch-size 20 \
-#     --num-workers 4 \
-#     --gpu 0,1;
+#     --num-workers 4;
 # done
 
 
@@ -177,8 +182,7 @@ python predictor_pl.py \
     --use-depth-threshold \
     --input-dims 4 \
     --batch-size 20 \
-    --num-workers 4 \
-    --gpu 0,1;
+    --num-workers 4;
 done
 
 # # run HALO ddp label count or focal loss, on GRETZKY_2106_halo_seg_color_correction branch
@@ -203,8 +207,7 @@ done
 #     --merge-stop-class-confidence -1 \
 #     --input-dims 4 \
 #     --batch-size 20 \
-#     --num-workers 4 \
-#     --gpu 0,1;
+#     --num-workers 4;
 # done
 
 
