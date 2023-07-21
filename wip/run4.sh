@@ -17,19 +17,15 @@ eval "$(/home/li.yu/anaconda3/bin/conda shell.bash hook)"
 conda activate pytorchlightning
 
 # add working dir
-export PYTHONPATH=/home/li.yu/code/JupiterCVML/europa/base/src/europa
+export PYTHONPATH=/home/alex.li/git/JupiterCVML/europa/base/src/europa
 
 # enter working directory
-cd /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/scripts
+cd /home/alex.li/git/JupiterCVML/europa/base/src/europa/dl/scripts
 
-# bash /home/alex.li/git/scripts/wip/setup_variables.sh
-# experiment name
-# EXP='dust_51_v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30'
-# CHECKPOINT_PREFIX='job_quality'  # driveable_terrain_model or job_quality or vehicle_cls
-# CHECKPOINT_FULL_DIR=/data/jupiter/li.yu/exps/driveable_terrain_model/${EXP}
-# EXTRA_SUFFIX=''  # default empty str or _newmask or _dedust
-export EXP=v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30
-export CHECKPOINT_PREFIX='driveable_terrain_model'
+# export EXP=v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30
+# export CHECKPOINT_PREFIX='driveable_terrain_model'
+export EXP=v57rd_4cls_tiny0occluded5reverse5triangle5_msml_0305
+export CHECKPOINT_PREFIX='vehicle_cls'
 export CHECKPOINT_FULL_DIR=/mnt/sandbox1/rakhil.immidisetti/logs/driveable_terrain_model/${EXP}
 export OUTPUT_DIR=/data/jupiter/alex.li/results
 
@@ -86,8 +82,7 @@ echo -------------------------------------------------
 #     --run-productivity-metrics \
 #     --input-dims 4 \
 #     --batch-size 20 \
-#     --num-workers 12 \
-#     --gpu 0,1;
+#     --num-workers 12;
 # done
 
 
@@ -114,8 +109,7 @@ echo -------------------------------------------------
 #     --input-dims 4 \
 #     --batch-size 20 \
 #     --num-classes 7 \
-#     --num-head-classes 1 \
-#     --gpu 0,1;
+#     --num-head-classes 1;
 # done
 
 
@@ -123,26 +117,23 @@ echo -------------------------------------------------
 # # labeled datasets
 # # DUST_DATASETS=("manny_in_dust_8_10mph_Jan2023_labeled" "Jupiter_2022_Dust_Humans_Unfiltered_partiallabeled" "Jupiter_2023_0215_0302_human_dust_labeled")
 DUST_DATASETS=("Jupiter_2023_03_02_and_2930_human_vehicle_in_dust_labeled" "Jupiter_2023_March_29th30th_human_vehicle_in_dust_front_pod_labeled" "Jupiter_2023_04_05_loamy869_dust_collection_stereo_labeled" "Jupiter_2023_may_loamy731_vehicle_dust_human_stereo_labeled")
-# DUST_DATASETS=("Jupiter_2023_03_02_and_2930_human_vehicle_in_dust_labeled")
 for DATASET in ${DUST_DATASETS[@]}
 do
 python predictor.py \
     --csv-path /data/jupiter/li.yu/data/${DATASET}/master_annotations.csv \
     --data-dir /data/jupiter/li.yu/data/${DATASET} \
     --dataset ${DATASET}/ \
-    --label-map-file /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv \
+    --label-map-file /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/config/label_maps/four_class_train.csv \
     --restore-from ${CHECKPOINT_FULL_PATH} \
     --output-dir ${OUTPUT_DIR}/${DATASET}${SAVE_PRED_SUFFIX} \
     --dust-class-metrics \
-    --dust-mask /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/config/tire_masks/dust_rear_triangle_mask_fullres.png \
-    --dust-mask /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/config/tire_masks/dust_rear_triangle_mask_fullres.png \
+    --dust-mask NO \
     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
     --model-params "{\"num_block_layers\": 2, \"widening_factor\": 2, \"upsample_mode\": \"nearest\", \"bias\": false}" \
     --states-to-save '' \
     --use-depth-threshold \
     --input-dims 4 \
     --batch-size 20 \
-    --gpu "cpu" \
     --num-workers 12;
 done
 
@@ -159,8 +150,7 @@ python predictor.py \
     --restore-from ${CHECKPOINT_FULL_PATH} \
     --output-dir ${CHECKPOINT_FULL_PATH}/${DATASET}${SAVE_PRED_SUFFIX} \
     --dust-class-metrics \
-    --dust-mask /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/config/tire_masks/dust_rear_triangle_mask_fullres.png \
-    --dust-mask /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/config/tire_masks/dust_rear_triangle_mask_fullres.png \
+    --dust-mask NO \
     --merge-stop-class-confidence 0.35 \
     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
     --states-to-save '' \
@@ -168,7 +158,6 @@ python predictor.py \
     --run-productivity-metrics \
     --input-dims 4 \
     --batch-size 20 \
-    --gpu "cpu" \
     --num-workers 12;
 done
 

@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --partition=gpu
-#SBATCH --gres=gpu:4
+#SBATCH --gres=gpu:2
 #SBATCH --cpus-per-gpu=6
 #SBATCH --mem-per-gpu=20G
 #SBATCH --time=8:00:00
@@ -97,7 +97,6 @@ done
 #     --night-model '{"use": false, "dark_pix_threshold": 10}' \
 #     --batch-size 20 \
 #     --num-workers 12 \
-#     --gpu 0,1 \
 #     --freeze-encoder \
 #     --additional-head-output \
 #     --num-classes 8 \

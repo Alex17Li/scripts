@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=dust_train
+#SBATCH --job-name=train
 #SBATCH --output=/home/%u/logs/%A_%x
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -11,6 +11,7 @@
 # --SBATCH --partition=cpu
 source /home/$USER/.bashrc
 module load pytorch/1.12.0+cuda11.3
+conda activate cvml
 
 cd /home/$USER/git/JupiterCVML/europa/base/src/europa
 
@@ -66,16 +67,6 @@ python -m dl.scripts.trainer \
                         "day_vehicles": 2.0, "day_vehicle_pixels": [3000, 100000],
                         "night_vehicles": 5.0, "night_vehicle_pixels": [3000, 100000],
                         "airborne_debris": 2.0, "airborne_debris_pixels": [100, 100000]}' \
-    --human-augmentation '{"use": true, "sample_ratio": 0.30, "non_standing_aspect_ratio_threshold": 0.5,
-                    "load_from_human_aug_csv": "/data/jupiter/li.yu/data/Jupiter_train_v5_11/trainrd05_humanaug.csv", 
-                    "save_to_human_aug_csv": "/data/jupiter/li.yu/data/Jupiter_train_v5_11/trainrd05_humanaug.csv",
-                    "same_operation_time": false, "same_brightness": true, "brightness_range": 0.05,
-                    "use_standing_human": true, "standing_min_pixels": 50, "standing_max_pixels": 20000,
-                    "use_laying_down_human": true, "laying_down_min_pixels": 50, "laying_down_max_pixels": 15000,
-                    "use_multi_human": true, "only_non_occluded": true, "blend_mode": "vanilla",
-                    "rotate_human": true, "rotate_degree": 30, "jitter_human": false, "jitter_range": 0.15,
-                    "depth_aware": false, "cutout_rate": 0.20, "max_cutout": 0.6,
-                    "use_vehicle": false, "vehicle_sample_ratio": 0.05, "vehicle_min_pixels": 3000, "vehicle_max_pixels": 100000}' \
     --run-id ${EXP};
 
     # --use-albumentation-transform \

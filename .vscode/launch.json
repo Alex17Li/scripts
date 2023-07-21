@@ -1,0 +1,59 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Predictor",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/alex.li/git/JupiterCVML/europa/base/src/europa/dl/scripts/predictor.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--csv-path", "/data/jupiter/datasets/Jupiter_halo_rgbnir_stereo_train_20230710_cleaned_20230712_tractor_only_withArtifactFix/64b0197137e915581adec2d5_master_annotations.csv",
+                "--data-dir", "/data/jupiter/datasets/Jupiter_halo_rgbnir_stereo_train_20230710_cleaned_20230712_tractor_only_withArtifactFix",
+                "--label-map-file", "~/git/JupiterCVML/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv",
+                "--restore-from", "/mnt/sandbox1/rakhil.immidisetti/logs/driveable_terrain_model/v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30/driveable_terrain_model_val_bestmodel.pth",
+                "--output-dir", "/data/jupiter/alex.li/test/results",
+                "--merge-stop-class-confidence", "0.35",
+                "--input-dims", "4",
+                "--run-productivity-metrics",
+                "--batch-size", "32",
+                "--dust-class-metrics",
+                "--dust-mask", "NO MASK INVALID PATH",
+                "--input-mode", "RGBD",
+            ],
+            "justMyCode": true
+        },
+        {
+            "name": "Trainer",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/alex.li/git/JupiterCVML/europa/base/src/europa/dl/scripts/trainer.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--csv-path", "/data/jupiter/li.yu/data/Jupiter_train_v5_11/epoch0_5_30_focal05_master_annotations.csv",
+                "--data-dir", "/data/jupiter/datasets/Jupiter_train_v5_11/",
+                "--label-map-file", "~/git/JupiterCVML/europa/base/src/europa/dl/config/label_maps/four_class_train.csv",
+                "--exp-name", "test",
+                "--val-set-ratio", ".2",
+                "--trivial-augment", "{\"use\": true}",
+                "--output-dir", "/data/jupiter/alex.li/test/results",
+                "--input-dims", "4",
+                "--run-productivity-metrics",
+                "--batch-size", "32",
+                "--dust-class-metrics",
+                "--dust-mask", "NO MASK INVALID PATH",
+                "--input-mode", "RGBD",
+                "--human-augmentation", "{\"use\": false}",
+            ],
+            "justMyCode": true
+        }
+    ]
+}
