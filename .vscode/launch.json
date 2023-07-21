@@ -13,7 +13,7 @@
             "name": "Predictor",
             "type": "python",
             "request": "launch",
-            "program": "/home/alex.li/git/JupiterCVML/europa/base/src/europa/dl/scripts/predictor.py",
+            "program": "~/git/JupiterCVML/europa/base/src/europa/dl/scripts/predictor.py",
             "console": "integratedTerminal",
             "args": [
                 "--csv-path", "/data/jupiter/datasets/Jupiter_halo_rgbnir_stereo_train_20230710_cleaned_20230712_tractor_only_withArtifactFix/64b0197137e915581adec2d5_master_annotations.csv",
@@ -35,7 +35,7 @@
             "name": "Trainer",
             "type": "python",
             "request": "launch",
-            "program": "/home/alex.li/git/JupiterCVML/europa/base/src/europa/dl/scripts/trainer.py",
+            "program": "~/git/JupiterCVML/europa/base/src/europa/dl/scripts/trainer.py",
             "console": "integratedTerminal",
             "args": [
                 "--csv-path", "/data/jupiter/li.yu/data/Jupiter_train_v5_11/epoch0_5_30_focal05_master_annotations.csv",
@@ -51,7 +51,6 @@
                 "--dust-class-metrics",
                 "--dust-mask", "NO MASK INVALID PATH",
                 "--input-mode", "RGBD",
-                "--human-augmentation", "{\"use\": false}",
             ],
             "justMyCode": true
         }
