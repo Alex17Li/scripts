@@ -8,7 +8,7 @@
 #SBATCH --cpus-per-gpu=8
 #SBATCH --time=150:00:00
 
-# --SBATCH --partition=cpu
+#--SBATCH --partition=cpu
 source /home/$USER/.bashrc
 module load pytorch/1.12.0+cuda11.3
 conda activate cvml
@@ -56,6 +56,7 @@ python -m dl.scripts.trainer \
     --num-steps 2000000 \
     --save-pred-every 2000000 \
     --output-dir ${OUTPUT_DIR} \
+    --cutnpaste-augmentations '{}' \
     --color-jitter '{"use": false}' \
     --weighted-sampling '{"birds": 1.0,
                         "tiny_humans": 0.0, "tiny_human_pixels": 30,

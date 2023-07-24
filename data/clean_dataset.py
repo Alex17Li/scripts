@@ -75,9 +75,10 @@ def filter_images(df, dataset_path, out_df_path, type: Literal['rgbd', 'debayere
         raise ArgumentError()
     if len(valid) != len(df):
         while True:
-            confirm = 'y' if AUTOCONFIRM else input(f"Found only {len(valid_debayered)} out of {len(df)} debayered images, delete  {len(df) - len(valid_debayered)} lines of {df_path}? (y/n)")
+            bad_count = len(df) - len(valid)
+            confirm = 'y' if AUTOCONFIRM else input(f"Found only {len(valid)} out of {len(df)} debayered images, delete  {bad_count} lines of {dataset_path}? (y/n)")
             if confirm == 'y':
-                print(f"Removing broken {type} images")
+                print(f"Removing broken {bad_count} images")
                 df = valid
                 valid.to_csv(Path(dataset_path) / out_df_path)
                 break
