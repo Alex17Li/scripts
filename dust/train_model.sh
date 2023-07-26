@@ -15,6 +15,7 @@ conda activate cvml
 
 cd /home/$USER/git/JupiterCVML/europa/base/src/europa
 
+CVML_PATH=/home/$USER/git/JupiterCVML
 EXP=dust_trivial_augment
 SNAPSHOT_DIR=/mnt/sandbox1/$USER/dust
 OUTPUT_DIR=${SNAPSHOT_DIR}/${EXP}
@@ -29,9 +30,9 @@ python -m dl.scripts.trainer \
     --csv-path /data/jupiter/li.yu/data/Jupiter_train_v5_11/epoch0_5_30_focal05_master_annotations.csv \
     --dataset Jupiter_train_v5_11 \
     --data-dir /data/jupiter/datasets/Jupiter_train_v5_11/ \
-    --label-map-file /home/li.yu/code/JupiterCVML/europa/base/src/europa/dl/config/label_maps/four_class_train.csv \
+    --label-map-file $CVML_PATH/europa/base/src/europa/dl/config/label_maps/four_class_train.csv \
     --exp-name dust \
-    --model-params "{\"num_block_layers\": 2, \"widening_factor\": 2, \"upsample_mode\": \"nearest\", \"bias\": true}" \
+    --model-params "{\"activation\": \"gelu\"}" \
     --optimizer adamw \
     --weight-decay 1e-5 \
     --learning-rate 1e-3 \
@@ -57,7 +58,6 @@ python -m dl.scripts.trainer \
     --num-steps 2000000 \
     --save-pred-every 2000000 \
     --output-dir ${OUTPUT_DIR} \
-    --cutnpaste-augmentations '{}' \
     --color-jitter '{"use": false}' \
     --weighted-sampling '{"birds": 1.0,
                         "tiny_humans": 0.0, "tiny_human_pixels": 30,
