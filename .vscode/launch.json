@@ -25,9 +25,11 @@
                 "--input-dims", "4",
                 "--run-productivity-metrics",
                 "--batch-size", "32",
+                "--num-workers", "1",
                 "--dust-class-metrics",
                 "--dust-mask", "NO MASK INVALID PATH",
                 "--input-mode", "RGBD",
+                "--states-to-save"
             ],
             "justMyCode": true
         },
@@ -48,6 +50,7 @@
                 "--input-dims", "4",
                 "--run-productivity-metrics",
                 "--batch-size", "32",
+                "--num-workers", "1",
                 "--dust-class-metrics",
                 "--dust-mask", "NO MASK INVALID PATH",
                 "--input-mode", "RGBD",

@@ -38,6 +38,7 @@ python -m dl.scripts.trainer \
     --lr-scheduler-name cosinelr \
     --lr-scheduler-parameters '{"cosinelr_T_max": 60, "cosinelr_eta_min": 1e-6}' \
     --epochs 60 \
+    --model brtresnetpyramid_lite12 \
     --early-stop-patience 12 \
     --batch-size 64 \
     --val-set-ratio 0.05 \

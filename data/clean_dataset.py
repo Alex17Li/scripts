@@ -28,6 +28,9 @@ def debayered_is_valid(df_row) -> bool:
         if not os.path.exists(image_path):
             return False
         im = imageio.imread(image_path) # check that we can read the image
+        if len(im.shape) != 3:
+            # get this BW stuff out of here
+            return False
         # delete the image to avoid nasty silent OOM errors; pandarell doesn't call the garbarge collector for you
         # and the code will just get stuck
         del im
@@ -92,6 +95,7 @@ def filter_images(df, dataset_path, out_df_path, type: Literal['rgbd', 'debayere
 def main(annotations_path: Optional[str], master_annotations_path: Optional[str]) -> None:
     paths_to_clean = []
     if annotations_path is not None:
+        print(dataset_path / annotations_path)
         assert os.path.exists(dataset_path / annotations_path)
         out_annotations_path = "cleaned_" + annotations_path
         paths_to_clean.append(dataset_path / "images")
@@ -99,6 +103,7 @@ def main(annotations_path: Optional[str], master_annotations_path: Optional[str]
         print("Reading annotation csv...")
         df = pandas.read_csv(dataset_path / annotations_path, dtype=str)
         image_ids = df['id']
+        df['image_id'] = image_ids # Need to set this so that model inference doesn't break
         assert(len(image_ids) > 0)
         
         example_folder_name = dataset_path / "images" / image_ids[0]
@@ -106,6 +111,7 @@ def main(annotations_path: Optional[str], master_annotations_path: Optional[str]
         print(list(os.listdir(example_folder_name)))
         # note, no rgbd for normal annotations as depth does not exist
         df = filter_images(df, dataset_path, out_annotations_path, 'debayered')
+        df.to_csv(Path(dataset_path) / out_annotations_path)
 
     if master_annotations_path is not None:
         assert os.path.exists(dataset_path / master_annotations_path)
@@ -152,6 +158,7 @@ def main(annotations_path: Optional[str], master_annotations_path: Optional[str]
                 print(f"Warning: not all stereo outputs are present! Got {n_stereo_out}/{total}")
         
         df_master = filter_images(df_master, dataset_path, out_master_annotations_path, 'rgbd')
+        df_master.to_csv(Path(dataset_path) / out_master_annotations_path)
 
     # Delete extra folders
     if DELETE_UNUSED_IMAGES:
@@ -189,5 +196,7 @@ if __name__ == "__main__":
 
     AUTOCONFIRM = True
     DELETE_UNUSED_IMAGES = False
+    print(f"{input_annotations_path=}")
+    print(f"{input_master_annotations_path=}")
     main(input_annotations_path,
         input_master_annotations_path)
