@@ -25,7 +25,6 @@ OUTPUT_DIR=${SNAPSHOT_DIR}/${EXP}
 # --model-params '{"widening_factor": 2, "num_block_layers": 2, "activation": "selu", "upsample_mode": "bilinear"}' \
 # --augmentations CustomCrop SmartCrop HorizontalFlip TorchColorJitter Resize \
 
-
 python -m dl.scripts.trainer \
     --csv-path /data/jupiter/li.yu/data/Jupiter_train_v5_11/epoch0_5_30_focal05_master_annotations.csv \
     --dataset Jupiter_train_v5_11 \
