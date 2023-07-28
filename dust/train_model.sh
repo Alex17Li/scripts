@@ -16,13 +16,11 @@ conda activate cvml
 cd /home/$USER/git/JupiterCVML/europa/base/src/europa
 
 CVML_PATH=/home/$USER/git/JupiterCVML
-EXP=dust_trivial_augment
-SNAPSHOT_DIR=/mnt/sandbox1/$USER/dust
+EXP=dust_trivial_augment_1
+SNAPSHOT_DIR=/mnt/sandbox1/$USER
 OUTPUT_DIR=${SNAPSHOT_DIR}/${EXP}
 
 # --tqdm \
-# --restore-from /home/$USER/models/prelabelling/3_class_segformer_5_v0/prelabelling_60_epoch_model.pth \
-# --model-params '{"widening_factor": 2, "num_block_layers": 2, "activation": "selu", "upsample_mode": "bilinear"}' \
 # --augmentations CustomCrop SmartCrop HorizontalFlip TorchColorJitter Resize \
 
 python -m dl.scripts.trainer \
@@ -52,10 +50,7 @@ python -m dl.scripts.trainer \
     --num-workers 16 \
     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
     --snapshot-dir ${SNAPSHOT_DIR} \
-    --resume-from-snapshot False \
-    --restore-from '' \
-    --num-steps 2000000 \
-    --save-pred-every 2000000 \
+    --resume-from-snapshot True \
     --output-dir ${OUTPUT_DIR} \
     --color-jitter '{"use": false}' \
     --weighted-sampling '{"birds": 1.0,
