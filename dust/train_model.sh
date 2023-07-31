@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --partition=gpu
-#SBATCH --gres=gpu:4
+#SBATCH --gres=gpu:8
 #SBATCH --cpus-per-gpu=8
 #SBATCH --time=150:00:00
 
@@ -41,13 +41,13 @@ python -m dl.scripts.trainer \
     --batch-size 64 \
     --val-set-ratio 0.05 \
     --losses '{"msml": 1.0}' \
-    --multiscalemixedloss-parameters '{"scale_weight":0.1, "dust_weight":0.5, "dust_scale_weight":0.05}' \
+    --multiscalemixedloss-parameters '{"scale_weight":0.2, "dust_weight":0.5, "dust_scale_weight":0.1}' \
     --focalloss-parameters '{"alpha":[1.0,1.0,1.0,1.0], "gamma":2.0}' \
     --tversky-parameters '{"fp_weight":[0.6,0.3,0.3,0.6], "fn_weight":[0.4,0.7,0.7,0.4], "class_weight":[1.5,3.0,2.0,1.0], "gamma":1.0}' \
     --productivity-loss-params '{"depth_thresh": 0.35, "prob_thresh": 0.01}' \
     --trivial-augment '{"use": true}' \
     --night-model '{"use": false, "dark_pix_threshold": 10}' \
-    --num-workers 16 \
+    --num-workers 32 \
     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
     --snapshot-dir ${SNAPSHOT_DIR} \
     --resume-from-snapshot True \
