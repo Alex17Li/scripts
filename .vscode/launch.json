@@ -52,7 +52,7 @@
                 "--snapshot-dir", "/mnt/sandbox1/alex.li",
                 "--input-dims", "4",
                 "--run-productivity-metrics",
-                "--cutnpaste-augmentations", "{}",
+                // "--cutnpaste-augmentations", "{}",
                 "--batch-size", "32",
                 "--num-workers", "1",
                 "--dust-class-metrics",
