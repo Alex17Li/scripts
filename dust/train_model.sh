@@ -16,7 +16,7 @@ conda activate cvml
 cd /home/$USER/git/JupiterCVML/europa/base/src/europa
 
 CVML_PATH=/home/$USER/git/JupiterCVML
-EXP=dust_trivial_augment_1
+EXP=dust_trivial_augment_2
 SNAPSHOT_DIR=/mnt/sandbox1/$USER
 OUTPUT_DIR=${SNAPSHOT_DIR}/${EXP}
 
@@ -40,8 +40,8 @@ python -m dl.scripts.trainer \
     --early-stop-patience 12 \
     --batch-size 64 \
     --val-set-ratio 0.05 \
-    --losses '{"msml": 1.0}' \
-    --multiscalemixedloss-parameters '{"scale_weight":0.2, "dust_weight":0.5, "dust_scale_weight":0.1}' \
+    --losses '{"msml": 2.0}' \
+    --multiscalemixedloss-parameters '{"scale_weight":0.2, "dust_weight":0.2, "dust_scale_weight":0.04}' \
     --focalloss-parameters '{"alpha":[1.0,1.0,1.0,1.0], "gamma":2.0}' \
     --tversky-parameters '{"fp_weight":[0.6,0.3,0.3,0.6], "fn_weight":[0.4,0.7,0.7,0.4], "class_weight":[1.5,3.0,2.0,1.0], "gamma":1.0}' \
     --productivity-loss-params '{"depth_thresh": 0.35, "prob_thresh": 0.01}' \
@@ -77,3 +77,6 @@ python -m dl.scripts.trainer \
 
 # mv ${OUTPUT_DIR} /data/jupiter/alex.li/exps/
 # mv ${OUTPUT_DIR}/* /data/jupiter/alex.li/exps/${EXP}/
+
+# https://us-east-2.console.aws.amazon.com/s3/object/blueriver-jupiter-data?region=us-west-2&prefix=model_training/dust_trivial_augment_1/dust_val_bestmodel.pth
+# aws s3 cp /mnt/sandbox1/alex.li/dust/dust_trivial_augment_1/dust_val_bestmodel.pth s3://blueriver-jupiter-data/model_training/dust_trivial_augment_1/dust_val_bestmodel.pth
