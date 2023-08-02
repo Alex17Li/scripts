@@ -1,4 +1,6 @@
 **/__pycache__
 wandb
 test
+test_trainer
+test_predictor
 nohup.out
