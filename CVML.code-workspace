@@ -1,11 +1,15 @@
 {
 	"folders": [
 		{
-			"name": "europa",
+			"name": "git/JupiterCVML/europa/base/src/europa",
 			"path": "../JupiterCVML/europa/base/src/europa"
 		},
 		{
-			"name": "scripts",
+			"name": "git/JupiterScripts/apps",
+			"path": "../JupiterScripts/apps"
+		},
+		{
+			"name": "git/scripts",
 			"path": "."
 		},
 		{
@@ -15,7 +19,7 @@
 		{
 			"name": "logs",
 			"path": "../../logs"
-		},
+		}
 	],
 	"settings": {
 		"extensions.experimental.affinity": {
