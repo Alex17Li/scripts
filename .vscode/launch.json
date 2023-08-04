@@ -18,7 +18,7 @@
             "args": [
                 // "--csv-path", "${env:DATASET_PATH}/Jupiter_halo_rgbnir_stereo_train_20230710_cleaned_20230712_tractor_only_withArtifactFix/64b0197137e915581adec2d5_master_annotations.csv",
                 // "--data-dir", "${env:DATASET_PATH}/Jupiter_halo_rgbnir_stereo_train_20230710_cleaned_20230712_tractor_only_withArtifactFix",
-                "--csv-path", "${env:DATASET_PATH}/humans_on_path_test_set_2023_v9_anno/62df4cdc14cbb852e3ec213a_master_annotations.csv",
+                "--csv-path", "${env:DATASET_PATH}/humans_on_path_test_set_2023_v9_anno/6434b71295fce9c8e3df5a40_master_annotations.csv",
                 "--data-dir", "${env:DATASET_PATH}/humans_on_path_test_set_2023_v9_anno",
                 "--label-map-file", "~/git/JupiterCVML/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv",
                 "--restore-from", "/mnt/sandbox1/rakhil.immidisetti/logs/driveable_terrain_model/v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30/driveable_terrain_model_val_bestmodel.pth",
