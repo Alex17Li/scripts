@@ -30,5 +30,34 @@
 			// black formatter
 			"editor.defaultFormatter":  "ms-python.black-formatter",
 		},
+		// increase speed by ignoring non-code files
+		"files.watcherExclude": {
+			"**/logs": true,
+			"**/data": true,
+			"**/wandb": true,
+			"**/*.csv": true,
+			"**/*.yaml": true,
+			"**/*.ipynb": true,
+			"**/*.png": true,
+			"**/__pycache__": true,
+			"**/.git": true,
+			},
+		"python.analysis.exclude": [
+			"**/logs/**",
+			"**/data/**",
+			"**/wandb/**",
+			"**/*.csv",
+			"**/*.yaml",
+			"**/*.ipynb",
+			"**/*.png",
+			"**/__pycache__",
+			"**/.git",
+			// "/**git/scripts",
+			// "/**git/JupiterScripts",
+			// "/**git/mesa-kubeflow",
+			// "/**git/JupiterEmbedded",
+		]
+			
+		
 	},
 }
