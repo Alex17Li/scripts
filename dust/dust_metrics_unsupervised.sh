@@ -27,7 +27,6 @@ ANNOTATIONS_PATH=cleaned_cleaned_annotations.csv
 python dl/scripts/predictor.py \
     --csv-path ${DATASET_PATH}/${DATASET}/$ANNOTATIONS_PATH \
     --data-dir ${DATASET_PATH}/${DATASET} \
-    --dataset whatever \
     --label-map-file ${JCVML_PATH}/dl/config/label_maps/binary_dust.csv \
     --restore-from /data/jupiter/li.yu/exps/driveable_terrain_model/v471_rd_2cls_dustseghead_0808/job_quality_val_bestmodel.pth \
     --output-dir ${OUTPUT_PATH}/${DATASET}/results_0808_3 \

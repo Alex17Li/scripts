@@ -16,18 +16,18 @@ conda activate cvml
 cd /home/$USER/git/JupiterCVML/europa/base/src/europa
 
 CVML_PATH=/home/$USER/git/JupiterCVML
-EXP=dust_trivial_augment_2
+EXP=dust_trivial_augment_3
 SNAPSHOT_DIR=/mnt/sandbox1/$USER
-OUTPUT_DIR=${SNAPSHOT_DIR}/${EXP}
+OUTPUT_DIR=${OUTPUT_PATH}/${EXP}
 
 # --tqdm \
 # --augmentations CustomCrop SmartCrop HorizontalFlip TorchColorJitter Resize \
 
 python -m dl.scripts.trainer \
     --csv-path /data/jupiter/li.yu/data/Jupiter_train_v5_11/epoch0_5_30_focal05_master_annotations.csv \
-    --dataset Jupiter_train_v5_11 \
     --data-dir /data/jupiter/datasets/Jupiter_train_v5_11/ \
     --label-map-file $CVML_PATH/europa/base/src/europa/dl/config/label_maps/four_class_train.csv \
+    --restore-from /mnt/sandbox1/alex.li/results/dust/dust_trivial_augment_1/dust_val_bestmodel.pth \
     --exp-name dust \
     --model-params "{\"activation\": \"gelu\"}" \
     --optimizer adamw \
@@ -42,7 +42,6 @@ python -m dl.scripts.trainer \
     --val-set-ratio 0.05 \
     --losses '{"msml": 2.0}' \
     --multiscalemixedloss-parameters '{"scale_weight":0.2, "dust_weight":0.2, "dust_scale_weight":0.04}' \
-    --focalloss-parameters '{"alpha":[1.0,1.0,1.0,1.0], "gamma":2.0}' \
     --tversky-parameters '{"fp_weight":[0.6,0.3,0.3,0.6], "fn_weight":[0.4,0.7,0.7,0.4], "class_weight":[1.5,3.0,2.0,1.0], "gamma":1.0}' \
     --productivity-loss-params '{"depth_thresh": 0.35, "prob_thresh": 0.01}' \
     --trivial-augment '{"use": true}' \
