@@ -19,6 +19,10 @@
 		{
 			"name": "logs",
 			"path": "../../logs"
+		},
+		{
+			"name": "sandbox",
+			"path": "/mnt/sandbox1/alex.li"
 		}
 	],
 	"settings": {
@@ -41,6 +45,7 @@
 			"**/*.png": true,
 			"**/__pycache__": true,
 			"**/.git": true,
+			"/mnt/sandbox1": true
 			},
 		"python.analysis.exclude": [
 			"**/logs/**",
@@ -52,6 +57,7 @@
 			"**/*.png",
 			"**/__pycache__",
 			"**/.git",
+			"/mnt/sandbox1"
 			// "/**git/scripts",
 			// "/**git/JupiterScripts",
 			// "/**git/mesa-kubeflow",
