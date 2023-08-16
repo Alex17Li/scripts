@@ -32,7 +32,7 @@ python -m dl.scripts.trainer \
     --model-params "{\"activation\": \"gelu\"}" \
     --optimizer adamw \
     --weight-decay 1e-5 \
-    --activation-reg 2e-2 \
+    --activation-reg 0 \
     --learning-rate 1e-3 \
     --lr-scheduler-name cosinelr \
     --lr-scheduler-parameters '{"cosinelr_T_max": 60, "cosinelr_eta_min": 1e-6}' \
@@ -42,7 +42,7 @@ python -m dl.scripts.trainer \
     --batch-size 64 \
     --val-set-ratio 0.05 \
     --losses '{"tv": 0.2, "prodl": 0.02}' \
-    --multiscalemixedloss-parameters '{"scale_weight":0.2, "dust_weight":0.2, "dust_scale_weight":0.04}' \
+    --multiscalemixedloss-parameters '{"scale_weight":0.1, "dust_weight":0.5, "dust_scale_weight":0.05}' \
     --tversky-parameters '{"fp_weight":[0.6,0.3,0.3,0.6], "fn_weight":[0.4,0.7,0.7,0.4], "class_weight":[1.5,3.0,2.0,1.0], "gamma":1.0}' \
     --productivity-loss-params '{"depth_thresh": 0.35, "prob_thresh": 0.01}' \
     --trivial-augment '{"use": true}' \
