@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=train
+#SBATCH --job-name=train_4cls
 #SBATCH --output=/home/%u/logs/%A_%x
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -16,22 +16,23 @@ conda activate cvml
 cd /home/$USER/git/JupiterCVML/europa/base/src/europa
 
 CVML_PATH=/home/$USER/git/JupiterCVML
-EXP=dust_trivial_augment_2
+EXP=alex_4cls_$SLURM_JOB_ID
 SNAPSHOT_DIR=/mnt/sandbox1/$USER
-OUTPUT_DIR=${SNAPSHOT_DIR}/${EXP}
+OUTPUT_DIR=${OUTPUT_PATH}/${EXP}
 
 # --tqdm \
 # --augmentations CustomCrop SmartCrop HorizontalFlip TorchColorJitter Resize \
 
+# --restore-from /mnt/sandbox1/alex.li/results/dust/dust_trivial_augment_1/dust_val_bestmodel.pth \
 python -m dl.scripts.trainer \
     --csv-path /data/jupiter/li.yu/data/Jupiter_train_v5_11/epoch0_5_30_focal05_master_annotations.csv \
-    --dataset Jupiter_train_v5_11 \
     --data-dir /data/jupiter/datasets/Jupiter_train_v5_11/ \
     --label-map-file $CVML_PATH/europa/base/src/europa/dl/config/label_maps/four_class_train.csv \
     --exp-name dust \
     --model-params "{\"activation\": \"gelu\"}" \
     --optimizer adamw \
     --weight-decay 1e-5 \
+    --activation-reg 0 \
     --learning-rate 1e-3 \
     --lr-scheduler-name cosinelr \
     --lr-scheduler-parameters '{"cosinelr_T_max": 60, "cosinelr_eta_min": 1e-6}' \
@@ -40,17 +41,15 @@ python -m dl.scripts.trainer \
     --early-stop-patience 12 \
     --batch-size 64 \
     --val-set-ratio 0.05 \
-    --losses '{"msml": 2.0}' \
-    --multiscalemixedloss-parameters '{"scale_weight":0.2, "dust_weight":0.2, "dust_scale_weight":0.04}' \
-    --focalloss-parameters '{"alpha":[1.0,1.0,1.0,1.0], "gamma":2.0}' \
+    --losses '{"tv": 0.2, "prodl": 0.02}' \
+    --multiscalemixedloss-parameters '{"scale_weight":0.1, "dust_weight":0.5, "dust_scale_weight":0.05}' \
     --tversky-parameters '{"fp_weight":[0.6,0.3,0.3,0.6], "fn_weight":[0.4,0.7,0.7,0.4], "class_weight":[1.5,3.0,2.0,1.0], "gamma":1.0}' \
     --productivity-loss-params '{"depth_thresh": 0.35, "prob_thresh": 0.01}' \
     --trivial-augment '{"use": true}' \
     --night-model '{"use": false, "dark_pix_threshold": 10}' \
-    --num-workers 32 \
     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
     --snapshot-dir ${SNAPSHOT_DIR} \
-    --resume-from-snapshot True \
+    --resume-from-snapshot False \
     --output-dir ${OUTPUT_DIR} \
     --color-jitter '{"use": false}' \
     --weighted-sampling '{"birds": 1.0,
