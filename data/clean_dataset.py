@@ -47,19 +47,24 @@ def label_is_valid(df_row):
     return os.path.exists(label_path)
     
 def rgdb_is_valid(df_row) -> bool:
-    stereo_data_sample_path = os.path.join(dataset_path, df_row.stereo_pipeline_npz_save_path)
-    stereo_data_sample = np.load(stereo_data_sample_path)
-    image = stereo_data_sample['left']
-    # depth = depth_from_point_cloud(
-    #     stereo_data_sample[POINT_CLOUD],
-    #     clip_and_normalize=True,
-    #     max_depth=MAX_DEPTH,
-    #     make_3d=True,
-    # )
-    del stereo_data_sample
-    # del depth
-    del image
-    return os.path.exists(stereo_data_sample_path)
+    try:
+        stereo_data_sample_path = os.path.join(dataset_path, df_row.stereo_pipeline_npz_save_path)
+        stereo_data_sample = np.load(stereo_data_sample_path)
+        image = stereo_data_sample['left']
+        # depth = depth_from_point_cloud(
+        #     stereo_data_sample[POINT_CLOUD],
+        #     clip_and_normalize=True,
+        #     max_depth=MAX_DEPTH,
+        #     make_3d=True,
+        # )
+        del stereo_data_sample
+        # del depth
+        del image
+        return os.path.exists(stereo_data_sample_path)
+    except Exception as e:
+        print(e)
+        print(df_row.stereo_pipeline_npz_save_path)
+        return False
 
 def filter_images(df, dataset_path, out_df_path, type: Literal['rgbd', 'debayered']):
     # Remove images from the annotations.csv file that cannot be loaded

@@ -3,42 +3,38 @@
 #SBATCH --output=/home/%u/logs/%A_%x
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --gres=gpu:8
+#SBATCH --gres=gpu:4
 #SBATCH --cpus-per-gpu=8
 #SBATCH --mem-per-gpu=30G
 #SBATCH --time=150:00:00
 
 source /home/$USER/.bashrc
-module load pytorch/1.12.0+cuda11.3
 conda activate cvml
-
-cd /home/${USER}/git/scripts/data
 
 OUTPUT_PATH=/data/jupiter/$USER/results
 JCVML_PATH=/home/$USER/git/JupiterCVML/europa/base/src/europa
 cd $JCVML_PATH
 
-DATASET=all_jupiter_data_stratified
-ANNOTATIONS_PATH=cleaned_cleaned_annotations.csv
+DATASET=rev1_data_stratified
+ANNOTATIONS_PATH=cleaned_64cf05781dfbe26adf153573_master_annotations.csv
 
 # python /home/${USER}/git/scripts/data/clean_dataset.py $DATASET_PATH/$DATASET annotations.csv
 # python /home/$USER/git/scripts/data/fake_master.py ${DATASET_PATH}/$DATASET
+echo "Starting"
 
 python dl/scripts/predictor.py \
     --csv-path ${DATASET_PATH}/${DATASET}/$ANNOTATIONS_PATH \
     --data-dir ${DATASET_PATH}/${DATASET} \
-    --label-map-file ${JCVML_PATH}/dl/config/label_maps/binary_dust.csv \
-    --restore-from /data/jupiter/li.yu/exps/driveable_terrain_model/v471_rd_2cls_dustseghead_0808/job_quality_val_bestmodel.pth \
-    --output-dir ${OUTPUT_PATH}/${DATASET}/results_0808_3 \
+    --label-map-file ${JCVML_PATH}/dl/config/label_maps/four_class_train.csv \
+    --restore-from /mnt/sandbox1/alex.li/4class_prod.pth \
+    --output-dir ${OUTPUT_PATH}/${DATASET}/results_4class \
     --merge-stop-class-confidence 0.35 \
-    --input-dims 3 \
     --batch-size 32 \
     --dust-class-metrics \
     --run-productivity-metrics \
-    --num-workers 12 \
     --model brtresnetpyramid_lite12 \
     --dust-mask "NO MASK" \
-    --input-mode debayeredRGB \
+    --input-mode RGBD \
     --tqdm \
     --states-to-save \
     --gpu all;

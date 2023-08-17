@@ -10,4 +10,4 @@
 source ~/.bashrc
 
 cd /home/${USER}/git/scripts/data
-python clean_dataset.py $DATASET_PATH/all_jupiter_data_stratified cleaned_annotations.csv
+python clean_dataset.py $DATASET_PATH/rev1_data_stratified 64cf05781dfbe26adf153573_master_annotations.csv

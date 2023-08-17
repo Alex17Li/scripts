@@ -25,11 +25,12 @@ OUTPUT_DIR=${OUTPUT_PATH}/${EXP}
 
 # --restore-from /mnt/sandbox1/alex.li/results/dust/dust_trivial_augment_1/dust_val_bestmodel.pth \
 python -m dl.scripts.trainer \
+    --cutnpaste-augmentations "{}" \
     --csv-path /data/jupiter/li.yu/data/Jupiter_train_v5_11/epoch0_5_30_focal05_master_annotations.csv \
     --data-dir /data/jupiter/datasets/Jupiter_train_v5_11/ \
     --label-map-file $CVML_PATH/europa/base/src/europa/dl/config/label_maps/four_class_train.csv \
     --exp-name dust \
-    --model-params "{\"activation\": \"gelu\"}" \
+    --model-params "{\"activation\": \"relu\"}" \
     --optimizer adamw \
     --weight-decay 1e-5 \
     --activation-reg 0 \
