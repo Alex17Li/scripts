@@ -1,0 +1,1 @@
+python ml_pack_perception.py --dataset-dir /home/alexli/data/rev1_data_stratified_50k --csv-path /home/alexli/data/rev1_data_stratified_50k/annotations.csv --cam-calibration-path /home/alexli/git/JupiterCVML/europa/base/files/calibration/ --calib-tracker-csv /home/alexli/git/JupiterCVML/europa/base/files/calibration/motec_calibration_tracker_2019.csv --image-only

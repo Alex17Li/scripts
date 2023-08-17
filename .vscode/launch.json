@@ -13,7 +13,7 @@
             "name": "Predictor",
             "type": "python",
             "request": "launch",
-            "program": "~/git/JupiterCVML/europa/base/src/europa/dl/scripts/predictor.py",
+            "program": "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa/dl/scripts/predictor.py",
             "console": "integratedTerminal",
             "args": [
                 // "--csv-path", "${env:DATASET_PATH}/Jupiter_halo_rgbnir_stereo_train_20230710_cleaned_20230712_tractor_only_withArtifactFix/64b0197137e915581adec2d5_master_annotations.csv",
@@ -37,7 +37,7 @@
             "name": "Trainer",
             "type": "python",
             "request": "launch",
-            "program": "~/git/JupiterCVML/europa/base/src/europa/dl/scripts/trainer.py",
+            "program": "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa/dl/scripts/trainer.py",
             "console": "integratedTerminal",
             "args": [
                 "--csv-path", "${env:DATASET_PATH}/humans_on_path_test_set_2023_v9_anno/6434b71295fce9c8e3df5a40_master_annotations.csv",
@@ -60,6 +60,44 @@
                 "--model", "brtresnetpyramid_lite12",
                 "--tqdm",
                 "--losses", "{\"msml\": 1.0}"
+            ],
+            "justMyCode": true
+        },
+        {
+            "name": "EmbeddedMetrics",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/${env:USER}/git/JupiterScripts/apps/embedded_metrics/embedded_metrics.py",
+            "cwd": "/home/${env:USER}/git/JupiterScripts/apps/embedded_metrics/",
+            "console": "integratedTerminal",
+            "args": [
+                "--master-annotations-csv", "${env:DATASET_PATH}/suv_driving_through_rear_dust_anno/master_annotations_forward.csv",
+                "--dataset-dir", "${env:DATASET_PATH}/suv_driving_through_rear_dust_anno",
+                "--output", "${env:OUTPUT_PATH}/suv_driving_through_rear_dust_anno",
+                "--metrics-type", "{\"human_safety\": false, \"vehicle_safety\": false, \"iq\": false, \"no_other\": true}",
+                "--num-tps-to-save", "0",
+                "--operation-type", "forward",
+                "--success-threshold", ".8",
+                "--success-level", "overall",
+                "--success-metric", "sequence_stop",
+            ],
+            "justMyCode": true
+        },
+        {
+            "name": "packperception",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa/dl/dataset/pack_perception/ml_pack_perception.py",
+            "cwd": "/home/${env:USER}/git/JupiterCVML/",
+            "console": "integratedTerminal",
+            "args": [
+                "--data-dir", "${env:DATASET_PATH}/rev1_data_stratified_50k",
+                "--csv-path", "${env:DATASET_PATH}/rev1_data_stratified_50k/annotations.csv",
+                "--cam-calibration-path", "/home/${env:USER}/git/JupiterCVML/europa/base/files/calibration/",
+                "--calib-tracker-csv", "/home/${env:USER}/git/JupiterCVML/europa/base/files/calibration/motec_calibration_tracker_2019.csv",
+                "--image-only",
+                "--model-path", "random_weights.pth",
+                "--multiprocess-workers", "24"
             ],
             "justMyCode": true
         }
