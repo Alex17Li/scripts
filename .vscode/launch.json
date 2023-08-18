@@ -92,12 +92,14 @@
             "cwd": "/home/${env:USER}/git/JupiterCVML/",
             "console": "integratedTerminal",
             "args": [
-                "--data-dir", "${env:DATASET_PATH}/rev1_data_stratified_50k",
-                "--csv-path", "${env:DATASET_PATH}/rev1_data_stratified_50k/annotations.csv",
+                "--data-dir", "${env:DATASET_PATH}/mannequin_in_dust/",
+                "--csv-path", "${env:DATASET_PATH}/mannequin_in_dust/annotations.csv",
                 "--cam-calibration-path", "/home/${env:USER}/git/JupiterCVML/europa/base/files/calibration/",
                 "--calib-tracker-csv", "/home/${env:USER}/git/JupiterCVML/europa/base/files/calibration/motec_calibration_tracker_2019.csv",
                 "--image-only",
-                "--model-path", "random_weights.pth",
+                "--upload-to-s3",
+                "--dataset-id", "64c962dfcb037c6776cc86cb",
+                "--model-path", "./random_weights.pth",
                 "--multiprocess-workers", "24"
             ],
             "justMyCode": true

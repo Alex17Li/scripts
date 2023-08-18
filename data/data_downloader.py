@@ -28,5 +28,5 @@ print(f"Saving dataset {dataset_name} to {destination}")
 from brtdevkit.data import Dataset
 
 dataset = Dataset.retrieve(name=dataset_name)
-os.mkdir(destination / dataset_name)
+os.makedirs(destination / dataset_name, exist_ok=True)
 dataset.download(destination / dataset_name)

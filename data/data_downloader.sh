@@ -9,8 +9,8 @@ source /home/${USER}/.bashrc
 
 cd /home/${USER}/git/scripts/data
 
-DATASET_NAME=all_jupiter_data_stratified
+DATASET_NAME=mannequin_in_dust
 
 python data_downloader.py $DATASET_NAME -d $DATASET_PATH
 
-python clean_dataset.py $DATASET_PATH/$DATASET_NAME annotations.csv
+# python clean_dataset.py $DATASET_PATH/$DATASET_NAME annotations.csv

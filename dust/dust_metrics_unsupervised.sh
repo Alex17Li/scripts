@@ -16,7 +16,7 @@ JCVML_PATH=/home/$USER/git/JupiterCVML/europa/base/src/europa
 cd $JCVML_PATH
 
 DATASET=rev1_data_stratified
-ANNOTATIONS_PATH=cleaned_64cf05781dfbe26adf153573_master_annotations.csv
+ANNOTATIONS_PATH=64cadef114aabd7095871141_master_annotations.csv
 
 # python /home/${USER}/git/scripts/data/clean_dataset.py $DATASET_PATH/$DATASET annotations.csv
 # python /home/$USER/git/scripts/data/fake_master.py ${DATASET_PATH}/$DATASET
