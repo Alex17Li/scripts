@@ -72,15 +72,17 @@
             "cwd": "/home/${env:USER}/git/JupiterScripts/apps/embedded_metrics/",
             "console": "integratedTerminal",
             "args": [
-                "--master-annotations-csv", "${env:DATASET_PATH}/suv_driving_through_rear_dust_anno/master_annotations_forward.csv",
-                "--dataset-dir", "${env:DATASET_PATH}/suv_driving_through_rear_dust_anno",
-                "--output", "${env:OUTPUT_PATH}/suv_driving_through_rear_dust_anno",
-                "--metrics-type", "{\"human_safety\": false, \"vehicle_safety\": false, \"iq\": false, \"no_other\": true}",
+                "--master-annotations-csv", "${env:DATASET_PATH}/mannequin_in_dust_anno/master_annotations_forward.csv",
+                "--dataset-dir", "${env:DATASET_PATH}/mannequin_in_dust_anno",
+                "--output", "${env:OUTPUT_PATH}/mannequin_in_dust_anno",
+                "--metrics-type", "{\"human_safety\": false, \"vehicle_safety\": true, \"iq\": false}",
                 "--num-tps-to-save", "0",
+                "--dont-save-things",
                 "--operation-type", "forward",
                 "--success-threshold", ".8",
                 "--success-level", "overall",
                 "--success-metric", "sequence_stop",
+                "--num-workers", "4"
             ],
             "justMyCode": true
         },
