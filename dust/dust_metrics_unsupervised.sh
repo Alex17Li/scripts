@@ -15,8 +15,11 @@ OUTPUT_PATH=/data/jupiter/$USER/results
 JCVML_PATH=/home/$USER/git/JupiterCVML/europa/base/src/europa
 cd $JCVML_PATH
 
-DATASET=rev1_data_stratified
-ANNOTATIONS_PATH=64cadef114aabd7095871141_master_annotations.csv
+# DATASET=vehicles_driving_in_dust
+# ANNOTATIONS_PATH=64dfb36ebe1e14d37b7287d8_master_annotations.csv
+
+DATASET=rev2_data_stratified
+ANNOTATIONS_PATH=64cae39a0a0438ef306c214d_master_annotations.csv
 
 # python /home/${USER}/git/scripts/data/clean_dataset.py $DATASET_PATH/$DATASET annotations.csv
 # python /home/$USER/git/scripts/data/fake_master.py ${DATASET_PATH}/$DATASET
@@ -33,7 +36,6 @@ python dl/scripts/predictor.py \
     --dust-class-metrics \
     --run-productivity-metrics \
     --model brtresnetpyramid_lite12 \
-    --dust-mask "NO MASK" \
     --input-mode RGBD \
     --tqdm \
     --states-to-save \
