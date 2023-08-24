@@ -22,17 +22,17 @@ OUTPUT_DIR=${OUTPUT_PATH}/${EXP}
 
 # --tqdm \
 # --augmentations CustomCrop SmartCrop HorizontalFlip TorchColorJitter Resize \
-
 # --restore-from /mnt/sandbox1/alex.li/results/dust/dust_trivial_augment_1/dust_val_bestmodel.pth \
+# --trivial-augment '{"use": true}' \
 python -m dl.scripts.trainer \
-    --cutnpaste-augmentations "{}" \
-    --trivial-augment '{"use": false}' \
     --use-albumentation-transform \
     --color-jitter '{"use": true}' \
+    --cutnpaste-augmentations "{}" \
     --depth-channel-noise 0 \
     --n-images-train 10000 \
-    --activation-reg 1e-4 \
+    --activation-reg 0 \
     --batch-size 64 \
+    --tqdm \
     --csv-path /data/jupiter/li.yu/data/Jupiter_train_v5_11/epoch0_5_30_focal05_master_annotations.csv \
     --data-dir /data/jupiter/datasets/Jupiter_train_v5_11/ \
     --label-map-file $CVML_PATH/europa/base/src/europa/dl/config/label_maps/four_class_train.csv \
@@ -40,9 +40,9 @@ python -m dl.scripts.trainer \
     --model-params "{\"activation\": \"relu\"}" \
     --optimizer adamw \
     --weight-decay 1e-5 \
-    --learning-rate 1e-2 \
-    --lr-scheduler-name cosinelr \
-    --lr-scheduler-parameters '{"cosinelr_T_max": 60, "cosinelr_eta_min": 1e-6}' \
+    --learning-rate 1e-3 \
+    --lr-scheduler-name exponentiallr \
+    --lr-scheduler-parameters '{"exponential_gamma": .95}' \
     --epochs 60 \
     --model brtresnetpyramid_lite12 \
     --early-stop-patience 12 \
