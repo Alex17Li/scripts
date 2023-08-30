@@ -8,29 +8,28 @@
 #SBATCH --cpus-per-gpu=8
 #SBATCH --time=150:00:00
 
-source /home/$USER/.bashrc
-conda activate cvml
-
 cd /home/$USER/git/JupiterCVML/europa/base/src/europa
 
 CVML_PATH=/home/$USER/git/JupiterCVML
-EXP=seg_$SLURM_JOB_ID
-SNAPSHOT_DIR=/mnt/sandbox1/$USER
+EXP=alex_4cls_$1
+SNAPSHOT_DIR=$OUTPUT_PATH/$USER
 OUTPUT_DIR=${OUTPUT_PATH}/${EXP}
+echo $EXP
 
 # --tqdm \
 # --augmentations CustomCrop SmartCrop HorizontalFlip TorchColorJitter Resize \
+
 # --restore-from /mnt/sandbox1/alex.li/results/dust/dust_trivial_augment_1/dust_val_bestmodel.pth \
-# --cutnpaste-augmentations "{}" \
-# --use-albumentation-transform \
-# --color-jitter '{"use": true}' \
+# --activation-reg 1e-4 \
 python -m dl.scripts.trainer \
-    --trivial-augment '{"use": true}' \
-    --depth-channel-noise queue \
-    --n-images-train 50000 \
+    --cutnpaste-augmentations "{}" \
+    --trivial-augment '{"use": false}' \
+    --use-albumentation-transform \
+    --color-jitter '{"use": true}' \
+    --depth-channel-noise 0 \
+    --n-images-train 10000 \
     --batch-size 64 \
-    --tqdm \
-    --csv-path /data/jupiter/li.yu/data/Jupiter_train_v5_11/epoch0_5_30_focal05_master_annotations.csv \
+    --csv-path $DATASET_PATH/Jupiter_train_v5_11/master_annotations_30k.csv \
     --data-dir $DATASET_PATH/Jupiter_train_v5_11/ \
     --label-map-file $CVML_PATH/europa/base/src/europa/dl/config/label_maps/four_class_train.csv \
     --exp-name dust \
@@ -39,7 +38,7 @@ python -m dl.scripts.trainer \
     --weight-decay 1e-5 \
     --learning-rate 1e-3 \
     --lr-scheduler-name exponentiallr \
-    --lr-scheduler-parameters '{"exponential_gamma": 0.95}' \
+    --lr-scheduler-parameters '{"exponential_gamma": .95}' \
     --epochs 60 \
     --model brtresnetpyramid_lite12 \
     --early-stop-patience 12 \
