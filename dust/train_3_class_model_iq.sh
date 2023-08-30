@@ -23,18 +23,16 @@ OUTPUT_DIR=${OUTPUT_PATH}/${EXP}
 # --tqdm \
 # --augmentations CustomCrop SmartCrop HorizontalFlip TorchColorJitter Resize \
 # --restore-from /mnt/sandbox1/alex.li/results/dust/dust_trivial_augment_1/dust_val_bestmodel.pth \
+# --trivial-augment '{"use": true}' \
+# --color-jitter '{"use": false}' \
 # --cutnpaste-augmentations "{}" \
-# --use-albumentation-transform \
-# --color-jitter '{"use": true}' \
 python -m dl.scripts.trainer \
-    --trivial-augment '{"use": true}' \
-    --depth-channel-noise queue \
-    --n-images-train 50000 \
+    --use-albumentation-transform \
     --batch-size 64 \
     --tqdm \
     --csv-path /data/jupiter/li.yu/data/Jupiter_train_v5_11/epoch0_5_30_focal05_master_annotations.csv \
     --data-dir /data/jupiter/datasets/Jupiter_train_v5_11/ \
-    --label-map-file $CVML_PATH/europa/base/src/europa/dl/config/label_maps/four_class_train.csv \
+    --label-map-file $CVML_PATH/europa/base/src/europa/dl/config/label_maps/three_class_train_iq.csv \
     --exp-name dust \
     --model-params "{\"activation\": \"relu\"}" \
     --optimizer adamw \
@@ -46,9 +44,9 @@ python -m dl.scripts.trainer \
     --model brtresnetpyramid_lite12 \
     --early-stop-patience 12 \
     --val-set-ratio 0.05 \
-    --losses '{"tv": 0.2, "prodl": 0.02}' \
+    --losses '{"tv": 0.2, "prodl": 0.02, "fl_iq": 1.0}' \
     --multiscalemixedloss-parameters '{"scale_weight":0.1, "dust_weight":0.5, "dust_scale_weight":0.05}' \
-    --tversky-parameters '{"fp_weight":[0.6,0.3,0.3,0.6], "fn_weight":[0.4,0.7,0.7,0.4], "class_weight":[1.5,3.0,2.0,1.0], "gamma":1.0}' \
+    --tversky-parameters '{"fp_weight":[0.6,0.3,0.3], "fn_weight":[0.4,0.7,0.7], "class_weight":[1.5,3.0,2.0], "gamma":1.0}' \
     --productivity-loss-params '{"depth_thresh": 0.35, "prob_thresh": 0.01}' \
     --night-model '{"use": false, "dark_pix_threshold": 10}' \
     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
