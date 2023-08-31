@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=train_4cls
+#SBATCH --job-name=train_3cls
 #SBATCH --output=/home/%u/logs/%A_%x
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -8,7 +8,6 @@
 #SBATCH --cpus-per-gpu=8
 #SBATCH --time=150:00:00
 
-#--SBATCH --partition=cpu
 source /home/$USER/.bashrc
 module load pytorch/1.12.0+cuda11.3
 conda activate cvml
@@ -17,6 +16,7 @@ cd /home/$USER/git/JupiterCVML/europa/base/src/europa
 
 CVML_PATH=/home/$USER/git/JupiterCVML
 EXP=seg_$SLURM_JOB_ID
+# EXP=seg_12688
 SNAPSHOT_DIR=/mnt/sandbox1/$USER
 OUTPUT_DIR=${OUTPUT_PATH}/${EXP}
 
@@ -26,10 +26,10 @@ OUTPUT_DIR=${OUTPUT_PATH}/${EXP}
 # --trivial-augment '{"use": true}' \
 # --color-jitter '{"use": false}' \
 # --cutnpaste-augmentations "{}" \
+# --tqdm \
 python -m dl.scripts.trainer \
     --use-albumentation-transform \
     --batch-size 64 \
-    --tqdm \
     --csv-path /data/jupiter/li.yu/data/Jupiter_train_v5_11/epoch0_5_30_focal05_master_annotations.csv \
     --data-dir /data/jupiter/datasets/Jupiter_train_v5_11/ \
     --label-map-file $CVML_PATH/europa/base/src/europa/dl/config/label_maps/three_class_train_iq.csv \
@@ -43,8 +43,9 @@ python -m dl.scripts.trainer \
     --epochs 60 \
     --model brtresnetpyramid_lite12 \
     --early-stop-patience 12 \
+    --resume-from-snapshot True \
     --val-set-ratio 0.05 \
-    --losses '{"tv": 0.2, "prodl": 0.02, "fl_iq": 1.0}' \
+    --losses '{"tv": 0.2, "prodl": 0.02, "fl_iq": 0.4}' \
     --multiscalemixedloss-parameters '{"scale_weight":0.1, "dust_weight":0.5, "dust_scale_weight":0.05}' \
     --tversky-parameters '{"fp_weight":[0.6,0.3,0.3], "fn_weight":[0.4,0.7,0.7], "class_weight":[1.5,3.0,2.0], "gamma":1.0}' \
     --productivity-loss-params '{"depth_thresh": 0.35, "prob_thresh": 0.01}' \
@@ -63,10 +64,6 @@ python -m dl.scripts.trainer \
                         "night_vehicles": 5.0, "night_vehicle_pixels": [3000, 100000],
                         "airborne_debris": 2.0, "airborne_debris_pixels": [100, 100000]}' \
     --run-id ${EXP};
-
-# --resume-from-snapshot False \
-# mv ${OUTPUT_DIR} /data/jupiter/alex.li/exps/
-# mv ${OUTPUT_DIR}/* /data/jupiter/alex.li/exps/${EXP}/
 
 # https://us-east-2.console.aws.amazon.com/s3/object/blueriver-jupiter-data?region=us-west-2&prefix=model_training/dust_trivial_augment_1/dust_val_bestmodel.pth
 # aws s3 cp /mnt/sandbox1/alex.li/dust/dust_trivial_augment_1/dust_val_bestmodel.pth s3://blueriver-jupiter-data/model_training/dust_trivial_augment_1/dust_val_bestmodel.pth
