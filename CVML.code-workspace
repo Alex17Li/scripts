@@ -24,6 +24,10 @@
 			"name": "sandbox",
 			"path": "/mnt/sandbox1/alex.li"
 		}
+		{
+			"name": "results",
+			"path": "/mnt/sandbox1/alex.li/results/"
+		}
 	],
 	"settings": {
 		"extensions.experimental.affinity": {
