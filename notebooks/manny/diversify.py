@@ -192,20 +192,27 @@ class ImageSimilarity:
 def get_images(save_dir, df):
     save_dir = Path(save_dir)
     dirs = [save_dir / d for d in df.id]#[df['label_human']].id]
-    image_paths = itertools.chain([str(dir / p) for p in os.listdir(dir) if 'debayeredrgb' in p] for dir in dirs)
+    image_paths = itertools.chain(*[[str(dir / p) for p in os.listdir(dir) if 'debayeredrgb' in p] for dir in tqdm(dirs)])
     return image_paths
 
 def diversify_dataset(dsetname:str, n_images_final: int, kind: str):
     aletheia_ds = Dataset.retrieve(name=dsetname)
     aletheia_df = aletheia_ds.to_dataframe()
     dataset_save_dir = os.environ['DATASET_PATH'] + "/" + dsetname
-    # if not os.path.exists(dataset_save_dir):
-    print("Downloading images")
-    # os.makedirs(name=dataset_save_dir)
-    aletheia_ds.download(dataset_save_dir)
+    if not os.path.exists(dataset_save_dir):
+        print("Downloading images")
+        os.makedirs(name=dataset_save_dir)
+        aletheia_ds.download(dataset_save_dir)
     
-    images_full_path = list(get_images(dataset_save_dir + '/images', aletheia_df))
-    print("Looking at similarity")
+    print("Looking through directory for images")
+    save_file = Path(__file__) / "image_ids.npy"
+    if os.path.exists(save_file):
+        images_full_path = np.load(save_file).tolist()
+    else:
+        images_full_path = list(get_images(dataset_save_dir + '/images', aletheia_df))
+        np.save(save_file, images_full_path)
+        
+    print(f"Looking at similarity for {len(images_full_path)} images")
     sim = ImageSimilarity(images_full_path=images_full_path, data_base_path=dataset_save_dir, dataset_name=dsetname, overwrite=True)
     sim.extract_embeddings()
     embeddings_np, paths_df = sim.load_embeddings()
@@ -215,6 +222,7 @@ def diversify_dataset(dsetname:str, n_images_final: int, kind: str):
     kmeans.fit(embeddings_np)
     final_paths = [None for _ in range(n_images_final)]
 
+    print("Choosing images")
     for i, l in enumerate(kmeans.labels_):
         if final_paths[l] == None:
             final_paths[l] = paths_df.image_path.iloc[i]
@@ -226,10 +234,9 @@ def diversify_dataset(dsetname:str, n_images_final: int, kind: str):
 
     desc = f"{aletheia_ds['description']} Select most diverse to get {len(imids)} images"
     
-    # from aletheia_dataset_creator.dataset_tools.aletheia_dataset_helpers import imageids_to_dataset
-    # imageids_to_dataset(image_ids=imids, dataset_name=f"{dsetname}_diverse", dataset_description=desc, dataset_kind=kind, production_dataset=False)
+    from aletheia_dataset_creator.dataset_tools.aletheia_dataset_helpers import imageids_to_dataset
+    imageids_to_dataset(image_ids=imids, dataset_name=f"{dsetname}_diverse", dataset_description=desc, dataset_kind=kind, production_dataset=False)
 
 if __name__ == "__main__":
     # diversify_dataset("mannequin_in_dust_v0", 1000, Dataset.KIND_ANNOTATION)
-    diversify_dataset("dynamic_manny_in_dust_raw", 1000, Dataset.KIND_IMAGE)
-    
+    diversify_dataset("dynamic_manny_in_dust_raw", 5000, Dataset.KIND_IMAGE)
