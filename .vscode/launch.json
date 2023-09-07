@@ -41,16 +41,17 @@
             "program": "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa/dl/scripts/trainer.py",
             "console": "integratedTerminal",
             "args": [
-                "--csv-path", "/data/jupiter/li.yu/data/Jupiter_train_v5_11/epoch0_5_30_focal05_master_annotations.csv",
-                // "--csv-path", "${env:DATASET_PATH}/Jupiter_train_v5_11/master_annotations_1k.csv",
+                // "--csv-path", "/data/jupiter/li.yu/data/Jupiter_train_v5_11/epoch0_5_30_focal05_master_annotations.csv",
+                "--csv-path", "${env:DATASET_PATH}/Jupiter_train_v5_11/master_annotations_4k.csv",
                 "--data-dir", "${env:DATASET_PATH}/Jupiter_train_v5_11/",
-                "--label-map-file", "~/git/JupiterCVML/europa/base/src/europa/dl/config/label_maps/three_class_train_iq.csv",
+                // "--label-map-file", "~/git/JupiterCVML/europa/base/src/europa/dl/config/label_maps/three_class_train_iq.csv",
+                "--label-map-file", "~/git/JupiterCVML/europa/base/src/europa/dl/config/label_maps/four_class_train.csv",
                 "--exp-name", "test_trainer",
                 "--val-set-ratio", "0.2",
                 "--model-params", "{\"activation\": \"relu\"}",
                 // "--trivial-augment", "{\"use\": true}",
                 "--output-dir", "${env:OUTPUT_PATH}/test_trainer",
-                "--cutnpaste-augmentations", "{}",
+                // "--cutnpaste-augmentations", "{}",
                 "--batch-size", "8",
                 // "--n-images-train", "400",
                 "--num-workers", "1",
@@ -60,9 +61,9 @@
                 "--resume-from-snapshot", "True",
                 "--model", "brtresnetpyramid_lite12",
                 "--tqdm",
-                "--losses", "{\"tv\": 0.2, \"prodl\": 0.02, \"fl_iq\": 1.0}",
+                "--losses", "{\"dice\": 0.02}",
                 // "--tversky-parameters", "{\"fp_weight\":[0.6,0.3,0.3,0.6], \"fn_weight\":[0.4,0.7,0.7,0.4], \"class_weight\":[1.5,3.0,2.0,1.0], \"gamma\":1.0}",
-                "--productivity-loss-params", "{\"depth_thresh\": 0.35, \"prob_thresh\": 0.01}"
+                // "--productivity-loss-params", "{\"depth_thresh\": 0.35, \"prob_thresh\": 0.01}"
             ],
             "justMyCode": true
         },
