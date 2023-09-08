@@ -1,4 +1,6 @@
 import os
+from aletheia_dataset_creator.dataset_tools.aletheia_dataset_helpers import imageids_to_dataset
+import random
 from sklearn.cluster import KMeans
 from brtdevkit.data import Dataset
 from email.mime import image
@@ -222,8 +224,10 @@ def diversify_dataset(dsetname:str, n_images_final: int, kind: str):
     kmeans.fit(embeddings_np)
     final_paths = [None for _ in range(n_images_final)]
 
-    print("Choosing images")
-    for i, l in enumerate(kmeans.labels_):
+    print("Choosing one random image from each cluster")
+    order = list(enumerate(kmeans.labels_))
+    random.shuffle(order)
+    for i, l in order:
         if final_paths[l] == None:
             final_paths[l] = paths_df.image_path.iloc[i]
     imids = [p.split('_')[-1][:-4] for p in final_paths]
@@ -233,10 +237,8 @@ def diversify_dataset(dsetname:str, n_images_final: int, kind: str):
     print(f"KMEANS SCORE: {kmeans.inertia_ / len(aletheia_df)}")
 
     desc = f"{aletheia_ds['description']} Select most diverse to get {len(imids)} images"
-    
-    from aletheia_dataset_creator.dataset_tools.aletheia_dataset_helpers import imageids_to_dataset
     imageids_to_dataset(image_ids=imids, dataset_name=f"{dsetname}_diverse", dataset_description=desc, dataset_kind=kind, production_dataset=False)
 
 if __name__ == "__main__":
-    # diversify_dataset("mannequin_in_dust_v0", 1000, Dataset.KIND_ANNOTATION)
-    diversify_dataset("dynamic_manny_in_dust_raw", 5000, Dataset.KIND_IMAGE)
+    diversify_dataset("mannequin_in_dust_v0", 1000, Dataset.KIND_ANNOTATION)
+    # diversify_dataset("dynamic_manny_in_dust_raw", 5000, Dataset.KIND_IMAGE)
