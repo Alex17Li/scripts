@@ -41,7 +41,7 @@ python -m dl.scripts.trainer \
     --learning-rate 1e-3 \
     --lr-scheduler-name exponentiallr \
     --lr-scheduler-parameters '{"exponential_gamma": 0.95}' \
-    --epochs 1 \
+    --epochs 60 \
     --model brtresnetpyramid_lite12 \
     --early-stop-patience 12 \
     --resume-from-snapshot True \

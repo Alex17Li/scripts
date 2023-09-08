@@ -9,4 +9,5 @@
 #SBATCH --time=8:00:00
 
 source /home/alex.li/.bashrc
+conda activate cvml
 python /home/alex.li/git/scripts/notebooks/manny/diversify.py

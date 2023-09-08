@@ -36,9 +36,16 @@ class Datasetpreparer(torchDataset):
 
         def __getitem__(self, idx):
             img_path = self.data.loc[idx, 'image_path']
-            img_pil = self.transform(Image.fromarray(imageio.imread(img_path)))
-            # Download and open the image        
-            img_pil = self.preprocess(img_pil).to(self.device)
+            try:
+                img_pil = self.transform(Image.fromarray(imageio.imread(img_path)))
+                # Download and open the image        
+                img_pil = self.preprocess(img_pil).to(self.device)
+            except Exception as e:
+                print(e)
+                img_path = self.data.loc[0, 'image_path']
+                img_pil = self.transform(Image.fromarray(imageio.imread(img_path)))
+                img_pil = self.preprocess(img_pil).to(self.device)
+                return img_pil, img_path
             return img_pil, img_path
 
 class ImageSimilarity: 
@@ -56,7 +63,7 @@ class ImageSimilarity:
         self.embeddings_np = None
         self.image_paths = None 
         self.image_paths_df = None
-        self.embeddings_save_name = f"{dataset_name}_embeddings"
+        self.embeddings_save_name = f"{dataset_name}_embeddings.npz"
         self.embeddings_image_paths = Path(self.data_base_path) / f"{dataset_name}_embeddings_image_paths.csv"
         self.embeddings_save_loc = Path(self.data_base_path) / self.embeddings_save_name
         self.overwrite = overwrite 
@@ -84,7 +91,7 @@ class ImageSimilarity:
     def build_embeddings(self): 
         outputs = []
         image_paths = []
-        if (os.path.isfile(self.embeddings_save_loc)==True) or (self.overwrite==False): 
+        if (os.path.isfile(self.embeddings_save_loc)==True) and (self.overwrite==False): 
             self.embeddings_np, self.image_paths = self.load_embeddings()
             return self.embeddings_np, self.image_paths 
         else:
@@ -108,7 +115,7 @@ class ImageSimilarity:
             return None 
         
     def load_embeddings(self): 
-        embeddings_save_loc = str(self.embeddings_save_loc) +".npz"
+        embeddings_save_loc = str(self.embeddings_save_loc)
         embeddings = np.load(embeddings_save_loc)
         self.embeddings_np = embeddings[embeddings.files[0]]       
         self.image_paths_df= pd.read_csv(self.embeddings_image_paths )
@@ -186,40 +193,42 @@ class ImageSimilarity:
     def extract_embeddings(self): 
         self.prepare_images_path_df()
         self.prepare_dataloader()
-        self.overwrite = True
         self.build_embeddings()
         self.save_embeddings()
         return None
     
 def get_images(save_dir, df):
     save_dir = Path(save_dir)
-    dirs = [save_dir / d for d in df.id]#[df['label_human']].id]
-    image_paths = itertools.chain(*[[str(dir / p) for p in os.listdir(dir) if 'debayeredrgb' in p] for dir in tqdm(dirs)])
+    dirs = [save_dir / d for d in df.id]
+    image_paths = []
+    for i, dir in tqdm(enumerate(dirs)):
+        if i % 1500 == 0:
+            print(100 * i / len(dirs))
+        for fname in os.listdir(dir):
+            if 'debayeredrgb' in fname and fname.endswith('.png'):
+                image_paths.append(str(object=dir / fname))
     return image_paths
 
 def diversify_dataset(dsetname:str, n_images_final: int, kind: str):
     aletheia_ds = Dataset.retrieve(name=dsetname)
     aletheia_df = aletheia_ds.to_dataframe()
     dataset_save_dir = os.environ['DATASET_PATH'] + "/" + dsetname
-    if not os.path.exists(dataset_save_dir):
+    save_file = Path(dataset_save_dir) / "image_ids.npy"
+    if not os.path.exists(save_file):
         print("Downloading images")
-        os.makedirs(name=dataset_save_dir)
+        os.makedirs(name=dataset_save_dir, exist_ok=True)
         aletheia_ds.download(dataset_save_dir)
-    
-    print("Looking through directory for images")
-    save_file = Path(__file__) / "image_ids.npy"
-    if os.path.exists(save_file):
-        images_full_path = np.load(save_file).tolist()
+        print("Looking through directory for images")
+        image_paths = list(get_images(save_dir=dataset_save_dir + '/images', df=aletheia_df))
+        np.save(save_file, image_paths)
     else:
-        images_full_path = list(get_images(dataset_save_dir + '/images', aletheia_df))
-        np.save(save_file, images_full_path)
-        
-    print(f"Looking at similarity for {len(images_full_path)} images")
-    sim = ImageSimilarity(images_full_path=images_full_path, data_base_path=dataset_save_dir, dataset_name=dsetname, overwrite=True)
+        image_paths = np.load(save_file).tolist()
+    image_paths = [p for p in image_paths if p.endswith('.png')]
+    print(f"Looking at similarity for {len(image_paths)} images")
+    sim = ImageSimilarity(images_full_path=image_paths, data_base_path=dataset_save_dir, dataset_name=dsetname, overwrite=False)
     sim.extract_embeddings()
     embeddings_np, paths_df = sim.load_embeddings()
     print("Running Kmeans")
-    n_images_final = 2000
     kmeans = KMeans(n_clusters=n_images_final, random_state=0, n_init="auto")
     kmeans.fit(embeddings_np)
     final_paths = [None for _ in range(n_images_final)]
@@ -234,11 +243,14 @@ def diversify_dataset(dsetname:str, n_images_final: int, kind: str):
     fin_df = aletheia_df[aletheia_df.id.isin(imids)]
     print(len(fin_df))
     print(len(imids))
-    print(f"KMEANS SCORE: {kmeans.inertia_ / len(aletheia_df)}")
+    score = kmeans.inertia_ / len(aletheia_df)
+    print(f"KMEANS SCORE: {score}")
 
-    desc = f"{aletheia_ds['description']} Select most diverse to get {len(imids)} images"
-    imageids_to_dataset(image_ids=imids, dataset_name=f"{dsetname}_diverse", dataset_description=desc, dataset_kind=kind, production_dataset=False)
+    desc = f"{aletheia_ds['description']} Select diverse to get {len(imids)} images, diversity {score}"
+
+    from aletheia_dataset_creator.dataset_tools.aletheia_dataset_helpers import imageids_to_dataset
+    imageids_to_dataset(image_ids=imids, dataset_name=f"{dsetname}_diverse_{n_images_final}", dataset_description=desc, dataset_kind=kind, production_dataset=False)
 
 if __name__ == "__main__":
-    diversify_dataset("mannequin_in_dust_v0", 1000, Dataset.KIND_ANNOTATION)
-    # diversify_dataset("dynamic_manny_in_dust_raw", 5000, Dataset.KIND_IMAGE)
+    diversify_dataset("mannequin_in_dust_v0", 1500, Dataset.KIND_ANNOTATION)
+    # diversify_dataset("dynamic_manny_in_dust_raw", 4000, Dataset.KIND_IMAGE)
