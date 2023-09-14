@@ -17,6 +17,7 @@ CVML_PATH=/home/$USER/git/JupiterCVML
 EXP=seg_$SLURM_JOB_ID
 SNAPSHOT_DIR=/mnt/sandbox1/$USER
 OUTPUT_DIR=${OUTPUT_PATH}/${EXP}
+wandb enabled
 
 git branch
 
