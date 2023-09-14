@@ -75,17 +75,32 @@
             "cwd": "/home/${env:USER}/git/JupiterScripts/apps/embedded_metrics/",
             "console": "integratedTerminal",
             "args": [
-                "--master-annotations-csv", "${env:DATASET_PATH}/mannequin_in_dust_anno/master_annotations_forward.csv",
-                "--dataset-dir", "${env:DATASET_PATH}/mannequin_in_dust_anno",
-                "--output", "${env:OUTPUT_PATH}/mannequin_in_dust_anno",
-                "--metrics-type", "{\"human_safety\": false, \"vehicle_safety\": true, \"iq\": false}",
+                "--master-annotations-csv", "${env:DATASET_PATH}/mannequin_in_dust_v1/master_annotations_reverse.csv",
+                "--dataset-dir", "${env:DATASET_PATH}/mannequin_in_dust_v1",
+                "--output-dir", "${env:OUTPUT_PATH}/mannequin_in_dust_v1",
+                "--metrics-type", "{\"human_safety\": true, \"vehicle_safety\": false, \"iq\": false}",
                 "--num-tps-to-save", "0",
                 "--dont-save-things",
                 "--operation-type", "forward",
                 "--success-threshold", ".8",
                 "--success-level", "overall",
-                "--success-metric", "sequence_stop",
-                "--num-workers", "4"
+                "--success-metric", "filter_stop",
+                "--num-workers", "1"
+            ],
+            "justMyCode": true
+        },
+        {
+            "name": "EmbeddedLabelCreation",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/${env:USER}/git/JupiterScripts/apps/embedded_metrics/embedded_label_creation.py",
+            "cwd": "/home/${env:USER}/git/JupiterScripts/apps/embedded_metrics/",
+            "console": "integratedTerminal",
+            "args": [
+                "--dataset-path", "${env:DATASET_PATH}/mannequin_in_dust_v1",
+                "--operation-mode", "reverse",
+                "--europa-path", "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa",
+                "--progress-bar"
             ],
             "justMyCode": true
         },

@@ -8,5 +8,5 @@
 #SBATCH --mem-per-gpu=120G
 #SBATCH --time=8:00:00
 
-source /home/alex.li/.bashrc
-python /home/alex.li/git/scripts/notebooks/manny/diversify.py
+# source /home/alex.li/.bashrc
+# python /home/alex.li/git/scripts/notebooks/manny/diversify.py
