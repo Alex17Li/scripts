@@ -42,8 +42,8 @@
             "console": "integratedTerminal",
             "args": [
                 // "--csv-path", "/data/jupiter/li.yu/data/Jupiter_train_v5_11/epoch0_5_30_focal05_master_annotations.csv",
-                "--csv-path", "${env:DATASET_PATH}/Jupiter_train_v5_11/master_annotations_30k.csv",
-                "--data-dir", "${env:DATASET_PATH}/Jupiter_train_v5_11/",
+                "--csv-path", "${env:DATASET_PATH}/Jupiter_train_v5_11_20230508/master_annotations_v481.csv",
+                "--data-dir", "${env:DATASET_PATH}/Jupiter_train_v5_11_20230508/",
                 "--label-map-file", "~/git/JupiterCVML/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv",
                 "--label-map-file-iq", "~/git/JupiterCVML/europa/base/src/europa/dl/config/label_maps/binary_dust.csv",
                 "--exp-name", "test_trainer",
@@ -62,7 +62,8 @@
                 "--resume-from-snapshot", "True",
                 "--model", "brtresnetpyramid_lite12",
                 "--tqdm",
-                "--losses", "{\"dice\": 0.02, \"fl_iq\": 0.1}",
+                "--losses", "{\"dice\": 0.02, \"hardsoft_iq\": 0.1}",
+                "--hardsoft-loss-params","{\"class_weight\": [0.4, 1.5], \"focal_gamma\": 2.0, \"soft_weight\": 0.3}",
                 // "--tversky-parameters", "{\"fp_weight\":[0.6,0.3,0.3,0.6], \"fn_weight\":[0.4,0.7,0.7,0.4], \"class_weight\":[1.5,3.0,2.0,1.0], \"gamma\":1.0}",
                 // "--productivity-loss-params", "{\"depth_thresh\": 0.35, \"prob_thresh\": 0.01}"
             ],
