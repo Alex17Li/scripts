@@ -18,6 +18,7 @@ EXP=seg_$SLURM_JOB_ID
 # EXP=seg_12688
 SNAPSHOT_DIR=/mnt/sandbox1/$USER
 OUTPUT_DIR=${OUTPUT_PATH}/${EXP}
+wandb enabled
 
 # --tqdm \
 # --augmentations CustomCrop SmartCrop HorizontalFlip TorchColorJitter Resize \
@@ -41,7 +42,7 @@ python -m dl.scripts.trainer \
     --learning-rate 1e-3 \
     --lr-scheduler-name exponentiallr \
     --lr-scheduler-parameters '{"exponential_gamma": 0.95}' \
-    --epochs 1 \
+    --epochs 60 \
     --model brtresnetpyramid_lite12 \
     --early-stop-patience 12 \
     --resume-from-snapshot True \

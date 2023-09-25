@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --partition=gpu
-#SBATCH --gres=gpu:8
+#SBATCH --gres=gpu:4
 #SBATCH --cpus-per-gpu=8
 #SBATCH --time=150:00:00
 
@@ -17,6 +17,7 @@ CVML_PATH=/home/$USER/git/JupiterCVML
 EXP=seg_$SLURM_JOB_ID
 SNAPSHOT_DIR=/mnt/sandbox1/$USER
 OUTPUT_DIR=${OUTPUT_PATH}/${EXP}
+wandb enabled
 
 git branch
 
@@ -44,7 +45,7 @@ python -m dl.scripts.trainer \
     --model brtresnetpyramid_lite12 \
     --early-stop-patience 12 \
     --val-set-ratio 0.05 \
-    --losses '{"tv": 0.2, "prodl": 0.02}' \
+    --losses '{"tv": 1.0, "prodl": 0.02, "msl": 1.0}' \
     --multiscalemixedloss-parameters '{"scale_weight":0.1, "dust_weight":0.5, "dust_scale_weight":0.05}' \
     --tversky-parameters '{"fp_weight":[0.6,0.3,0.3,0.6], "fn_weight":[0.4,0.7,0.7,0.4], "class_weight":[1.5,3.0,2.0,1.0], "gamma":1.0}' \
     --productivity-loss-params '{"depth_thresh": 0.35, "prob_thresh": 0.01}' \

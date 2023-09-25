@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=train_8cls
+#SBATCH --job-name=train_7cls
 #SBATCH --output=/home/%u/logs/%A_%x
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -10,7 +10,6 @@
 
 #--SBATCH --partition=cpu
 source /home/$USER/.bashrc
-module load pytorch/1.12.0+cuda11.3
 conda activate cvml
 cd /home/$USER/git/JupiterCVML/europa/base/src/europa
 
@@ -27,12 +26,14 @@ python -m dl.scripts.trainer \
     --csv-path /data/jupiter/li.yu/data/Jupiter_train_v5_11/epoch0_5_30_focal05_master_annotations.csv \
     --data-dir /data/jupiter/datasets/Jupiter_train_v5_11/ \
     --restore-from $SNAPSHOT_DIR/dust/alex_8cls_12003/dust_val_bestmodel.pth \
-    --label-map-file $CVML_PATH/europa/base/src/europa/dl/config/label_maps/eight_class_train.csv \
+    --label-map-file $CVML_PATH/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv \
+    --label-map-file-iq $CVML_PATH/europa/base/src/europa/dl/config/label_maps/binary_dust.csv \
+    --dust-output-params "{\"dust_seg_output\": true}" \
+    --tqdm \
     --exp-name dust \
-    --model-params "{\"activation\": \"gelu\"}" \
+    --model-params "{\"activation\": \"relu\"}" \
     --optimizer adamw \
     --weight-decay 1e-5 \
-    --activation-reg 0 \
     --trivial-augment '{"use": true}' \
     --learning-rate 1e-3 \
     --lr-scheduler-name cosinelr \
@@ -63,8 +64,8 @@ python -m dl.scripts.trainer \
                         "airborne_debris": 2.0, "airborne_debris_pixels": [100, 100000]}' \
     --tqdm \
     --num-steps 300000 \
+    --cutnpaste-augmentations "{}" \
     --run-id ${EXP};
-    # --cutnpaste-augmentations "{}" \
 
     # --use-albumentation-transform \
     # --csv-path /data/jupiter/li.yu/data/Jupiter_train_v5_7/epoch0_5_30_focal05_notiny_onlyleft_master_annotations.csv \

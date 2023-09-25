@@ -89,5 +89,4 @@ python dl/scripts/predictor.py \
     --tqdm;
 done
 
-
 echo --------------------------RUN_PRODUCTIVITY_COMPLETE-------------------------------
