@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=train_7cls
+#SBATCH --job-name=seg_dust
 #SBATCH --output=/home/%u/logs/%A_%x
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -18,8 +18,6 @@ EXP=${SLURM_JOB_ID}
 SNAPSHOT_DIR=/mnt/sandbox1/$USER
 OUTPUT_DIR=${OUTPUT_PATH}/${EXP}
 wandb enabled
-
-# --tqdm \
 
 # --restore-from /mnt/sandbox1/alex.li/results/dust/dust_trivial_augment_1/dust_val_bestmodel.pth \
 python -m dl.scripts.trainer \
@@ -43,12 +41,13 @@ python -m dl.scripts.trainer \
     --batch-size 64 \
     --val-set-ratio 0.05 \
     --losses '{"msl": 1.0, "prodl": 0.02, "hardsoft_iq": 1.5}' \
-    --hardsoft-loss-params '{"class_weight": [0.4, 1.5], "focal_gamma": 2.0, "soft_weight": 0.3}' \
+    --hardsoft-loss-params '{"class_weight": [0.2, 1.0], "focal_gamma": 1.0, "soft_weight": 0.05}' \
     --multiscalemixedloss-parameters '{"scale_weight":0.2, "dust_weight":0.1, "dust_scale_weight":0.02}' \
     --productivity-loss-params '{"depth_thresh": 0.35, "prob_thresh": 0.01}' \
     --night-model '{"use": false, "dark_pix_threshold": 10}' \
     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
     --snapshot-dir ${SNAPSHOT_DIR} \
+    --restore-from  /mnt/sandbox1/alex.li/dust/14110/dust_27_epoch_model.pth \
     --resume-from-snapshot False \
     --output-dir ${OUTPUT_DIR} \
     --color-jitter '{"use": false}' \
@@ -62,10 +61,10 @@ python -m dl.scripts.trainer \
                         "day_vehicles": 2.0, "day_vehicle_pixels": [3000, 100000],
                         "night_vehicles": 5.0, "night_vehicle_pixels": [3000, 100000],
                         "airborne_debris": 2.0, "airborne_debris_pixels": [100, 100000]}' \
-    --tqdm \
     --num-steps 300000 \
-    --cutnpaste-augmentations "{}" \
     --run-id ${EXP};
+    # --cutnpaste-augmentations "{}" \
+    # --tqdm \
 
     # --use-albumentation-transform \
     # --csv-path /data/jupiter/li.yu/data/Jupiter_train_v5_7/epoch0_5_30_focal05_notiny_onlyleft_master_annotations.csv \
