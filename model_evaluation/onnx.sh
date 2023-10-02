@@ -33,10 +33,10 @@ echo $CHECKPOINT_FULL_PATH
 python -m dl.scripts.onnx_converter \
     --csv-path NO \
     --half-res-output \
-    --label-map-file $CVML_PATH/europa/base/src/europa/dl/config/label_maps/four_class_train.csv \
+    --label-map-file $CVML_PATH/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv \
     --restore-from ${CHECKPOINT_FULL_PATH} \
-    --model-params "{\"activation\": \"gelu\"}" \
-    --dust-output-params '{"dust_head_output": false, "dust_class_ratio": false, "dust_class_confidence_map": true, "zero_dust_ratio": false}' \
+    --model-params "{\"activation\": \"relu\"}" \
+    --dust-output-params '{"dust_head_output": false, "dust_class_ratio": false, "dust_seg_output": true}' \
     --model brtresnetpyramid_lite12 \
     --batch-size 4 \
     --output-dir ${CHECKPOINT_FULL_DIR};
