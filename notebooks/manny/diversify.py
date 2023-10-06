@@ -218,9 +218,6 @@ def diversify_dataset(dsetname:str, n_images_final: int, kind: str):
         image_paths = [p for p in image_paths if p.endswith('.png')]
         np.save(save_file, image_paths)
     else:
-        # aletheia_df = aletheia_df[aletheia_df['camera_location'].str.endswith('left')]
-        # image_paths = list(get_images(save_dir=dataset_save_dir + '/images', df=aletheia_df))
-        # np.save(save_file, image_paths)
         image_paths = np.load(save_file).tolist()
     
     print(f"Looking at similarity for {len(image_paths)} images")
@@ -230,7 +227,7 @@ def diversify_dataset(dsetname:str, n_images_final: int, kind: str):
     print("Running Kmeans")
     kmeans = KMeans(n_clusters=n_images_final, random_state=0, n_init="auto")
     kmeans.fit(embeddings_np)
-    final_paths = [None for _ in range(n_images_final)]
+    final_paths: list[None] = [None for _ in range(n_images_final)]
 
     print("Choosing one random image from each cluster")
     order = list(enumerate(kmeans.labels_))
@@ -239,66 +236,16 @@ def diversify_dataset(dsetname:str, n_images_final: int, kind: str):
         if final_paths[l] == None:
             final_paths[l] = paths_df.image_path.iloc[i]
     imids = [p.split('_')[-1][:-4] for p in final_paths]
-    fin_df = aletheia_df[aletheia_df.id.isin(imids)]
-    print(len(fin_df))
-    print(len(imids))
+    print(f"N final image ids: {len(imids)}")
     # Average distance from each mean, if this value is higher, than the images probably quite different than each other
     # Hard to interpret without context, I selected 4k groups from 150k images collected in one bag and got about 1.6
     score = kmeans.inertia_ / len(aletheia_df)
     print(f"KMEANS SCORE: {score}")
 
-    desc = f"{aletheia_ds['description']} Select diverse to get {len(imids)} images, diversity {score}"
 
-    from aletheia_dataset_creator.dataset_tools.aletheia_dataset_helpers import imageids_to_dataset
-    imageids_to_dataset(image_ids=imids, dataset_name=f"{dsetname}_diverse_{n_images_final}", dataset_description=desc, dataset_kind=kind, production_dataset=False)
+    # from aletheia_dataset_creator.dataset_tools.aletheia_dataset_helpers import imageids_to_dataset
+    # desc = f"{aletheia_ds['description']} Select diverse to get {len(imids)} images, diversity {score}"
+    # imageids_to_dataset(image_ids=imids, dataset_name=f"{dsetname}_diverse_{n_images_final}", dataset_description=desc, dataset_kind=kind, production_dataset=False)
 
 if __name__ == "__main__":
-    # diversify_dataset("mannequin_in_dust_v0", 1550, Dataset.KIND_ANNOTATION)
-    # diversify_dataset("dynamic_manny_in_dust_raw", 12000, Dataset.KIND_IMAGE)
-    dsetname = "dynamic_manny_in_dust_raw"
-    n_images_final = 12300
-    kind = Dataset.KIND_IMAGE
-    print("start", flush=True)
-    label_data = Dataset.retrieve(name="dynamic_manny_in_dust_raw_diverse_4000").to_dataframe()
-    label_data_had_human = Dataset.retrieve(name="mannequin_in_dust_v1").to_dataframe()
-    label_data_no_human = list(set(label_data['id']) - set(label_data_had_human['id']))
-    print("loaded data", flush=True)
-    dataset_save_dir = os.environ['DATASET_PATH'] + "/" + dsetname
-    save_file = Path(dataset_save_dir) / "image_ids.npy"
-    image_paths = np.load(save_file).tolist()
-    sim = ImageSimilarity(images_full_path=image_paths, data_base_path=dataset_save_dir, dataset_name=dsetname, overwrite=False)
-    print("start load", flush=True)
-    sim.extract_embeddings()
-    embeddings_np, paths_df = sim.load_embeddings()
-    print("loaded", flush=True)
-    def get_id(p):
-        return p.split('/')[-2]
-    paths_df['id'] = paths_df['image_path'].apply(get_id)
-    paths_df['known_no_human'] = paths_df['id'].isin(label_data_no_human)
-    invalid_distances = []
-    for i in range(len(paths_df)):
-        if paths_df['known_no_human'].iloc[i]:
-            invalid_distances.append(embeddings_np[i])
-    invalid_distances_np = np.stack(arrays=invalid_distances,axis=0)
-    kmeans = KMeans(n_clusters=n_images_final, random_state=0, n_init="auto", max_iter=200)
-    print("Start fit", flush=True)
-    kmeans.fit(embeddings_np)
-    final_paths = [None for _ in range(n_images_final)]
-    print("Choosing one random image from each cluster", flush=True)
-    order = list(enumerate(kmeans.labels_))
-    random.shuffle(order)
-    for i, l in tqdm(order):
-        if final_paths[l] == None:
-            d = np.min(np.linalg.norm(embeddings_np[i] - invalid_distances_np, axis=1))
-            if d > 1.20:
-                final_paths[l] = paths_df.image_path.iloc[i]
-            else:
-                final_paths[l] = 'no'
-    imids = [p.split('_')[-1][:-4] for p in final_paths if p is not None and p != 'no']
-    print(len(imids), flush=True)
-    # Average distance from each mean, if this value is higher, than the images probably quite different than each other
-    # Hard to interpret without context, I selected 4k groups from 150k images collected in one bag and got about 1.6
-    score = kmeans.inertia_ / len(embeddings_np)
-    print(f"KMEANS SCORE: {score}")
-    from aletheia_dataset_creator.dataset_tools.aletheia_dataset_helpers import imageids_to_dataset
-    imageids_to_dataset(image_ids=imids, dataset_name=f"dynamic_manny_in_dust_diverse_{n_images_final}", dataset_description="dynamic manny in dust diverse", dataset_kind=kind, production_dataset=False)
+    diversify_dataset("dynamic_manny_in_dust_raw", 12000, Dataset.KIND_IMAGE)

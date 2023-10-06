@@ -79,5 +79,4 @@ python dl/scripts/predictor_pl.py \
     --batch-size 20;
 done
 
-
 echo --------------------------RUN_PRODUCTIVITY_COMPLETE-------------------------------
