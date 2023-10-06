@@ -15,13 +15,14 @@ source /home/alex.li/.bashrc
 cd /home/$USER/git/JupiterCVML/europa/base/src/europa
 
 CHECKPOINT=dust_val_bestmodel.pth
-# CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/dust/13881_hs15e-1
-# CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/dust/14110
-CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/dust/13881_hs15e-1/
-
+# DUST_OUTPUT_PARAMS="{\"dust_seg_output\":true}" # arch 1
+CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/dust/14367/
+DUST_OUTPUT_PARAMS='{"dust_seg_output":true}' # arch 2
+# CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/results/dust_51_v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30
+# DUST_OUTPUT_PARAMS="{\"dust_head_output\":true}"
 CHECKPOINT_FULL_PATH=${CHECKPOINT_FULL_DIR}/${CHECKPOINT}
 
-if [ ! -d $CHECKPOINT_FULL_PATh ]; then
+if [ ! -d $CHECKPOINT_FULL_PATH ]; then
     echo checkpoint $CHECKPOINT_FULL_PATH does not exist, please download it.
     echo aws s3 cp s3://mesa-states/prod/jupiter/model_training/{experiment_name}/${CHECKPOINT} ${CHECKPOINT_FULL_DIR}/
     exit 1
@@ -44,7 +45,7 @@ python dl/scripts/predictor.py \
     --model brtresnetpyramid_lite12 \
     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
     --model-params "{\"activation\": \"relu\"}" \
-    --dust-output-params "{\"dust_seg_output\": true}" \
+    --dust-output-params $DUST_OUTPUT_PARAMS \
     --states-to-save '' \
     --use-depth-threshold \
     --batch-size 20 \
@@ -62,7 +63,7 @@ python dl/scripts/predictor.py \
     --model brtresnetpyramid_lite12 \
     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
     --model-params "{\"activation\": \"relu\"}" \
-    --dust-output-params "{\"dust_seg_output\": true}" \
+    --dust-output-params $DUST_OUTPUT_PARAMS\
     --states-to-save '' \
     --use-depth-threshold \
     --batch-size 20 \

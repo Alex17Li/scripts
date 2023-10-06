@@ -23,10 +23,10 @@
 		{
 			"name": "sandbox",
 			"path": "/mnt/sandbox1/alex.li"
-		}
+		},
 		{
-			"name": "results",
-			"path": "/mnt/sandbox1/alex.li/results/"
+			"name": "tmp",
+			"path": "/mnt/sandbox1/alex.li/dust/14367"
 		}
 	],
 	"settings": {
