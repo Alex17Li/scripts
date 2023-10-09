@@ -48,7 +48,7 @@ python -m dl.scripts.trainer \
     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
     --snapshot-dir ${SNAPSHOT_DIR} \
     --resume-from-snapshot False \
-    --restore-from  /mnt/sandbox1/alex.li/dust/14174/dust_28_epoch_model.pth \
+    --restore-from /mnt/sandbox1/alex.li/results/dust_51_v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30/dust_val_bestmodel.pth \
     --output-dir ${OUTPUT_DIR} \
     --color-jitter '{"use": false}' \
     --ignore_dust_with_stop_class \
@@ -64,7 +64,6 @@ python -m dl.scripts.trainer \
     # --tversky-parameters '{"fp_weight":[0.1,0.0,0.0,0.1], "fn_weight":[0.9,1.0,1.0,0.9], "class_weight":[0.0,1.0,1.0,0.0], "gamma":1.0, "tversky_weight":0.01, "use_msl":false}' \
     # --use-albumentation-transform \
     # --imgaug-transform-str "[[\"imgaug.augmenters.OneOf\", [[\"dl.augmentations.augmentations.AffineLabelAugmentation\", {\"translate_percent\": {\"x\": (-0.2, 0.2),\"y\": (-0.2, 0.2)},\"mode\": \"reflect\",\"order\": 0}], [\"dl.augmentations.augmentations.AffineLabelAugmentation\", {\"scale\": (0.7, 1.5),\"mode\": \"reflect\",\"order\": 0}], [\"dl.augmentations.augmentations.AffineLabelAugmentation\", {\"rotate\": (-10, 10),\"mode\": \"reflect\",\"order\": 0}]]], [\"imgaug.augmenters.OneOf\", [[\"imgaug.augmenters.Multiply\", {\"mul\": (0.8,1.25),\"per_channel\": 0.2}], [\"imgaug.augmenters.LogContrast\", {\"gain\": (0.6,1.4)}], [\"imgaug.augmenters.SigmoidContrast\", {\"gain\": (3,10), \"cutoff\": (0.4,0.6)}]]], [\"dl.augmentations.augmentations.Clip\",{\"lower\": 0,\"upper\": 1}]]" \
-    # --restore-from '/data/jupiter/li.yu/exps/driveable_terrain_model/v51rd_7cls_imgaug_highbz_100epoch_0123/vehicle_cls_75_epoch_model.pth' \
 
 # mv ${OUTPUT_DIR} /data/jupiter/alex.li/exps/
 # mv ${OUTPUT_DIR}/* /data/jupiter/alex.li/exps/${EXP}/

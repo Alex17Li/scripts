@@ -16,7 +16,7 @@ cd /home/$USER/git/JupiterCVML/europa/base/src/europa
 
 # experiment name
 # check if dir and file exists
-CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/dust/14213/
+CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/dust/15154/
 DUST_OUTPUT_PARAMS='{"dust_seg_output":true}'
 # CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/results/dust_51_v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30/
 # DUST_OUTPUT_PARAMS='{"dust_head_output":true}'
