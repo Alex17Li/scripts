@@ -1,0 +1,11 @@
+_type_: dlcore.configs.roots.training.SegTrainingConfig
+data:
+  train_set:
+    csv_name: master_annotations_30k.csv
+    dataset_path: /home/alexli/data/Jupiter_train_v5_11/
+    dataset_name: Jupiter_train_v5_11
+  batch_size: 16
+  input_data:
+    input_mode: "RGBD"
+trainer:
+  max_epochs: 1

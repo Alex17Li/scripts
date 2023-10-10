@@ -77,6 +77,17 @@
             "justMyCode": true
         },
         {
+            "name": "Trainer dlcore",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa/dlcore/scripts/train_seg.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--config_path", "/home/alexli/git/scripts/dlcore_configs/alex_gpu.yml",
+            ],
+            "justMyCode": true
+        },
+        {
             "name": "EmbeddedMetrics",
             "type": "python",
             "request": "launch",
