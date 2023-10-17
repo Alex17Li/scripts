@@ -1,21 +1,22 @@
 {
 	"folders": [
+		// {
+		// 	"name": "git/JupiterCVML/europa/base/src/europa",
+		// 	"path": "../JupiterCVML/europa/base/src/europa"
+		// },
 		{
-			"name": "git/JupiterCVML/europa/base/src/europa",
-			"path": "../JupiterCVML/europa/base/src/europa"
+			"name": "git/JupiterCVML",
+			"path": "../JupiterCVML"
 		},
-		{
-			"name": "git/JupiterScripts/apps",
-			"path": "../JupiterScripts/apps"
-		},
+
 		{
 			"name": "git/scripts",
 			"path": "."
 		},
-		{
-			"name": "git",
-			"path": "../"
-		},
+		// {
+		// 	"name": "git",
+		// 	"path": "../"
+		// },
 		{
 			"name": "logs",
 			"path": "../../logs"
@@ -23,10 +24,6 @@
 		{
 			"name": "sandbox",
 			"path": "/mnt/sandbox1/alex.li"
-		},
-		{
-			"name": "tmp",
-			"path": "/mnt/sandbox1/alex.li/dust/14904"
 		}
 	],
 	"settings": {
@@ -67,7 +64,5 @@
 			// "/**git/mesa-kubeflow",
 			// "/**git/JupiterEmbedded",
 		]
-			
-		
 	},
 }

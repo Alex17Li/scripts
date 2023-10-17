@@ -86,7 +86,18 @@
             "program": "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa/dlcore/scripts/train_seg.py",
             "console": "integratedTerminal",
             "args": [
-                "--config_path", "/home/alexli/git/scripts/dlcore_configs/alex_gpu.yml",
+                "--config_path", "/home/alexli/git/scripts/dlcore_configs/gpu_seg.yml",
+            ],
+            "justMyCode": true
+        },
+        {
+            "name": "Trainer dlcore depth",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa/dlcore/scripts/train_depth.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--config_path", "/home/alexli/git/scripts/dlcore_configs/gpu_depth.yml",
             ],
             "justMyCode": true
         },
