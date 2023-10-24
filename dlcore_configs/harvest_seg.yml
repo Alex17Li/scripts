@@ -1,0 +1,10 @@
+_type_: dlcore.configs.roots.training.SegTrainingConfig
+data:
+  train_set:
+    csv_name: 642ba9506651c8d5688518e0_master_annotations_ppcutnpastecolumns.csv
+    dataset_path: /data/jupiter/datasets/Jupiter_train_v5_11_20230508
+  batch_size: 1
+trainer:
+  max_epochs: 1
+  logger:
+    _type_: dlcore.configs.third_party.logger_config.DummyLoggerConfig

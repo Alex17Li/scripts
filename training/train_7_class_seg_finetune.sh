@@ -31,6 +31,7 @@ python -m dl.scripts.trainer \
     --weight-decay 1e-5 \
     --trivial-augment '{"use": true}' \
     --learning-rate 1e-3 \
+    --n-images-to-sample 160000 \
     --lr-scheduler-name exponentiallr \
     --lr-scheduler-parameters '{"exponential_gamma": 0.9}' \
     --epochs 20 \
@@ -46,7 +47,6 @@ python -m dl.scripts.trainer \
     --restore-from /mnt/sandbox1/alex.li/results/dust_51_v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30/dust_val_bestmodel.pth \
     --output-dir ${OUTPUT_DIR} \
     --color-jitter '{"use": false}' \
-    --weighted-sampling '{"birds": 1.0, "humans": 2.0, "reverse_humans": 3.0, "airborne_debris": 8.0}' \
     --num-steps 3000000000 \
     --cutnpaste-augmentations "{}" \
     --run-id ${EXP};
@@ -55,7 +55,6 @@ python -m dl.scripts.trainer \
     # --csv-path /data/jupiter/li.yu/data/Jupiter_train_v5_8/epoch0_5_30_focal05_master_annotations.csv \
     # --multiscalemixedloss-parameters '{"scale_weight":0.1, "dust_weight":0.5, "dust_scale_weight":0.05}' \
     # --focalloss-parameters '{"alpha":[1.0,1.0,0.5,0.5,1.0,2.0,1.0], "gamma":2.0}' \
-    # --tversky-parameters '{"fp_weight":[0.1,0.0,0.0,0.1], "fn_weight":[0.9,1.0,1.0,0.9], "class_weight":[0.0,1.0,1.0,0.0], "gamma":1.0, "tversky_weight":0.01, "use_msl":false}' \
     # --use-albumentation-transform \
     # --imgaug-transform-str "[[\"imgaug.augmenters.OneOf\", [[\"dl.augmentations.augmentations.AffineLabelAugmentation\", {\"translate_percent\": {\"x\": (-0.2, 0.2),\"y\": (-0.2, 0.2)},\"mode\": \"reflect\",\"order\": 0}], [\"dl.augmentations.augmentations.AffineLabelAugmentation\", {\"scale\": (0.7, 1.5),\"mode\": \"reflect\",\"order\": 0}], [\"dl.augmentations.augmentations.AffineLabelAugmentation\", {\"rotate\": (-10, 10),\"mode\": \"reflect\",\"order\": 0}]]], [\"imgaug.augmenters.OneOf\", [[\"imgaug.augmenters.Multiply\", {\"mul\": (0.8,1.25),\"per_channel\": 0.2}], [\"imgaug.augmenters.LogContrast\", {\"gain\": (0.6,1.4)}], [\"imgaug.augmenters.SigmoidContrast\", {\"gain\": (3,10), \"cutoff\": (0.4,0.6)}]]], [\"dl.augmentations.augmentations.Clip\",{\"lower\": 0,\"upper\": 1}]]" \
 # mv ${OUTPUT_DIR} /data/jupiter/alex.li/exps/
