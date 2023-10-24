@@ -1,9 +1,5 @@
 {
 	"folders": [
-		// {
-		// 	"name": "git/JupiterCVML/europa/base/src/europa",
-		// 	"path": "../JupiterCVML/europa/base/src/europa"
-		// },
 		{
 			"name": "git/JupiterCVML",
 			"path": "../JupiterCVML"
@@ -13,10 +9,10 @@
 			"name": "git/scripts",
 			"path": "."
 		},
-		// {
-		// 	"name": "git",
-		// 	"path": "../"
-		// },
+		{
+			"name": "git",
+			"path": "../"
+		},
 		{
 			"name": "logs",
 			"path": "../../logs"
