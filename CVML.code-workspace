@@ -59,6 +59,9 @@
 			// "/**git/JupiterScripts",
 			// "/**git/mesa-kubeflow",
 			// "/**git/JupiterEmbedded",
-		]
+		],
+		"terminal.integrated.env.linux": {
+			"COMPUTER_NAME": "gpu"
+		}
 	},
 }
