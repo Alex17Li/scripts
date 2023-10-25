@@ -9,8 +9,10 @@ source /home/${USER}/.bashrc
 
 cd /home/${USER}/git/scripts/data
 
-DATASET_NAME=mannequin_in_dust
+DATASET_NAME=20231017_halo_rgb_labeled_excluded_bad_iq
 
-python data_downloader.py $DATASET_NAME -d $DATASET_PATH
+python data_downloader.py $DATASET_NAME -d /data2/jupiter/datasets
 
-# python clean_dataset.py $DATASET_PATH/$DATASET_NAME annotations.csv
+DATASET_NAME=iq_2023_v5_anno
+
+python data_downloader.py $DATASET_NAME -d /data/jupiter/datasets

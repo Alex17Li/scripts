@@ -7,8 +7,6 @@
 #SBATCH --gres=gpu:4
 #SBATCH --cpus-per-gpu=8
 #SBATCH --time=150:00:00
-
-#--SBATCH --partition=cpu
 source /home/$USER/.bashrc
 conda activate cvml
 
@@ -18,6 +16,11 @@ export NCCL_SOCKET_NTHREADS=2
 export NCCL_MIN_CHANNELS=32
 
 export COLUMNS=200
+EXP=${SLURM_JOB_ID}
 
-python -m JupiterCVML.europa.base.src.europa.dlcore.scripts.train_seg \
-    --trainer.precision '16-mixed'
+# python -m JupiterCVML.dlcore.scripts.train_seg --trainer.logger.name $EXP
+
+python -m JupiterCVML.dlcore.scripts.train_seg \
+    --config_path scripts/dlcore_configs/harvest_seg_train.yml \
+    --config_path scripts/dlcore_configs/seg_gsam.yml \
+    --trainer.logger.version $EXP

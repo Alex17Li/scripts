@@ -1,0 +1,3 @@
+_type_: dlcore.configs.roots.training.SegTrainingConfig
+optimizer:
+  _type_: dlcore.configs.third_party.optimizer_config.GSAMConfig

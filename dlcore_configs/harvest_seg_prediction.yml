@@ -1,0 +1,10 @@
+_type_: dlcore.configs.roots.prediction.SegPredictionConfig
+predictor:
+  logger:
+    _type_: dlcore.configs.third_party.logger_config.DummyLoggerConfig
+data:
+  test_set:
+    batch_size: 32
+    csv_name: master_annotations_subset.csv
+    dataset_path: /home/avinashraju/BRT/data/Jupiter_train_v5_11_subset_1
+    num_workers: 24
