@@ -1,14 +1,16 @@
-_type_: dlcore.configs.roots.training.DepthTrainingConfig
-batch_size: 8
+_type_: dlcore.configs.roots.training.SegTrainingConfig
 data:
   train_set:
     csv_name: master_annotations_1k.csv
     dataset_path: /home/alexli/data/Jupiter_train_v5_11/
     dataset_name: Jupiter_train_v5_11
+  batch_size: 4
+  input_data:
+    input_mode: "RGBD"
 trainer:
+  strategy:
+    _type_: dlcore.configs.third_party.strategy_config.DDPStrategyConfig
   max_epochs: 1
   logger:
     _type_: dlcore.configs.third_party.logger_config.DummyLoggerConfig
-  callbacks:
-    model_checkpoint:
-      dirpath: /home/alexli/logs/depth_checkpoints
+

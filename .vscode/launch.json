@@ -6,7 +6,8 @@
             "type": "python",
             "request": "launch",
             "program": "${file}",
-            "console": "integratedTerminal",
+            "console": "internalConsole",
+            "internalConsoleOptions": "openOnSessionStart",
             "justMyCode": true
         },
         {
@@ -14,7 +15,8 @@
             "type": "python",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa/dl/scripts/predictor_pl.py",
-            "console": "integratedTerminal",
+            "console": "internalConsole",
+            "internalConsoleOptions": "openOnSessionStart",
             "args": [
                 "--csv-path", "${env:DATASET_PATH}/humans_on_path_test_set_2023_v15_anno/master_annotations.csv",
                 "--data-dir", "${env:DATASET_PATH}/humans_on_path_test_set_2023_v15_anno",
@@ -45,7 +47,8 @@
             "type": "python",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa/dl/scripts/trainer.py",
-            "console": "integratedTerminal",
+            "console": "internalConsole",
+            "internalConsoleOptions": "openOnSessionStart",
             "args": [
                 "--csv-path", "${env:DATASET_PATH}/Jupiter_train_v5_11_20230508/master_annotations_v481.csv",
                 "--data-dir", "${env:DATASET_PATH}/Jupiter_train_v5_11_20230508/",
@@ -82,7 +85,8 @@
             "type": "python",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/dlcore/scripts/train_seg.py",
-            "console": "integratedTerminal",
+            "console": "internalConsole",
+            "internalConsoleOptions": "openOnSessionStart",
             "args": [
                 "--config_path", "/home/${env:USER}/git/scripts/dlcore_configs/harvest_seg_train_debug.yml",
                 "--config_path", "/home/${env:USER}/git/scripts/dlcore_configs/seg_gsam.yml"
@@ -94,20 +98,22 @@
             "type": "python",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/dlcore/scripts/train_seg.py",
-            "console": "integratedTerminal",
+            "console": "internalConsole",
+            "internalConsoleOptions": "openOnSessionStart",
             "args": [
-                "--config_path", "/home/${env:USER}/git/scripts/dlcore_configs/harvest_seg.yml",
+                "--config_path", "/home/${env:USER}/git/scripts/dlcore_configs/gpu_seg.yml",
             ],
-            "justMyCode": true
+            "justMyCode": false
         },
         {
             "name": "Trainer dlcore depth",
             "type": "python",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/dlcore/scripts/train_depth.py",
-            "console": "integratedTerminal",
+            "console": "internalConsole",
+            "internalConsoleOptions": "openOnSessionStart",
             "args": [
-                "--config_path", "/home/${env:USER}/git/scripts/dlcore_configs/${env:COMPUTER_NAME}_depth.yml",
+                "--config_path", "/home/${env:USER}/git/scripts/dlcore_configs/gpu_depth.yml",
             ],
             "justMyCode": true
         },
@@ -117,7 +123,8 @@
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterScripts/apps/embedded_metrics/embedded_metrics.py",
             "cwd": "/home/${env:USER}/git/JupiterScripts/apps/embedded_metrics/",
-            "console": "integratedTerminal",
+            "console": "internalConsole",
+            "internalConsoleOptions": "openOnSessionStart",
             "args": [
                 "--master-annotations-csv", "${env:DATASET_PATH}/mannequin_in_dust_v1/master_annotations_reverse.csv",
                 "--dataset-dir", "${env:DATASET_PATH}/mannequin_in_dust_v1",
@@ -134,27 +141,13 @@
             "justMyCode": true
         },
         {
-            "name": "EmbeddedLabelCreation",
-            "type": "python",
-            "request": "launch",
-            "program": "/home/${env:USER}/git/JupiterScripts/apps/embedded_metrics/embedded_label_creation.py",
-            "cwd": "/home/${env:USER}/git/JupiterScripts/apps/embedded_metrics/",
-            "console": "integratedTerminal",
-            "args": [
-                "--dataset-path", "${env:DATASET_PATH}/mannequin_in_dust_v1",
-                "--operation-mode", "reverse",
-                "--europa-path", "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa",
-                "--progress-bar"
-            ],
-            "justMyCode": true
-        },
-        {
             "name": "packperception",
             "type": "python",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa/dl/dataset/pack_perception/ml_pack_perception.py",
             "cwd": "/home/${env:USER}/git/JupiterCVML/",
-            "console": "integratedTerminal",
+            "console": "internalConsole",
+            "internalConsoleOptions": "openOnSessionStart",
             "args": [
                 "--data-dir", "${env:DATASET_PATH}/mannequin_in_dust/",
                 "--csv-path", "${env:DATASET_PATH}/mannequin_in_dust/annotations.csv",
