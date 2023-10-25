@@ -85,8 +85,7 @@
             "type": "python",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/dlcore/scripts/train_seg.py",
-            "console": "internalConsole",
-            "internalConsoleOptions": "openOnSessionStart",
+            "console": "integratedTerminal",
             "args": [
                 "--config_path", "/home/${env:USER}/git/scripts/dlcore_configs/harvest_seg_train_debug.yml",
                 "--config_path", "/home/${env:USER}/git/scripts/dlcore_configs/seg_gsam.yml"
@@ -98,10 +97,10 @@
             "type": "python",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/dlcore/scripts/train_seg.py",
-            "console": "internalConsole",
-            "internalConsoleOptions": "openOnSessionStart",
+            "console": "integratedTerminal",
             "args": [
                 "--config_path", "/home/${env:USER}/git/scripts/dlcore_configs/gpu_seg.yml",
+                "/home/${env:USER}/git/scripts/dlcore_configs/seg_gsam.yml"
             ],
             "justMyCode": false
         },
@@ -110,8 +109,7 @@
             "type": "python",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/dlcore/scripts/train_depth.py",
-            "console": "internalConsole",
-            "internalConsoleOptions": "openOnSessionStart",
+            "console": "integratedTerminal",
             "args": [
                 "--config_path", "/home/${env:USER}/git/scripts/dlcore_configs/gpu_depth.yml",
             ],
