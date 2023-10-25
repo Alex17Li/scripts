@@ -18,9 +18,14 @@ export NCCL_MIN_CHANNELS=32
 export COLUMNS=200
 EXP=${SLURM_JOB_ID}
 
-# python -m JupiterCVML.dlcore.scripts.train_seg --trainer.logger.name $EXP
-
 python -m JupiterCVML.dlcore.scripts.train_seg \
     --config_path scripts/dlcore_configs/harvest_seg_train.yml \
-    --config_path scripts/dlcore_configs/seg_gsam.yml \
-    --trainer.logger.version $EXP
+   --config_path scripts/dlcore_configs/seg_gsam.yml \
+    --trainer.logger.version $EXP \
+    --trainer.precision 32
+
+# 16202 with sam (corrected optimizer choice for ptl) (NaN)
+# 16203 no sam (no NaN)
+# 16204 32 precision
+# 16205 no warmup
+

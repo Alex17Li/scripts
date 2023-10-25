@@ -6,3 +6,6 @@ data:
 optimizer:
   _type_: dlcore.configs.third_party.optimizer_config.GSAMConfig
 batch_size: 1
+weighted_sampling:
+  reverse_humans: 1.0
+  airborne_debris: 1.0
