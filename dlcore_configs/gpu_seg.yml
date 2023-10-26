@@ -7,12 +7,7 @@ data:
     dataset_name: Jupiter_train_v5_11
   input_data:
     input_mode: "RGBD"
-model:
-  _type_: dlcore.configs.tasks.semantic_segmentation.model_config.BRTResnetPyramidConfig
-  model_params:
-    upsample_mode: 'area'
 trainer:
   max_epochs: 1
   logger:
     _type_: dlcore.configs.third_party.logger_config.DummyLoggerConfig
-  precision: 'bf16'
