@@ -8,10 +8,6 @@ source ~/.bashrc
 
 cd /home/${USER}/git/JupiterCVML/europa/base/src/europa/dl/dataset
 
-# python fetch_pp_artifacts.py \
-# --output-path ${DATASET_PATH}/rev2_data_stratified \
-# --master-csv-s3-uri s3://blueriver-jupiter-data/pack_perception/ml/3ea359f0c3fd28d093bf41b44a016d15_baa7754f69c9985b03cb04a52f5b5bcd/64cae39a0a0438ef306c214d_master_annotations.csv
-# python fetch_pp_artifacts.py --output-path ${DATASET_PATH}/Jupiter_train_v5_11 --df-path $DATASET_PATH/master_annotations_30k.csv
 python fetch_pp_artifacts.py \
---output-path ${DATASET_PATH}/vehicles_driving_in_dust \
---master-csv-s3-uri s3://blueriver-jupiter-data/pack_perception/ml/5f3ec76b982566fd6e1a1ba6482330ce_c7dcb27f46b4e853454683774b99bf3a/64dfb36ebe1e14d37b7287d8_master_annotations.csv
+--output-path ${DATASET_PATH}/iq_2023_v5_anno \
+--master-csv-s3-uri  s3://blueriver-jupiter-data/pack_perception/ml/48fe80193177bc671b32ffe6443142c9_e9102e029ccca1fdad1f8dbf60030281/64dfcc1de5a41169c7deb205_master_annotations.csv
