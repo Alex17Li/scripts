@@ -100,7 +100,7 @@
             "console": "integratedTerminal",
             "args": [
                 "--config_path", "/home/${env:USER}/git/scripts/dlcore_configs/gpu_seg.yml",
-                "/home/${env:USER}/git/scripts/dlcore_configs/seg_gsam.yml"
+                // "/home/${env:USER}/git/scripts/dlcore_configs/seg_gsam.yml"
             ],
             "justMyCode": false
         },
