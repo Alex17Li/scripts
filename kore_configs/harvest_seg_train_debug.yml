@@ -1,10 +1,10 @@
-_type_: dlcore.configs.roots.training.SegTrainingConfig
+_type_: kore.configs.roots.training.SegTrainingConfig
 data:
   train_set:
     csv_name: master_annotations_100.csv
     dataset_path: /data/jupiter/datasets/Jupiter_train_v5_11_20230508
 optimizer:
-  _type_: dlcore.configs.third_party.optimizer_config.GSAMConfig
+  _type_: kore.configs.third_party.optimizer_config.GSAMConfig
 batch_size: 1
 weighted_sampling:
   reverse_humans: 1.0

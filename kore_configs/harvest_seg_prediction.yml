@@ -1,7 +1,7 @@
-_type_: dlcore.configs.roots.prediction.SegPredictionConfig
+_type_: kore.configs.roots.prediction.SegPredictionConfig
 predictor:
   logger:
-    _type_: dlcore.configs.third_party.logger_config.DummyLoggerConfig
+    _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
 data:
   test_set:
     batch_size: 32

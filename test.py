@@ -22,7 +22,7 @@ class BaseConfig:
 
 def _raise_NotImplementedError() -> Never:
     raise NotImplementedError
-from dlcore.configs import default
+from kore.configs import default
 
 
 not_implemented_field: Any = field(default_factory=_raise_NotImplementedError)

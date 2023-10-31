@@ -1,4 +1,4 @@
-_type_: dlcore.configs.roots.training.DepthTrainingConfig
+_type_: kore.configs.roots.training.DepthTrainingConfig
 batch_size: 8
 data:
   train_set:
@@ -8,7 +8,7 @@ data:
 trainer:
   max_epochs: 1
   logger:
-    _type_: dlcore.configs.third_party.logger_config.DummyLoggerConfig
+    _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
   callbacks:
     model_checkpoint:
       dirpath: /home/alexli/logs/depth_checkpoints

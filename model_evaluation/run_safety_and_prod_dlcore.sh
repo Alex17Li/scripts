@@ -28,7 +28,7 @@ SAFETY_DATASETS=("humans_on_path_test_set_2023_v15_anno" "humans_off_path_test_s
 for DATASET in ${SAFETY_DATASETS[@]}
 do
     echo ----------------------------RUN ON ${DATASET}-----------------------------------
-    python -m dlcore.scripts.predict_seg \
+    python -m kore.scripts.predict_seg \
         --data.test_set.csv_name master_annotations.csv \
         --data.test_set.dataset_path /data/jupiter/datasets/$DATASET \
         --inputs.label.label_map_file $LABEL_MAP_FILE \
@@ -43,7 +43,7 @@ PROD_DATASETS=("Jupiter_productivity_test_2023_v1_cleaned" "Jupiter_productivity
 for DATASET in ${PROD_DATASETS[@]}
 do
     echo ----------------------------RUN ON ${DATASET}-----------------------------------
-    python -m JupiterCVML.dlcore.scripts.predict_seg \
+    python -m JupiterCVML.kore.scripts.predict_seg \
         --data.test_set.csv_name master_annotations.csv \
         --data.test_set.dataset_path /data/jupiter/datasets/$DATASET \
         --inputs.label.label_map_file $LABEL_MAP_FILE \

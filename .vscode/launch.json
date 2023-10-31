@@ -50,12 +50,12 @@
             "console": "internalConsole",
             "internalConsoleOptions": "openOnSessionStart",
             "args": [
-                "--csv-path", "${env:DATASET_PATH}/Jupiter_train_v5_11_20230508/master_annotations_v481.csv",
-                "--data-dir", "${env:DATASET_PATH}/Jupiter_train_v5_11_20230508/",
-                // "--csv-path", "${env:DATASET_PATH}/Jupiter_train_v5_11/master_annotations_30k.csv",
-                // "--data-dir", "${env:DATASET_PATH}/Jupiter_train_v5_11",
-                "--label-map-file", "~/git/JupiterCVML/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv",
-                "--label-map-file-iq", "~/git/JupiterCVML/europa/base/src/europa/dl/config/label_maps/binary_dust.csv",
+                // "--csv-path", "${env:DATASET_PATH}/Jupiter_train_v5_11_20230508/master_annotations_v481.csv",
+                // "--data-dir", "${env:DATASET_PATH}/Jupiter_train_v5_11_20230508/",
+                "--csv-path", "${env:DATASET_PATH}/Jupiter_train_v5_11/master_annotations_1k.csv",
+                "--data-dir", "${env:DATASET_PATH}/Jupiter_train_v5_11",
+                "--label-map-file", "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv",
+                "--label-map-file-iq", "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa/dl/config/label_maps/binary_dust.csv",
                 "--exp-name", "test_trainer",
                 "--val-set-ratio", "0.4",
                 "--model-params", "{\"activation\": \"relu\"}",
@@ -81,37 +81,37 @@
             "justMyCode": true
         },
         {
-            "name": "Trainer dlcore harvest",
+            "name": "Trainer kore harvest",
             "type": "python",
             "request": "launch",
-            "program": "/home/${env:USER}/git/JupiterCVML/dlcore/scripts/train_seg.py",
+            "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/train_seg.py",
             "console": "integratedTerminal",
             "args": [
-                "--config_path", "/home/${env:USER}/git/scripts/dlcore_configs/harvest_seg_train_debug.yml",
-                "--config_path", "/home/${env:USER}/git/scripts/dlcore_configs/seg_gsam.yml"
+                "--config_path", "/home/${env:USER}/git/scripts/kore_configs/harvest_seg_train_debug.yml",
+                "--config_path", "/home/${env:USER}/git/scripts/kore_configs/seg_gsam.yml"
             ],
             "justMyCode": true
         },
         {
-            "name": "Trainer dlcore gpu",
+            "name": "Trainer kore gpu",
             "type": "python",
             "request": "launch",
-            "program": "/home/${env:USER}/git/JupiterCVML/dlcore/scripts/train_seg.py",
+            "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/train_seg.py",
             "console": "integratedTerminal",
             "args": [
-                "--config_path", "/home/${env:USER}/git/scripts/dlcore_configs/gpu_seg.yml",
-                // "/home/${env:USER}/git/scripts/dlcore_configs/seg_gsam.yml"
+                "--config_path", "/home/${env:USER}/git/scripts/kore_configs/gpu_seg.yml",
+                // "/home/${env:USER}/git/scripts/kore_configs/seg_gsam.yml"
             ],
             "justMyCode": false
         },
         {
-            "name": "Trainer dlcore depth",
+            "name": "Trainer kore depth",
             "type": "python",
             "request": "launch",
-            "program": "/home/${env:USER}/git/JupiterCVML/dlcore/scripts/train_depth.py",
+            "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/train_depth.py",
             "console": "integratedTerminal",
             "args": [
-                "--config_path", "/home/${env:USER}/git/scripts/dlcore_configs/gpu_depth.yml",
+                "--config_path", "/home/${env:USER}/git/scripts/kore_configs/gpu_depth.yml",
             ],
             "justMyCode": true
         },

@@ -1,4 +1,4 @@
-_type_: dlcore.configs.roots.training.SegTrainingConfig
+_type_: kore.configs.roots.training.SegTrainingConfig
 batch_size: 4
 data:
   train_set:
@@ -8,4 +8,4 @@ data:
 trainer:
   max_epochs: 1
   logger:
-    _type_: dlcore.configs.third_party.logger_config.DummyLoggerConfig
+    _type_: kore.configs.third_party.logger_config.DummyLoggerConfig

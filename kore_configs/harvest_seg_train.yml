@@ -1,4 +1,4 @@
-_type_: dlcore.configs.roots.training.SegTrainingConfig
+_type_: kore.configs.roots.training.SegTrainingConfig
 data:
   train_set:
     csv_name: 642ba9506651c8d5688518e0_master_annotations_ppcutnpastecolumns.csv
