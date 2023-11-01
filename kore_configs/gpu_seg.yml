@@ -6,6 +6,7 @@ data:
     dataset_path: /home/alexli/data/Jupiter_train_v5_11/
     dataset_name: Jupiter_train_v5_11
 trainer:
-  max_epochs: 1
-  logger:
-    _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
+  max_epochs: 2
+  # logger:
+  #   _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
+num_log_images: 10

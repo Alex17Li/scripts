@@ -1,0 +1,6 @@
+batch_size: 4
+data:
+  test_set:
+    csv_name: master_annotations_1k.csv
+    dataset_path: /home/alexli/data/Jupiter_train_v5_11/
+    dataset_name: Jupiter_train_v5_11

@@ -100,7 +100,20 @@
             "console": "integratedTerminal",
             "args": [
                 "--config_path", "/home/${env:USER}/git/scripts/kore_configs/gpu_seg.yml",
+                // "$CVML_DIR/kore/configs/options/seg_no_dust_head.yml"
                 // "/home/${env:USER}/git/scripts/kore_configs/seg_gsam.yml"
+            ],
+            "justMyCode": false
+        },
+        {
+            "name": "Predictor kore gpu",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/predict_seg.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--config_path", "/home/${env:USER}/git/scripts/kore_configs/gpu_seg_predict.yml",
+                "$CVML_DIR/kore/configs/options/seg_no_dust_head.yml"
             ],
             "justMyCode": false
         },
