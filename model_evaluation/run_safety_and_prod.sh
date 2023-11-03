@@ -23,7 +23,7 @@ CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/wandb/wandb/run-20231018_184348-4c26c0
 DUST_OUTPUT_PARAMS='{"dust_head_output":false}'
 # CHECKPOINT=dust_val_bestmodel.pth
 CHECKPOINT=epoch=99-val_acc=0.000000-val_loss=0.050370.ckpt
-LABEL_MAP_FILE=$CVML_PATH/europa/base/src/europa/dl/config/label_maps/eight_class_train.csv 
+LABEL_MAP_FILE=$CVML_PATH/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv 
 CHECKPOINT_FULL_PATH=${CHECKPOINT_FULL_DIR}/${CHECKPOINT}
 if [ ! -f $CHECKPOINT_FULL_PATH ]; then
     echo checkpoint does not exist, please run the cmd below to download
@@ -34,7 +34,7 @@ fi
 echo --------------TESTING MODEL $CHECKPOINT_FULL_PATH---------------------------
 
 SAFETY_DATASETS=("humans_on_path_test_set_2023_v15_anno" "humans_off_path_test_set_2023_v3_anno")
-# SAFETY_DATASETS=()
+SAFETY_DATASETS=()
 for DATASET in ${SAFETY_DATASETS[@]}
 do
 # --label-map-file-iq $CVML_PATH/europa/base/src/europa/dl/config/label_maps/binary_dust.csv \
