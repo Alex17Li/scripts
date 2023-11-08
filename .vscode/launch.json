@@ -87,7 +87,7 @@
             "console": "integratedTerminal",
             "args": [
                 "--config_path", "/home/${env:USER}/git/scripts/kore_configs/harvest_seg_train_debug.yml",
-                "--config_path", "/home/${env:USER}/git/scripts/kore_configs/seg_gsam.yml"
+                // "--config_path", "/home/${env:USER}/git/scripts/kore_configs/seg_gsam.yml"
             ],
             "justMyCode": true
         },
@@ -102,7 +102,7 @@
                 // "$CVML_DIR/kore/configs/options/seg_no_dust_head.yml"
                 // "/home/${env:USER}/git/scripts/kore_configs/seg_gsam.yml"
             ],
-            "justMyCode": false
+            "justMyCode": true
         },
         {
             "name": "Predictor kore gpu",
@@ -114,8 +114,20 @@
                 "--config_path", "/home/${env:USER}/git/scripts/kore_configs/gpu_seg_predict.yml",
                 "$CVML_DIR/kore/configs/options/seg_no_dust_head.yml"
             ],
-            "justMyCode": false
+            "justMyCode": true
         },
+        {
+            "name": "Predictor kore harvest",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/predict_seg.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--config_path", "/home/${env:USER}/git/scripts/kore_configs/harvest_seg_prediction_debug.yml",               
+            ],
+            "justMyCode": true
+        },
+
         {
             "name": "Trainer kore depth",
             "type": "python",

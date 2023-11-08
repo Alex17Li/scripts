@@ -4,7 +4,7 @@ optimizer:
 trainer:
   strategy:
     _type_: kore.configs.third_party.strategy_config.DDPStrategyConfig
-  precision: 'bf16'
+  precision: 'bf16-mixed'
 model:
   _type_: kore.configs.tasks.semantic_segmentation.model_config.BRTResnetPyramidConfig
   model_params:

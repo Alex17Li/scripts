@@ -3,3 +3,7 @@ data:
   train_set:
     csv_name: 642ba9506651c8d5688518e0_master_annotations_ppcutnpastecolumns.csv
     dataset_path: /data/jupiter/datasets/Jupiter_train_v5_11_20230508
+lr_scheduler:
+  _type_: kore.configs.third_party.lr_scheduler_config.CosineAnnealingLRConfig
+trainer:
+  max_epochs: 1

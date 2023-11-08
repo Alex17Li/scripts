@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --partition=gpu
-#SBATCH --gres=gpu:4
+#SBATCH --gres=gpu:1
 #SBATCH --cpus-per-gpu=6
 #SBATCH --mem-per-gpu=20G
 #SBATCH --time=10:00:00
@@ -14,17 +14,17 @@ source /home/alex.li/.bashrc
 
 cd /home/$USER/git/JupiterCVML
 
-CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/wandb/wandb/run-20231018_184348-4c26c094/files
+CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/wandb/run-20231103_084550-16377/files
 DUST_OUTPUT_PARAMS='{"dust_head_output":false}'
-CHECKPOINT=epoch=99-val_acc=0.000000-val_loss=0.050370.ckpt
-LABEL_MAP_FILE=$CVML_PATH/europa/base/src/europa/dl/config/label_maps/eight_class_train.csv 
+CHECKPOINT=last.ckpt
+LABEL_MAP_FILE=$CVML_PATH/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv 
 CHECKPOINT_FULL_PATH=${CHECKPOINT_FULL_DIR}/${CHECKPOINT}
 
 echo --------------TESTING MODEL $CHECKPOINT_FULL_PATH---------------------------
-
+set -x
 
 SAFETY_DATASETS=("humans_on_path_test_set_2023_v15_anno" "humans_off_path_test_set_2023_v3_anno")
-# SAFETY_DATASETS=()
+SAFETY_DATASETS=("humans_on_path_test_set_2023_v15_anno")
 for DATASET in ${SAFETY_DATASETS[@]}
 do
     echo ----------------------------RUN ON ${DATASET}-----------------------------------
@@ -34,7 +34,8 @@ do
         --inputs.label.label_map_file $LABEL_MAP_FILE \
         --ckpt_path $CHECKPOINT_FULL_PATH \
         --output_dir ${CHECKPOINT_FULL_DIR}/${DATASET} \
-        --states_to_save 'human_false_negative'
+        --states_to_save 'human_false_negative' \
+        --batch_size 64
 done
 echo ----------------------------RUN_SAFETY_COMPLETE-----------------------------------
 
@@ -43,14 +44,15 @@ PROD_DATASETS=("Jupiter_productivity_test_2023_v1_cleaned" "Jupiter_productivity
 for DATASET in ${PROD_DATASETS[@]}
 do
     echo ----------------------------RUN ON ${DATASET}-----------------------------------
-    python -m JupiterCVML.kore.scripts.predict_seg \
+    python -m kore.scripts.predict_seg \
         --data.test_set.csv_name master_annotations.csv \
         --data.test_set.dataset_path /data/jupiter/datasets/$DATASET \
         --inputs.label.label_map_file $LABEL_MAP_FILE \
         --ckpt_path $CHECKPOINT_FULL_PATH \
         --output_dir ${CHECKPOINT_FULL_DIR}/${DATASET} \
         --states_to_save 'human_false_negative' \
-        --metrics.run-productivity-metrics
+        --metrics.run-productivity-metrics \
+        --batch_size 64
 done
 
 echo --------------------------RUN_PRODUCTIVITY_COMPLETE-------------------------------
