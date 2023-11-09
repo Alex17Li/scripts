@@ -100,7 +100,7 @@
             "args": [
                 "--config_path", "/home/${env:USER}/git/scripts/kore_configs/gpu_seg.yml",
                 // "$CVML_DIR/kore/configs/options/seg_no_dust_head.yml"
-                // "/home/${env:USER}/git/scripts/kore_configs/seg_gsam.yml"
+                "/home/${env:USER}/git/scripts/kore_configs/seg_gsam.yml"
             ],
             "justMyCode": true
         },

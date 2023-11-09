@@ -12,8 +12,11 @@ trainer:
   precision: 'bf16-mixed'
   max_epochs: 40
 model:
-  _type_: kore.configs.tasks.semantic_segmentation.model_config.BRTResnetPyramidConfig
+  _type_: kore.configs.tasks.semantic_segmentation.model_config.BRTResnetPyramidLite12Config
   model_params:
     upsample_mode: 'area'
+  dust:
+    dust_seg_output: true
+
 lr_scheduler:
   _type_: kore.configs.third_party.lr_scheduler_config.LinearLRConfig
