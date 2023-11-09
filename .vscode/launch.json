@@ -87,7 +87,7 @@
             "console": "integratedTerminal",
             "args": [
                 "--config_path", "/home/${env:USER}/git/scripts/kore_configs/harvest_seg_train_debug.yml",
-                // "--config_path", "/home/${env:USER}/git/scripts/kore_configs/seg_gsam.yml"
+                "/home/${env:USER}/git/scripts/kore_configs/seg_gsam.yml"
             ],
             "justMyCode": true
         },
