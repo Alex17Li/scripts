@@ -1,10 +1,9 @@
 _type_: kore.configs.roots.training.SegTrainingConfig
 optimizer:
   _type_: kore.configs.third_party.optimizer_config.GSAMConfig
-  lr: 1.0e-3
-  rho_min: 0.01
+  rho_min: 0
   rho_max: 0.05
-  gsam_alpha: 0.1
+  gsam_alpha: 0.3
   betas: [0.9, 0.999]
 trainer:
   strategy:
@@ -17,6 +16,5 @@ model:
     upsample_mode: 'area'
   dust:
     dust_seg_output: true
-
 lr_scheduler:
   _type_: kore.configs.third_party.lr_scheduler_config.LinearLRConfig

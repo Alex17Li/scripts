@@ -19,12 +19,17 @@ export COLUMNS=100
 
 EXP=${SLURM_JOB_ID}
 
-CONFIG_PATH="scripts/kore_configs/harvest_seg_train.yml"
-CONFIG_PATH="scripts/kore_configs/harvest_seg_train.yml scripts/kore_configs/seg_gsam.yml"
-
 set -x
+
+# CONFIG_PATH="scripts/kore_configs/harvest_seg_train.yml"
+# srun --kill-on-bad-exit python -m JupiterCVML.kore.scripts.train_seg \
+#     --config_path $CONFIG_PATH \
+#     --lr_scheduler.T_max 100 \
+#     --trainer.logger.version $EXP
+
+
+CONFIG_PATH="scripts/kore_configs/harvest_seg_train.yml scripts/kore_configs/seg_gsam.yml"
 srun --kill-on-bad-exit python -m JupiterCVML.kore.scripts.train_seg \
     --config_path $CONFIG_PATH \
     --data.train_set.csv_name master_annotations_10k.csv \
     --trainer.logger.version $EXP
-
