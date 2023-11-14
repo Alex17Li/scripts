@@ -87,7 +87,8 @@
             "console": "integratedTerminal",
             "args": [
                 "--config_path", "/home/${env:USER}/git/scripts/kore_configs/harvest_seg_train_debug.yml",
-                "/home/${env:USER}/git/scripts/kore_configs/seg_gsam.yml"
+                // "/home/${env:USER}/git/scripts/kore_configs/seg_gsam.yml",
+                "--ckpt_path", "/mnt/sandbox1/alex.li/wandb/run-20231110_200223-16686/files/epoch=35-val_loss=0.113822.ckpt"
             ],
             "justMyCode": true
         },
