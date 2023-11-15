@@ -8,9 +8,9 @@ source ~/.bashrc
 
 cd /home/${USER}/git/JupiterCVML/europa/base/src/europa/dl/dataset
 
-# python fetch_pp_artifacts.py \
-# --output-path ${DATASET_PATH}/iq_2023_v5_anno \
-# --master-csv-s3-uri  s3://blueriver-jupiter-data/pack_perception/ml/48fe80193177bc671b32ffe6443142c9_e9102e029ccca1fdad1f8dbf60030281/64dfcc1de5a41169c7deb205_master_annotations.csv
+python fetch_pp_artifacts.py \
+--output-path ${DATASET_PATH}/halo_all_cam_labeled_dataset \
+--master-csv-s3-uri 3://blueriver-jupiter-data/pack_perception/ml/1b87a26cceccec5e904b772ae35c33e3_71573a7e6642901f3983f4b0d588b0c7/6553f27dfbfc5c128ad6c27e_master_annotations.csv
 
 python fetch_pp_artifacts.py \
 --output-path /data/jupiter/datasets/bad_iq_halo_labelbox_plus_exposure \
