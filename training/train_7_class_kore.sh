@@ -19,17 +19,14 @@ export COLUMNS=100
 
 EXP=${SLURM_JOB_ID}
 # EXP=16686
-CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-20231110_200223-16686/files/epoch\=35-val_loss\=0.113822.ckpt
-# CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-20231113_133040-16754/files/epoch=5-val_loss=0.128479.ckpt
-# CKPT_PATH=null
-EXP=16686
+CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-20231115_084752-16903/files/epoch=94-val_loss=0.084569.ckpt
 
 set -x
 
 CONFIG_PATH="scripts/kore_configs/harvest_seg_train.yml"
 srun --kill-on-bad-exit python -m JupiterCVML.kore.scripts.train_seg \
-    --ckpt_path $CKPT_PATH \
     --config_path $CONFIG_PATH \
+    --ckpt_path $CKPT_PATH \
     --lr_scheduler.T_max 100 \
     --trainer.logger.version $EXP
 
@@ -37,5 +34,5 @@ srun --kill-on-bad-exit python -m JupiterCVML.kore.scripts.train_seg \
 # CONFIG_PATH="scripts/kore_configs/harvest_seg_train.yml scripts/kore_configs/seg_gsam.yml"
 # srun --kill-on-bad-exit python -m JupiterCVML.kore.scripts.train_seg \
 #     --config_path $CONFIG_PATH \
-#     --data.train_set.csv_name master_annotations_10k.csv \
+#     --ckpt_path $CKPT_PATH \
 #     --trainer.logger.version $EXP

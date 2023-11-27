@@ -3,9 +3,9 @@ data:
   train_set:
     csv_name: master_annotations_20231019_clean.csv
     dataset_path: /data2/jupiter/datasets/Jupiter_train_v6_2
-  # validation_set: 
-  #   csv_name: v6_2_overlap_with_test_geohash_bag_vat_ids.csv
-  #   dataset_path: /data2/jupiter/datasets/Jupiter_train_v6_2
-lr_scheduler:
-  _type_: kore.configs.third_party.lr_scheduler_config.CosineAnnealingLRConfig
+  validation_set: 
+    csv_name: v6_2_overlap_with_test_geohash_bag_vat_ids.csv
+    dataset_path: /data2/jupiter/datasets/Jupiter_train_v6_2
+# lr_scheduler:
+#   _type_: kore.configs.third_party.lr_scheduler_config.CosineAnnealingLRConfig
 

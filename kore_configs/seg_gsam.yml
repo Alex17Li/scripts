@@ -1,6 +1,7 @@
 _type_: kore.configs.roots.training.SegTrainingConfig
 optimizer:
   _type_: kore.configs.third_party.optimizer_config.GSAMConfig
+  lr: 5e-4
   rho_min: 0
   rho_max: 0.05
   gsam_alpha: 0.3
