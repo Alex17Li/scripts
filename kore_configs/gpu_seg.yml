@@ -2,11 +2,12 @@ _type_: kore.configs.roots.training.SegTrainingConfig
 batch_size: 4
 data:
   train_set:
-    csv_name: master_annotations_4k.csv
+    csv_name: master_annotations_1k.csv
     dataset_path: /home/alexli/data/Jupiter_train_v5_11/
     dataset_name: Jupiter_train_v5_11
+  validation_set: null
+  validation_set_ratio: .2
 trainer:
   max_epochs: 2
-  # logger:
-  #   _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
-num_log_images: 10
+  logger:
+    _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
