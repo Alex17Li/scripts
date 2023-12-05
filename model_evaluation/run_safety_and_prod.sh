@@ -18,13 +18,13 @@ cd /home/$USER/git/JupiterCVML/europa/base/src/europa
 # check if dir and file exists
 # CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/wandb/run-20231103_084550-16377/files
 # CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/wandb/run-20231026_092447-16306/files
-CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/wandb/run-20231115_084752-16903/files/
+CHECKPOINT_FULL_DIR=/home/alex.li/logs
 # DUST_OUTPUT_PARAMS='{"dust_head_output":false}'
 # DUST_OUTPUT_PARAMS='{"dust_seg_output":true}'
 # CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/results/dust_51_v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30/
 DUST_OUTPUT_PARAMS='{"dust_head_output":false}'
 # CHECKPOINT=dust_val_bestmodel.pth
-CHECKPOINT=last.ckpt
+CHECKPOINT=epoch=99-val_loss=0.096904.ckpt
 LABEL_MAP_FILE=$CVML_PATH/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv 
 CHECKPOINT_FULL_PATH=${CHECKPOINT_FULL_DIR}/${CHECKPOINT}
 if [ ! -f $CHECKPOINT_FULL_PATH ]; then
@@ -51,7 +51,7 @@ python dl/scripts/predictor_pl.py \
     --model brtresnetpyramid_lite12 \
     --merge-stop-class-confidence 0.35 \
     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
-    --model-params "{\"activation\": \"relu\"}" \
+    --model-params '{"activation": "relu", "upsample_mode": "area"}' \
     --use-depth-threshold \
     --batch-size 64 \
     --tqdm \
@@ -74,6 +74,7 @@ python dl/scripts/predictor_pl.py \
     --restore-from ${CHECKPOINT_FULL_PATH} \
     --output-dir ${CHECKPOINT_FULL_DIR}/${DATASET} \
     --model brtresnetpyramid_lite12 \
+    --model-params '{"activation": "relu", "upsample_mode": "area"}' \
     --merge-stop-class-confidence 0.35 \
     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
     --states-to-save 'human_false_positive' \

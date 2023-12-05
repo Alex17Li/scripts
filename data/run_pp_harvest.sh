@@ -11,6 +11,7 @@ source ~/.bashrc
 DATA_FOLDER=/data/jupiter/datasets
 DATASET_NAME=halo_all_cam_anno_3_seconds_2_sequences
 JUPITERCVML_DIR=~/git/JupiterCVML
+module load singularity
 
 # TODO: Update WANDB_API_KEY to your key, if you want to
 #export WANDB_API_KEY="xxxx"
@@ -36,7 +37,7 @@ fi
 
 DATA=$DATA_FOLDER/$DATASET_NAME
 echo $DATA
-python /home/${USER}/git/scripts/data/data_downloader.py  $DATASET_NAME -d $DATA_FOLDER
+# python /home/${USER}/git/scripts/data/data_downloader.py  $DATASET_NAME -d $DATA_FOLDER
 
 # TODO: Choose the appropriate command and modify to your tastes/needs
 
@@ -62,7 +63,6 @@ python3 -m dl.dataset.pack_perception.ml_pack_perception \
     --calib-tracker-csv /files/calibration/motec_calibration_tracker_2019.csv \
     --cam-calibration-path /files/calibration \
     --batch-size 64 --multiprocess-workers 64 --pandarallel-workers 64 --gpu 0 \
-    --models 512,768=ml_512x768_lite_384_depth_model_07142023.ckpt \
-             512,640=ml_512x640_lite_384_depth_model_07142023.ckpt \
-    --model-type lite --max-disp 384 \
+    --models 512,768=ml_512x768_v3_full_rgb_halo_depth_10062023.ckpt 512,640=ml_512x640_v3_full_rgb_halo_depth_10062023.ckpt \
+    --model-type full --max-disp 384 \
     --run-oc

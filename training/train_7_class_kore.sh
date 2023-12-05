@@ -18,18 +18,16 @@ export NCCL_MIN_CHANNELS=32
 export COLUMNS=100
 
 EXP=${SLURM_JOB_ID}
-# EXP=16686
-CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-20231115_084752-16903/files/epoch=94-val_loss=0.084569.ckpt
-
+# CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-16903/files/epoch=95-val_loss=0.084565.ckpt
+CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-17866/files/last.ckpt
 set -x
 
-CONFIG_PATH="scripts/kore_configs/harvest_seg_train.yml"
 srun --kill-on-bad-exit python -m JupiterCVML.kore.scripts.train_seg \
-    --config_path $CONFIG_PATH \
     --ckpt_path $CKPT_PATH \
-    --lr_scheduler.T_max 100 \
+    --finetuning.skip_mismatched_layers true \
     --trainer.logger.version $EXP
 
+CONFIG_PATH="scripts/kore_configs/harvest_seg_train.yml"
 
 # CONFIG_PATH="scripts/kore_configs/harvest_seg_train.yml scripts/kore_configs/seg_gsam.yml"
 # srun --kill-on-bad-exit python -m JupiterCVML.kore.scripts.train_seg \
