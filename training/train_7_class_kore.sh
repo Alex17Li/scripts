@@ -19,7 +19,7 @@ export COLUMNS=100
 
 EXP=${SLURM_JOB_ID}
 # CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-16903/files/epoch=95-val_loss=0.084565.ckpt
-CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-17866/files/last.ckpt
+CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-18045/files/epoch=4-val_loss=0.115062.ckpt
 set -x
 
 srun --kill-on-bad-exit python -m JupiterCVML.kore.scripts.train_seg \
