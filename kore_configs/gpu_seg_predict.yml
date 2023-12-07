@@ -4,3 +4,15 @@ data:
     csv_name: master_annotations_1k.csv
     dataset_path: /home/alexli/data/Jupiter_train_v5_11/
     dataset_name: Jupiter_train_v5_11
+inputs:
+  input_mode: RECTIFIED_RGB
+  label:
+    label_map_file: $EUROPA_DIR/dl/config/label_maps/eight_class_train_dust_light_as_sky_birds_as_driveable.csv
+ckpt_path: /home/alexli/data/pmehta_2023_val_bestmodel.pth
+skip_mismatched_layers: true
+metrics:
+  gt_stop_classes_to_consider: ['Humans']
+  use_depth_threshold: true
+  depth_thresholds: {'T': .25}
+  merge_stop_class_confidence_threshold: -1
+  threshold_min_pixels: 72
