@@ -2,9 +2,15 @@ _type_: kore.configs.roots.prediction.SegPredictionConfig
 batch_size: 1
 data:
   test_set:
-    csv_name: master_annotations_100.csv
-    dataset_path: /data/jupiter/datasets/Jupiter_train_v5_11_20230508
+    csv_name: master_annotations_one_image.csv
+    dataset_path: /data2/jupiter/datasets/halo_rgb_stereo_test_v6_0/
+ckpt_path: /mnt/sandbox1/pooja.mehta/jupiter/models/pmehta_2023/rgb_baseline_sample_a_v3_birds_driveable_train_v6_0_1130/pmehta_2023_val_bestmodel.pth
+inputs:
+  label:
+    label_map_file: $EUROPA_DIR/dl/config/label_maps/eight_class_train_dust_light_as_sky_birds_as_driveable.csv
+metrics:
+  gt_stop_classes_to_consider: [Humans]
+states_to_save: ['false_positive', 'false_negative']
+output_dir: /mnt/sandbox1/alex.li/
 predictor:
-  logger:
-    _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
-model_file: /mnt/sandbox1/alex.li/wandb/wandb/run-20231018_184348-4c26c094/files/epoch=99-val_acc=0.000000-val_loss=0.050370.ckpt
+  precision: 32
