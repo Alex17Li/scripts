@@ -115,7 +115,7 @@
                 "--config_path", "/home/${env:USER}/git/scripts/kore_configs/gpu_seg_predict.yml",
                 "$CVML_DIR/kore/configs/options/seg_no_dust_head.yml"
             ],
-            "justMyCode": true
+            "justMyCode": false
         },
         {
             "name": "Predictor kore harvest",
