@@ -10,7 +10,7 @@
 source /home/$USER/.bashrc
 conda activate cvml
 
-cd /home/$USER/git
+cd /home/$USER/git/JupiterCVML
 
 export NCCL_NSOCKS_PERTHREAD=4
 export NCCL_SOCKET_NTHREADS=2
@@ -19,18 +19,21 @@ export COLUMNS=100
 
 EXP=${SLURM_JOB_ID}
 # CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-16903/files/epoch=95-val_loss=0.084565.ckpt
-CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-18045/files/epoch=4-val_loss=0.115062.ckpt
+# CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-18045/files/epoch=4-val_loss=0.115062.ckpt
+CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-18337/files/last.ckpt
 set -x
 
-srun --kill-on-bad-exit python -m JupiterCVML.kore.scripts.train_seg \
+srun --kill-on-bad-exit python -m kore.scripts.train_seg \
     --ckpt_path $CKPT_PATH \
-    --finetuning.skip_mismatched_layers true \
+    --optimizer.lr 4e-4 \
+    --finetuning.skip_mismatched_layers True \
     --trainer.logger.version $EXP
 
-CONFIG_PATH="scripts/kore_configs/harvest_seg_train.yml"
+CONFIG_PATH="../scripts/kore_configs/harvest_seg_train.yml"
+
+    # --trainer.precision 32 \
 
 # CONFIG_PATH="scripts/kore_configs/harvest_seg_train.yml scripts/kore_configs/seg_gsam.yml"
 # srun --kill-on-bad-exit python -m JupiterCVML.kore.scripts.train_seg \
 #     --config_path $CONFIG_PATH \
-#     --ckpt_path $CKPT_PATH \
 #     --trainer.logger.version $EXP

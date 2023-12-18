@@ -124,7 +124,9 @@
             "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/predict_seg.py",
             "console": "integratedTerminal",
             "args": [
-                "--config_path", "/home/${env:USER}/git/scripts/kore_configs/harvest_seg_prediction_debug.yml",               
+                "--config_path", "/home/${env:USER}/git/JupiterCVML/kore/configs/options/seg_no_dust_head.yml", 
+                "/home/${env:USER}/git/JupiterCVML/kore/configs/options/halo_seg_prediction.yml",
+                "/home/${env:USER}/git/scripts/kore_configs/harvest_seg_prediction_debug.yml",            
             ],
             "justMyCode": true
         },

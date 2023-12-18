@@ -46,7 +46,6 @@ python dl/scripts/trainer.py \
     --num-steps 200000 \
     --model brtresnetpyramid_lite12 \
     --use-albumentation-transform \
-    --cutnpaste-augmentations '{"Humans": {"sample_ratio": 0.30, "human_non_standing_aspect_ratio_threshold": 0.5, "same_operation_time": false, "same_brightness": true, "brightness_range": 0.05, "use_standing_human": true, "standing_min_pixels": 20, "standing_max_pixels": 100000, "use_laying_down_human": true, "laying_down_min_pixels": 50, "laying_down_max_pixels": 15000, "use_multi_human": true, "only_non_occluded": false, "blend_mode": "vanilla", "rotate_object": true, "rotate_degree": 30, "jitter_object": false, "jitter_range": 0.15, "depth_aware": false, "cutout_rate": 0.5, "max_cutout": 0.6}}' \
     --weighted-sampling '{}' \
     --fp16 \
     --half-res-output \

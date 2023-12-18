@@ -2,8 +2,8 @@
 #SBATCH --job-name=test_model
 #SBATCH --output=/home/%u/logs/%A_%x
 #SBATCH --partition=gpu
-#SBATCH --gres=gpu:4
-#SBATCH --ntasks-per-node=4
+#SBATCH --gres=gpu:2
+#SBATCH --ntasks-per-node=2
 #SBATCH --cpus-per-gpu=6
 #SBATCH --time=10:00:00
 
@@ -16,7 +16,7 @@ DUST_OUTPUT_PARAMS='{"dust_head_output":true}'
 LABEL_MAP_FILE=$CVML_PATH/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv 
 # CHECKPOINT_FULL_DIR=/home/alex.li/logs
 # CHECKPOINT=epoch=99-val_loss=0.096904.ckpt
-CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/wandb/run-17866/files/
+CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/wandb/run-18337/files/
 CHECKPOINT=last.ckpt
 # CHECKPOINT_FULL_DIR=/data/jupiter/models/
 # CHECKPOINT=v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30.pth
@@ -70,16 +70,11 @@ do
     srun --kill-on-bad-exit python -m kore.scripts.predict_seg \
         --data.test_set.csv_name master_annotations_labeled.csv \
         --data.test_set.dataset_path /data/jupiter/datasets/${DATASET} \
-        --label-map-file $LABEL_MAP_FILE \
-        --label-map-file-iq $CVML_PATH/europa/base/src/europa/dl/config/label_maps/binary_dust.csv \
+        --inputs.label.label_map_file $LABEL_MAP_FILE \
+        --inputs.label.label_map_file_iq $CVML_PATH/europa/base/src/europa/dl/config/label_maps/binary_dust.csv \
         --ckpt_path  ${CHECKPOINT_FULL_PATH} \
         --output-dir ${CHECKPOINT_FULL_DIR}/${DATASET}_labeled \
-        --model brtresnetpyramid_lite12 \
-        --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
-        --model-params "{\"activation\": \"relu\"}" \
-        --dust-output-params $DUST_OUTPUT_PARAMS \
-        --metrics.use-depth-threshold \
-        --batch-size 64;
+        --batch-size 32;
 done
 
 echo --------------------------RUN_DUST_COMPLETE---------------------------------------
