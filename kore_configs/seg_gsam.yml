@@ -1,21 +1,4 @@
 _type_: kore.configs.roots.training.SegTrainingConfig
 optimizer:
   _type_: kore.configs.third_party.optimizer_config.GSAMConfig
-  lr: 5e-4
-  rho_min: 0
-  rho_max: 0.05
-  gsam_alpha: 0.3
-  betas: [0.9, 0.999]
-trainer:
-  strategy:
-    _type_: kore.configs.third_party.strategy_config.DDPStrategyConfig
-  precision: 'bf16-mixed'
-  max_epochs: 40
-model:
-  _type_: kore.configs.tasks.semantic_segmentation.model_config.BRTResnetPyramidLite12Config
-  model_params:
-    upsample_mode: 'area'
-  dust:
-    dust_seg_output: true
-lr_scheduler:
-  _type_: kore.configs.third_party.lr_scheduler_config.LinearLRConfig
+  lr: 4e-4

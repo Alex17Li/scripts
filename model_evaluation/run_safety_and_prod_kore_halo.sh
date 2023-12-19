@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=test_model
+#SBATCH --job-name=kore_halo_test
 #SBATCH --output=/home/%u/logs/%A_%x
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:2

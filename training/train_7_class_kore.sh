@@ -18,22 +18,24 @@ export NCCL_MIN_CHANNELS=32
 export COLUMNS=100
 
 EXP=${SLURM_JOB_ID}
-# CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-16903/files/epoch=95-val_loss=0.084565.ckpt
-# CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-18045/files/epoch=4-val_loss=0.115062.ckpt
-CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-18337/files/last.ckpt
+# CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-18495/files/epoch=9-val_loss=0.069723.ckpt
+CKPT_PATH=/mnt/sandbox1/alex.li/models/18495.ckpt
+
+# CONFIG_PATH="scripts/kore_configs/harvest_seg_train.yml scripts/kore_configs/seg_gsam.yml \$CVML_DIR/koreconfigs/options/seg_no_dust_head.yml"
+
 set -x
 
 srun --kill-on-bad-exit python -m kore.scripts.train_seg \
+    --config_path \$CVML_DIR/kore/configs/options/seg_no_dust_head.yml \
     --ckpt_path $CKPT_PATH \
+    --optimizer GSAM \
+    --optimizer.rho_min 0.0001 \
+    --optimizer.rho_max 0.001 \
+    --optimizer.alpha 0.3 \
+    --optimizer.adaptive False \
     --optimizer.lr 4e-4 \
+    --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml \
     --finetuning.skip_mismatched_layers True \
-    --trainer.logger.version $EXP
-
-CONFIG_PATH="../scripts/kore_configs/harvest_seg_train.yml"
-
-    # --trainer.precision 32 \
-
-# CONFIG_PATH="scripts/kore_configs/harvest_seg_train.yml scripts/kore_configs/seg_gsam.yml"
-# srun --kill-on-bad-exit python -m JupiterCVML.kore.scripts.train_seg \
-#     --config_path $CONFIG_PATH \
-#     --trainer.logger.version $EXP
+    --trainer.callbacks.tqdm False \
+    --trainer.logger.version $EXP \
+    --trainer.callbacks.early_stopping.patience 100

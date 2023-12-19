@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=test_model
+#SBATCH --job-name=kore_rev1_test
 #SBATCH --output=/home/%u/logs/%A_%x
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:2
@@ -16,8 +16,8 @@ DUST_OUTPUT_PARAMS='{"dust_head_output":true}'
 LABEL_MAP_FILE=$CVML_PATH/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv 
 # CHECKPOINT_FULL_DIR=/home/alex.li/logs
 # CHECKPOINT=epoch=99-val_loss=0.096904.ckpt
-CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/wandb/run-18337/files/
-CHECKPOINT=last.ckpt
+CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/wandb/run-18847/files/
+CHECKPOINT=epoch=14-val_loss=0.067755.ckpt
 # CHECKPOINT_FULL_DIR=/data/jupiter/models/
 # CHECKPOINT=v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30.pth
 
