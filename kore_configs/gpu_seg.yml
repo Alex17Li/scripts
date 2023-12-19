@@ -11,3 +11,5 @@ trainer:
   max_epochs: 2
   logger:
     _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
+augmentation:
+  albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml

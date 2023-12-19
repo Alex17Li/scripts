@@ -13,6 +13,6 @@ skip_mismatched_layers: true
 metrics:
   gt_stop_classes_to_consider: ['Humans']
   use_depth_threshold: true
-  depth_thresholds: {'T': .25}
+  depth_thresholds: {'T': .25, 'I': .25}
   merge_stop_class_confidence_threshold: -1
   threshold_min_pixels: 72
