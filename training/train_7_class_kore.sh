@@ -19,23 +19,33 @@ export COLUMNS=100
 
 EXP=${SLURM_JOB_ID}
 # CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-18495/files/epoch=9-val_loss=0.069723.ckpt
-CKPT_PATH=/mnt/sandbox1/alex.li/models/18495.ckpt
+CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-18938/files/epoch=9-val_loss=0.066906.ckpt
 
 # CONFIG_PATH="scripts/kore_configs/harvest_seg_train.yml scripts/kore_configs/seg_gsam.yml \$CVML_DIR/koreconfigs/options/seg_no_dust_head.yml"
 
 set -x
 
+# --optimizer GSAM \
+# --optimizer.rho_min .002 \
+# --optimizer.rho_max .02 \
+# --optimizer.alpha .3 \
+
+# --optimizer.SAM \
+# --optimizer.rho .02 \
+
+# --optimizer AdamW \
+
 srun --kill-on-bad-exit python -m kore.scripts.train_seg \
-    --config_path \$CVML_DIR/kore/configs/options/seg_no_dust_head.yml \
     --ckpt_path $CKPT_PATH \
-    --optimizer GSAM \
-    --optimizer.rho_min 0.0001 \
-    --optimizer.rho_max 0.001 \
-    --optimizer.alpha 0.3 \
-    --optimizer.adaptive False \
+    --optimizer AdamW \
     --optimizer.lr 4e-4 \
-    --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml \
-    --finetuning.skip_mismatched_layers True \
-    --trainer.callbacks.tqdm False \
+    --trainer.strategy.find_unused_parameters true \
+    --finetuning.skip_mismatched_layers true \
+    --trainer.callbacks.tqdm false \
     --trainer.logger.version $EXP \
-    --trainer.callbacks.early_stopping.patience 100
+    --trainer.callbacks.early_stopping.patience 100 \
+    --augmentation.cnp.humans.depth_aware true \
+    --augmentation.cnp.humans.only_non_occluded false \
+    --augmentation.cnp.humans.jitter_object true \
+    --augmentation.cnp.humans.jitter_range 0.2 \
+    --augmentation.cnp.humans.sample_ratio 0.3

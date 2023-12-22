@@ -9,7 +9,7 @@
 source ~/.bashrc
 
 DATA_FOLDER=/data/jupiter/datasets
-DATASET_NAME=halo_all_cam_anno_3_seconds_2_sequences
+DATASET_NAME=halo_humans_on_path_test_v6_1
 JUPITERCVML_DIR=~/git/JupiterCVML
 module load singularity
 
