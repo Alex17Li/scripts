@@ -26,6 +26,8 @@ module load singularity
 export BRT_ENV=prod
 export AWS_DEFAULT_REGION=us-west-2
 export CUDA_DEVICE_ORDER=PCI_BUS_ID
+export WANDB_MODE=offline
+export PYTHONUNBUFFERED=1
 
 if [ -n "$JUPITERCVML_DIR" ]
 then

@@ -34,18 +34,21 @@ set -x
 # --optimizer.rho .02 \
 
 # --optimizer AdamW \
-
+# --
 srun --kill-on-bad-exit python -m kore.scripts.train_seg \
     --ckpt_path $CKPT_PATH \
-    --optimizer AdamW \
-    --optimizer.lr 4e-4 \
+    --optimizer SAM \
+    --optimizer.rho .02 \
+    --optimizer.lr 1e-3 \
     --trainer.strategy.find_unused_parameters true \
     --finetuning.skip_mismatched_layers true \
     --trainer.callbacks.tqdm false \
     --trainer.logger.version $EXP \
+    --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml \
     --trainer.callbacks.early_stopping.patience 100 \
+    --augmentation.cnp.humans.blend-mode VANILLA \
     --augmentation.cnp.humans.depth_aware true \
     --augmentation.cnp.humans.only_non_occluded false \
-    --augmentation.cnp.humans.jitter_object true \
+    --augmentation.cnp.humans.jitter_object false \
     --augmentation.cnp.humans.jitter_range 0.2 \
     --augmentation.cnp.humans.sample_ratio 0.3

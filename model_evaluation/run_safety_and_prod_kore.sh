@@ -14,8 +14,8 @@ cd /home/$USER/git/JupiterCVML
 
 DUST_OUTPUT_PARAMS='{"dust_head_output":true}'
 LABEL_MAP_FILE=$CVML_PATH/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv 
-# CHECKPOINT_FULL_DIR=/home/alex.li/logs
-# CHECKPOINT=epoch=99-val_loss=0.096904.ckpt
+CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/wandb/run-19159/files/
+CHECKPOINT=last.ckpt
 CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/wandb/run-18938/files/
 CHECKPOINT=epoch=9-val_loss=0.066906.ckpt
 # CHECKPOINT_FULL_DIR=/data/jupiter/models/
