@@ -2,14 +2,14 @@ _type_: kore.configs.roots.training.SegTrainingConfig
 batch_size: 4
 data:
   train_set:
-    csv_name: master_annotations_1k.csv
+    csv_name: master_annotations_4k.csv
     dataset_path: /home/alexli/data/Jupiter_train_v5_11/
     dataset_name: Jupiter_train_v5_11
   validation_set: null
-  validation_set_ratio: .2
+  validation_set_ratio: .25
 trainer:
-  max_epochs: 2
+  max_epochs: 20
   logger:
     _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
-augmentation:
-  albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml
+# ckpt_path: /home/alexli/logs/data/epoch=99-val_loss=0.096904.ckpt
+warm_up_steps: 100
