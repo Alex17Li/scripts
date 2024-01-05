@@ -8,8 +8,10 @@ data:
   validation_set: null
   validation_set_ratio: .25
 trainer:
-  max_epochs: 20
+  max_epochs: 2
   logger:
     _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
+# output_dir: '/home/alexli/logs/data/$RUN_ID'
+# run_id: my_test_run
 # ckpt_path: /home/alexli/logs/data/epoch=99-val_loss=0.096904.ckpt
-warm_up_steps: 100
+# warm_up_steps: 100

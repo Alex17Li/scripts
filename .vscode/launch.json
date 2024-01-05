@@ -142,6 +142,18 @@
             "justMyCode": true
         },
         {
+            "name": "mislabled data kore gpu",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/seg_find_mislabeled_data.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--config_path", "/home/${env:USER}/git/scripts/kore_configs/gpu_seg.yml",
+            ],
+            "justMyCode": true
+        },
+
+        {
             "name": "EmbeddedMetrics",
             "type": "python",
             "request": "launch",
@@ -164,26 +176,5 @@
             ],
             "justMyCode": true
         },
-        {
-            "name": "packperception",
-            "type": "python",
-            "request": "launch",
-            "program": "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa/dl/dataset/pack_perception/ml_pack_perception.py",
-            "cwd": "/home/${env:USER}/git/JupiterCVML/",
-            "console": "internalConsole",
-            "internalConsoleOptions": "openOnSessionStart",
-            "args": [
-                "--data-dir", "${env:DATASET_PATH}/mannequin_in_dust/",
-                "--csv-path", "${env:DATASET_PATH}/mannequin_in_dust/annotations.csv",
-                "--cam-calibration-path", "/home/${env:USER}/git/JupiterCVML/europa/base/files/calibration/",
-                "--calib-tracker-csv", "/home/${env:USER}/git/JupiterCVML/europa/base/files/calibration/motec_calibration_tracker_2019.csv",
-                "--image-only",
-                "--upload-to-s3",
-                "--dataset-id", "64c962dfcb037c6776cc86cb",
-                "--model-path", "./random_weights.pth",
-                "--multiprocess-workers", "24"
-            ],
-            "justMyCode": true
-        }
     ]
 }

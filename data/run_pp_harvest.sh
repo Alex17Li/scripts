@@ -9,7 +9,7 @@
 source ~/.bashrc
 
 DATA_FOLDER=/data/jupiter/datasets
-DATASET_NAME=halo_all_cam_anno_3_seconds_2_sequences
+DATASET_NAME=halo_humans_on_path_test_v6_1
 JUPITERCVML_DIR=~/git/JupiterCVML
 module load singularity
 
@@ -26,6 +26,8 @@ module load singularity
 export BRT_ENV=prod
 export AWS_DEFAULT_REGION=us-west-2
 export CUDA_DEVICE_ORDER=PCI_BUS_ID
+export WANDB_MODE=offline
+export PYTHONUNBUFFERED=1
 
 if [ -n "$JUPITERCVML_DIR" ]
 then

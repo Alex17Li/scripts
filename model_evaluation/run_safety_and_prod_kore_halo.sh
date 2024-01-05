@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=test_model
+#SBATCH --job-name=kore_halo_test
 #SBATCH --output=/home/%u/logs/%A_%x
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:2
@@ -32,24 +32,34 @@ CHECKPOINT_FULL_PATH=${CHECKPOINT_FULL_DIR}/${CHECKPOINT}
 
 # echo --------------TESTING MODEL $CHECKPOINT_FULL_PATH---------------------------
 
-# srun --kill-on-bad-exit python -m kore.scripts.predict_seg \
-#     --config_path kore/configs/options/seg_no_dust_head.yml kore/configs/options/halo_seg_prediction.yml \
-#     --data.test_set.csv_name master_annotations_full_label.csv \
-#     --data.test_set.dataset_path /data2/jupiter/datasets/halo_rgb_stereo_test_v6_0 \
-#     --inputs.label.label_map_file $LABEL_MAP_FILE \
-#     --ckpt_path $CHECKPOINT_FULL_PATH \
-#     --metrics.gt_stop_classes_to_consider 'Non-driveable' 'Trees_Weeds' 'Humans' 'Vehicles' \
-#     --output_dir /mnt/sandbox1/alex.li/introspection/$OUTPUT_MODEL_NAME/halo_rgb_stereo_test_v6_0 \
-#     --states_to_save 'human_false_negative' 'false_negative' 'vehicle_false_negative'
-# echo ----------------------------RUN_PRODUCTIVITY_COMPLETE-----------------------------------
-
 srun --kill-on-bad-exit python -m kore.scripts.predict_seg \
     --config_path kore/configs/options/seg_no_dust_head.yml kore/configs/options/halo_seg_prediction.yml \
     --data.test_set.csv_name master_annotations.csv \
-    --data.test_set.dataset_path /data2/jupiter/datasets/halo_humans_on_path_v3 \
+    --data.test_set.dataset_path /data/jupiter/datasets/halo_vehicles_on_path_test_v6_1 \
     --inputs.label.label_map_file $LABEL_MAP_FILE \
     --ckpt_path $CHECKPOINT_FULL_PATH \
-    --output_dir /mnt/sandbox1/alex.li/introspection/$OUTPUT_MODEL_NAME/halo_humans_on_path_v3 \
-    --states_to_save 'human_false_negative' 
-echo ----------------------------RUN_SAFETY_COMPLETE-----------------------------------
+    --metrics.gt_stop_classes_to_consider 'Non-driveable' 'Trees_Weeds' 'Humans' 'Vehicles' \
+    --output_dir /mnt/sandbox1/alex.li/introspection/$OUTPUT_MODEL_NAME/halo_vehicles_on_path_test_v6_1 \
+    --states_to_save 'human_false_negative' 'false_negative' 'vehicle_false_negative'
+srun --kill-on-bad-exit python -m kore.scripts.predict_seg \
+    --config_path kore/configs/options/seg_no_dust_head.yml kore/configs/options/halo_seg_prediction.yml \
+    --data.test_set.csv_name master_annotations.csv \
+    --data.test_set.dataset_path /data/jupiter/datasets/halo_humans_on_path_test_v6_1 \
+    --inputs.label.label_map_file $LABEL_MAP_FILE \
+    --ckpt_path $CHECKPOINT_FULL_PATH \
+    --metrics.gt_stop_classes_to_consider 'Non-driveable' 'Trees_Weeds' 'Humans' 'Vehicles' \
+    --output_dir /mnt/sandbox1/alex.li/introspection/$OUTPUT_MODEL_NAME/halo_humans_on_path_test_v6_1 \
+    --states_to_save 'human_false_negative' 'false_negative' 'vehicle_false_negative'
+
+# echo ----------------------------RUN_PRODUCTIVITY_COMPLETE-----------------------------------
+
+# srun --kill-on-bad-exit python -m kore.scripts.predict_seg \
+#     --config_path kore/configs/options/seg_no_dust_head.yml kore/configs/options/halo_seg_prediction.yml \
+#     --data.test_set.csv_name master_annotations.csv \
+#     --data.test_set.dataset_path /data2/jupiter/datasets/halo_humans_on_path_v3 \
+#     --inputs.label.label_map_file $LABEL_MAP_FILE \
+#     --ckpt_path $CHECKPOINT_FULL_PATH \
+#     --output_dir /mnt/sandbox1/alex.li/introspection/$OUTPUT_MODEL_NAME/halo_humans_on_path_v3 \
+#     --states_to_save 'human_false_negative' 
+# echo ----------------------------RUN_SAFETY_COMPLETE-----------------------------------
     # --metrics.gt_stop_classes_to_consider Humans \
