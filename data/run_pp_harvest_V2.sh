@@ -176,8 +176,8 @@ python3 -m dl.dataset.pack_perception.ml_pack_perception \
     --models 512,768=ml_512x768_v3_full_rgb_halo_depth_10062023.ckpt \
              512,640=ml_512x640_v3_full_rgb_halo_depth_10062023.ckpt \
     --model-type full --max-disp 384 \
-    --run-oc \
-    --image-only
+    --run-oc
+    # --image-only
 
 # Combine the partitions back into the master_annotations.csv
 $PARITION_DATASET_CMD \

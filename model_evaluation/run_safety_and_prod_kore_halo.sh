@@ -38,18 +38,18 @@ srun --kill-on-bad-exit python -m kore.scripts.predict_seg \
     --data.test_set.dataset_path /data/jupiter/datasets/halo_vehicles_on_path_test_v6_1 \
     --inputs.label.label_map_file $LABEL_MAP_FILE \
     --ckpt_path $CHECKPOINT_FULL_PATH \
-    --metrics.gt_stop_classes_to_consider 'Non-driveable' 'Trees_Weeds' 'Humans' 'Vehicles' \
+    --metrics.gt_stop_classes_to_consider 'Vehicles' \
     --output_dir /mnt/sandbox1/alex.li/introspection/$OUTPUT_MODEL_NAME/halo_vehicles_on_path_test_v6_1 \
-    --states_to_save 'human_false_negative' 'false_negative' 'vehicle_false_negative'
+    --states_to_save 'human_false_negative' 'false_negative' 'vehicle_false_negative' 'false_positive'
 srun --kill-on-bad-exit python -m kore.scripts.predict_seg \
     --config_path kore/configs/options/seg_no_dust_head.yml kore/configs/options/halo_seg_prediction.yml \
     --data.test_set.csv_name master_annotations.csv \
     --data.test_set.dataset_path /data/jupiter/datasets/halo_humans_on_path_test_v6_1 \
     --inputs.label.label_map_file $LABEL_MAP_FILE \
     --ckpt_path $CHECKPOINT_FULL_PATH \
-    --metrics.gt_stop_classes_to_consider 'Non-driveable' 'Trees_Weeds' 'Humans' 'Vehicles' \
+    --metrics.gt_stop_classes_to_consider 'Humans' \
     --output_dir /mnt/sandbox1/alex.li/introspection/$OUTPUT_MODEL_NAME/halo_humans_on_path_test_v6_1 \
-    --states_to_save 'human_false_negative' 'false_negative' 'vehicle_false_negative'
+    --states_to_save 'human_false_negative' 'false_negative' 'vehicle_false_negative' 'false_positive'
 
 # echo ----------------------------RUN_PRODUCTIVITY_COMPLETE-----------------------------------
 

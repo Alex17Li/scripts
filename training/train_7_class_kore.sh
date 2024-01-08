@@ -17,10 +17,8 @@ export NCCL_SOCKET_NTHREADS=2
 export NCCL_MIN_CHANNELS=32
 export COLUMNS=100
 
-EXP=${SLURM_JOB_ID}
+EXP=$SLURM_JOB_ID
 # CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-18495/files/epoch=9-val_loss=0.069723.ckpt
-CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-18938/files/epoch=9-val_loss=0.066906.ckpt
-
 # CONFIG_PATH="scripts/kore_configs/harvest_seg_train.yml scripts/kore_configs/seg_gsam.yml \$CVML_DIR/koreconfigs/options/seg_no_dust_head.yml"
 
 set -x
@@ -30,25 +28,38 @@ set -x
 # --optimizer.rho_max .02 \
 # --optimizer.alpha .3 \
 
-# --optimizer.SAM \
+# --optimizer SAM \
 # --optimizer.rho .02 \
+# --trainer.strategy.ddp_find_unused_parameters True \
 
 # --optimizer AdamW \
-# --
+
+# --lr_scheduler NONE
+# --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml \
+#  --warm_up_steps 0 \
+srun --kill-on-bad-exit python -m kore.scripts.seg_find_mislabled_data \
+    --warm_up_steps 20 \
+    --trainer.callbacks.tqdm false \
+    --trainer.logger.version $EXP
+
+
 srun --kill-on-bad-exit python -m kore.scripts.train_seg \
-    --ckpt_path $CKPT_PATH \
-    --optimizer SAM \
-    --optimizer.rho .02 \
-    --optimizer.lr 1e-3 \
-    --trainer.strategy.find_unused_parameters true \
-    --finetuning.skip_mismatched_layers true \
+    --warm_up_steps 20 \
     --trainer.callbacks.tqdm false \
     --trainer.logger.version $EXP \
-    --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml \
-    --trainer.callbacks.early_stopping.patience 100 \
-    --augmentation.cnp.humans.blend-mode VANILLA \
-    --augmentation.cnp.humans.depth_aware true \
-    --augmentation.cnp.humans.only_non_occluded false \
-    --augmentation.cnp.humans.jitter_object false \
-    --augmentation.cnp.humans.jitter_range 0.2 \
-    --augmentation.cnp.humans.sample_ratio 0.3
+
+
+# srun --kill-on-bad-exit python -m kore.scripts.train_seg \
+#     --optimizer AdamW \
+#     --optimizer.lr 5e-2 \
+#     --lr_scheduler EXP \
+#     --lr_scheduler.end_factor 1e-3 \
+#     --trainer.callbacks.tqdm false \
+#     --trainer.logger.version $EXP \
+#     --trainer.enable_early_stopping false \
+#     --model.model_params.structural_reparameterization_on_stem true \
+#     --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml \
+#     --trainer.max_epochs 300 \
+#     --batch_size 16 \
+#     --ckpt_path /mnt/sandbox1/alex.li/run-19271/files/last.ckpt \
+#     --warm_up_steps 10000

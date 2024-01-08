@@ -2,14 +2,14 @@ _type_: kore.configs.roots.prediction.SegPredictionConfig
 batch_size: 1
 data:
   test_set:
-    csv_name: master_annotations_one_image.csv
-    dataset_path: /data2/jupiter/datasets/halo_rgb_stereo_test_v6_0/
+    csv_name: master_annotations.csv
+    dataset_path: /data/jupiter/datasets/halo_vehicles_on_path_test_v6_1/
 ckpt_path: /mnt/sandbox1/pooja.mehta/jupiter/models/pmehta_2023/rgb_baseline_sample_a_v3_birds_driveable_train_v6_0_1130/pmehta_2023_val_bestmodel.pth
 inputs:
   label:
     label_map_file: $EUROPA_DIR/dl/config/label_maps/eight_class_train_dust_light_as_sky_birds_as_driveable.csv
 metrics:
-  gt_stop_classes_to_consider: [Humans]
+  gt_stop_classes_to_consider: ['Non-driveable', 'Trees_Weeds', 'Humans', 'Vehicles']
 states_to_save: ['false_positive', 'false_negative']
 output_dir: /mnt/sandbox1/alex.li/
 predictor:
