@@ -1,0 +1,1867 @@
+[13:21:19] INFO     Created a temporary directory at /tmp/tmp459bx426             instantiator.py:21
+           INFO     Writing /tmp/tmp459bx426/_remote_module_non_scriptable.py     instantiator.py:76
+           INFO     Global seed set to 304                                                seed.py:54
+           INFO     Using dummy logger. Metrics for this run will not be saved.  logger_config.py:51
+           WARNING  /home/alexli/git/JupiterCVML/kore/configs/third_party/lightning_ warnings.py:109
+                    config.py:71: RuntimeWarning: Unable to save checkpoints to W&B                 
+                    folder since you are not logging to W&B. Saving to default                      
+                    location.                                                                       
+                      warnings.warn(                                                                
+                                                                                                    
+           INFO     Trainer already configured with model summary callbacks: [<class rank_zero.py:53
+                    'lightning.pytorch.callbacks.rich_model_summary.RichModelSummary                
+                    '>]. Skipping setting a default `ModelSummary` callback.                        
+           INFO     GPU available: True (cuda), used: True                           rank_zero.py:53
+           INFO     TPU available: False, using: 0 TPU cores                         rank_zero.py:53
+           INFO     IPU available: False, using: 0 IPUs                              rank_zero.py:53
+           INFO     HPU available: False, using: 0 HPUs                              rank_zero.py:53
+Config: /home/alexli/git/JupiterCVML/kore/SegTrainingConfig_None.gen.yaml
+           INFO     Loading model weights from                                       rank_zero.py:53
+                    /home/alexli/logs/data/epoch=99-val_loss=0.096904.ckpt for                      
+                    finetuning                                                                      
+           INFO     Prepare dataset: world_size=1, local_rank=0       jupiter_seg_data_module.py:139
+           INFO     cutnpaste_augmentation_classes=['Humans',         jupiter_seg_data_module.py:143
+                    'Tractors or Vehicles']                                                         
+[13:21:20] INFO     Train dataframe size: 3000                                       rank_zero.py:53
+           INFO     Validation dataframe size: 1000                                  rank_zero.py:53
+           INFO     Adjusting sampling weights                          seg_weighted_sampling.py:158
+           INFO     [rank: 0] Global seed set to 304                                      seed.py:54
+           INFO     Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1         distributed.py:257
+           INFO     Added key: store_based_barrier_key:1 to store for rank:  distributed_c10d.py:228
+                    0                                                                               
+           INFO     Rank 0: Completed store-based barrier for                distributed_c10d.py:262
+                    key:store_based_barrier_key:1 with 1 nodes.                                     
+           INFO     ---------------------------------------------------------------- rank_zero.py:53
+                    ------------------------------------                                            
+                    distributed_backend=nccl                                                        
+                    All distributed processes registered. Starting with 1 processes                 
+                    ----------------------------------------------------------------                
+                    ------------------------------------                                            
+                                                                                                    
+           INFO     You are using a CUDA device ('NVIDIA GeForce RTX 4070 Ti') that  rank_zero.py:53
+                    has Tensor Cores. To properly utilize them, you should set                      
+                    `torch.set_float32_matmul_precision('medium' | 'high')` which                   
+                    will trade-off precision for performance. For more details, read                
+                    https://pytorch.org/docs/stable/generated/torch.set_float32_matm                
+                    ul_precision.html#torch.set_float32_matmul_precision                            
+[13:21:21] WARNING  /home/alexli/miniconda3/envs/cvml/lib/python3.10/site-packages/l warnings.py:109
+                    ightning/pytorch/callbacks/model_checkpoint.py:617: UserWarning:                
+                    Checkpoint directory /home/alexli/git/scripts/checkpoints exists                
+                    and is not empty.                                                               
+                      rank_zero_warn(f"Checkpoint directory {dirpath} exists and is                 
+                    not empty.")                                                                    
+                                                                                                    
+           INFO     LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]                             cuda.py:58
+SAMConfig(lr=0.0006, weight_decay=0.0001, betas=(0.9, 0.999), eps=1e-12, rho=0.025, adaptive=False)
+           WARNING  /home/alexli/miniconda3/envs/cvml/lib/python3.10/site-packages/l warnings.py:109
+                    ightning/pytorch/core/optimizer.py:321: RuntimeWarning: The lr                  
+                    scheduler dict contains the key(s) ['monitor'], but the keys                    
+                    will be ignored. You need to call `lr_scheduler.step()` manually                
+                    in manual optimization.                                                         
+                      rank_zero_warn(                                                               
+                                                                                                    
+Loss 0.08797715406864881 Acc 0.9659029483795166 Perturbed Loss 0.09949865147471428
+[13:21:51] WARNING  /home/alexli/miniconda3/envs/cvml/lib/python3.10/site-packages/t warnings.py:109
+                    orch/optim/lr_scheduler.py:156: UserWarning: The epoch parameter                
+                    in `scheduler.step()` was not necessary and is being deprecated                 
+                    where possible. Please use `scheduler.step()` to step the                       
+                    scheduler. During the deprecation, if epoch is different from                   
+                    None, the closed form is used instead of the new chainable form,                
+                    where available. Please open an issue if you are unable to                      
+                    replicate your use case:                                                        
+                    https://github.com/pytorch/pytorch/issues/new/choose.                           
+                      warnings.warn(EPOCH_DEPRECATION_WARNING, UserWarning)                         
+                                                                                                    
+Loss 0.07620658941566943 Acc 0.9714327681064606 Perturbed Loss 0.08353649083524943
+Loss 0.08661515792831778 Acc 0.9765166914463044 Perturbed Loss 0.09484282018616795
+Loss 0.08512354494072497 Acc 0.9747405886650086 Perturbed Loss 0.0907017360534519
+Loss 0.08290985684841871 Acc 0.9760738348960877 Perturbed Loss 0.090218619517982
+Loss 0.09754367273300886 Acc 0.9660592401027679 Perturbed Loss 0.1053647380322218
+Loss 0.08126650907099248 Acc 0.9704690527915955 Perturbed Loss 0.08912943471223116
+Loss 0.08343196561560035 Acc 0.9775090503692627 Perturbed Loss 0.0912680353038013
+Loss 0.09163995809853077 Acc 0.9729664897918702 Perturbed Loss 0.09843869015574455
+Loss 0.08614496430382132 Acc 0.9699366164207458 Perturbed Loss 0.09219014830887318
+Loss 0.07583952017128467 Acc 0.9778447246551514 Perturbed Loss 0.0815044879168272
+Loss 0.08877248369157315 Acc 0.9768240797519684 Perturbed Loss 0.09405698480084539
+Loss 0.08227654492482543 Acc 0.9771231722831726 Perturbed Loss 0.09041189705953002
+Loss 0.07039699885994195 Acc 0.9823824167251587 Perturbed Loss 0.07699267659336329
+Loss 0.08861784990876913 Acc 0.9749900889396668 Perturbed Loss 0.09345471048727631
+Epoch 0.0 val loss 0.058010559529066086 val acc 0.9790375232696533
+Loss 0.08147877737879754 Acc 0.9740162849426269 Perturbed Loss 0.08783408239483834
+Loss 0.07600800330750644 Acc 0.9736536777019501 Perturbed Loss 0.08142227627336979
+Loss 0.07917966432869435 Acc 0.9674027562141418 Perturbed Loss 0.08488049056380988
+Loss 0.08190773490816355 Acc 0.9734999799728393 Perturbed Loss 0.08787336807698011
+Loss 0.08989661484956742 Acc 0.9738345324993134 Perturbed Loss 0.09719587609171867
+Loss 0.07857051629573107 Acc 0.9755930912494659 Perturbed Loss 0.08458675751462578
+Loss 0.08710091024637222 Acc 0.9747068381309509 Perturbed Loss 0.09239097204059363
+Loss 0.07218298371881246 Acc 0.9791098546981811 Perturbed Loss 0.07805111367255449
+Loss 0.07756396193057298 Acc 0.9765619802474975 Perturbed Loss 0.08305013978853822
+Loss 0.0867359283566475 Acc 0.9764855277538299 Perturbed Loss 0.09345079272985458
+Loss 0.07901314966380596 Acc 0.9680024218559266 Perturbed Loss 0.08538044149056077
+Loss 0.09665868278592825 Acc 0.9718602252006531 Perturbed Loss 0.10305207941681147
+Loss 0.08081124395132065 Acc 0.980161566734314 Perturbed Loss 0.08621625050902366
+Loss 0.09191149055957794 Acc 0.9716869771480561 Perturbed Loss 0.09824295159429312
+Loss 0.07867776416242123 Acc 0.9750987029075623 Perturbed Loss 0.08408347643911838
+Epoch 1.0 val loss 0.05690792202949524 val acc 0.9791436195373535
+Loss 0.0700185677036643 Acc 0.9753420984745026 Perturbed Loss 0.07441993143409491
+Loss 0.08725967064499855 Acc 0.9781260824203492 Perturbed Loss 0.09281147114932536
+Loss 0.0814892403036356 Acc 0.9786722016334534 Perturbed Loss 0.08694385915994644
+Loss 0.06798848260194063 Acc 0.9819922804832458 Perturbed Loss 0.07238114539533853
+Loss 0.0796671238541603 Acc 0.9806377577781678 Perturbed Loss 0.08638418503105641
+Loss 0.07176360109820962 Acc 0.9770909678936005 Perturbed Loss 0.07575824718922376
+Loss 0.07863887479528785 Acc 0.9794116127490997 Perturbed Loss 0.08316632380709052
+Loss 0.07489795941859484 Acc 0.982094806432724 Perturbed Loss 0.08026810318231582
+Loss 0.0838114371150732 Acc 0.97591313123703 Perturbed Loss 0.09038225218653678
+Loss 0.07690730690956116 Acc 0.9792966592311859 Perturbed Loss 0.08132672745734454
+Loss 0.07248322792351246 Acc 0.9793249607086182 Perturbed Loss 0.07722588334232569
+Loss 0.0856364293396473 Acc 0.975008442401886 Perturbed Loss 0.09073646690696478
+Loss 0.0815078342333436 Acc 0.9720743799209595 Perturbed Loss 0.08919791720807552
+Loss 0.097682472653687 Acc 0.9683231961727142 Perturbed Loss 0.1028143959492445
+Loss 0.0805233041383326 Acc 0.9770946371555328 Perturbed Loss 0.08524771455675363
+Epoch 2.0 val loss 0.0577971376478672 val acc 0.97950679063797
+Loss 0.07312497347593308 Acc 0.9746040213108063 Perturbed Loss 0.07696107935160398
+Loss 0.06736295726150274 Acc 0.979989367723465 Perturbed Loss 0.07068384006619453
+Loss 0.06860318399965763 Acc 0.9803394222259522 Perturbed Loss 0.0734988047927618
+Loss 0.07608776122331619 Acc 0.9801066958904266 Perturbed Loss 0.08344332300126553
+Loss 0.08454643972218037 Acc 0.977329068183899 Perturbed Loss 0.09282963186502456
+Loss 0.08383692558854819 Acc 0.975605444908142 Perturbed Loss 0.08861892446875572
+Loss 0.07178452666848897 Acc 0.9828962302207946 Perturbed Loss 0.07699736382812261
+Loss 0.07912741269916296 Acc 0.9779146158695221 Perturbed Loss 0.08518133167177439
+Loss 0.08851550351828337 Acc 0.977641431093216 Perturbed Loss 0.09312674563378096
+Loss 0.07685299580916763 Acc 0.9767330861091614 Perturbed Loss 0.07995092753320933
+Loss 0.06608953177928925 Acc 0.9776807069778443 Perturbed Loss 0.07151131169870496
+Loss 0.08942008428275586 Acc 0.9732127416133881 Perturbed Loss 0.09548258934170008
+Loss 0.08883765265345574 Acc 0.9758873558044434 Perturbed Loss 0.09323115404695273
+Loss 0.07740502012893558 Acc 0.9712236273288727 Perturbed Loss 0.08213172754272818
+Loss 0.07981363039463758 Acc 0.9775370717048645 Perturbed Loss 0.08420951765030622
+Epoch 3.0 val loss 0.05832565948367119 val acc 0.9790580868721008
+Loss 0.06667690705507993 Acc 0.9816898512840271 Perturbed Loss 0.07227529345080257
+Loss 0.0753737036883831 Acc 0.9819592356681823 Perturbed Loss 0.07942764159291983
+Loss 0.06663945516571403 Acc 0.9749763941764832 Perturbed Loss 0.07207022488117218
+Loss 0.08645193606615066 Acc 0.9790144741535187 Perturbed Loss 0.09089309967122972
+Loss 0.08042829928919673 Acc 0.9759002482891083 Perturbed Loss 0.0843695461936295
+Loss 0.07226060304790735 Acc 0.9781053829193115 Perturbed Loss 0.07708444649353624
+Loss 0.07041283845901489 Acc 0.9781897664070129 Perturbed Loss 0.07445884980261326
+Loss 0.07190977148711682 Acc 0.9792789852619171 Perturbed Loss 0.07615244504064321
+Loss 0.0713804223947227 Acc 0.9764854121208191 Perturbed Loss 0.07544449746608733
+Loss 0.06668944671750068 Acc 0.9787359356880188 Perturbed Loss 0.07209708077833056
+Loss 0.08086959309875966 Acc 0.979557740688324 Perturbed Loss 0.08765660107135773
+Loss 0.08313735470175743 Acc 0.9745436918735504 Perturbed Loss 0.0881043210811913
+Loss 0.08073742270469665 Acc 0.9755491268634796 Perturbed Loss 0.08714060097932816
+Loss 0.07662457648664713 Acc 0.9793160784244538 Perturbed Loss 0.08125521503388881
+Loss 0.07564951347187161 Acc 0.9803062152862548 Perturbed Loss 0.08002888863906264
+Epoch 4.0 val loss 0.05875293165445328 val acc 0.9791820645332336
+Loss 0.07387997981160879 Acc 0.9779030382633209 Perturbed Loss 0.07866226959973574
+Loss 0.08032682429999113 Acc 0.979485331773758 Perturbed Loss 0.0842419682815671
+Loss 0.0842231509834528 Acc 0.9766438913345337 Perturbed Loss 0.09004697054624558
+Loss 0.08363529754802584 Acc 0.9730464577674866 Perturbed Loss 0.08930852236226201
+Loss 0.0743941205367446 Acc 0.9781969857215881 Perturbed Loss 0.07872631289064884
+Loss 0.08598524134606123 Acc 0.9745321834087372 Perturbed Loss 0.09105651315301656
+Loss 0.06892774134874344 Acc 0.9798180639743805 Perturbed Loss 0.07316870998591185
+Loss 0.06933072671294212 Acc 0.9772035479545593 Perturbed Loss 0.07445065274834634
+Loss 0.0800702316686511 Acc 0.978999695777893 Perturbed Loss 0.0836613105237484
+Loss 0.07164140064269305 Acc 0.9781091940402985 Perturbed Loss 0.07659573715180158
+Loss 0.07488007087260484 Acc 0.9780811810493469 Perturbed Loss 0.08009146939963102
+Loss 0.08242349699139595 Acc 0.9744376909732818 Perturbed Loss 0.08731930825859308
+Loss 0.0791854340583086 Acc 0.9792789185047149 Perturbed Loss 0.08417811259627342
+Loss 0.08242622703313827 Acc 0.97763179063797 Perturbed Loss 0.08704454567283391
+Loss 0.0686768121086061 Acc 0.9773806285858154 Perturbed Loss 0.0724644229747355
+Epoch 5.0 val loss 0.05682004615664482 val acc 0.9792750477790833
+Loss 0.0743623385950923 Acc 0.9782709288597107 Perturbed Loss 0.0783665231242776
+Loss 0.0824550336226821 Acc 0.9787963902950287 Perturbed Loss 0.087057777158916
+Loss 0.07462014559656381 Acc 0.9793082082271576 Perturbed Loss 0.0793054049834609
+Loss 0.08102161042392254 Acc 0.9765586388111115 Perturbed Loss 0.0850183230265975
+Loss 0.07312030689790845 Acc 0.9812064886093139 Perturbed Loss 0.07616330282762647
+Loss 0.07856528773903847 Acc 0.9764160370826721 Perturbed Loss 0.08400179516524077
+Loss 0.07322600346058607 Acc 0.9759499537944794 Perturbed Loss 0.07752399824559689
+Loss 0.07483215089887381 Acc 0.9807800710201263 Perturbed Loss 0.07886829137802125
+Loss 0.07017046235501766 Acc 0.9786775410175323 Perturbed Loss 0.07428175739943982
+Loss 0.08205360079184175 Acc 0.9762138092517852 Perturbed Loss 0.08678671361878515
+Loss 0.07351309057325124 Acc 0.9788697755336762 Perturbed Loss 0.07737413384020328
+Loss 0.07443404122255742 Acc 0.9784716093540191 Perturbed Loss 0.07890591434203088
+Loss 0.07676290108822287 Acc 0.9761239290237427 Perturbed Loss 0.07988468031398951
+Loss 0.07629007045179606 Acc 0.9811346888542175 Perturbed Loss 0.08085564408451319
+Loss 0.07710131220519542 Acc 0.9744380056858063 Perturbed Loss 0.08188856732100248
+Epoch 6.0 val loss 0.05894721299409866 val acc 0.9788732528686523
+Loss 0.08370109541341662 Acc 0.9750563061237335 Perturbed Loss 0.08820163261145353
+Loss 0.08902798106893897 Acc 0.9768244349956512 Perturbed Loss 0.09451739002019167
+Loss 0.07182455908507109 Acc 0.9776928853988648 Perturbed Loss 0.07519076600670814
+Loss 0.0670157583616674 Acc 0.9824795711040497 Perturbed Loss 0.07025661170482636
+Loss 0.06939327312633395 Acc 0.9768080270290375 Perturbed Loss 0.07226921305060387
+Loss 0.07561198014765978 Acc 0.9779732286930084 Perturbed Loss 0.07977071575820446
+Loss 0.0790776824951172 Acc 0.975525826215744 Perturbed Loss 0.08367622517049313
+Loss 0.06456336677074433 Acc 0.9814302170276642 Perturbed Loss 0.06790885243564844
+Loss 0.07508751977235079 Acc 0.9775339937210084 Perturbed Loss 0.07938159700483084
+Loss 0.08101676903665066 Acc 0.9776990044116974 Perturbed Loss 0.08587734781205654
+Loss 0.07819189544767141 Acc 0.9816450905799866 Perturbed Loss 0.085356973297894
+Loss 0.07422054057940841 Acc 0.9787685108184815 Perturbed Loss 0.07815791387110949
+Loss 0.07036652129143477 Acc 0.9777912247180939 Perturbed Loss 0.0744934992864728
+Loss 0.07167718797922135 Acc 0.981007194519043 Perturbed Loss 0.07813513800501823
+Loss 0.07897233869880438 Acc 0.977365026473999 Perturbed Loss 0.08310553159564733
+Epoch 7.0 val loss 0.05774320289492607 val acc 0.9791290163993835
+Loss 0.06835259608924389 Acc 0.976789447069168 Perturbed Loss 0.07161208767443895
+Loss 0.06958443921990692 Acc 0.9741764569282532 Perturbed Loss 0.0742835212405771
+Loss 0.06633737105876207 Acc 0.9776547670364379 Perturbed Loss 0.07052022196352482
+Loss 0.07379901859909296 Acc 0.9759253489971161 Perturbed Loss 0.07857039008289575
+Loss 0.06808387331664562 Acc 0.9788493227958679 Perturbed Loss 0.07211780101060868
+Loss 0.07238132814876735 Acc 0.9779577565193176 Perturbed Loss 0.07565054955892264
+Loss 0.06607773946598172 Acc 0.9781919538974762 Perturbed Loss 0.06998760994523763
+Loss 0.0660389006882906 Acc 0.9786477994918823 Perturbed Loss 0.0702861025184393
+Loss 0.07237588262185454 Acc 0.9755125868320466 Perturbed Loss 0.07788979921489954
+Loss 0.06611611556261777 Acc 0.9765601229667663 Perturbed Loss 0.06970081930980086
+Loss 0.07469300985336304 Acc 0.9786898005008697 Perturbed Loss 0.07902965441346169
+Loss 0.07174334179610015 Acc 0.9793235790729523 Perturbed Loss 0.07563323596492409
+Loss 0.06848935212939977 Acc 0.9783037030696868 Perturbed Loss 0.07386145953088999
+Loss 0.0776647729612887 Acc 0.9771653270721435 Perturbed Loss 0.08340210560709238
+Loss 0.07512073593214154 Acc 0.981721566915512 Perturbed Loss 0.07864112559705973
+Epoch 8.0 val loss 0.05838800594210625 val acc 0.9791467785835266
+Loss 0.07222395639866591 Acc 0.9752685308456421 Perturbed Loss 0.07666990026831627
+Loss 0.07185458060353994 Acc 0.9786386704444885 Perturbed Loss 0.07607806142419576
+Loss 0.07285189624875783 Acc 0.9775360357761383 Perturbed Loss 0.07664179038256407
+Loss 0.06173697605729103 Acc 0.9797179079055787 Perturbed Loss 0.06481050897389651
+Loss 0.07208448216319084 Acc 0.9775673341751099 Perturbed Loss 0.07545097012072802
+Loss 0.06835771061480045 Acc 0.977307984828949 Perturbed Loss 0.07230039428919553
+Loss 0.06160760167986155 Acc 0.981272976398468 Perturbed Loss 0.06485462987795472
+Loss 0.07828386180102825 Acc 0.979704144001007 Perturbed Loss 0.08235941220074892
+Loss 0.06568920835852624 Acc 0.9795657372474671 Perturbed Loss 0.07107941694557667
+Loss 0.0653840833902359 Acc 0.9818692636489869 Perturbed Loss 0.06880381420254707
+Loss 0.06672805462032556 Acc 0.980907222032547 Perturbed Loss 0.0695456726104021
+Loss 0.06997315937653184 Acc 0.9782402539253234 Perturbed Loss 0.07363598231226205
+Loss 0.07020801173523068 Acc 0.9783459913730621 Perturbed Loss 0.07313222140073776
+Loss 0.08097181705757976 Acc 0.9753083705902099 Perturbed Loss 0.08680913552641868
+Loss 0.07346310421824455 Acc 0.9768712544441223 Perturbed Loss 0.07687961935997009
+Epoch 9.0 val loss 0.055969543755054474 val acc 0.979628324508667
+Loss 0.07088292347267271 Acc 0.9826111245155335 Perturbed Loss 0.07504889015108347
+Loss 0.07311731714755297 Acc 0.9772671914100647 Perturbed Loss 0.07623772993683815
+Loss 0.07010664120316505 Acc 0.9810627400875092 Perturbed Loss 0.0736902885325253
+Loss 0.07921841403469443 Acc 0.9751988124847412 Perturbed Loss 0.08339640045538545
+Loss 0.06292187800630927 Acc 0.9824717390537262 Perturbed Loss 0.06680073561146856
+Loss 0.06525644070468843 Acc 0.9794888317584991 Perturbed Loss 0.06932036809623242
+Loss 0.06845904823392629 Acc 0.978621586561203 Perturbed Loss 0.07197921939194202
+Loss 0.0627905817143619 Acc 0.9834235084056854 Perturbed Loss 0.06583546847105026
+Loss 0.06306723654270172 Acc 0.9779930245876313 Perturbed Loss 0.06599391996860504
+Loss 0.07060287736356258 Acc 0.9772142326831817 Perturbed Loss 0.07512556316331029
+Loss 0.06504509814083576 Acc 0.9785575497150422 Perturbed Loss 0.06938361305743455
+Loss 0.07571298662573099 Acc 0.9777958941459656 Perturbed Loss 0.07974412094801664
+Loss 0.06536100347526372 Acc 0.9803105854988098 Perturbed Loss 0.07147913560271263
+Loss 0.06816155586391687 Acc 0.9763766729831695 Perturbed Loss 0.07388753689825535
+Loss 0.06535555098205804 Acc 0.9782423222064972 Perturbed Loss 0.06899795580655337
+Epoch 10.0 val loss 0.05721280723810196 val acc 0.9793083071708679
+Loss 0.06919251904822886 Acc 0.9797596573829651 Perturbed Loss 0.07373209413141012
+Loss 0.06922838861122728 Acc 0.9818695342540741 Perturbed Loss 0.07310770696029067
+Loss 0.06614152070134878 Acc 0.9800779294967651 Perturbed Loss 0.06852608099579811
+Loss 0.06150156142190099 Acc 0.9792311060428619 Perturbed Loss 0.06538085654377937
+Loss 0.07082069750875235 Acc 0.9781036913394928 Perturbed Loss 0.07370660791173578
+Loss 0.066099034845829 Acc 0.9787565040588379 Perturbed Loss 0.0705409873276949
+Loss 0.07171229736879468 Acc 0.9788299489021302 Perturbed Loss 0.07576949363574385
+Loss 0.0749939688667655 Acc 0.9785730290412903 Perturbed Loss 0.07924574047327042
+Loss 0.0594435328617692 Acc 0.9801764488220215 Perturbed Loss 0.062449617572128774
+Loss 0.06518372680991888 Acc 0.9816702032089233 Perturbed Loss 0.06851634707301855
+Loss 0.06969012051820755 Acc 0.9776173448562622 Perturbed Loss 0.07376571729779244
+Loss 0.07010691408067941 Acc 0.979907945394516 Perturbed Loss 0.07351409126073122
+Loss 0.08204740852117538 Acc 0.975849860906601 Perturbed Loss 0.08623880188912153
+Loss 0.06395174581557513 Acc 0.9813139975070954 Perturbed Loss 0.06776486184448004
+Loss 0.06564945844933391 Acc 0.9803285884857178 Perturbed Loss 0.06860399704426527
+Epoch 11.0 val loss 0.05567376688122749 val acc 0.9793422818183899
+Loss 0.08085999492555856 Acc 0.978504683971405 Perturbed Loss 0.08630081135779619
+Loss 0.07345127496868371 Acc 0.976748319864273 Perturbed Loss 0.07870780486613511
+Loss 0.06992292623966932 Acc 0.9818958175182343 Perturbed Loss 0.07290349029004574
+Loss 0.06360673621296882 Acc 0.9799863803386688 Perturbed Loss 0.06718370897695422
+Loss 0.06261778486892582 Acc 0.9844646942615509 Perturbed Loss 0.06561883628368377
+Loss 0.06163586473092437 Acc 0.9792086207866668 Perturbed Loss 0.06771332874894143
+Loss 0.06975615886971355 Acc 0.9795135819911956 Perturbed Loss 0.0733296505175531
+Loss 0.06258873296901583 Acc 0.9801769602298737 Perturbed Loss 0.06617453278973699
+Loss 0.0617681122943759 Acc 0.9779058599472046 Perturbed Loss 0.06464574094861746
+Loss 0.06224671879783273 Acc 0.9816888678073883 Perturbed Loss 0.06551076337695122
+Loss 0.07192152608186006 Acc 0.9789896035194396 Perturbed Loss 0.07516785278916359
+Loss 0.06323210597969592 Acc 0.9773299407958984 Perturbed Loss 0.06716320345178246
+Loss 0.0762852768599987 Acc 0.9813708233833313 Perturbed Loss 0.08203806053847075
+Loss 0.06473496444523334 Acc 0.9808458304405212 Perturbed Loss 0.0687907112389803
+Loss 0.06959950571879744 Acc 0.9751265406608581 Perturbed Loss 0.0732543770596385
+Epoch 12.0 val loss 0.056849438697099686 val acc 0.9794377684593201
+Loss 0.0715409959666431 Acc 0.9781986284255981 Perturbed Loss 0.07482218824326992
+Loss 0.07606575079262257 Acc 0.9777224326133728 Perturbed Loss 0.0801574371010065
+Loss 0.07653211671859025 Acc 0.977800509929657 Perturbed Loss 0.08147725250571966
+Loss 0.06505550153553485 Acc 0.9824918305873871 Perturbed Loss 0.06767676047980785
+Loss 0.0660925285704434 Acc 0.9790404200553894 Perturbed Loss 0.07040974553674459
+Loss 0.06938163075596095 Acc 0.9813609862327576 Perturbed Loss 0.0721087060123682
+Loss 0.07335573963820935 Acc 0.9752805781364441 Perturbed Loss 0.07649591859430074
+Loss 0.06976926550269127 Acc 0.9780824911594391 Perturbed Loss 0.07428678654134274
+Loss 0.07054923789575696 Acc 0.9787549555301667 Perturbed Loss 0.07286684729158878
+Loss 0.06644709184765815 Acc 0.9799390435218811 Perturbed Loss 0.06917031407356262
+Loss 0.07385735608637332 Acc 0.9784293961524964 Perturbed Loss 0.07662842869758606
+Loss 0.07089429993182421 Acc 0.9814510226249695 Perturbed Loss 0.0742997108027339
+Loss 0.060560407880693674 Acc 0.9780624747276306 Perturbed Loss 0.06336627697572111
+Loss 0.062347092535346746 Acc 0.9809435224533081 Perturbed Loss 0.06641643486917019
+Loss 0.06729000359773636 Acc 0.981974514722824 Perturbed Loss 0.07100974474102259
+Epoch 13.0 val loss 0.056755430996418 val acc 0.9796569347381592
+Loss 0.06347757769748569 Acc 0.9800578474998474 Perturbed Loss 0.06744794571772218
+Loss 0.07502910187467933 Acc 0.9761289846897125 Perturbed Loss 0.08125612553209066
+Loss 0.06908505916595459 Acc 0.9794884896278382 Perturbed Loss 0.07201758105307818
+Loss 0.07559639887884259 Acc 0.977707543373108 Perturbed Loss 0.07897928819060325
+Loss 0.0711044118180871 Acc 0.9775610852241516 Perturbed Loss 0.07523618571460247
+Loss 0.060464619211852554 Acc 0.981440235376358 Perturbed Loss 0.0641183089837432
+Loss 0.06298769861459733 Acc 0.9813775944709778 Perturbed Loss 0.06674365513026714
+Loss 0.05856707438826561 Acc 0.9801339876651763 Perturbed Loss 0.06162071000784636
+Loss 0.06571960205212235 Acc 0.9815176165103913 Perturbed Loss 0.06913077890872955
+Loss 0.06686500456184148 Acc 0.9756818068027496 Perturbed Loss 0.07098269790410995
+Loss 0.07023682452738285 Acc 0.9787342536449433 Perturbed Loss 0.07451942693442107
+Loss 0.0689520875364542 Acc 0.9758734679222107 Perturbed Loss 0.07276116888970137
+Loss 0.07080525724217296 Acc 0.9809433817863464 Perturbed Loss 0.07538109384477139
+Loss 0.0771889715641737 Acc 0.9744892680644989 Perturbed Loss 0.08229697789996862
+Loss 0.06414309682324529 Acc 0.9799218690395355 Perturbed Loss 0.06704258855432271
+Epoch 14.0 val loss 0.05526309460401535 val acc 0.979967474937439
+Loss 0.06938998816534876 Acc 0.9752839994430542 Perturbed Loss 0.0727488081343472
+Loss 0.06675330311059952 Acc 0.9799180054664611 Perturbed Loss 0.06988707955926657
+Loss 0.07685474878177047 Acc 0.9739337527751922 Perturbed Loss 0.08128316501155496
+Loss 0.06902389252558351 Acc 0.9791893172264099 Perturbed Loss 0.0719776109047234
+Loss 0.05499691383913159 Acc 0.9815046405792236 Perturbed Loss 0.05932326545938849
+Loss 0.059332117782905695 Acc 0.981555312871933 Perturbed Loss 0.06252564699854701
+Loss 0.06676661159843206 Acc 0.9805737864971161 Perturbed Loss 0.0693206294439733
+Loss 0.08657386425882578 Acc 0.9786275005340577 Perturbed Loss 0.09068446213379502
+Loss 0.07125716701149941 Acc 0.9796175956726074 Perturbed Loss 0.07513705015182495
+Loss 0.0685309479571879 Acc 0.9805144476890564 Perturbed Loss 0.07175132850185037
+Loss 0.0632622304931283 Acc 0.9839645946025848 Perturbed Loss 0.06593508284538985
+Loss 0.06781619809567928 Acc 0.9775393152236939 Perturbed Loss 0.07051208551973104
+Loss 0.06384339306503534 Acc 0.9821990168094635 Perturbed Loss 0.06885611467063427
+Loss 0.06163152568042278 Acc 0.9818715023994445 Perturbed Loss 0.06435222771018743
+Loss 0.07602134715765714 Acc 0.9782206881046295 Perturbed Loss 0.08119123697280883
+Epoch 15.0 val loss 0.05592091754078865 val acc 0.9797537326812744
+Loss 0.06638144289143383 Acc 0.9783957862854004 Perturbed Loss 0.06922474669292569
+Loss 0.06659162618219852 Acc 0.9775780749320984 Perturbed Loss 0.0693279580771923
+Loss 0.07396231941878796 Acc 0.9799668908119201 Perturbed Loss 0.07780189126729965
+Loss 0.061836618930101395 Acc 0.9804490053653717 Perturbed Loss 0.06436797935515642
+Loss 0.06116954106837511 Acc 0.9804490554332733 Perturbed Loss 0.06479814181104303
+Loss 0.07140863398090005 Acc 0.9808508098125458 Perturbed Loss 0.07405771417543291
+Loss 0.0741397713124752 Acc 0.9801789116859436 Perturbed Loss 0.07766330383718013
+Loss 0.07252699542790651 Acc 0.9784299540519714 Perturbed Loss 0.0767880978062749
+Loss 0.06136346327140927 Acc 0.9805066478252411 Perturbed Loss 0.06512087171897292
+Loss 0.05479717444628477 Acc 0.9842191469669342 Perturbed Loss 0.05726068709045649
+Loss 0.06674225591123104 Acc 0.9789219236373902 Perturbed Loss 0.06976184450089931
+Loss 0.06469146476127208 Acc 0.9812495672702789 Perturbed Loss 0.06875258586369455
+Loss 0.06191740117967129 Acc 0.9810152494907379 Perturbed Loss 0.06536148656159639
+Loss 0.06773667262867093 Acc 0.9810194933414459 Perturbed Loss 0.07172420900315046
+Loss 0.05932552218437195 Acc 0.9839487814903259 Perturbed Loss 0.062229166328907015
+Epoch 16.0 val loss 0.055861297994852066 val acc 0.979988157749176
+Loss 0.06924828983843327 Acc 0.9800982713699341 Perturbed Loss 0.072859049141407
+Loss 0.07132007535547018 Acc 0.9823811757564545 Perturbed Loss 0.07404577165842056
+Loss 0.05967156313359737 Acc 0.980299299955368 Perturbed Loss 0.06274135146290064
+Loss 0.06984249498695135 Acc 0.9796236050128937 Perturbed Loss 0.07380971316248179
+Loss 0.06236750327050686 Acc 0.9810873675346374 Perturbed Loss 0.06644571144133807
+Loss 0.06012232676148414 Acc 0.980294703245163 Perturbed Loss 0.06333040058612824
+Loss 0.06991131966933609 Acc 0.9770083272457123 Perturbed Loss 0.07476495459675789
+Loss 0.06651274356991052 Acc 0.9810466015338898 Perturbed Loss 0.07029934518039227
+Loss 0.052579621206969025 Acc 0.9828441071510315 Perturbed Loss 0.055704922508448364
+Loss 0.0790148961916566 Acc 0.9771590721607208 Perturbed Loss 0.08258445631712676
+Loss 0.06351155953481794 Acc 0.9795668852329255 Perturbed Loss 0.06606967438012362
+Loss 0.06778218477964401 Acc 0.9780172348022461 Perturbed Loss 0.07128455985337495
+Loss 0.06349924745038152 Acc 0.9750442242622376 Perturbed Loss 0.06735122138634324
+Loss 0.06558345567435026 Acc 0.9789880442619324 Perturbed Loss 0.06948869349434972
+Loss 0.06514102244749666 Acc 0.9831252801418304 Perturbed Loss 0.06803551906719804
+Epoch 17.0 val loss 0.055953025817871094 val acc 0.9801151752471924
+Loss 0.06712584082037211 Acc 0.9801499390602112 Perturbed Loss 0.07092949494719505
+Loss 0.06912784703075886 Acc 0.9805152237415313 Perturbed Loss 0.07261535581201314
+Loss 0.06574598547071218 Acc 0.9777971613407135 Perturbed Loss 0.06892788847908378
+Loss 0.06448596028611064 Acc 0.9821551942825317 Perturbed Loss 0.06764113396406174
+Loss 0.06342363229952752 Acc 0.9817108547687531 Perturbed Loss 0.06670169793069362
+Loss 0.05553926406428218 Acc 0.9826927578449249 Perturbed Loss 0.05847812697291374
+Loss 0.06017231874167919 Acc 0.9793207919597626 Perturbed Loss 0.06374172233045101
+Loss 0.06000978684984148 Acc 0.9814533114433288 Perturbed Loss 0.06391420890577137
+Loss 0.06834104370325804 Acc 0.980103291273117 Perturbed Loss 0.07086106792092323
+Loss 0.06489409655332565 Acc 0.9792533898353577 Perturbed Loss 0.06779155146330595
+Loss 0.06152024518698454 Acc 0.9791813278198243 Perturbed Loss 0.06465227290987968
+Loss 0.07512389808893204 Acc 0.9752822744846344 Perturbed Loss 0.07827940788120032
+Loss 0.06230647426098585 Acc 0.9797316813468933 Perturbed Loss 0.06607563748955726
+Loss 0.07797428283840419 Acc 0.978574081659317 Perturbed Loss 0.08172663643956185
+Loss 0.059261278845369816 Acc 0.978982994556427 Perturbed Loss 0.06159060638397932
+Epoch 18.0 val loss 0.05506976321339607 val acc 0.9802219271659851
+Loss 0.06739221952855587 Acc 0.9768312311172486 Perturbed Loss 0.07073543343693017
+Loss 0.06896660391241312 Acc 0.9785512101650238 Perturbed Loss 0.07138411935418844
+Loss 0.06785692274570465 Acc 0.9795851027965545 Perturbed Loss 0.0702003974840045
+Loss 0.05630229420959949 Acc 0.9794746172428132 Perturbed Loss 0.05936671931296587
+Loss 0.058787928856909276 Acc 0.9824140548706055 Perturbed Loss 0.06139642171561718
+Loss 0.06214446360245347 Acc 0.9781194317340851 Perturbed Loss 0.06518604272976518
+Loss 0.0834425494261086 Acc 0.9761876654624939 Perturbed Loss 0.08745787169784308
+Loss 0.06446717562153935 Acc 0.9799131369590759 Perturbed Loss 0.06758577451109886
+Loss 0.060727120749652384 Acc 0.9809271025657654 Perturbed Loss 0.06319993045181035
+Loss 0.0638089433684945 Acc 0.9799706041812897 Perturbed Loss 0.06736231420189143
+Loss 0.06792236153036356 Acc 0.9795155596733093 Perturbed Loss 0.07128115989267826
+Loss 0.06084873344749212 Acc 0.9785948419570922 Perturbed Loss 0.06319612544029951
+Loss 0.06571696795523167 Acc 0.9797322928905488 Perturbed Loss 0.06851343411952257
+Loss 0.07640361592173577 Acc 0.9804382395744323 Perturbed Loss 0.0798747829347849
+Loss 0.06072965562343598 Acc 0.982162379026413 Perturbed Loss 0.06383344497531653
+Epoch 19.0 val loss 0.0556006133556366 val acc 0.9801520705223083
+[14:45:02] INFO     `Trainer.fit` stopped: `max_epochs=20` reached.                  rank_zero.py:53
+Epoch 19/19 ━━━━━━━━━━━━━━━━━━━━━━━━━━ 750/750 0:03:45 • 0:00:00 3.36it/s train/loss: 0.061         
+                                                                          val_loss: 0.056           
+[14:45:05] INFO     Created a temporary directory at /tmp/tmpwt_r_91j             instantiator.py:21
+           INFO     Writing /tmp/tmpwt_r_91j/_remote_module_non_scriptable.py     instantiator.py:76
+           INFO     Global seed set to 304                                                seed.py:54
+           INFO     Using dummy logger. Metrics for this run will not be saved.  logger_config.py:51
+           WARNING  /home/alexli/git/JupiterCVML/kore/configs/third_party/lightning_ warnings.py:109
+                    config.py:71: RuntimeWarning: Unable to save checkpoints to W&B                 
+                    folder since you are not logging to W&B. Saving to default                      
+                    location.                                                                       
+                      warnings.warn(                                                                
+                                                                                                    
+           INFO     Trainer already configured with model summary callbacks: [<class rank_zero.py:53
+                    'lightning.pytorch.callbacks.rich_model_summary.RichModelSummary                
+                    '>]. Skipping setting a default `ModelSummary` callback.                        
+           INFO     GPU available: True (cuda), used: True                           rank_zero.py:53
+           INFO     TPU available: False, using: 0 TPU cores                         rank_zero.py:53
+           INFO     IPU available: False, using: 0 IPUs                              rank_zero.py:53
+           INFO     HPU available: False, using: 0 HPUs                              rank_zero.py:53
+Config: /home/alexli/git/JupiterCVML/kore/SegTrainingConfig_None.gen.yaml
+           INFO     Loading model weights from                                       rank_zero.py:53
+                    /home/alexli/logs/data/epoch=99-val_loss=0.096904.ckpt for                      
+                    finetuning                                                                      
+           INFO     Prepare dataset: world_size=1, local_rank=0       jupiter_seg_data_module.py:139
+           INFO     cutnpaste_augmentation_classes=['Humans',         jupiter_seg_data_module.py:143
+                    'Tractors or Vehicles']                                                         
+           INFO     Train dataframe size: 3000                                       rank_zero.py:53
+           INFO     Validation dataframe size: 1000                                  rank_zero.py:53
+           INFO     Adjusting sampling weights                          seg_weighted_sampling.py:158
+           INFO     [rank: 0] Global seed set to 304                                      seed.py:54
+           INFO     Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1         distributed.py:257
+           INFO     Added key: store_based_barrier_key:1 to store for rank:  distributed_c10d.py:228
+                    0                                                                               
+           INFO     Rank 0: Completed store-based barrier for                distributed_c10d.py:262
+                    key:store_based_barrier_key:1 with 1 nodes.                                     
+           INFO     ---------------------------------------------------------------- rank_zero.py:53
+                    ------------------------------------                                            
+                    distributed_backend=nccl                                                        
+                    All distributed processes registered. Starting with 1 processes                 
+                    ----------------------------------------------------------------                
+                    ------------------------------------                                            
+                                                                                                    
+           INFO     You are using a CUDA device ('NVIDIA GeForce RTX 4070 Ti') that  rank_zero.py:53
+                    has Tensor Cores. To properly utilize them, you should set                      
+                    `torch.set_float32_matmul_precision('medium' | 'high')` which                   
+                    will trade-off precision for performance. For more details, read                
+                    https://pytorch.org/docs/stable/generated/torch.set_float32_matm                
+                    ul_precision.html#torch.set_float32_matmul_precision                            
+[14:45:06] WARNING  /home/alexli/miniconda3/envs/cvml/lib/python3.10/site-packages/l warnings.py:109
+                    ightning/pytorch/callbacks/model_checkpoint.py:617: UserWarning:                
+                    Checkpoint directory /home/alexli/git/scripts/checkpoints exists                
+                    and is not empty.                                                               
+                      rank_zero_warn(f"Checkpoint directory {dirpath} exists and is                 
+                    not empty.")                                                                    
+                                                                                                    
+           INFO     LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]                             cuda.py:58
+SAMConfig(lr=0.0006, weight_decay=0.0001, betas=(0.9, 0.999), eps=1e-12, rho=0.05, adaptive=False)
+           WARNING  /home/alexli/miniconda3/envs/cvml/lib/python3.10/site-packages/l warnings.py:109
+                    ightning/pytorch/core/optimizer.py:321: RuntimeWarning: The lr                  
+                    scheduler dict contains the key(s) ['monitor'], but the keys                    
+                    will be ignored. You need to call `lr_scheduler.step()` manually                
+                    in manual optimization.                                                         
+                      rank_zero_warn(                                                               
+                                                                                                    
+Loss 0.08752313312143087 Acc 0.9664217567443848 Perturbed Loss 0.10738940633833409
+[14:45:37] WARNING  /home/alexli/miniconda3/envs/cvml/lib/python3.10/site-packages/t warnings.py:109
+                    orch/optim/lr_scheduler.py:156: UserWarning: The epoch parameter                
+                    in `scheduler.step()` was not necessary and is being deprecated                 
+                    where possible. Please use `scheduler.step()` to step the                       
+                    scheduler. During the deprecation, if epoch is different from                   
+                    None, the closed form is used instead of the new chainable form,                
+                    where available. Please open an issue if you are unable to                      
+                    replicate your use case:                                                        
+                    https://github.com/pytorch/pytorch/issues/new/choose.                           
+                      warnings.warn(EPOCH_DEPRECATION_WARNING, UserWarning)                         
+                                                                                                    
+Loss 0.07597558353096247 Acc 0.9722179996967316 Perturbed Loss 0.08877422749996185
+Loss 0.08501373924314976 Acc 0.9763543999195099 Perturbed Loss 0.10067511389032006
+Loss 0.08479744947515427 Acc 0.9743510985374451 Perturbed Loss 0.09679830629378557
+Loss 0.08185353299602866 Acc 0.9760727989673614 Perturbed Loss 0.0939528775960207
+Loss 0.09665859196335078 Acc 0.9664555299282074 Perturbed Loss 0.11303110603243112
+Loss 0.08424297370016574 Acc 0.9714130818843841 Perturbed Loss 0.10061356093734503
+Loss 0.0845785279199481 Acc 0.9779826867580413 Perturbed Loss 0.0988045010715723
+Loss 0.09281616099178791 Acc 0.9732358253002167 Perturbed Loss 0.10359835729002953
+Loss 0.0838874065503478 Acc 0.9712022542953491 Perturbed Loss 0.09540268667042255
+Loss 0.07765951488167047 Acc 0.977265373468399 Perturbed Loss 0.08763543702661991
+Loss 0.08396125990897417 Acc 0.9773306894302368 Perturbed Loss 0.09604864042252302
+Loss 0.08013276189565659 Acc 0.9773986971378327 Perturbed Loss 0.09146014124155044
+Loss 0.06970249976962804 Acc 0.9817559373378754 Perturbed Loss 0.08362452063709497
+Loss 0.08744026819244027 Acc 0.9741682982444764 Perturbed Loss 0.10166983593255281
+Epoch 0.0 val loss 0.05869382992386818 val acc 0.9788588881492615
+Loss 0.08174620863050222 Acc 0.9743282306194305 Perturbed Loss 0.09384991254657507
+Loss 0.07590633016079665 Acc 0.9731997108459473 Perturbed Loss 0.08443883929401635
+Loss 0.07928380202502013 Acc 0.9672299206256867 Perturbed Loss 0.09236618518829345
+Loss 0.07970523294061423 Acc 0.9719357788562775 Perturbed Loss 0.0909172847494483
+Loss 0.08905530195683241 Acc 0.9739948260784149 Perturbed Loss 0.1004396597109735
+Loss 0.0786960294470191 Acc 0.9769706296920776 Perturbed Loss 0.09013054810464383
+Loss 0.0858208703249693 Acc 0.976036319732666 Perturbed Loss 0.09523339133709668
+Loss 0.07410646934062243 Acc 0.9785876333713531 Perturbed Loss 0.08229279808700085
+Loss 0.07461233017966151 Acc 0.9774114787578583 Perturbed Loss 0.0847179937362671
+Loss 0.07816488174721599 Acc 0.9753393864631653 Perturbed Loss 0.09032187895849347
+Loss 0.07600698441267013 Acc 0.9688020074367523 Perturbed Loss 0.08408646523952484
+Loss 0.09025437407195568 Acc 0.9756728827953338 Perturbed Loss 0.1053191526606679
+Loss 0.07689211148768664 Acc 0.9803938388824462 Perturbed Loss 0.08539098791778088
+Loss 0.0932198489829898 Acc 0.9724668347835541 Perturbed Loss 0.10323990911245345
+Loss 0.08093589544296265 Acc 0.976846206188202 Perturbed Loss 0.09023674860596657
+Epoch 1.0 val loss 0.057620227336883545 val acc 0.9796490669250488
+Loss 0.07380907824262976 Acc 0.974773291349411 Perturbed Loss 0.08170131728053093
+Loss 0.08312683615833522 Acc 0.9785035002231598 Perturbed Loss 0.09101820137351752
+Loss 0.07806794419884681 Acc 0.9778782832622528 Perturbed Loss 0.09250236235558987
+Loss 0.07177654203027486 Acc 0.9821273231506348 Perturbed Loss 0.08088258869946002
+Loss 0.07466863971203566 Acc 0.9807449448108673 Perturbed Loss 0.08390578225255013
+Loss 0.07120924789458513 Acc 0.9774358463287354 Perturbed Loss 0.0793251595273614
+Loss 0.08006551614031196 Acc 0.9794335842132569 Perturbed Loss 0.08809986595064402
+Loss 0.07629159078001976 Acc 0.9819628643989563 Perturbed Loss 0.08733460757881403
+Loss 0.08031682152301073 Acc 0.9768707513809204 Perturbed Loss 0.0935774801298976
+Loss 0.07845971316099166 Acc 0.9787578892707824 Perturbed Loss 0.08776788022369146
+Loss 0.07470416262745858 Acc 0.9789930367469788 Perturbed Loss 0.08406184874475002
+Loss 0.08666083913296461 Acc 0.9722877609729766 Perturbed Loss 0.09846111580729484
+Loss 0.0840863724052906 Acc 0.9708597314357758 Perturbed Loss 0.09642817594110965
+Loss 0.09747799109667539 Acc 0.9681251025199891 Perturbed Loss 0.10798045922070741
+Loss 0.07899033918976783 Acc 0.976979386806488 Perturbed Loss 0.08712343763560057
+Epoch 2.0 val loss 0.056636180728673935 val acc 0.9797765016555786
+Loss 0.07358505398035049 Acc 0.9772958147525788 Perturbed Loss 0.08342753019183874
+Loss 0.06489150758832693 Acc 0.9794062042236328 Perturbed Loss 0.07193532295525074
+Loss 0.07383712898939848 Acc 0.9800443065166473 Perturbed Loss 0.08243930689990521
+Loss 0.0733945246040821 Acc 0.9814980888366699 Perturbed Loss 0.07956752568483352
+Loss 0.08212064910680056 Acc 0.977902774810791 Perturbed Loss 0.09704758003354072
+Loss 0.08540517373010516 Acc 0.9756172263622284 Perturbed Loss 0.09438634663820267
+Loss 0.06992174461483955 Acc 0.981818231344223 Perturbed Loss 0.07974204801023006
+Loss 0.07823786318302155 Acc 0.9778173720836639 Perturbed Loss 0.08582351334393025
+Loss 0.08518689125776291 Acc 0.9779196608066559 Perturbed Loss 0.09312354877591134
+Loss 0.07795364823192358 Acc 0.9768397545814514 Perturbed Loss 0.08573422342538833
+Loss 0.06431523095816374 Acc 0.9789078068733216 Perturbed Loss 0.07359659813344478
+Loss 0.08471235673874616 Acc 0.9745369732379914 Perturbed Loss 0.09478290189057588
+Loss 0.08946898378431797 Acc 0.9758402466773987 Perturbed Loss 0.0995938790589571
+Loss 0.07561024384573102 Acc 0.9725510001182556 Perturbed Loss 0.0835738137550652
+Loss 0.08132735587656498 Acc 0.9761029005050659 Perturbed Loss 0.09223168157041073
+Epoch 3.0 val loss 0.058802515268325806 val acc 0.9786692261695862
+Loss 0.07028802514076232 Acc 0.9805881178379059 Perturbed Loss 0.0772497776709497
+Loss 0.07302445773035288 Acc 0.9824050390720367 Perturbed Loss 0.08147926267236472
+Loss 0.06606779016554355 Acc 0.9745296561717987 Perturbed Loss 0.07319529615342617
+Loss 0.08643860667943955 Acc 0.9784459006786347 Perturbed Loss 0.09946313593536615
+Loss 0.07803680080920458 Acc 0.9752532303333282 Perturbed Loss 0.08719026356935501
+Loss 0.07340529922395944 Acc 0.9775722205638886 Perturbed Loss 0.08173388306051493
+Loss 0.06862254194915295 Acc 0.9794877898693085 Perturbed Loss 0.0759816798940301
+Loss 0.07113404598087072 Acc 0.9794077348709106 Perturbed Loss 0.07649329494684935
+Loss 0.07282527897506952 Acc 0.975224711894989 Perturbed Loss 0.0826765151321888
+Loss 0.06667934937402606 Acc 0.9774159824848175 Perturbed Loss 0.07680606523528695
+Loss 0.0782982249930501 Acc 0.9788912415504456 Perturbed Loss 0.08919265992939472
+Loss 0.08166063278913498 Acc 0.9748207318782807 Perturbed Loss 0.09082437615841626
+Loss 0.07889728982001543 Acc 0.9761691927909851 Perturbed Loss 0.08657942056655883
+Loss 0.07627955038100481 Acc 0.9801634621620178 Perturbed Loss 0.08275782123208046
+Loss 0.07213768037036061 Acc 0.9809993267059326 Perturbed Loss 0.07866051662713289
+Epoch 4.0 val loss 0.05798524245619774 val acc 0.9793482422828674
+Loss 0.07310344783589244 Acc 0.9791378629207611 Perturbed Loss 0.08028761178255081
+Loss 0.07858947936445475 Acc 0.9798399901390076 Perturbed Loss 0.08890181664377451
+Loss 0.081426414065063 Acc 0.9778353631496429 Perturbed Loss 0.08892046343535184
+Loss 0.08195703890174627 Acc 0.9735610461235047 Perturbed Loss 0.09095363188534974
+Loss 0.07426798056811094 Acc 0.9787273705005646 Perturbed Loss 0.08201354697346687
+Loss 0.08507374819368124 Acc 0.9754354226589202 Perturbed Loss 0.09509826015681028
+Loss 0.07005271088331938 Acc 0.9797485029697418 Perturbed Loss 0.07749057233333588
+Loss 0.06856030873954296 Acc 0.977674024105072 Perturbed Loss 0.07676882848143578
+Loss 0.07288834277540446 Acc 0.9798113918304443 Perturbed Loss 0.08454826101660728
+Loss 0.0765567459538579 Acc 0.9774820446968079 Perturbed Loss 0.08583299718797206
+Loss 0.0778371101245284 Acc 0.9769795680046082 Perturbed Loss 0.0875885720923543
+Loss 0.07973010748624802 Acc 0.9742809712886811 Perturbed Loss 0.0886333879455924
+Loss 0.08008020799607038 Acc 0.9798797559738159 Perturbed Loss 0.08817397199571132
+Loss 0.07805285487324 Acc 0.9783673417568207 Perturbed Loss 0.0865681055188179
+Loss 0.07085205910727382 Acc 0.977818467617035 Perturbed Loss 0.07913209216669202
+Epoch 5.0 val loss 0.058136966079473495 val acc 0.9792401790618896
+Loss 0.07300278820097446 Acc 0.9787079977989197 Perturbed Loss 0.07911381654441357
+Loss 0.07538895113393665 Acc 0.9798600924015045 Perturbed Loss 0.08310876214876771
+Loss 0.06624257743358612 Acc 0.9794552624225616 Perturbed Loss 0.07613113965839148
+Loss 0.08248716328293085 Acc 0.9767263209819794 Perturbed Loss 0.08984171338379383
+Loss 0.07404204655438662 Acc 0.9820240497589111 Perturbed Loss 0.08009818725287915
+Loss 0.0804091464728117 Acc 0.976490820646286 Perturbed Loss 0.08836909472942352
+Loss 0.07152124579995871 Acc 0.9758532392978668 Perturbed Loss 0.07829720057547092
+Loss 0.07126436792314053 Acc 0.9814046239852905 Perturbed Loss 0.07773946557193995
+Loss 0.06865387789905071 Acc 0.9789850556850433 Perturbed Loss 0.07534803967922926
+Loss 0.07799654128029943 Acc 0.9768102908134461 Perturbed Loss 0.08760471584275364
+Loss 0.07675606280565261 Acc 0.9780667579174042 Perturbed Loss 0.08466410491615534
+Loss 0.07348468350246548 Acc 0.9785823285579681 Perturbed Loss 0.08297397170215845
+Loss 0.07457824293524026 Acc 0.9765280258655548 Perturbed Loss 0.08421048451215028
+Loss 0.07644239496439695 Acc 0.9808703768253326 Perturbed Loss 0.0865595692396164
+Loss 0.07663722701370716 Acc 0.9752978622913361 Perturbed Loss 0.08452365189790725
+Epoch 6.0 val loss 0.05885085463523865 val acc 0.9791645407676697
+Loss 0.08112952154129743 Acc 0.9760516595840454 Perturbed Loss 0.08897514931857586
+Loss 0.0874881041701883 Acc 0.9774474012851715 Perturbed Loss 0.09540670119225979
+Loss 0.07370826698839665 Acc 0.978250161409378 Perturbed Loss 0.07930983480066062
+Loss 0.06193636417388916 Acc 0.9823103559017181 Perturbed Loss 0.06868163770064711
+Loss 0.07057274121791124 Acc 0.9776165747642517 Perturbed Loss 0.07976878525689245
+Loss 0.07846678156405687 Acc 0.9775719618797303 Perturbed Loss 0.0877423944324255
+Loss 0.08084479350596667 Acc 0.9751086103916168 Perturbed Loss 0.08822158072143793
+Loss 0.06647498935461044 Acc 0.9810146558284759 Perturbed Loss 0.0734255214035511
+Loss 0.07698254328221082 Acc 0.9770614647865296 Perturbed Loss 0.0854102573543787
+Loss 0.08163141705095768 Acc 0.978362455368042 Perturbed Loss 0.08914098527282477
+Loss 0.07641921397298575 Acc 0.9810669457912445 Perturbed Loss 0.08431649673730135
+Loss 0.06980447564274073 Acc 0.9792708611488342 Perturbed Loss 0.0773435334302485
+Loss 0.07152410754933954 Acc 0.9771159720420838 Perturbed Loss 0.08066653847694397
+Loss 0.07040261160582303 Acc 0.9809533178806304 Perturbed Loss 0.07729512479156256
+Loss 0.07739409744739532 Acc 0.9782050347328186 Perturbed Loss 0.0851309497654438
+Epoch 7.0 val loss 0.05878400430083275 val acc 0.9783173203468323
+Loss 0.06841851826757192 Acc 0.9771095538139343 Perturbed Loss 0.07705547530204057
+Loss 0.07005434491671622 Acc 0.973296366930008 Perturbed Loss 0.0794005916826427
+Loss 0.06540686639025807 Acc 0.9783664357662201 Perturbed Loss 0.07609073955565691
+Loss 0.07732685782015324 Acc 0.976811910867691 Perturbed Loss 0.0838791735097766
+Loss 0.06544793512672185 Acc 0.9794146251678467 Perturbed Loss 0.07289384108036756
+Loss 0.07030057966709137 Acc 0.9784777212142944 Perturbed Loss 0.07771378792822362
+Loss 0.06300788972526788 Acc 0.9789004862308502 Perturbed Loss 0.07053733848035336
+Loss 0.06889459539204836 Acc 0.9784195137023926 Perturbed Loss 0.07620521254837513
+Loss 0.07010844865813852 Acc 0.9755882668495178 Perturbed Loss 0.07934584582224488
+Loss 0.06836349489167333 Acc 0.9765924417972565 Perturbed Loss 0.07510883700102568
+Loss 0.07573941942304373 Acc 0.9782492589950561 Perturbed Loss 0.08377964694052935
+Loss 0.07368738289922476 Acc 0.9795483183860779 Perturbed Loss 0.08089928368106485
+Loss 0.06781106818467379 Acc 0.9789447832107544 Perturbed Loss 0.07548559334129096
+Loss 0.07384944450110197 Acc 0.9788179731369019 Perturbed Loss 0.08419164620339871
+Loss 0.07490829970687628 Acc 0.9810049045085907 Perturbed Loss 0.08193955257534981
+Epoch 8.0 val loss 0.05894343554973602 val acc 0.9794700741767883
+Loss 0.07343310840427876 Acc 0.9748917722702026 Perturbed Loss 0.08187965016812086
+Loss 0.071655976139009 Acc 0.9788790571689606 Perturbed Loss 0.07869843911379576
+Loss 0.07252507539466023 Acc 0.977407146692276 Perturbed Loss 0.07880960674956441
+Loss 0.06137053407728672 Acc 0.9789467990398407 Perturbed Loss 0.06844452261924744
+Loss 0.07259005416184663 Acc 0.9774496197700501 Perturbed Loss 0.0814110067486763
+Loss 0.07164916612207889 Acc 0.9768064963817596 Perturbed Loss 0.07730071861296892
+Loss 0.06369057279080152 Acc 0.9815557396411896 Perturbed Loss 0.06871604219079018
+Loss 0.08112363070249558 Acc 0.9800428688526154 Perturbed Loss 0.08779546197503806
+Loss 0.06400537770241499 Acc 0.9800884008407593 Perturbed Loss 0.07161884557455778
+Loss 0.06810624126344919 Acc 0.9821628701686859 Perturbed Loss 0.0746380365639925
+Loss 0.06542751152068377 Acc 0.9806067705154419 Perturbed Loss 0.0709398764744401
+Loss 0.06966606022790074 Acc 0.9782719194889069 Perturbed Loss 0.07638943679630757
+Loss 0.07208550557494163 Acc 0.977859069108963 Perturbed Loss 0.07794311549514532
+Loss 0.07900024879723787 Acc 0.9764744317531586 Perturbed Loss 0.09040139563381672
+Loss 0.07717595733702183 Acc 0.9770623624324799 Perturbed Loss 0.08480146385729313
+Epoch 9.0 val loss 0.055197201669216156 val acc 0.9797583222389221
+Loss 0.0690145643427968 Acc 0.982724506855011 Perturbed Loss 0.07464161720126868
+Loss 0.0732590470649302 Acc 0.9768703866004944 Perturbed Loss 0.07992029339075088
+Loss 0.06470440534874797 Acc 0.9813696503639221 Perturbed Loss 0.07039284473285079
+Loss 0.07859513625502586 Acc 0.9754338991641999 Perturbed Loss 0.08481744214892388
+Loss 0.06221899844706059 Acc 0.9824836254119873 Perturbed Loss 0.06859069596976042
+Loss 0.06656665427610278 Acc 0.9793211531639099 Perturbed Loss 0.07310436808504164
+Loss 0.06833708003163337 Acc 0.9786776447296143 Perturbed Loss 0.07667768232524395
+Loss 0.0630587057583034 Acc 0.9827742576599121 Perturbed Loss 0.06809462822973728
+Loss 0.06288451381027699 Acc 0.9780861735343933 Perturbed Loss 0.06847351595759392
+Loss 0.06735774802044034 Acc 0.9774920785427094 Perturbed Loss 0.0736064650118351
+Loss 0.06560632795095443 Acc 0.9787318086624146 Perturbed Loss 0.0718752747401595
+Loss 0.0755582132562995 Acc 0.9766210651397705 Perturbed Loss 0.0823769048973918
+Loss 0.06371219838038086 Acc 0.9803821504116058 Perturbed Loss 0.0713865414261818
+Loss 0.06725773300975561 Acc 0.9779963827133179 Perturbed Loss 0.07547776829451322
+Loss 0.06710927203297615 Acc 0.9783107578754425 Perturbed Loss 0.07418789945542813
+Epoch 10.0 val loss 0.05613942816853523 val acc 0.979493260383606
+Loss 0.07030704371631145 Acc 0.9800294506549835 Perturbed Loss 0.07733577011153102
+Loss 0.06959173168987036 Acc 0.9809268367290497 Perturbed Loss 0.07709040634334087
+Loss 0.06632730141282081 Acc 0.9803913474082947 Perturbed Loss 0.07315140724182129
+Loss 0.0627759868837893 Acc 0.9786461138725281 Perturbed Loss 0.06884823793545365
+Loss 0.07142821641638875 Acc 0.9783875942230225 Perturbed Loss 0.08058888547122478
+Loss 0.0640870736911893 Acc 0.9783486747741699 Perturbed Loss 0.07247584361582994
+Loss 0.06899081900715828 Acc 0.9794810616970062 Perturbed Loss 0.07724378006532788
+Loss 0.07837392427027226 Acc 0.978294780254364 Perturbed Loss 0.08692833207547665
+Loss 0.060453236810863016 Acc 0.9803481066226959 Perturbed Loss 0.06631087761372328
+Loss 0.06547161750495434 Acc 0.9817083942890167 Perturbed Loss 0.0721945358812809
+Loss 0.06962214846163989 Acc 0.9774351239204406 Perturbed Loss 0.0763722375407815
+Loss 0.06963233880698681 Acc 0.980172678232193 Perturbed Loss 0.07644893616437912
+Loss 0.08015545718371868 Acc 0.9756792068481446 Perturbed Loss 0.08640228766947984
+Loss 0.0640887231938541 Acc 0.9814617824554444 Perturbed Loss 0.07180655606091023
+Loss 0.06382789661176502 Acc 0.9808979630470276 Perturbed Loss 0.07033612003549933
+Epoch 11.0 val loss 0.05609333887696266 val acc 0.9793803095817566
+Loss 0.08031698390841484 Acc 0.978796992301941 Perturbed Loss 0.088382955994457
+Loss 0.07354221601039171 Acc 0.9773374974727631 Perturbed Loss 0.0791186635941267
+Loss 0.0695415672659874 Acc 0.9819998943805694 Perturbed Loss 0.07689390357583761
+Loss 0.06149962686002255 Acc 0.9799585235118866 Perturbed Loss 0.06834834534674883
+Loss 0.06447803294286132 Acc 0.9837497496604919 Perturbed Loss 0.06895704690366983
+Loss 0.06486491350457073 Acc 0.9793802988529205 Perturbed Loss 0.07074317336082458
+Loss 0.06769199248403311 Acc 0.9797680449485778 Perturbed Loss 0.07357287026941776
+Loss 0.06398452125489712 Acc 0.9801189768314361 Perturbed Loss 0.06880249194800854
+Loss 0.0631902751326561 Acc 0.9782103765010833 Perturbed Loss 0.07158632606267928
+Loss 0.06284194940701127 Acc 0.9817516195774079 Perturbed Loss 0.0695424496009946
+Loss 0.07322141715325416 Acc 0.978735009431839 Perturbed Loss 0.078967777043581
+Loss 0.06273878550156951 Acc 0.9776338517665863 Perturbed Loss 0.06743097689002753
+Loss 0.07704756240360439 Acc 0.9815429770946502 Perturbed Loss 0.08613045989535749
+Loss 0.06745290633291007 Acc 0.9811516618728637 Perturbed Loss 0.07360631797462702
+Loss 0.07048334745690227 Acc 0.9747347259521484 Perturbed Loss 0.07696742415428162
+Epoch 12.0 val loss 0.05638574808835983 val acc 0.9798959493637085
+Loss 0.068028056435287 Acc 0.9784858393669128 Perturbed Loss 0.07645909506827593
+Loss 0.07548107124865056 Acc 0.9774220061302185 Perturbed Loss 0.08177739448845386
+Loss 0.07323501020669937 Acc 0.9784968972206116 Perturbed Loss 0.07948514543473721
+Loss 0.06466149795800448 Acc 0.9824917769432068 Perturbed Loss 0.07105737257748843
+Loss 0.06397524033673108 Acc 0.9799638330936432 Perturbed Loss 0.07165239537134767
+Loss 0.07099798433482647 Acc 0.9814560353755951 Perturbed Loss 0.0765709239989519
+Loss 0.07342308189719915 Acc 0.9755968964099884 Perturbed Loss 0.07898934062570334
+Loss 0.07044547303579747 Acc 0.9774472069740295 Perturbed Loss 0.07668472434394062
+Loss 0.0703511101193726 Acc 0.9789963269233704 Perturbed Loss 0.07502627357840538
+Loss 0.0669949895516038 Acc 0.9804497861862183 Perturbed Loss 0.07325134821236133
+Loss 0.07504672784358263 Acc 0.9789694011211395 Perturbed Loss 0.08064178913831711
+Loss 0.07012297894805669 Acc 0.9813621354103088 Perturbed Loss 0.07708314474672079
+Loss 0.0612304656021297 Acc 0.9786348414421081 Perturbed Loss 0.06718103790655733
+Loss 0.059826295077800754 Acc 0.9809479570388794 Perturbed Loss 0.0658164444565773
+Loss 0.06749840438365937 Acc 0.9824529612064361 Perturbed Loss 0.07419058009982109
+Epoch 13.0 val loss 0.057368237525224686 val acc 0.9798040986061096
+Loss 0.06463184861466288 Acc 0.9802746164798737 Perturbed Loss 0.07106376007199287
+Loss 0.07473067479208112 Acc 0.9769729101657867 Perturbed Loss 0.08383914653211832
+Loss 0.06686077388003468 Acc 0.9803606259822846 Perturbed Loss 0.07037673752754926
+Loss 0.07476583123207092 Acc 0.9774895203113556 Perturbed Loss 0.08328138161450624
+Loss 0.06989763520658016 Acc 0.979017767906189 Perturbed Loss 0.07712740518152714
+Loss 0.059567005895078184 Acc 0.9810025811195373 Perturbed Loss 0.06618743432685732
+Loss 0.06254523031413556 Acc 0.9816362607479096 Perturbed Loss 0.06761608265340328
+Loss 0.057694310508668425 Acc 0.9805302190780639 Perturbed Loss 0.06392138618975877
+Loss 0.06406979870051145 Acc 0.9819284772872925 Perturbed Loss 0.06900929894298315
+Loss 0.06535755287855864 Acc 0.9755339014530182 Perturbed Loss 0.07487863596528768
+Loss 0.06974409475922584 Acc 0.9797346544265747 Perturbed Loss 0.07495334725826978
+Loss 0.06930550199002028 Acc 0.9771008729934693 Perturbed Loss 0.07485508177429438
+Loss 0.06862572103738784 Acc 0.9811486864089966 Perturbed Loss 0.07817867420613765
+Loss 0.07639064935967327 Acc 0.9754732620716094 Perturbed Loss 0.08310666063800454
+Loss 0.06497292958199978 Acc 0.9804660642147064 Perturbed Loss 0.07093643676489592
+Epoch 14.0 val loss 0.05519011244177818 val acc 0.9799022078514099
+Loss 0.0705048810876906 Acc 0.9750582671165466 Perturbed Loss 0.0762226908095181
+Loss 0.06907701577991247 Acc 0.9798108673095703 Perturbed Loss 0.07486252158880234
+Loss 0.07642720120027661 Acc 0.9734190237522126 Perturbed Loss 0.08528365613892674
+Loss 0.06849802877753973 Acc 0.9795278596878052 Perturbed Loss 0.075467699021101
+Loss 0.05770415799692273 Acc 0.9814728999137878 Perturbed Loss 0.06329140651971102
+Loss 0.059595701596699656 Acc 0.9814189291000366 Perturbed Loss 0.06546466312371195
+Loss 0.06538712412118912 Acc 0.9802012264728546 Perturbed Loss 0.0708096974529326
+Loss 0.08430505851283669 Acc 0.9785824513435364 Perturbed Loss 0.09215992003679276
+Loss 0.07470728594809771 Acc 0.9797177016735077 Perturbed Loss 0.08068234127014876
+Loss 0.07005759809166193 Acc 0.9800890564918519 Perturbed Loss 0.0758204303495586
+Loss 0.06480848588049412 Acc 0.9832912313938141 Perturbed Loss 0.0693626282736659
+Loss 0.06900482084602118 Acc 0.9766176259517669 Perturbed Loss 0.07515878271311521
+Loss 0.06435377199202776 Acc 0.9823855674266815 Perturbed Loss 0.07028374239802361
+Loss 0.0630607695132494 Acc 0.9817685544490814 Perturbed Loss 0.06951334204524756
+Loss 0.07642519444227219 Acc 0.9779975044727326 Perturbed Loss 0.08589109424501658
+Epoch 15.0 val loss 0.05545683205127716 val acc 0.979747474193573
+Loss 0.06817182376980782 Acc 0.9783283853530884 Perturbed Loss 0.07473681082949042
+Loss 0.06785747185349464 Acc 0.9775109732151032 Perturbed Loss 0.073782306201756
+Loss 0.07096821827813983 Acc 0.9802285158634185 Perturbed Loss 0.07654545158147812
+Loss 0.06395325738936662 Acc 0.9805525755882263 Perturbed Loss 0.07010030541568994
+Loss 0.0621121216006577 Acc 0.9807496416568756 Perturbed Loss 0.06825331177562476
+Loss 0.07121127603575587 Acc 0.9806720423698425 Perturbed Loss 0.07641652580350637
+Loss 0.07227569032460451 Acc 0.9807704877853394 Perturbed Loss 0.07620098605751992
+Loss 0.07304979726672173 Acc 0.978704571723938 Perturbed Loss 0.08110772613435983
+Loss 0.06270065739750862 Acc 0.9802010190486908 Perturbed Loss 0.07192993793636561
+Loss 0.05535194111987948 Acc 0.9842898070812225 Perturbed Loss 0.05968232147395611
+Loss 0.06748494442552327 Acc 0.9790946459770202 Perturbed Loss 0.07456936102360487
+Loss 0.06650230112485588 Acc 0.9809659039974212 Perturbed Loss 0.07304912497289479
+Loss 0.06401864122599363 Acc 0.980566074848175 Perturbed Loss 0.06960479445755481
+Loss 0.06825736939907073 Acc 0.9812415158748626 Perturbed Loss 0.07382800240069627
+Loss 0.06007188994437456 Acc 0.9835828840732574 Perturbed Loss 0.06482241980731487
+Epoch 16.0 val loss 0.05549745634198189 val acc 0.9799444675445557
+Loss 0.06880774870514869 Acc 0.979519066810608 Perturbed Loss 0.07747414760291577
+Loss 0.07074016120284796 Acc 0.9819117355346679 Perturbed Loss 0.0769395013526082
+Loss 0.05982967041432857 Acc 0.980247722864151 Perturbed Loss 0.06532078757882118
+Loss 0.0686159504763782 Acc 0.9796230435371399 Perturbed Loss 0.07617393463850021
+Loss 0.06086422555148602 Acc 0.9810982489585877 Perturbed Loss 0.06711419310420752
+Loss 0.05943153854459524 Acc 0.9806307315826416 Perturbed Loss 0.06510309033095836
+Loss 0.06999943945556879 Acc 0.9769628202915192 Perturbed Loss 0.07752628456801176
+Loss 0.06636114230379463 Acc 0.980961252450943 Perturbed Loss 0.07252090983092785
+Loss 0.05502953024581075 Acc 0.983096878528595 Perturbed Loss 0.06073704961687326
+Loss 0.07687070302665233 Acc 0.9779737412929534 Perturbed Loss 0.08316118113696574
+Loss 0.06416751034557819 Acc 0.9796557688713073 Perturbed Loss 0.06928982697427273
+Loss 0.06907362252473831 Acc 0.9784033465385437 Perturbed Loss 0.0760346906259656
+Loss 0.06481485148891807 Acc 0.9754746556282043 Perturbed Loss 0.07230211690068244
+Loss 0.06454023553058505 Acc 0.9792110872268677 Perturbed Loss 0.07042778417468071
+Loss 0.06690855024382472 Acc 0.9828860485553741 Perturbed Loss 0.07173590013757349
+Epoch 17.0 val loss 0.05571123957633972 val acc 0.9801349639892578
+Loss 0.06676130397245288 Acc 0.9803737223148346 Perturbed Loss 0.07331189513206482
+Loss 0.06930461898446083 Acc 0.9802618777751922 Perturbed Loss 0.07378689520061016
+Loss 0.06535879895091057 Acc 0.9773602521419525 Perturbed Loss 0.07054961986839771
+Loss 0.06216494394466281 Acc 0.9823969912528991 Perturbed Loss 0.06635410003364087
+Loss 0.06514341950416565 Acc 0.9813849914073944 Perturbed Loss 0.07356834633275866
+Loss 0.05468643557280302 Acc 0.9829087030887603 Perturbed Loss 0.06097149396315217
+Loss 0.059014617428183556 Acc 0.9795917880535125 Perturbed Loss 0.06476314868777991
+Loss 0.06264731396920979 Acc 0.9810940957069397 Perturbed Loss 0.06923322380520404
+Loss 0.06602566925808788 Acc 0.9799072086811066 Perturbed Loss 0.07068554982542992
+Loss 0.06413479935377836 Acc 0.9794222712516785 Perturbed Loss 0.06839532051235438
+Loss 0.06062835711985826 Acc 0.978838609457016 Perturbed Loss 0.06783679563552142
+Loss 0.07559126714244485 Acc 0.9754020571708679 Perturbed Loss 0.08103470597416162
+Loss 0.05914074318483472 Acc 0.9795551872253419 Perturbed Loss 0.0665561594069004
+Loss 0.07496028650552035 Acc 0.9791693031787873 Perturbed Loss 0.08213701505213976
+Loss 0.06029863446950912 Acc 0.978560847043991 Perturbed Loss 0.06442031051963568
+Epoch 18.0 val loss 0.055003125220537186 val acc 0.9802109003067017
+Loss 0.06610850792378187 Acc 0.9770750617980957 Perturbed Loss 0.07041045200079679
+Loss 0.06933975940570235 Acc 0.9785507237911224 Perturbed Loss 0.07465176064521074
+Loss 0.06845219694077968 Acc 0.9796430420875549 Perturbed Loss 0.0732523388043046
+Loss 0.05538231428712606 Acc 0.9797672712802887 Perturbed Loss 0.06025117807090283
+Loss 0.0607271396741271 Acc 0.9822228968143463 Perturbed Loss 0.06596244640648365
+Loss 0.06305856209248305 Acc 0.9771878623962402 Perturbed Loss 0.06898189699277282
+Loss 0.08344237603247166 Acc 0.9762241208553314 Perturbed Loss 0.09031524024903774
+Loss 0.06296280412003398 Acc 0.9799190330505371 Perturbed Loss 0.06772366378456354
+Loss 0.0603813355229795 Acc 0.9812801039218902 Perturbed Loss 0.0647081582248211
+Loss 0.06304117985069752 Acc 0.9800463461875916 Perturbed Loss 0.06875184576958418
+Loss 0.06815445348620415 Acc 0.9790455782413483 Perturbed Loss 0.07518688378855586
+Loss 0.061620154101401564 Acc 0.9785291361808777 Perturbed Loss 0.06657696966081858
+Loss 0.0655880245193839 Acc 0.9797918653488159 Perturbed Loss 0.07153700765222311
+Loss 0.07595709923654795 Acc 0.9802427005767822 Perturbed Loss 0.08209035769104958
+Loss 0.06133629266172647 Acc 0.982714387178421 Perturbed Loss 0.06733968768268823
+Epoch 19.0 val loss 0.055405888706445694 val acc 0.9800789952278137
+[16:08:50] INFO     `Trainer.fit` stopped: `max_epochs=20` reached.                  rank_zero.py:53
+Epoch 19/19 ━━━━━━━━━━━━━━━━━━━━━━━━━━ 750/750 0:03:45 • 0:00:00 3.36it/s train/loss: 0.061         
+                                                                          val_loss: 0.055           
+[16:08:53] INFO     Created a temporary directory at /tmp/tmp9ut12k20             instantiator.py:21
+           INFO     Writing /tmp/tmp9ut12k20/_remote_module_non_scriptable.py     instantiator.py:76
+           INFO     Global seed set to 304                                                seed.py:54
+           INFO     Using dummy logger. Metrics for this run will not be saved.  logger_config.py:51
+           WARNING  /home/alexli/git/JupiterCVML/kore/configs/third_party/lightning_ warnings.py:109
+                    config.py:71: RuntimeWarning: Unable to save checkpoints to W&B                 
+                    folder since you are not logging to W&B. Saving to default                      
+                    location.                                                                       
+                      warnings.warn(                                                                
+                                                                                                    
+           INFO     Trainer already configured with model summary callbacks: [<class rank_zero.py:53
+                    'lightning.pytorch.callbacks.rich_model_summary.RichModelSummary                
+                    '>]. Skipping setting a default `ModelSummary` callback.                        
+           INFO     GPU available: True (cuda), used: True                           rank_zero.py:53
+           INFO     TPU available: False, using: 0 TPU cores                         rank_zero.py:53
+           INFO     IPU available: False, using: 0 IPUs                              rank_zero.py:53
+           INFO     HPU available: False, using: 0 HPUs                              rank_zero.py:53
+Config: /home/alexli/git/JupiterCVML/kore/SegTrainingConfig_None.gen.yaml
+           INFO     Loading model weights from                                       rank_zero.py:53
+                    /home/alexli/logs/data/epoch=99-val_loss=0.096904.ckpt for                      
+                    finetuning                                                                      
+           INFO     Prepare dataset: world_size=1, local_rank=0       jupiter_seg_data_module.py:139
+           INFO     cutnpaste_augmentation_classes=['Humans',         jupiter_seg_data_module.py:143
+                    'Tractors or Vehicles']                                                         
+[16:08:54] INFO     Train dataframe size: 3000                                       rank_zero.py:53
+           INFO     Validation dataframe size: 1000                                  rank_zero.py:53
+           INFO     Adjusting sampling weights                          seg_weighted_sampling.py:158
+           INFO     [rank: 0] Global seed set to 304                                      seed.py:54
+           INFO     Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1         distributed.py:257
+           INFO     Added key: store_based_barrier_key:1 to store for rank:  distributed_c10d.py:228
+                    0                                                                               
+           INFO     Rank 0: Completed store-based barrier for                distributed_c10d.py:262
+                    key:store_based_barrier_key:1 with 1 nodes.                                     
+           INFO     ---------------------------------------------------------------- rank_zero.py:53
+                    ------------------------------------                                            
+                    distributed_backend=nccl                                                        
+                    All distributed processes registered. Starting with 1 processes                 
+                    ----------------------------------------------------------------                
+                    ------------------------------------                                            
+                                                                                                    
+           INFO     You are using a CUDA device ('NVIDIA GeForce RTX 4070 Ti') that  rank_zero.py:53
+                    has Tensor Cores. To properly utilize them, you should set                      
+                    `torch.set_float32_matmul_precision('medium' | 'high')` which                   
+                    will trade-off precision for performance. For more details, read                
+                    https://pytorch.org/docs/stable/generated/torch.set_float32_matm                
+                    ul_precision.html#torch.set_float32_matmul_precision                            
+[16:08:55] WARNING  /home/alexli/miniconda3/envs/cvml/lib/python3.10/site-packages/l warnings.py:109
+                    ightning/pytorch/callbacks/model_checkpoint.py:617: UserWarning:                
+                    Checkpoint directory /home/alexli/git/scripts/checkpoints exists                
+                    and is not empty.                                                               
+                      rank_zero_warn(f"Checkpoint directory {dirpath} exists and is                 
+                    not empty.")                                                                    
+                                                                                                    
+           INFO     LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]                             cuda.py:58
+SAMConfig(lr=0.0006, weight_decay=0.0001, betas=(0.9, 0.999), eps=1e-12, rho=0.25, adaptive=True)
+           WARNING  /home/alexli/miniconda3/envs/cvml/lib/python3.10/site-packages/l warnings.py:109
+                    ightning/pytorch/core/optimizer.py:321: RuntimeWarning: The lr                  
+                    scheduler dict contains the key(s) ['monitor'], but the keys                    
+                    will be ignored. You need to call `lr_scheduler.step()` manually                
+                    in manual optimization.                                                         
+                      rank_zero_warn(                                                               
+                                                                                                    
+Loss 0.08885523017495871 Acc 0.9660793459415435 Perturbed Loss 0.12878051109611988
+[16:09:25] WARNING  /home/alexli/miniconda3/envs/cvml/lib/python3.10/site-packages/t warnings.py:109
+                    orch/optim/lr_scheduler.py:156: UserWarning: The epoch parameter                
+                    in `scheduler.step()` was not necessary and is being deprecated                 
+                    where possible. Please use `scheduler.step()` to step the                       
+                    scheduler. During the deprecation, if epoch is different from                   
+                    None, the closed form is used instead of the new chainable form,                
+                    where available. Please open an issue if you are unable to                      
+                    replicate your use case:                                                        
+                    https://github.com/pytorch/pytorch/issues/new/choose.                           
+                      warnings.warn(EPOCH_DEPRECATION_WARNING, UserWarning)                         
+                                                                                                    
+Loss 0.07698108725249768 Acc 0.9715321612358093 Perturbed Loss 0.10637111999094487
+Loss 0.08484013175591826 Acc 0.9772155058383941 Perturbed Loss 0.11638289831578731
+Loss 0.08320055420510471 Acc 0.974878934621811 Perturbed Loss 0.10778077309951187
+Loss 0.08174311358481645 Acc 0.9765177428722381 Perturbed Loss 0.10993284791707993
+Loss 0.09808573137968779 Acc 0.9660265898704529 Perturbed Loss 0.13267001815140247
+Loss 0.08220312677323818 Acc 0.971683954000473 Perturbed Loss 0.10897632792592049
+Loss 0.08289167212322354 Acc 0.9789661467075348 Perturbed Loss 0.10704616080969571
+Loss 0.08941386967897415 Acc 0.973769748210907 Perturbed Loss 0.11706870459020138
+Loss 0.08556222954764962 Acc 0.9701262295246125 Perturbed Loss 0.11465551793575286
+Loss 0.07605453915894031 Acc 0.9781238377094269 Perturbed Loss 0.09293954327702522
+Loss 0.08260691311210394 Acc 0.9768840253353119 Perturbed Loss 0.10435996543616056
+Loss 0.07922407258301974 Acc 0.9772167265415191 Perturbed Loss 0.11013997476547957
+Loss 0.07231174807995558 Acc 0.9823606371879577 Perturbed Loss 0.09515990808606148
+Loss 0.08212296906858682 Acc 0.9746631336212158 Perturbed Loss 0.10441101271659135
+Epoch 0.0 val loss 0.05793315917253494 val acc 0.9785724878311157
+Loss 0.0826759186014533 Acc 0.973033059835434 Perturbed Loss 0.11220748111605644
+Loss 0.07883576398715376 Acc 0.972429815530777 Perturbed Loss 0.09992799941450357
+Loss 0.0801518803089857 Acc 0.9681140851974487 Perturbed Loss 0.10805923901498318
+Loss 0.07752098005264997 Acc 0.9736825633049011 Perturbed Loss 0.10407104425132274
+Loss 0.08312637910246849 Acc 0.9762581217288971 Perturbed Loss 0.10951041590422392
+Loss 0.0757873417623341 Acc 0.9773137962818146 Perturbed Loss 0.09559063177555799
+Loss 0.08414143301546574 Acc 0.9758734047412873 Perturbed Loss 0.10555149670690298
+Loss 0.07330278724431992 Acc 0.9790332221984863 Perturbed Loss 0.09111131001263857
+Loss 0.07560848973691464 Acc 0.9779469835758209 Perturbed Loss 0.09426713256165385
+Loss 0.07806614030152559 Acc 0.9765663146972656 Perturbed Loss 0.10124054294079542
+Loss 0.07709675136953592 Acc 0.9681307375431061 Perturbed Loss 0.10053139097988606
+Loss 0.0930113549157977 Acc 0.9720404088497162 Perturbed Loss 0.11525605171918869
+Loss 0.07616413664072752 Acc 0.9810795402526855 Perturbed Loss 0.09135025534778833
+Loss 0.09605024306103588 Acc 0.9714687657356262 Perturbed Loss 0.12161518588662147
+Loss 0.07768479790538549 Acc 0.9766043055057526 Perturbed Loss 0.09963038086891174
+Epoch 1.0 val loss 0.05629836395382881 val acc 0.9793160557746887
+Loss 0.07525022592395544 Acc 0.9744179713726043 Perturbed Loss 0.09155559884384275
+Loss 0.08581000946462154 Acc 0.978478502035141 Perturbed Loss 0.10583379715681077
+Loss 0.07571631450206041 Acc 0.9787991833686829 Perturbed Loss 0.09793992578983307
+Loss 0.07179348291829228 Acc 0.9811630988121033 Perturbed Loss 0.09077064972370863
+Loss 0.07699490997940302 Acc 0.9803197836875915 Perturbed Loss 0.10029783584177494
+Loss 0.07223208565264941 Acc 0.9777638733386993 Perturbed Loss 0.08834705110639333
+Loss 0.08115153085440398 Acc 0.9785757803916931 Perturbed Loss 0.10363329585641623
+Loss 0.07695833839476109 Acc 0.9818681442737579 Perturbed Loss 0.09812940277159214
+Loss 0.08037544272840023 Acc 0.976434543132782 Perturbed Loss 0.10633991241455078
+Loss 0.0799324344843626 Acc 0.9784172832965851 Perturbed Loss 0.10128818463534117
+Loss 0.07518945872783661 Acc 0.9790539586544037 Perturbed Loss 0.09192015554755927
+Loss 0.08250687215477229 Acc 0.9748090708255768 Perturbed Loss 0.10259107917547226
+Loss 0.08201654486358166 Acc 0.9719539201259613 Perturbed Loss 0.10350036203861236
+Loss 0.09991580329835414 Acc 0.9688568818569183 Perturbed Loss 0.12292707055807113
+Loss 0.084942042902112 Acc 0.9761182367801666 Perturbed Loss 0.11030177358537913
+Epoch 2.0 val loss 0.05798259750008583 val acc 0.979303777217865
+Loss 0.07462062876671553 Acc 0.9746950829029083 Perturbed Loss 0.09665229614824057
+Loss 0.0639147962257266 Acc 0.9793907701969147 Perturbed Loss 0.07919526271522045
+Loss 0.07353248473256827 Acc 0.9799164903163909 Perturbed Loss 0.09159883048385381
+Loss 0.0731437160819769 Acc 0.9807469868659973 Perturbed Loss 0.09270050026476383
+Loss 0.0863573782145977 Acc 0.9775768935680389 Perturbed Loss 0.10731040939688682
+Loss 0.07966894673183561 Acc 0.9764344477653504 Perturbed Loss 0.10068639665842057
+Loss 0.06903608053922654 Acc 0.9828028106689453 Perturbed Loss 0.08382515132427215
+Loss 0.08195043373852968 Acc 0.9769206643104553 Perturbed Loss 0.09908169034868479
+Loss 0.08416466001421213 Acc 0.9782276105880737 Perturbed Loss 0.10312474370002747
+Loss 0.07719288188964128 Acc 0.9770413649082184 Perturbed Loss 0.09524935781955719
+Loss 0.06372495139017702 Acc 0.9783294761180877 Perturbed Loss 0.07929369278252124
+Loss 0.08931361317634583 Acc 0.9729543209075928 Perturbed Loss 0.11142349541187287
+Loss 0.08349442902952432 Acc 0.9765815913677216 Perturbed Loss 0.10599152941256762
+Loss 0.07527871625497937 Acc 0.9718033742904663 Perturbed Loss 0.09528843715786933
+Loss 0.07622978162020445 Acc 0.9773135900497436 Perturbed Loss 0.09147917933762073
+Epoch 3.0 val loss 0.05668198689818382 val acc 0.9791587591171265
+Loss 0.06794466277584434 Acc 0.9812992668151855 Perturbed Loss 0.08345003282651305
+Loss 0.07411089915782214 Acc 0.9821792340278626 Perturbed Loss 0.08975319497287274
+Loss 0.06412416215986014 Acc 0.9739813923835754 Perturbed Loss 0.07974013909697533
+Loss 0.08824106018990278 Acc 0.9799008703231812 Perturbed Loss 0.11150535501539707
+Loss 0.0765659112483263 Acc 0.9770845472812653 Perturbed Loss 0.09581763425841927
+Loss 0.07198490668088198 Acc 0.979171805381775 Perturbed Loss 0.09270721305161715
+Loss 0.0668252395093441 Acc 0.978779308795929 Perturbed Loss 0.08737149029970169
+Loss 0.07512438017874956 Acc 0.9777381527423858 Perturbed Loss 0.09550374202430248
+Loss 0.07485376602038742 Acc 0.9755196928977966 Perturbed Loss 0.0955991343781352
+Loss 0.0683906608261168 Acc 0.9761830317974091 Perturbed Loss 0.0931150272861123
+Loss 0.07879495158791543 Acc 0.9789419507980347 Perturbed Loss 0.10159151181578636
+Loss 0.08200880918651819 Acc 0.9756563520431518 Perturbed Loss 0.10192366532981395
+Loss 0.08045903913676739 Acc 0.9766540908813477 Perturbed Loss 0.09647605121135712
+Loss 0.07644910488277673 Acc 0.9799244034290314 Perturbed Loss 0.09506834421306848
+Loss 0.07177492847666145 Acc 0.980807489156723 Perturbed Loss 0.08848764264956116
+Epoch 4.0 val loss 0.05732444301247597 val acc 0.9790668487548828
+Loss 0.07219860304147005 Acc 0.9779013681411743 Perturbed Loss 0.08928943768143655
+Loss 0.07973789889365435 Acc 0.9801522612571716 Perturbed Loss 0.09799349311739207
+Loss 0.08210438247770072 Acc 0.9773228883743286 Perturbed Loss 0.10048459999263287
+Loss 0.0838853558152914 Acc 0.9730460202693939 Perturbed Loss 0.1008062706515193
+Loss 0.07355805929750205 Acc 0.9792774128913879 Perturbed Loss 0.09036039128899574
+Loss 0.08615109022706748 Acc 0.9757118892669677 Perturbed Loss 0.10710668157786131
+Loss 0.06843742467463017 Acc 0.9796321523189545 Perturbed Loss 0.08183803908526897
+Loss 0.06684694051742554 Acc 0.9777543711662292 Perturbed Loss 0.08036421820521354
+Loss 0.08002681836485863 Acc 0.9801511108875275 Perturbed Loss 0.0931858217343688
+Loss 0.07100594636052847 Acc 0.979026243686676 Perturbed Loss 0.09170879676938057
+Loss 0.0752583334594965 Acc 0.9775438594818116 Perturbed Loss 0.09173021376132966
+Loss 0.08257485710084439 Acc 0.9742204129695893 Perturbed Loss 0.10319677796214818
+Loss 0.08080448772758246 Acc 0.9801320374011994 Perturbed Loss 0.10023533754050731
+Loss 0.07655323147773743 Acc 0.9784765923023224 Perturbed Loss 0.09547242749482393
+Loss 0.07021796531975269 Acc 0.9780921936035156 Perturbed Loss 0.08629787351936102
+Epoch 5.0 val loss 0.057269539684057236 val acc 0.9793464541435242
+Loss 0.0744995536096394 Acc 0.9782688760757446 Perturbed Loss 0.09057622000575066
+Loss 0.07521825671195984 Acc 0.9791915488243103 Perturbed Loss 0.09442853149026632
+Loss 0.07361776005476713 Acc 0.9795580589771271 Perturbed Loss 0.0919922474399209
+Loss 0.08359660051763057 Acc 0.9758849012851715 Perturbed Loss 0.10048972461372614
+Loss 0.073749042712152 Acc 0.9820308542251587 Perturbed Loss 0.08663330459967256
+Loss 0.07544866394251586 Acc 0.97679612159729 Perturbed Loss 0.09876354053616523
+Loss 0.07463248383253812 Acc 0.9766956353187561 Perturbed Loss 0.09248759891837835
+Loss 0.07597904600203037 Acc 0.9815816795825958 Perturbed Loss 0.09472229819744825
+Loss 0.07448077328503132 Acc 0.9792025816440583 Perturbed Loss 0.09233531530946493
+Loss 0.08481405198574066 Acc 0.9767474007606506 Perturbed Loss 0.10251391004770995
+Loss 0.07438838018104434 Acc 0.9789269173145294 Perturbed Loss 0.09154747746884823
+Loss 0.07354307582601904 Acc 0.9781104505062104 Perturbed Loss 0.09327693544328212
+Loss 0.07538723993115128 Acc 0.9767236268520355 Perturbed Loss 0.08925663359463215
+Loss 0.07520847868174314 Acc 0.9812653887271882 Perturbed Loss 0.09276270240545273
+Loss 0.07641564946621657 Acc 0.9747828245162964 Perturbed Loss 0.09280776835978032
+Epoch 6.0 val loss 0.05933129042387009 val acc 0.978782057762146
+Loss 0.0826638438552618 Acc 0.9762243854999543 Perturbed Loss 0.1003585535287857
+Loss 0.08825777046382427 Acc 0.9778275668621064 Perturbed Loss 0.10412821188569069
+Loss 0.07220824707299471 Acc 0.9782238113880157 Perturbed Loss 0.08517488058656454
+Loss 0.06602562448009848 Acc 0.9820984780788422 Perturbed Loss 0.08186634331941604
+Loss 0.07196937900036574 Acc 0.9770749652385712 Perturbed Loss 0.0863251756131649
+Loss 0.07830284360796214 Acc 0.9780503273010254 Perturbed Loss 0.09469729524105787
+Loss 0.07922111112624407 Acc 0.9759794926643371 Perturbed Loss 0.09852544195950032
+Loss 0.06640323016792536 Acc 0.9808617293834686 Perturbed Loss 0.08061153192073106
+Loss 0.0755166271328926 Acc 0.9781914019584655 Perturbed Loss 0.08886636797338725
+Loss 0.07736884132027626 Acc 0.9787334001064301 Perturbed Loss 0.09136597782373429
+Loss 0.07785438720136881 Acc 0.9818992412090302 Perturbed Loss 0.09810767713934183
+Loss 0.07174945633858443 Acc 0.9790063083171845 Perturbed Loss 0.08755802806466818
+Loss 0.06798790946602822 Acc 0.9791348540782928 Perturbed Loss 0.08743108306080102
+Loss 0.06850675772875547 Acc 0.980869916677475 Perturbed Loss 0.0888924640417099
+Loss 0.08156234294176101 Acc 0.9779799282550812 Perturbed Loss 0.09739990182220935
+Epoch 7.0 val loss 0.05748642608523369 val acc 0.9785734415054321
+Loss 0.06866755947470665 Acc 0.977531578540802 Perturbed Loss 0.08238498803228139
+Loss 0.07014907913282514 Acc 0.9746393203735352 Perturbed Loss 0.08633696471340954
+Loss 0.06766500521451235 Acc 0.978260247707367 Perturbed Loss 0.0845521767064929
+Loss 0.07519878026098013 Acc 0.9768120634555817 Perturbed Loss 0.0901726283505559
+Loss 0.06646375393494963 Acc 0.9794679188728332 Perturbed Loss 0.08303539477288722
+Loss 0.07396793995983898 Acc 0.9777957677841187 Perturbed Loss 0.09017212294042111
+Loss 0.06547711707651616 Acc 0.9783267295360565 Perturbed Loss 0.08353410687297583
+Loss 0.06887842696160078 Acc 0.978629755973816 Perturbed Loss 0.08402871012687683
+Loss 0.07006105467677116 Acc 0.975977578163147 Perturbed Loss 0.09001794319599866
+Loss 0.06926186878234147 Acc 0.9755309700965882 Perturbed Loss 0.09066067531704902
+Loss 0.07481664836406708 Acc 0.978540757894516 Perturbed Loss 0.09727881196886301
+Loss 0.07349921055138112 Acc 0.9790720582008362 Perturbed Loss 0.09114145543426275
+Loss 0.06833435326814652 Acc 0.9788474261760711 Perturbed Loss 0.08851877760142088
+Loss 0.07611676439642906 Acc 0.978349472284317 Perturbed Loss 0.09422668781131506
+Loss 0.07511412097141147 Acc 0.9812732207775116 Perturbed Loss 0.08677410999312997
+Epoch 8.0 val loss 0.05906466394662857 val acc 0.979373037815094
+Loss 0.07122737769037485 Acc 0.9763460564613342 Perturbed Loss 0.09095590218901634
+Loss 0.07314126592129469 Acc 0.9786318302154541 Perturbed Loss 0.09042605839669704
+Loss 0.07378659281879664 Acc 0.9772792732715607 Perturbed Loss 0.09194279875606298
+Loss 0.06272557158023119 Acc 0.9797961294651032 Perturbed Loss 0.08209813341498375
+Loss 0.07287196595221758 Acc 0.9771493089199066 Perturbed Loss 0.09317659877240658
+Loss 0.0716642053425312 Acc 0.9767813837528229 Perturbed Loss 0.08563393697142602
+Loss 0.062491799648851154 Acc 0.9808065891265869 Perturbed Loss 0.07551840713247657
+Loss 0.080147769972682 Acc 0.9796271800994873 Perturbed Loss 0.09455751802772283
+Loss 0.0659236729890108 Acc 0.9793244552612305 Perturbed Loss 0.08380017269402742
+Loss 0.06840751476585866 Acc 0.9811580276489258 Perturbed Loss 0.08573957517743111
+Loss 0.06767950110137462 Acc 0.9805590093135834 Perturbed Loss 0.08312697678804398
+Loss 0.07260486103594303 Acc 0.9784223175048828 Perturbed Loss 0.08661309901624918
+Loss 0.07344306215643882 Acc 0.977706083059311 Perturbed Loss 0.08754203021526337
+Loss 0.07986528545618057 Acc 0.9764297378063201 Perturbed Loss 0.0993279406428337
+Loss 0.07374579830095172 Acc 0.9781238472461701 Perturbed Loss 0.08989845208823681
+Epoch 9.0 val loss 0.05634231120347977 val acc 0.9794838428497314
+Loss 0.07081284519284964 Acc 0.9826878237724305 Perturbed Loss 0.08323326174169779
+Loss 0.07034574009478092 Acc 0.9772678017616272 Perturbed Loss 0.08684744548052549
+Loss 0.06793806267902255 Acc 0.9810751473903656 Perturbed Loss 0.08326770221814513
+Loss 0.07836340360343456 Acc 0.9758074522018433 Perturbed Loss 0.09645387506112456
+Loss 0.06304023806005717 Acc 0.9824762761592865 Perturbed Loss 0.0733750681951642
+Loss 0.06722547924146056 Acc 0.9793344473838806 Perturbed Loss 0.08223223093897104
+Loss 0.06888019207865 Acc 0.978131240606308 Perturbed Loss 0.08319585841149092
+Loss 0.06451838048174978 Acc 0.9831043314933777 Perturbed Loss 0.07582612102851272
+Loss 0.06449268251657486 Acc 0.9778867149353028 Perturbed Loss 0.07820696108043194
+Loss 0.06894091973081232 Acc 0.9778212296962738 Perturbed Loss 0.08321231000125408
+Loss 0.06726505760103464 Acc 0.9785403430461883 Perturbed Loss 0.08163088858127594
+Loss 0.07561312910169363 Acc 0.9765702915191651 Perturbed Loss 0.09104247085750103
+Loss 0.06581680589355528 Acc 0.9800016522407532 Perturbed Loss 0.07917741389013827
+Loss 0.06707995399832725 Acc 0.9776314055919647 Perturbed Loss 0.08653693508356809
+Loss 0.06805906776338816 Acc 0.9782451641559601 Perturbed Loss 0.08402610529214144
+Epoch 10.0 val loss 0.05688807740807533 val acc 0.9796007871627808
+Loss 0.07209254478104413 Acc 0.9801198291778564 Perturbed Loss 0.08601207297295332
+Loss 0.06967271450906992 Acc 0.9817228233814239 Perturbed Loss 0.08233272314071655
+Loss 0.06534744050353765 Acc 0.9801271629333496 Perturbed Loss 0.07815138433128595
+Loss 0.06408445086330175 Acc 0.9790388572216034 Perturbed Loss 0.08100613038986922
+Loss 0.07074191063642501 Acc 0.9781415700912476 Perturbed Loss 0.08518350578844547
+Loss 0.06444186612963676 Acc 0.9778088629245758 Perturbed Loss 0.08106557305902243
+Loss 0.07195336010307074 Acc 0.9797599065303803 Perturbed Loss 0.08947439467534422
+Loss 0.0804586773738265 Acc 0.9779659521579742 Perturbed Loss 0.09605400092899799
+Loss 0.06076300378888846 Acc 0.9803515625 Perturbed Loss 0.07577287457883358
+Loss 0.06839774694293738 Acc 0.9814234566688538 Perturbed Loss 0.08278735894709825
+Loss 0.07403308521956205 Acc 0.9780155503749848 Perturbed Loss 0.08961003988981248
+Loss 0.07118497334420681 Acc 0.9798291778564453 Perturbed Loss 0.08663605384528637
+Loss 0.08097493141889572 Acc 0.9759336042404175 Perturbed Loss 0.09867196530103683
+Loss 0.06657859835773706 Acc 0.9810801672935486 Perturbed Loss 0.07881730161607266
+Loss 0.06659393437206745 Acc 0.9807806766033172 Perturbed Loss 0.08116207679733634
+Epoch 11.0 val loss 0.05674584209918976 val acc 0.9793660044670105
+Loss 0.08079549960792065 Acc 0.9789856958389282 Perturbed Loss 0.09459760434925556
+Loss 0.07255081381648779 Acc 0.9768696939945221 Perturbed Loss 0.09105232454836369
+Loss 0.07188667889684439 Acc 0.9819434297084808 Perturbed Loss 0.08678179353475571
+Loss 0.06409384937956929 Acc 0.979985181093216 Perturbed Loss 0.07817590158432722
+Loss 0.0665193116851151 Acc 0.983864015340805 Perturbed Loss 0.07927119603380561
+Loss 0.06342294594272971 Acc 0.9798789489269256 Perturbed Loss 0.07782406114041805
+Loss 0.06898223126307129 Acc 0.9797160959243775 Perturbed Loss 0.08222048845142126
+Loss 0.06522040367126465 Acc 0.9800759541988373 Perturbed Loss 0.07681560875847936
+Loss 0.0639388470351696 Acc 0.9782449543476105 Perturbed Loss 0.07591106221079827
+Loss 0.06235292185097933 Acc 0.9813128006458283 Perturbed Loss 0.0779745476320386
+Loss 0.07298458671197296 Acc 0.9803680574893952 Perturbed Loss 0.08990085693076252
+Loss 0.06527243476361036 Acc 0.976521235704422 Perturbed Loss 0.07659786108881235
+Loss 0.08244538228958845 Acc 0.9813887047767639 Perturbed Loss 0.10073951409198344
+Loss 0.06515936575829982 Acc 0.980735570192337 Perturbed Loss 0.08066660739481449
+Loss 0.07091287782415748 Acc 0.9748721754550934 Perturbed Loss 0.08613583732396364
+Epoch 12.0 val loss 0.055925402790308 val acc 0.9799315333366394
+Loss 0.0742798923701048 Acc 0.9789362812042236 Perturbed Loss 0.09031156634911895
+Loss 0.07767540238797664 Acc 0.9773536503314972 Perturbed Loss 0.0919022635743022
+Loss 0.07476187318563461 Acc 0.9786593782901764 Perturbed Loss 0.09123884011059999
+Loss 0.06489688046276569 Acc 0.9823921048641204 Perturbed Loss 0.07769828587770462
+Loss 0.0674130166042596 Acc 0.9797668850421906 Perturbed Loss 0.08218790393322706
+Loss 0.07290074165910482 Acc 0.9812730240821839 Perturbed Loss 0.08627986945211888
+Loss 0.07216805022209882 Acc 0.976444444656372 Perturbed Loss 0.08495664723217487
+Loss 0.07338868509978055 Acc 0.9773134422302246 Perturbed Loss 0.08637426543980836
+Loss 0.0706288074888289 Acc 0.9782576513290405 Perturbed Loss 0.0829824835807085
+Loss 0.06744645349681377 Acc 0.981075187921524 Perturbed Loss 0.08301412651315332
+Loss 0.07672068130224943 Acc 0.978758225440979 Perturbed Loss 0.09097322918474675
+Loss 0.07238971259444953 Acc 0.9811540532112122 Perturbed Loss 0.0851476676762104
+Loss 0.06242196448147297 Acc 0.9788765525817871 Perturbed Loss 0.07883568171411753
+Loss 0.06314522525295616 Acc 0.9809871208667755 Perturbed Loss 0.07778729125857353
+Loss 0.06863061226904392 Acc 0.9817061257362366 Perturbed Loss 0.08166184797883033
+Epoch 13.0 val loss 0.05597637593746185 val acc 0.9799572825431824
+Loss 0.06449183499440551 Acc 0.980503146648407 Perturbed Loss 0.07375392006710171
+Loss 0.07569036178290844 Acc 0.9770369100570678 Perturbed Loss 0.09397163797169923
+Loss 0.06962769586592912 Acc 0.9806758379936218 Perturbed Loss 0.08088049117475749
+Loss 0.07303675850853324 Acc 0.9779802834987641 Perturbed Loss 0.08912477657198906
+Loss 0.0711708989366889 Acc 0.9784200263023376 Perturbed Loss 0.08491037521511316
+Loss 0.0604133309237659 Acc 0.9812965941429138 Perturbed Loss 0.0739461617730558
+Loss 0.06288374021649361 Acc 0.9817573368549347 Perturbed Loss 0.07787056248635053
+Loss 0.058463714439421895 Acc 0.9807578945159912 Perturbed Loss 0.07085635013878346
+Loss 0.06483305601403117 Acc 0.9817072057723999 Perturbed Loss 0.07912201941013336
+Loss 0.06631472133100033 Acc 0.9750066113471985 Perturbed Loss 0.0868092542514205
+Loss 0.07154320243746043 Acc 0.9790000689029693 Perturbed Loss 0.0867474501952529
+Loss 0.06914616450667381 Acc 0.9766397762298584 Perturbed Loss 0.0830774524062872
+Loss 0.07151962419971823 Acc 0.9810718226432801 Perturbed Loss 0.08548955487087369
+Loss 0.07563446208834648 Acc 0.9746906471252441 Perturbed Loss 0.09460661437362433
+Loss 0.06573980666697025 Acc 0.9804771280288697 Perturbed Loss 0.07853214472532272
+Epoch 14.0 val loss 0.054628968238830566 val acc 0.9800986647605896
+Loss 0.07015843401663005 Acc 0.976244010925293 Perturbed Loss 0.08298939023166894
+Loss 0.07108368843793869 Acc 0.9795512127876281 Perturbed Loss 0.08424251891672611
+Loss 0.07766158143058419 Acc 0.9742716109752655 Perturbed Loss 0.09558351315557957
+Loss 0.07194855054840446 Acc 0.9800816392898559 Perturbed Loss 0.08743171442300081
+Loss 0.05799767155200243 Acc 0.9812963449954987 Perturbed Loss 0.07107799801975488
+Loss 0.059655073289759455 Acc 0.9811612820625305 Perturbed Loss 0.07154659015126526
+Loss 0.06844826009124517 Acc 0.9796752607822419 Perturbed Loss 0.08221527250483632
+Loss 0.08496426215395331 Acc 0.9784015607833862 Perturbed Loss 0.10043637966737151
+Loss 0.07872121077030897 Acc 0.9791799378395081 Perturbed Loss 0.09177241969853639
+Loss 0.07315428607165814 Acc 0.9801254963874817 Perturbed Loss 0.08547973606735468
+Loss 0.0680240041948855 Acc 0.9838128435611725 Perturbed Loss 0.08214501731097698
+Loss 0.06850095711648464 Acc 0.9777119171619415 Perturbed Loss 0.08208718035370112
+Loss 0.06536861468106508 Acc 0.9821076011657714 Perturbed Loss 0.07688016302883625
+Loss 0.06237030114978552 Acc 0.9820679640769958 Perturbed Loss 0.07548960771411657
+Loss 0.075057173371315 Acc 0.9784924459457397 Perturbed Loss 0.09185957875102758
+Epoch 15.0 val loss 0.055971428751945496 val acc 0.9797311425209045
+Loss 0.06765024103224278 Acc 0.9779866397380829 Perturbed Loss 0.0805616949312389
+Loss 0.07000863745808601 Acc 0.977359825372696 Perturbed Loss 0.0863751108199358
+Loss 0.07287307938560844 Acc 0.9801098072528839 Perturbed Loss 0.08528700713068246
+Loss 0.06491562448441983 Acc 0.9801511216163635 Perturbed Loss 0.07566907349973917
+Loss 0.06374153865501285 Acc 0.9807543349266052 Perturbed Loss 0.07806094825267791
+Loss 0.07481020215898752 Acc 0.9809801459312439 Perturbed Loss 0.08581235714256763
+Loss 0.07512142889201641 Acc 0.9806428837776184 Perturbed Loss 0.0884831465035677
+Loss 0.07770192485302686 Acc 0.9783234810829162 Perturbed Loss 0.09235371477901935
+Loss 0.06635927455499768 Acc 0.9802940607070922 Perturbed Loss 0.07965554684400558
+Loss 0.056686857473105194 Acc 0.9847317099571228 Perturbed Loss 0.06829916767776012
+Loss 0.0683065440133214 Acc 0.9786322593688965 Perturbed Loss 0.08202707517892122
+Loss 0.0659466634877026 Acc 0.9813421845436097 Perturbed Loss 0.07917117420583963
+Loss 0.062146332561969754 Acc 0.9813222420215607 Perturbed Loss 0.07800286781042814
+Loss 0.06828169105574489 Acc 0.9812147808074951 Perturbed Loss 0.0833847153186798
+Loss 0.059169519655406476 Acc 0.9833452010154724 Perturbed Loss 0.07050490949302912
+Epoch 16.0 val loss 0.055012330412864685 val acc 0.980064868927002
+Loss 0.07009147671982646 Acc 0.9801381087303161 Perturbed Loss 0.08537141542881727
+Loss 0.07242259558290243 Acc 0.982076359987259 Perturbed Loss 0.08546116214245558
+Loss 0.06139883046969771 Acc 0.9798597919940949 Perturbed Loss 0.07434834249317646
+Loss 0.07076012466102838 Acc 0.9790527677536011 Perturbed Loss 0.08641753582283855
+Loss 0.06403067223727703 Acc 0.9809641826152802 Perturbed Loss 0.07859205599874258
+Loss 0.06085644718259573 Acc 0.9798546397686004 Perturbed Loss 0.07300920255482196
+Loss 0.07114277128130198 Acc 0.9766449654102325 Perturbed Loss 0.08875092536211014
+Loss 0.06764386801049113 Acc 0.9810737633705139 Perturbed Loss 0.08189103599637747
+Loss 0.055791470017284156 Acc 0.983086576461792 Perturbed Loss 0.07136423571035266
+Loss 0.08015450060367585 Acc 0.9773568761348724 Perturbed Loss 0.09257798563688993
+Loss 0.06552125204354525 Acc 0.9785830736160278 Perturbed Loss 0.07835638392716646
+Loss 0.07106972347944975 Acc 0.9783298480510711 Perturbed Loss 0.08726988438516856
+Loss 0.06580873593688011 Acc 0.9757216799259186 Perturbed Loss 0.07711256667971611
+Loss 0.06588890831917524 Acc 0.9793847382068634 Perturbed Loss 0.08221394557505846
+Loss 0.0677737239934504 Acc 0.9829447531700134 Perturbed Loss 0.07972304079681634
+Epoch 17.0 val loss 0.0562165342271328 val acc 0.9802071452140808
+Loss 0.06828823357820511 Acc 0.9805600357055664 Perturbed Loss 0.08180487308651209
+Loss 0.07281667120754719 Acc 0.9802584707736969 Perturbed Loss 0.0865069642663002
+Loss 0.06602002555504441 Acc 0.9773525023460388 Perturbed Loss 0.07682572674006223
+Loss 0.0653144715540111 Acc 0.9824443185329437 Perturbed Loss 0.07955891918390989
+Loss 0.0650862131640315 Acc 0.9814075446128845 Perturbed Loss 0.07815044740214944
+Loss 0.05509775508195162 Acc 0.9826840245723725 Perturbed Loss 0.07176933387294411
+Loss 0.060803516805171966 Acc 0.9794801962375641 Perturbed Loss 0.07609010767191648
+Loss 0.06101954226382077 Acc 0.9812855684757232 Perturbed Loss 0.07513785986229778
+Loss 0.06957100434228777 Acc 0.9805295503139496 Perturbed Loss 0.08182671943679452
+Loss 0.06498049076646567 Acc 0.978934051990509 Perturbed Loss 0.07749379828572273
+Loss 0.0630001138523221 Acc 0.9782413041591644 Perturbed Loss 0.07559717878699303
+Loss 0.07677713755518198 Acc 0.9750926351547241 Perturbed Loss 0.09164147287607192
+Loss 0.06109290776774287 Acc 0.9793024373054504 Perturbed Loss 0.07621431313455104
+Loss 0.07913384575396776 Acc 0.9790591251850128 Perturbed Loss 0.09322798181325197
+Loss 0.06070204559713602 Acc 0.9783684468269348 Perturbed Loss 0.07138541309162974
+Epoch 18.0 val loss 0.05500640720129013 val acc 0.9802544713020325
+Loss 0.06812881778925657 Acc 0.9770360028743744 Perturbed Loss 0.08118138499557973
+Loss 0.07067119996994733 Acc 0.978920785188675 Perturbed Loss 0.0840761486813426
+Loss 0.07087296463549136 Acc 0.9795336818695068 Perturbed Loss 0.08231130752712489
+Loss 0.057132976241409776 Acc 0.9793412077426911 Perturbed Loss 0.06887751400470733
+Loss 0.06284434767439961 Acc 0.9824016237258911 Perturbed Loss 0.07288789838552474
+Loss 0.06534899966791272 Acc 0.9777917993068695 Perturbed Loss 0.07939915355294942
+Loss 0.08537777151912451 Acc 0.9759622967243194 Perturbed Loss 0.10063844714313745
+Loss 0.06425074931234122 Acc 0.9798600780963898 Perturbed Loss 0.07626058520749211
+Loss 0.061632286049425604 Acc 0.9810691320896149 Perturbed Loss 0.07366108195856214
+Loss 0.06358520831912756 Acc 0.9800343787670136 Perturbed Loss 0.07556627970188856
+Loss 0.06995779592543841 Acc 0.9794433867931366 Perturbed Loss 0.08165813472121954
+Loss 0.06181268319487572 Acc 0.9784974563121795 Perturbed Loss 0.0737570620700717
+Loss 0.06630324393510818 Acc 0.9795212388038635 Perturbed Loss 0.07711235158145428
+Loss 0.07671247389167547 Acc 0.9802622640132904 Perturbed Loss 0.09304384779185057
+Loss 0.06072188548743725 Acc 0.9827682709693909 Perturbed Loss 0.0715238293632865
+Epoch 19.0 val loss 0.05535907670855522 val acc 0.9802532196044922
+[17:32:47] INFO     `Trainer.fit` stopped: `max_epochs=20` reached.                  rank_zero.py:53
+Epoch 19/19 ━━━━━━━━━━━━━━━━━━━━━━━━━━ 750/750 0:03:45 • 0:00:00 3.36it/s train/loss: 0.061         
+                                                                          val_loss: 0.055           
+[17:32:49] INFO     Created a temporary directory at /tmp/tmpm_nddlbt             instantiator.py:21
+           INFO     Writing /tmp/tmpm_nddlbt/_remote_module_non_scriptable.py     instantiator.py:76
+[17:32:50] INFO     Global seed set to 304                                                seed.py:54
+           INFO     Using dummy logger. Metrics for this run will not be saved.  logger_config.py:51
+           WARNING  /home/alexli/git/JupiterCVML/kore/configs/third_party/lightning_ warnings.py:109
+                    config.py:71: RuntimeWarning: Unable to save checkpoints to W&B                 
+                    folder since you are not logging to W&B. Saving to default                      
+                    location.                                                                       
+                      warnings.warn(                                                                
+                                                                                                    
+           INFO     Trainer already configured with model summary callbacks: [<class rank_zero.py:53
+                    'lightning.pytorch.callbacks.rich_model_summary.RichModelSummary                
+                    '>]. Skipping setting a default `ModelSummary` callback.                        
+           INFO     GPU available: True (cuda), used: True                           rank_zero.py:53
+           INFO     TPU available: False, using: 0 TPU cores                         rank_zero.py:53
+           INFO     IPU available: False, using: 0 IPUs                              rank_zero.py:53
+           INFO     HPU available: False, using: 0 HPUs                              rank_zero.py:53
+Config: /home/alexli/git/JupiterCVML/kore/SegTrainingConfig_None.gen.yaml
+           INFO     Loading model weights from                                       rank_zero.py:53
+                    /home/alexli/logs/data/epoch=99-val_loss=0.096904.ckpt for                      
+                    finetuning                                                                      
+           INFO     Prepare dataset: world_size=1, local_rank=0       jupiter_seg_data_module.py:139
+           INFO     cutnpaste_augmentation_classes=['Humans',         jupiter_seg_data_module.py:143
+                    'Tractors or Vehicles']                                                         
+           INFO     Train dataframe size: 3000                                       rank_zero.py:53
+           INFO     Validation dataframe size: 1000                                  rank_zero.py:53
+           INFO     Adjusting sampling weights                          seg_weighted_sampling.py:158
+           INFO     [rank: 0] Global seed set to 304                                      seed.py:54
+           INFO     Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1         distributed.py:257
+           INFO     Added key: store_based_barrier_key:1 to store for rank:  distributed_c10d.py:228
+                    0                                                                               
+           INFO     Rank 0: Completed store-based barrier for                distributed_c10d.py:262
+                    key:store_based_barrier_key:1 with 1 nodes.                                     
+           INFO     ---------------------------------------------------------------- rank_zero.py:53
+                    ------------------------------------                                            
+                    distributed_backend=nccl                                                        
+                    All distributed processes registered. Starting with 1 processes                 
+                    ----------------------------------------------------------------                
+                    ------------------------------------                                            
+                                                                                                    
+           INFO     You are using a CUDA device ('NVIDIA GeForce RTX 4070 Ti') that  rank_zero.py:53
+                    has Tensor Cores. To properly utilize them, you should set                      
+                    `torch.set_float32_matmul_precision('medium' | 'high')` which                   
+                    will trade-off precision for performance. For more details, read                
+                    https://pytorch.org/docs/stable/generated/torch.set_float32_matm                
+                    ul_precision.html#torch.set_float32_matmul_precision                            
+[17:32:51] WARNING  /home/alexli/miniconda3/envs/cvml/lib/python3.10/site-packages/l warnings.py:109
+                    ightning/pytorch/callbacks/model_checkpoint.py:617: UserWarning:                
+                    Checkpoint directory /home/alexli/git/scripts/checkpoints exists                
+                    and is not empty.                                                               
+                      rank_zero_warn(f"Checkpoint directory {dirpath} exists and is                 
+                    not empty.")                                                                    
+                                                                                                    
+           INFO     LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]                             cuda.py:58
+SAMConfig(lr=0.0006, weight_decay=0.0001, betas=(0.9, 0.999), eps=1e-12, rho=0.1, adaptive=False)
+           WARNING  /home/alexli/miniconda3/envs/cvml/lib/python3.10/site-packages/l warnings.py:109
+                    ightning/pytorch/core/optimizer.py:321: RuntimeWarning: The lr                  
+                    scheduler dict contains the key(s) ['monitor'], but the keys                    
+                    will be ignored. You need to call `lr_scheduler.step()` manually                
+                    in manual optimization.                                                         
+                      rank_zero_warn(                                                               
+                                                                                                    
+Loss 0.08817633353173733 Acc 0.9663278329372406 Perturbed Loss 0.12208191439509392
+[17:33:22] WARNING  /home/alexli/miniconda3/envs/cvml/lib/python3.10/site-packages/t warnings.py:109
+                    orch/optim/lr_scheduler.py:156: UserWarning: The epoch parameter                
+                    in `scheduler.step()` was not necessary and is being deprecated                 
+                    where possible. Please use `scheduler.step()` to step the                       
+                    scheduler. During the deprecation, if epoch is different from                   
+                    None, the closed form is used instead of the new chainable form,                
+                    where available. Please open an issue if you are unable to                      
+                    replicate your use case:                                                        
+                    https://github.com/pytorch/pytorch/issues/new/choose.                           
+                      warnings.warn(EPOCH_DEPRECATION_WARNING, UserWarning)                         
+                                                                                                    
+Loss 0.07697895683348178 Acc 0.9719236314296722 Perturbed Loss 0.10090844031423331
+Loss 0.08849492838606238 Acc 0.9757779181003571 Perturbed Loss 0.11041775967925788
+Loss 0.08369891503825784 Acc 0.974624080657959 Perturbed Loss 0.10241220680996775
+Loss 0.08152751505374908 Acc 0.9757243752479553 Perturbed Loss 0.10406236473470926
+Loss 0.09946200374513864 Acc 0.9671232736110688 Perturbed Loss 0.12842182788997888
+Loss 0.08449692521244287 Acc 0.9725803530216217 Perturbed Loss 0.11451308138668537
+Loss 0.08314672632142901 Acc 0.9783743703365326 Perturbed Loss 0.10246655454859138
+Loss 0.08743387948721647 Acc 0.9742945718765259 Perturbed Loss 0.10535825222730637
+Loss 0.09254644498229027 Acc 0.9663170278072357 Perturbed Loss 0.12018711693584919
+Loss 0.08066928077489138 Acc 0.9769148182868957 Perturbed Loss 0.09834166828542948
+Loss 0.08518008269369602 Acc 0.9763630604743958 Perturbed Loss 0.10456821601837873
+Loss 0.08061811119318009 Acc 0.9776446723937988 Perturbed Loss 0.0996785749681294
+Loss 0.07205978877842427 Acc 0.9825960600376129 Perturbed Loss 0.08749870959669352
+Loss 0.0813473112694919 Acc 0.97616495013237 Perturbed Loss 0.10160606423392891
+Epoch 0.0 val loss 0.055619675666093826 val acc 0.9792627692222595
+Loss 0.08048416953533888 Acc 0.974996964931488 Perturbed Loss 0.10070861227810383
+Loss 0.07745456574484706 Acc 0.9723980450630187 Perturbed Loss 0.09893293462693692
+Loss 0.08321093313395977 Acc 0.9665729153156281 Perturbed Loss 0.10245857007801533
+Loss 0.08010066952556372 Acc 0.9736725866794587 Perturbed Loss 0.09823190167546272
+Loss 0.0876168306171894 Acc 0.9753962969779968 Perturbed Loss 0.10775406753644347
+Loss 0.08043930297717453 Acc 0.9760891401767731 Perturbed Loss 0.09745044078677893
+Loss 0.08912002675235271 Acc 0.9750399303436279 Perturbed Loss 0.10730679072439671
+Loss 0.0752377151697874 Acc 0.978338497877121 Perturbed Loss 0.09146808590739966
+Loss 0.07735007068142295 Acc 0.9758436071872711 Perturbed Loss 0.09823981635272502
+Loss 0.08339221447706223 Acc 0.975124374628067 Perturbed Loss 0.10194326255470515
+Loss 0.07681314187124372 Acc 0.9692872238159179 Perturbed Loss 0.09450652739033102
+Loss 0.09181169342249632 Acc 0.9739952683448792 Perturbed Loss 0.10925369635224343
+Loss 0.07542338609695434 Acc 0.9813712453842163 Perturbed Loss 0.08998973086476326
+Loss 0.0925288256071508 Acc 0.973306668996811 Perturbed Loss 0.11592220660299063
+Loss 0.08026496924459935 Acc 0.9758236610889435 Perturbed Loss 0.10153805911540985
+Epoch 1.0 val loss 0.05813506990671158 val acc 0.9793614745140076
+Loss 0.07431449458003044 Acc 0.9741096115112304 Perturbed Loss 0.08834297286346554
+Loss 0.08632836148142814 Acc 0.9789816725254059 Perturbed Loss 0.10277366939932107
+Loss 0.0749093621969223 Acc 0.9785476410388947 Perturbed Loss 0.08922991298139095
+Loss 0.06937197495251894 Acc 0.9823039066791535 Perturbed Loss 0.08269543897360564
+Loss 0.0763890302553773 Acc 0.9810645425319672 Perturbed Loss 0.09333080805838108
+Loss 0.07294668834656477 Acc 0.9775624966621399 Perturbed Loss 0.08789494547992945
+Loss 0.08323468435555696 Acc 0.9784858703613282 Perturbed Loss 0.10266844537109136
+Loss 0.07386564329266548 Acc 0.9815421938896179 Perturbed Loss 0.09127440270036459
+Loss 0.08041153654456139 Acc 0.9769823253154755 Perturbed Loss 0.10241596441715956
+Loss 0.07769870214164257 Acc 0.9789915931224823 Perturbed Loss 0.09641628194600343
+Loss 0.07127857875078916 Acc 0.9794847750663758 Perturbed Loss 0.08659596063196659
+Loss 0.0814910252392292 Acc 0.9749089527130127 Perturbed Loss 0.09608851365745068
+Loss 0.07990007016807794 Acc 0.9734604716300964 Perturbed Loss 0.09669560544192791
+Loss 0.09676774449646473 Acc 0.967724643945694 Perturbed Loss 0.11241937372833491
+Loss 0.08169862888753414 Acc 0.9757684135437011 Perturbed Loss 0.0973216813057661
+Epoch 2.0 val loss 0.05649036541581154 val acc 0.9796364307403564
+Loss 0.07268202867358924 Acc 0.9763183796405792 Perturbed Loss 0.0882110046967864
+Loss 0.06681704413145781 Acc 0.9795174980163575 Perturbed Loss 0.07934986881911754
+Loss 0.07487226609140635 Acc 0.9799297392368317 Perturbed Loss 0.0854670188575983
+Loss 0.07419702224433422 Acc 0.9802867448329926 Perturbed Loss 0.08894880414009095
+Loss 0.08552259344607592 Acc 0.977967426776886 Perturbed Loss 0.10544447228312492
+Loss 0.0809897867590189 Acc 0.9765838313102723 Perturbed Loss 0.0972811270877719
+Loss 0.07087324693799019 Acc 0.9826418042182923 Perturbed Loss 0.08593314830213786
+Loss 0.08091255478560924 Acc 0.9772253525257111 Perturbed Loss 0.09417801715433598
+Loss 0.08426537983119488 Acc 0.9789389228820801 Perturbed Loss 0.09834467865526676
+Loss 0.07975866194814443 Acc 0.9772855091094971 Perturbed Loss 0.08967496041208506
+Loss 0.06693269453942775 Acc 0.9777727711200714 Perturbed Loss 0.08192808002233505
+Loss 0.08492054231464863 Acc 0.9723004949092865 Perturbed Loss 0.10283187869936228
+Loss 0.08848693449050188 Acc 0.9762467241287232 Perturbed Loss 0.10545255154371262
+Loss 0.07552225347608328 Acc 0.9724192559719086 Perturbed Loss 0.08975278973579406
+Loss 0.07843407165259123 Acc 0.9774237489700317 Perturbed Loss 0.09322070516645908
+Epoch 3.0 val loss 0.058141425251960754 val acc 0.9790240526199341
+Loss 0.06927859891206026 Acc 0.9810979151725769 Perturbed Loss 0.0830421882122755
+Loss 0.07633395295590162 Acc 0.9821355509757995 Perturbed Loss 0.09171456716954708
+Loss 0.06728961780667304 Acc 0.9748781979084015 Perturbed Loss 0.08053334705531597
+Loss 0.08921920306049287 Acc 0.9793445944786072 Perturbed Loss 0.10250663671642542
+Loss 0.0803408868610859 Acc 0.9758197367191315 Perturbed Loss 0.09455272844061255
+Loss 0.07565658815205097 Acc 0.9779016363620758 Perturbed Loss 0.09088388727977872
+Loss 0.07014914989471435 Acc 0.9778889989852906 Perturbed Loss 0.08540156621485949
+Loss 0.0723698066547513 Acc 0.9792714536190033 Perturbed Loss 0.0826045985519886
+Loss 0.07354224115610122 Acc 0.9756953036785125 Perturbed Loss 0.08931039797142148
+Loss 0.06710355686023832 Acc 0.9784543418884277 Perturbed Loss 0.08555438766255975
+Loss 0.07876793965697289 Acc 0.9777125895023346 Perturbed Loss 0.09657184578478337
+Loss 0.08035828739404678 Acc 0.9772545278072358 Perturbed Loss 0.09659631393849849
+Loss 0.0791547979786992 Acc 0.9763735449314117 Perturbed Loss 0.08962063316255808
+Loss 0.07547829803079367 Acc 0.979969493150711 Perturbed Loss 0.08989617221057415
+Loss 0.07299877598881721 Acc 0.9804158961772919 Perturbed Loss 0.08606466747820378
+Epoch 4.0 val loss 0.05803914740681648 val acc 0.9797832369804382
+Loss 0.07248188816010952 Acc 0.9787384140491485 Perturbed Loss 0.08600760199129581
+Loss 0.07846738640218973 Acc 0.9803339898586273 Perturbed Loss 0.09477359816431999
+Loss 0.0864063462242484 Acc 0.9771079277992248 Perturbed Loss 0.10757627706974744
+Loss 0.08723477635532617 Acc 0.9723097717761994 Perturbed Loss 0.10243784494698048
+Loss 0.07403284650295973 Acc 0.9786416375637055 Perturbed Loss 0.090269425958395
+Loss 0.084374946244061 Acc 0.9749722492694854 Perturbed Loss 0.09992768693715334
+Loss 0.07231201346963644 Acc 0.9795262134075164 Perturbed Loss 0.08414229094982147
+Loss 0.0712098620645702 Acc 0.97797332406044 Perturbed Loss 0.08416650738567114
+Loss 0.07781522508710623 Acc 0.979870924949646 Perturbed Loss 0.08917193483561277
+Loss 0.07080913726240397 Acc 0.9779478180408477 Perturbed Loss 0.08675211954861879
+Loss 0.07495357509702444 Acc 0.9770449042320252 Perturbed Loss 0.0880659382417798
+Loss 0.08164849869906902 Acc 0.9744548726081849 Perturbed Loss 0.09666502594947815
+Loss 0.07928770512342453 Acc 0.9800938439369201 Perturbed Loss 0.09651189640164376
+Loss 0.07934402048587799 Acc 0.9781487345695495 Perturbed Loss 0.0920949486270547
+Loss 0.07204115012660622 Acc 0.97780801653862 Perturbed Loss 0.08380660125985742
+Epoch 5.0 val loss 0.05855632945895195 val acc 0.9792936444282532
+Loss 0.0752291402593255 Acc 0.9787126326560974 Perturbed Loss 0.08642931800335646
+Loss 0.0775951610505581 Acc 0.9796311664581299 Perturbed Loss 0.0963966528326273
+Loss 0.0725873263552785 Acc 0.9794460642337799 Perturbed Loss 0.09069370206445455
+Loss 0.08553339459002018 Acc 0.9752821302413941 Perturbed Loss 0.09764647338539362
+Loss 0.07311829073354602 Acc 0.981941864490509 Perturbed Loss 0.0843759692274034
+Loss 0.07684098584577441 Acc 0.9765649616718293 Perturbed Loss 0.08940174227580427
+Loss 0.07174711506813765 Acc 0.9764782464504242 Perturbed Loss 0.08455497693270445
+Loss 0.07366376914083958 Acc 0.981672431230545 Perturbed Loss 0.08380894932895899
+Loss 0.07175648767501115 Acc 0.978115222454071 Perturbed Loss 0.0860389358177781
+Loss 0.08325119817629456 Acc 0.9768957340717316 Perturbed Loss 0.09764716260135174
+Loss 0.07503580583259463 Acc 0.9778376638889312 Perturbed Loss 0.0863236741349101
+Loss 0.07428395418450236 Acc 0.9784483766555786 Perturbed Loss 0.09202082332223654
+Loss 0.07458881695754827 Acc 0.9771174299716949 Perturbed Loss 0.08600264480337501
+Loss 0.0766819378733635 Acc 0.9811900639533997 Perturbed Loss 0.08909134902060031
+Loss 0.07692511145025492 Acc 0.9753098356723785 Perturbed Loss 0.0925100165978074
+Epoch 6.0 val loss 0.060307834297418594 val acc 0.978752851486206
+Loss 0.08503550570458174 Acc 0.9751565158367157 Perturbed Loss 0.10179972667247057
+Loss 0.08601257510483265 Acc 0.9770323812961579 Perturbed Loss 0.09972683453932404
+Loss 0.0740440184250474 Acc 0.9774198007583618 Perturbed Loss 0.08666582770645619
+Loss 0.06466918557882309 Acc 0.9821412777900695 Perturbed Loss 0.07724182525649667
+Loss 0.0715450694411993 Acc 0.9771651458740235 Perturbed Loss 0.0818643306568265
+Loss 0.07697951827198267 Acc 0.9782466411590576 Perturbed Loss 0.08776099395006895
+Loss 0.07780459109693766 Acc 0.9755248403549195 Perturbed Loss 0.092133815176785
+Loss 0.0679371352121234 Acc 0.9808859205245972 Perturbed Loss 0.07789149809628725
+Loss 0.07451211579144001 Acc 0.9778112173080444 Perturbed Loss 0.08548602528870106
+Loss 0.0783643476292491 Acc 0.9786628079414368 Perturbed Loss 0.09213888730853796
+Loss 0.07992527432739735 Acc 0.9818206048011779 Perturbed Loss 0.09082529354840517
+Loss 0.07245611121878028 Acc 0.9789834892749787 Perturbed Loss 0.08285875173285603
+Loss 0.06696420352905989 Acc 0.9789585304260254 Perturbed Loss 0.08197626870125532
+Loss 0.06839094117283821 Acc 0.9815687155723571 Perturbed Loss 0.08590315748006105
+Loss 0.07828411150723696 Acc 0.9784266316890716 Perturbed Loss 0.08945412632077933
+Epoch 7.0 val loss 0.057772476226091385 val acc 0.9786034226417542
+Loss 0.06718725141137838 Acc 0.9771194171905517 Perturbed Loss 0.07923612006008625
+Loss 0.07159590047784149 Acc 0.9740559232234954 Perturbed Loss 0.08438066042028368
+Loss 0.06596606398001313 Acc 0.9787335658073425 Perturbed Loss 0.07888280808925628
+Loss 0.07534603800624609 Acc 0.9760605359077453 Perturbed Loss 0.09021349020302295
+Loss 0.06753582175821066 Acc 0.9793255090713501 Perturbed Loss 0.08064940873533487
+Loss 0.07058233284391463 Acc 0.977586305141449 Perturbed Loss 0.08162407020106911
+Loss 0.06246486371383071 Acc 0.9792448735237121 Perturbed Loss 0.07462040081620216
+Loss 0.06790492717176676 Acc 0.9780941188335419 Perturbed Loss 0.07850572418421507
+Loss 0.07241723069921135 Acc 0.9760035705566407 Perturbed Loss 0.08797892700880766
+Loss 0.06665739510208368 Acc 0.9771022737026215 Perturbed Loss 0.07921606317162513
+Loss 0.07681267127394677 Acc 0.979241099357605 Perturbed Loss 0.09008791830390692
+Loss 0.07353553997352719 Acc 0.979526127576828 Perturbed Loss 0.0867576939240098
+Loss 0.06853015325963498 Acc 0.9791704380512237 Perturbed Loss 0.07999162215739489
+Loss 0.0800807162374258 Acc 0.9780941498279572 Perturbed Loss 0.08999930053949357
+Loss 0.07450022906064988 Acc 0.9818410038948059 Perturbed Loss 0.08627500345930457
+Epoch 8.0 val loss 0.059015702456235886 val acc 0.9795041084289551
+Loss 0.07220294512808323 Acc 0.9762139880657196 Perturbed Loss 0.08728332649916411
+Loss 0.07027110680937768 Acc 0.9792631089687347 Perturbed Loss 0.08396848902106285
+Loss 0.07201407132670283 Acc 0.9777766847610474 Perturbed Loss 0.08411797448992729
+Loss 0.061613162383437156 Acc 0.9800928294658661 Perturbed Loss 0.07099706687033176
+Loss 0.07051627814769745 Acc 0.9774770510196685 Perturbed Loss 0.08555405251681805
+Loss 0.0677313769608736 Acc 0.9776654815673829 Perturbed Loss 0.07828791972249746
+Loss 0.06265855222940445 Acc 0.981312165260315 Perturbed Loss 0.07232827648520469
+Loss 0.07997394684702158 Acc 0.9797403049468995 Perturbed Loss 0.08983520176261664
+Loss 0.06416119676083326 Acc 0.9796040832996369 Perturbed Loss 0.07552698772400618
+Loss 0.06746200557798147 Acc 0.9821203303337097 Perturbed Loss 0.08105576105415821
+Loss 0.06751448027789593 Acc 0.9801897656917572 Perturbed Loss 0.07830397885292768
+Loss 0.07100962348282337 Acc 0.9787295234203338 Perturbed Loss 0.0822370190732181
+Loss 0.0726871719956398 Acc 0.9779551112651825 Perturbed Loss 0.08198648147284984
+Loss 0.08116906438022851 Acc 0.9768477630615234 Perturbed Loss 0.0972031071782112
+Loss 0.0761087446846068 Acc 0.977528315782547 Perturbed Loss 0.08664548087865115
+Epoch 9.0 val loss 0.055910252034664154 val acc 0.9796900153160095
+Loss 0.07182126417756081 Acc 0.9828115427494049 Perturbed Loss 0.08397481203079224
+Loss 0.07046795561909676 Acc 0.9767655420303345 Perturbed Loss 0.08106514874845744
+Loss 0.06536309950053693 Acc 0.9812261152267456 Perturbed Loss 0.07646358603611589
+Loss 0.07934026075527072 Acc 0.974899697303772 Perturbed Loss 0.09231366721913219
+Loss 0.06292704731225968 Acc 0.9826802277565002 Perturbed Loss 0.0755553112924099
+Loss 0.06546392251737415 Acc 0.979303492307663 Perturbed Loss 0.07890605590306222
+Loss 0.06788996491581202 Acc 0.9775726139545441 Perturbed Loss 0.0809498368948698
+Loss 0.06660391934216023 Acc 0.9827978193759919 Perturbed Loss 0.07869329767301679
+Loss 0.06466304171830416 Acc 0.9781290054321289 Perturbed Loss 0.0744929976388812
+Loss 0.07157391712069511 Acc 0.9776749730110168 Perturbed Loss 0.08244117660447955
+Loss 0.06774202283471822 Acc 0.978544214963913 Perturbed Loss 0.07936056308448315
+Loss 0.07465758983045817 Acc 0.9771843230724335 Perturbed Loss 0.08728303026407958
+Loss 0.06701588018797339 Acc 0.9805635559558868 Perturbed Loss 0.0778939397726208
+Loss 0.06751165427267551 Acc 0.9779185092449189 Perturbed Loss 0.07906085673719644
+Loss 0.06532754454761744 Acc 0.9778424882888794 Perturbed Loss 0.07690075501799583
+Epoch 10.0 val loss 0.05714248865842819 val acc 0.9797635078430176
+Loss 0.06985053358599544 Acc 0.9802807867527008 Perturbed Loss 0.08488053323701024
+Loss 0.06972310372628271 Acc 0.9815974307060241 Perturbed Loss 0.08128147542476655
+Loss 0.06438791202381253 Acc 0.9801875710487366 Perturbed Loss 0.07578484833240509
+Loss 0.06334228686988354 Acc 0.9793805193901062 Perturbed Loss 0.07333431333303451
+Loss 0.07321742840111256 Acc 0.9779849481582642 Perturbed Loss 0.08288761891424656
+Loss 0.0646688725426793 Acc 0.9781314730644226 Perturbed Loss 0.07592960596084594
+Loss 0.07012595960870385 Acc 0.9793739223480225 Perturbed Loss 0.08033391015604138
+Loss 0.07794095583260059 Acc 0.9784006178379059 Perturbed Loss 0.08997070580720902
+Loss 0.0601314152777195 Acc 0.9799385094642639 Perturbed Loss 0.07090922184288502
+Loss 0.06526511922478676 Acc 0.9816449904441833 Perturbed Loss 0.07883506324142217
+Loss 0.06985006406903267 Acc 0.9785128974914551 Perturbed Loss 0.08372941195964813
+Loss 0.07181308329105378 Acc 0.9800569844245911 Perturbed Loss 0.08238095082342625
+Loss 0.08319030422717333 Acc 0.9761097192764282 Perturbed Loss 0.09309881810098887
+Loss 0.06409473415464163 Acc 0.9810116469860077 Perturbed Loss 0.07573574181646109
+Loss 0.06497095987200736 Acc 0.9804898595809937 Perturbed Loss 0.07564829275012017
+Epoch 11.0 val loss 0.056350331753492355 val acc 0.9792085886001587
+Loss 0.08008782554417848 Acc 0.9787933373451233 Perturbed Loss 0.0915038424357772
+Loss 0.07393578071147204 Acc 0.9768102943897248 Perturbed Loss 0.08650274459272624
+Loss 0.0723589688166976 Acc 0.9821537888050079 Perturbed Loss 0.08213372200727463
+Loss 0.06364577770233154 Acc 0.9798379588127136 Perturbed Loss 0.07529825691133737
+Loss 0.06533455554395914 Acc 0.9839422678947449 Perturbed Loss 0.07254647271707654
+Loss 0.06054658316075802 Acc 0.9800099766254425 Perturbed Loss 0.0770066606067121
+Loss 0.06864441450685263 Acc 0.9793546748161316 Perturbed Loss 0.08181826923042536
+Loss 0.06513346249237656 Acc 0.9800264894962311 Perturbed Loss 0.07465585159137846
+Loss 0.06263481423258782 Acc 0.9782621920108795 Perturbed Loss 0.07232801031321287
+Loss 0.06117077387869358 Acc 0.981783664226532 Perturbed Loss 0.07298075091093778
+Loss 0.07461944937705994 Acc 0.9790239322185517 Perturbed Loss 0.08451046448200941
+Loss 0.06491646291688084 Acc 0.9769858384132385 Perturbed Loss 0.07411262553185224
+Loss 0.07857969741337001 Acc 0.9817167532444 Perturbed Loss 0.0902545865252614
+Loss 0.06760025318711996 Acc 0.980458927154541 Perturbed Loss 0.0810473759099841
+Loss 0.07142323780804873 Acc 0.9741535663604737 Perturbed Loss 0.08061842031776906
+Epoch 12.0 val loss 0.055997006595134735 val acc 0.9797345995903015
+Epoch 12/19 ━━━━━━━━━━━━━━━━━━━━━━━━━━ 750/750 0:03:45 • 0:00:00 3.37it/s train/loss: 0.071         
+                                                                          val_loss: 0.056           
+[18:27:19] INFO     Created a temporary directory at /tmp/tmpvdjxys4h             instantiator.py:21
+           INFO     Writing /tmp/tmpvdjxys4h/_remote_module_non_scriptable.py     instantiator.py:76
+           INFO     Global seed set to 304                                                seed.py:54
+           INFO     Using dummy logger. Metrics for this run will not be saved.  logger_config.py:51
+           WARNING  /home/alexli/git/JupiterCVML/kore/configs/third_party/lightning_ warnings.py:109
+                    config.py:71: RuntimeWarning: Unable to save checkpoints to W&B                 
+                    folder since you are not logging to W&B. Saving to default                      
+                    location.                                                                       
+                      warnings.warn(                                                                
+                                                                                                    
+           INFO     Trainer already configured with model summary callbacks: [<class rank_zero.py:53
+                    'lightning.pytorch.callbacks.rich_model_summary.RichModelSummary                
+                    '>]. Skipping setting a default `ModelSummary` callback.                        
+           INFO     GPU available: True (cuda), used: True                           rank_zero.py:53
+           INFO     TPU available: False, using: 0 TPU cores                         rank_zero.py:53
+           INFO     IPU available: False, using: 0 IPUs                              rank_zero.py:53
+           INFO     HPU available: False, using: 0 HPUs                              rank_zero.py:53
+Config: /home/alexli/git/JupiterCVML/kore/SegTrainingConfig_None.gen.yaml
+           INFO     Loading model weights from                                       rank_zero.py:53
+                    /home/alexli/logs/data/epoch=99-val_loss=0.096904.ckpt for                      
+                    finetuning                                                                      
+           INFO     Prepare dataset: world_size=1, local_rank=0       jupiter_seg_data_module.py:139
+           INFO     cutnpaste_augmentation_classes=['Humans',         jupiter_seg_data_module.py:143
+                    'Tractors or Vehicles']                                                         
+           INFO     Train dataframe size: 3000                                       rank_zero.py:53
+           INFO     Validation dataframe size: 1000                                  rank_zero.py:53
+           INFO     Adjusting sampling weights                          seg_weighted_sampling.py:158
+           INFO     [rank: 0] Global seed set to 304                                      seed.py:54
+           INFO     Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1         distributed.py:257
+           INFO     Added key: store_based_barrier_key:1 to store for rank:  distributed_c10d.py:228
+                    0                                                                               
+           INFO     Rank 0: Completed store-based barrier for                distributed_c10d.py:262
+                    key:store_based_barrier_key:1 with 1 nodes.                                     
+           INFO     ---------------------------------------------------------------- rank_zero.py:53
+                    ------------------------------------                                            
+                    distributed_backend=nccl                                                        
+                    All distributed processes registered. Starting with 1 processes                 
+                    ----------------------------------------------------------------                
+                    ------------------------------------                                            
+                                                                                                    
+           INFO     You are using a CUDA device ('NVIDIA GeForce RTX 4070 Ti') that  rank_zero.py:53
+                    has Tensor Cores. To properly utilize them, you should set                      
+                    `torch.set_float32_matmul_precision('medium' | 'high')` which                   
+                    will trade-off precision for performance. For more details, read                
+                    https://pytorch.org/docs/stable/generated/torch.set_float32_matm                
+                    ul_precision.html#torch.set_float32_matmul_precision                            
+[18:27:20] WARNING  /home/alexli/miniconda3/envs/cvml/lib/python3.10/site-packages/l warnings.py:109
+                    ightning/pytorch/callbacks/model_checkpoint.py:617: UserWarning:                
+                    Checkpoint directory /home/alexli/git/scripts/checkpoints exists                
+                    and is not empty.                                                               
+                      rank_zero_warn(f"Checkpoint directory {dirpath} exists and is                 
+                    not empty.")                                                                    
+                                                                                                    
+           INFO     LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]                             cuda.py:58
+SAMConfig(lr=0.0001, weight_decay=0.0001, betas=(0.9, 0.999), eps=1e-12, rho=0.1, adaptive=True)
+           WARNING  /home/alexli/miniconda3/envs/cvml/lib/python3.10/site-packages/l warnings.py:109
+                    ightning/pytorch/core/optimizer.py:321: RuntimeWarning: The lr                  
+                    scheduler dict contains the key(s) ['monitor'], but the keys                    
+                    will be ignored. You need to call `lr_scheduler.step()` manually                
+                    in manual optimization.                                                         
+                      rank_zero_warn(                                                               
+                                                                                                    
+Loss 0.09372944436967373 Acc 0.964686188697815 Perturbed Loss 0.11982369698584079
+[18:27:51] WARNING  /home/alexli/miniconda3/envs/cvml/lib/python3.10/site-packages/t warnings.py:109
+                    orch/optim/lr_scheduler.py:156: UserWarning: The epoch parameter                
+                    in `scheduler.step()` was not necessary and is being deprecated                 
+                    where possible. Please use `scheduler.step()` to step the                       
+                    scheduler. During the deprecation, if epoch is different from                   
+                    None, the closed form is used instead of the new chainable form,                
+                    where available. Please open an issue if you are unable to                      
+                    replicate your use case:                                                        
+                    https://github.com/pytorch/pytorch/issues/new/choose.                           
+                      warnings.warn(EPOCH_DEPRECATION_WARNING, UserWarning)                         
+                                                                                                    
+Loss 0.08052079942077399 Acc 0.9694533503055572 Perturbed Loss 0.09813878275454044
+Loss 0.08849381830543279 Acc 0.9738259720802307 Perturbed Loss 0.10960589241236449
+Loss 0.08684731304645538 Acc 0.9715783929824829 Perturbed Loss 0.10155062032863497
+Loss 0.08118364598602057 Acc 0.9749491024017334 Perturbed Loss 0.09694297518581152
+Loss 0.09423000905662775 Acc 0.9658532202243805 Perturbed Loss 0.11167244099080563
+Loss 0.08230627503246069 Acc 0.9694762563705445 Perturbed Loss 0.09649583097547293
+Loss 0.08080293837934732 Acc 0.9758411037921906 Perturbed Loss 0.09555222295224666
+Loss 0.08542627491056919 Acc 0.9723611986637115 Perturbed Loss 0.09939903654158115
+Loss 0.09042798511683942 Acc 0.9668982887268066 Perturbed Loss 0.10551725748926401
+Loss 0.07537699177861214 Acc 0.9743239855766297 Perturbed Loss 0.08457183919847011
+Loss 0.08243086351081728 Acc 0.9731623721122742 Perturbed Loss 0.0945977995544672
+Loss 0.07564241958782077 Acc 0.9766463708877563 Perturbed Loss 0.09089249286800623
+Loss 0.06896881468594074 Acc 0.9813398098945618 Perturbed Loss 0.08222733844071627
+Loss 0.0812811385653913 Acc 0.9728759717941284 Perturbed Loss 0.094232168328017
+Epoch 0.0 val loss 0.05272957682609558 val acc 0.9799773693084717
+Loss 0.08112924173474312 Acc 0.9714080691337585 Perturbed Loss 0.09621065720915795
+Loss 0.07721251462586225 Acc 0.9710794401168823 Perturbed Loss 0.09032455170527101
+Loss 0.0799995656684041 Acc 0.9649618601799012 Perturbed Loss 0.09429190047085285
+Loss 0.07705404717475176 Acc 0.9732618427276611 Perturbed Loss 0.08987971063703298
+Loss 0.08229121252894402 Acc 0.9734754359722138 Perturbed Loss 0.0939271549321711
+Loss 0.0770859676040709 Acc 0.9762157881259919 Perturbed Loss 0.08999310525134206
+Loss 0.08330251466482878 Acc 0.9734288835525513 Perturbed Loss 0.09365347031503916
+Loss 0.07320265702903271 Acc 0.9784237229824067 Perturbed Loss 0.08280012201517821
+Loss 0.07669418174773454 Acc 0.9750548827648163 Perturbed Loss 0.09035259300842881
+Loss 0.08131840936839581 Acc 0.9741764044761658 Perturbed Loss 0.09291069138795137
+Loss 0.0804967599362135 Acc 0.9658795630931855 Perturbed Loss 0.09377019803971053
+Loss 0.08875058751553297 Acc 0.9718916881084442 Perturbed Loss 0.10327943988144397
+Loss 0.07418174963444471 Acc 0.9803563392162323 Perturbed Loss 0.08366956271231174
+Loss 0.09254030449315906 Acc 0.969349513053894 Perturbed Loss 0.10753645747900009
+Loss 0.07745986044406891 Acc 0.9752770805358887 Perturbed Loss 0.09043982047587633
+Epoch 1.0 val loss 0.05207974836230278 val acc 0.9799704551696777
+Loss 0.07094396959990262 Acc 0.9721369361877441 Perturbed Loss 0.08074557930231094
+Loss 0.08478741738945246 Acc 0.9768123137950897 Perturbed Loss 0.09728800036013126
+Loss 0.07416908957064151 Acc 0.976208233833313 Perturbed Loss 0.08540210656821728
+Loss 0.06584954105317592 Acc 0.9814680290222167 Perturbed Loss 0.07571089696139097
+Loss 0.07558491975069045 Acc 0.9785508632659912 Perturbed Loss 0.08901496686041355
+Loss 0.07073600754141808 Acc 0.9753107345104217 Perturbed Loss 0.08123367551714182
+Loss 0.07767155531793833 Acc 0.9780285215377807 Perturbed Loss 0.09146959781646728
+Loss 0.06974740881472825 Acc 0.9804382240772247 Perturbed Loss 0.08174563352018595
+Loss 0.07827782928943634 Acc 0.9756408989429474 Perturbed Loss 0.089731783606112
+Loss 0.07539911687374115 Acc 0.9785273659229279 Perturbed Loss 0.08561181623488665
+Loss 0.07072765376418828 Acc 0.9793251395225525 Perturbed Loss 0.07962448820471764
+Loss 0.07901318036019803 Acc 0.9740376818180084 Perturbed Loss 0.08823535103350878
+Loss 0.0833925436809659 Acc 0.9703868126869202 Perturbed Loss 0.09694861225783825
+Loss 0.09732482813298703 Acc 0.9658013939857483 Perturbed Loss 0.11005665563046932
+Loss 0.07631092119961977 Acc 0.975602604150772 Perturbed Loss 0.0884147285297513
+Epoch 2.0 val loss 0.051731523126363754 val acc 0.9802611470222473
+Loss 0.07319805275648833 Acc 0.9736009466648102 Perturbed Loss 0.0870701353624463
+Loss 0.06473418146371841 Acc 0.9789902472496033 Perturbed Loss 0.07667241845279932
+Loss 0.06985894858837127 Acc 0.9792345774173736 Perturbed Loss 0.07800753433257342
+Loss 0.07396767262369394 Acc 0.9794694817066193 Perturbed Loss 0.08870652746409177
+Loss 0.08235821507871151 Acc 0.9770702564716339 Perturbed Loss 0.09354144498705864
+Loss 0.07748001987114549 Acc 0.975014464855194 Perturbed Loss 0.08583147455006838
+Loss 0.06522660698741674 Acc 0.9826888084411621 Perturbed Loss 0.07544521573930979
+Loss 0.07803524769842625 Acc 0.9756306636333466 Perturbed Loss 0.089264265447855
+Loss 0.08120421834290027 Acc 0.9774963974952697 Perturbed Loss 0.08992643415927887
+Loss 0.07530696723610163 Acc 0.9773503839969635 Perturbed Loss 0.08460992481559515
+Loss 0.06624217672273516 Acc 0.9751455128192902 Perturbed Loss 0.07524474466219544
+Loss 0.08318744368851184 Acc 0.9728807485103608 Perturbed Loss 0.09226372055709361
+Loss 0.08534358453005553 Acc 0.9756438565254212 Perturbed Loss 0.09785309050232172
+Loss 0.07566469095647335 Acc 0.9700312685966491 Perturbed Loss 0.0842312167584896
+Loss 0.07470745205879212 Acc 0.9775145435333252 Perturbed Loss 0.08435492642223835
+Epoch 3.0 val loss 0.05232059583067894 val acc 0.980146050453186
+Loss 0.06679537964984775 Acc 0.9802620184421539 Perturbed Loss 0.07841986417770386
+Loss 0.07607175529003143 Acc 0.9826501858234405 Perturbed Loss 0.08386927258223295
+Loss 0.06373182699084282 Acc 0.974017139673233 Perturbed Loss 0.07414353400468826
+Loss 0.08435086373239756 Acc 0.9782527005672454 Perturbed Loss 0.0977062376216054
+Loss 0.07311073178425431 Acc 0.9766010880470276 Perturbed Loss 0.08259985258802771
+Loss 0.07264900173991919 Acc 0.9780045819282531 Perturbed Loss 0.08110800065100193
+Loss 0.06464155443012715 Acc 0.9783282053470611 Perturbed Loss 0.07360568895936012
+Loss 0.06955249048769474 Acc 0.9776539838314057 Perturbed Loss 0.07831739533692599
+Loss 0.06967087551951408 Acc 0.9736902260780335 Perturbed Loss 0.08047969479113817
+Loss 0.06413216153159737 Acc 0.9771578323841095 Perturbed Loss 0.07670673167333007
+Loss 0.07760727275162935 Acc 0.9788625812530518 Perturbed Loss 0.08846642956137657
+Loss 0.07896225687116384 Acc 0.9753646981716156 Perturbed Loss 0.09077953476458787
+Loss 0.07587463483214378 Acc 0.9760976266860962 Perturbed Loss 0.08661489404737949
+Loss 0.07362474530935287 Acc 0.9784702003002167 Perturbed Loss 0.08521646823734046
+Loss 0.07393085572868585 Acc 0.9786375427246093 Perturbed Loss 0.0840484913997352
+Epoch 4.0 val loss 0.052614543586969376 val acc 0.9799630045890808
+Loss 0.07226860508322716 Acc 0.9757213747501373 Perturbed Loss 0.08379340913146734
+Loss 0.07619135931134224 Acc 0.9793435037136078 Perturbed Loss 0.0877056822180748
+Loss 0.08039658542722464 Acc 0.9759461915493012 Perturbed Loss 0.09233088299632072
+Loss 0.08381276097148657 Acc 0.9710479164123536 Perturbed Loss 0.09489758990705013
+Loss 0.07372143354266882 Acc 0.9783075213432312 Perturbed Loss 0.08709056645631791
+Loss 0.07957746654748916 Acc 0.9743685019016266 Perturbed Loss 0.09294214352965355
+Loss 0.06632220545783639 Acc 0.9798087561130524 Perturbed Loss 0.07442113738507032
+Loss 0.065815241150558 Acc 0.9775439488887787 Perturbed Loss 0.0767914429679513
+Loss 0.07592005677521228 Acc 0.9785906457901001 Perturbed Loss 0.08529791932553053
+Loss 0.07153458029031753 Acc 0.9764597475528717 Perturbed Loss 0.08202567778527736
+Loss 0.07577969148755073 Acc 0.9769244217872619 Perturbed Loss 0.08653969585895538
+Loss 0.08503584567457438 Acc 0.9732768130302429 Perturbed Loss 0.09621124282479286
+Loss 0.07795132391154766 Acc 0.9795856177806854 Perturbed Loss 0.08784020092338324
+Loss 0.07730789955705404 Acc 0.9770942807197571 Perturbed Loss 0.08849032390862703
+Loss 0.07011020366102456 Acc 0.9777282786369323 Perturbed Loss 0.07925121022388339
+Epoch 5.0 val loss 0.052356425672769547 val acc 0.9801270365715027
+Loss 0.07324350081384182 Acc 0.9781821513175964 Perturbed Loss 0.08137049380689859
+Loss 0.0743612540140748 Acc 0.9783709096908569 Perturbed Loss 0.08458505917340517
+Loss 0.0664865704625845 Acc 0.9799579274654389 Perturbed Loss 0.07878334175795317
+Loss 0.08206070978194475 Acc 0.9756483125686646 Perturbed Loss 0.09110654097050429
+Loss 0.07214058458805084 Acc 0.9822970938682556 Perturbed Loss 0.07864816946908831
+Loss 0.07473484618589282 Acc 0.9761492168903351 Perturbed Loss 0.08632430965080858
+Loss 0.07404489483684301 Acc 0.9746170568466187 Perturbed Loss 0.0855186378210783
+Loss 0.07541986279189587 Acc 0.9794987165927886 Perturbed Loss 0.08512139409780502
+Loss 0.06894619051367044 Acc 0.9782587397098541 Perturbed Loss 0.07911047719419002
+Loss 0.0816509205661714 Acc 0.9759195637702942 Perturbed Loss 0.0915730088762939
+Loss 0.07482115559279919 Acc 0.9765370666980744 Perturbed Loss 0.08326237317174673
+Loss 0.07167436085641384 Acc 0.9782290172576904 Perturbed Loss 0.08454178312793374
+Loss 0.07373656518757343 Acc 0.9761610949039459 Perturbed Loss 0.08483176350593567
+Loss 0.0730712254345417 Acc 0.9809244275093079 Perturbed Loss 0.08260625708848238
+Loss 0.0784282835945487 Acc 0.9722755491733551 Perturbed Loss 0.08941021881997585
+Epoch 6.0 val loss 0.05272988975048065 val acc 0.9798988103866577
+Loss 0.08453782748430967 Acc 0.971310373544693 Perturbed Loss 0.09677865441888571
+Loss 0.08462425399571658 Acc 0.9759885680675506 Perturbed Loss 0.0953758848644793
+Loss 0.07158375874161721 Acc 0.9781147027015686 Perturbed Loss 0.07911175150424242
+Loss 0.06296694567427039 Acc 0.981666316986084 Perturbed Loss 0.0732712622731924
+Loss 0.0707382651604712 Acc 0.9771174263954162 Perturbed Loss 0.0776151836104691
+Loss 0.0742209867015481 Acc 0.9785769748687744 Perturbed Loss 0.08160343125462532
+Loss 0.07749927274882794 Acc 0.9732913732528686 Perturbed Loss 0.0909554486721754
+Loss 0.06213803328573704 Acc 0.9808423471450806 Perturbed Loss 0.07128919079899788
+Loss 0.07306307779625058 Acc 0.9759729409217834 Perturbed Loss 0.08478825051337481
+Loss 0.07657748512923718 Acc 0.9782970547676086 Perturbed Loss 0.08559492025524378
+Loss 0.07750769603997469 Acc 0.9818350076675415 Perturbed Loss 0.09021769594401122
+Loss 0.07099016653373838 Acc 0.9787841665744782 Perturbed Loss 0.07788150694221257
+Loss 0.06683464467525482 Acc 0.9774249255657196 Perturbed Loss 0.07611827064305544
+Loss 0.06760901868343354 Acc 0.9804302322864532 Perturbed Loss 0.07568332646042109
+Loss 0.07566939193755388 Acc 0.977041517496109 Perturbed Loss 0.08548489656299353
+Epoch 7.0 val loss 0.051908716559410095 val acc 0.9802018404006958
+Loss 0.06641286101192236 Acc 0.9750161480903625 Perturbed Loss 0.07553744744509458
+Loss 0.0721804029494524 Acc 0.9720145034790039 Perturbed Loss 0.08210169704630971
+Loss 0.06631272306665778 Acc 0.9779275250434876 Perturbed Loss 0.07879408992826939
+Loss 0.072629634141922 Acc 0.9768196201324463 Perturbed Loss 0.08131363470107317
+Loss 0.06394068406894803 Acc 0.9794362366199494 Perturbed Loss 0.07159310270100833
+Loss 0.07232500089332461 Acc 0.97680792927742 Perturbed Loss 0.08348721828311682
+Loss 0.061971050463616846 Acc 0.9762388050556183 Perturbed Loss 0.07153759445995092
+Loss 0.06640268586575986 Acc 0.9780908286571502 Perturbed Loss 0.07488071713596582
+Loss 0.06940180527046323 Acc 0.9760797762870789 Perturbed Loss 0.08077277289703488
+Loss 0.06616842603310942 Acc 0.9766498482227326 Perturbed Loss 0.07491911701858044
+Loss 0.07728283353149891 Acc 0.9779702830314636 Perturbed Loss 0.08776852793991566
+Loss 0.07196977376937866 Acc 0.978794002532959 Perturbed Loss 0.08194426961243152
+Loss 0.06722710181027651 Acc 0.9784760689735412 Perturbed Loss 0.07678294073790312
+Loss 0.0754218190535903 Acc 0.9765845561027526 Perturbed Loss 0.08621158808469773
+Loss 0.07448227364569902 Acc 0.9802232134342194 Perturbed Loss 0.08311549844220281
+Epoch 8.0 val loss 0.0526101216673851 val acc 0.98030024766922
+Loss 0.0707355834543705 Acc 0.9753476428985596 Perturbed Loss 0.08117195598781109
+Loss 0.06966443784534931 Acc 0.9769213223457336 Perturbed Loss 0.07821153696626425
+Loss 0.07451989555731416 Acc 0.9765233278274537 Perturbed Loss 0.08349412450566888
+Loss 0.06237074803560972 Acc 0.9785046672821045 Perturbed Loss 0.07305804967880249
+Loss 0.06888603989034892 Acc 0.9772709810733795 Perturbed Loss 0.07708447676151992
+Loss 0.07077275339514016 Acc 0.976371591091156 Perturbed Loss 0.07842614755034447
+Loss 0.060707514621317384 Acc 0.9815449154376984 Perturbed Loss 0.06821935590356588
+Loss 0.07868063163012266 Acc 0.9799585247039795 Perturbed Loss 0.08772966090589762
+Loss 0.06423834178596735 Acc 0.9787934827804565 Perturbed Loss 0.07342024110257625
+Loss 0.06573210790753364 Acc 0.9826426517963409 Perturbed Loss 0.07690107960253954
+Loss 0.0686332219094038 Acc 0.979607743024826 Perturbed Loss 0.07668269976973534
+Loss 0.07011600075289608 Acc 0.9770412147045135 Perturbed Loss 0.07875454429537058
+Loss 0.0693051978200674 Acc 0.9780150377750396 Perturbed Loss 0.07848248392343521
+Loss 0.0796006440371275 Acc 0.975742154121399 Perturbed Loss 0.09308793559670449
+Loss 0.07291679948568344 Acc 0.977936362028122 Perturbed Loss 0.08299136944115162
+Epoch 9.0 val loss 0.0513572134077549 val acc 0.9804812669754028
+Loss 0.0724394141510129 Acc 0.982447464466095 Perturbed Loss 0.08219317942857743
+Loss 0.0708944721147418 Acc 0.9768152451515197 Perturbed Loss 0.07917187169194222
+Loss 0.0640974447131157 Acc 0.9815304243564605 Perturbed Loss 0.0705122660472989
+Loss 0.07636150259524584 Acc 0.9741891539096832 Perturbed Loss 0.08729341931641102
+Loss 0.061253694389015435 Acc 0.9824424171447754 Perturbed Loss 0.06777254292741418
+Loss 0.06463833963498473 Acc 0.978494074344635 Perturbed Loss 0.07203407190740109
+Loss 0.06804574061185122 Acc 0.9767253363132476 Perturbed Loss 0.07684472471475601
+Loss 0.061364651443436745 Acc 0.9836913537979126 Perturbed Loss 0.0705643985234201
+Loss 0.06465632669627666 Acc 0.9773425364494324 Perturbed Loss 0.07218495141714812
+Loss 0.07068147568032146 Acc 0.9755931711196899 Perturbed Loss 0.08109690997749568
+Loss 0.06678828928619623 Acc 0.9776927769184113 Perturbed Loss 0.07636450421065093
+Loss 0.07601742003113031 Acc 0.9757998788356781 Perturbed Loss 0.08683860890567302
+Loss 0.06844593576155603 Acc 0.9793485081195832 Perturbed Loss 0.07687216157093645
+Loss 0.06790620274841785 Acc 0.9778355157375336 Perturbed Loss 0.07971718695014715
+Loss 0.06723643742501735 Acc 0.9757363629341126 Perturbed Loss 0.07714246440678835
+Epoch 10.0 val loss 0.05180864408612251 val acc 0.9805269241333008
+Loss 0.06942217955365777 Acc 0.9799524295330048 Perturbed Loss 0.07927106543444097
+Loss 0.07049842668697238 Acc 0.9821554243564605 Perturbed Loss 0.0807289233803749
+Loss 0.06555816177278757 Acc 0.980322539806366 Perturbed Loss 0.07453523240983487
+Loss 0.06201988955959678 Acc 0.9788077390193939 Perturbed Loss 0.0716137257963419
+Loss 0.07155544249340892 Acc 0.9784192359447479 Perturbed Loss 0.08468641269952058
+Loss 0.06291410263627767 Acc 0.9770571649074554 Perturbed Loss 0.07338068824261428
+Loss 0.07327696394175291 Acc 0.9780866718292236 Perturbed Loss 0.08431705728173255
+Loss 0.0771509800106287 Acc 0.9772383642196655 Perturbed Loss 0.08702200058847666
+Loss 0.058704063519835474 Acc 0.9784404706954956 Perturbed Loss 0.0679205510020256
+Loss 0.0646224807575345 Acc 0.9810923564434052 Perturbed Loss 0.07376147020608187
+Loss 0.07051374658942222 Acc 0.9768617451190948 Perturbed Loss 0.08023395702242851
+Loss 0.07198559861630201 Acc 0.9788914704322815 Perturbed Loss 0.0817845468968153
+Loss 0.0793696178123355 Acc 0.975315363407135 Perturbed Loss 0.0896632507815957
+Loss 0.06622055523097516 Acc 0.9803359842300415 Perturbed Loss 0.07509711552411318
+Loss 0.06612072305753827 Acc 0.9797452247142792 Perturbed Loss 0.07341260824352502
+Epoch 11.0 val loss 0.051795318722724915 val acc 0.9802645444869995
+Loss 0.08000717651098967 Acc 0.9783582425117493 Perturbed Loss 0.08812180064618587
+Loss 0.0773613978549838 Acc 0.975862443447113 Perturbed Loss 0.0861237232387066
+Loss 0.06943612165749073 Acc 0.9806020307540894 Perturbed Loss 0.07721954107284545
+Loss 0.0644083958491683 Acc 0.9781129014492035 Perturbed Loss 0.07335555208846926
+Loss 0.06437760090455413 Acc 0.9842951655387878 Perturbed Loss 0.07248529572039843
+Loss 0.06095915418118238 Acc 0.9786582946777344 Perturbed Loss 0.07026054691523313
+Loss 0.06794088272377849 Acc 0.9785138690471649 Perturbed Loss 0.0750090155377984
+Loss 0.0656087782420218 Acc 0.9799301564693451 Perturbed Loss 0.07278115730732679
+Loss 0.06458773352205753 Acc 0.9771942734718323 Perturbed Loss 0.07079124346375465
+Loss 0.06200762519612908 Acc 0.9807121574878692 Perturbed Loss 0.06956562267616391
+Loss 0.0770039583183825 Acc 0.9775565814971924 Perturbed Loss 0.08675318440422415
+Loss 0.06402361599728465 Acc 0.9755004847049713 Perturbed Loss 0.07034851856529713
+Loss 0.07819896473549307 Acc 0.9805792236328125 Perturbed Loss 0.08990860561840236
+Loss 0.06346311196684837 Acc 0.980712993144989 Perturbed Loss 0.07317243140190839
+Loss 0.0717563134804368 Acc 0.9737941205501557 Perturbed Loss 0.07992022320628166
+Epoch 12.0 val loss 0.051066651940345764 val acc 0.9805887937545776
+Loss 0.06942157490178942 Acc 0.9773578381538391 Perturbed Loss 0.0784055788628757
+Loss 0.07962671924382449 Acc 0.975886024236679 Perturbed Loss 0.08836482796818018
+Loss 0.08125525090843438 Acc 0.9767211067676544 Perturbed Loss 0.09134648814797401
+Loss 0.0646735916659236 Acc 0.9823302757740021 Perturbed Loss 0.07141319565474986
+Loss 0.06673903143964707 Acc 0.9776254224777222 Perturbed Loss 0.07763333529233933
+Loss 0.07123599391430617 Acc 0.9810250556468963 Perturbed Loss 0.08014425680041314
+Loss 0.07456081513315439 Acc 0.9754315507411957 Perturbed Loss 0.08120491877198219
+Loss 0.07338176796212792 Acc 0.9770796346664429 Perturbed Loss 0.0843466485477984
+Loss 0.07315228363499045 Acc 0.9783231389522552 Perturbed Loss 0.08021657476201653
+Loss 0.06895211428403854 Acc 0.9784844613075256 Perturbed Loss 0.07766867453232408
+Loss 0.07663384445011616 Acc 0.9777637207508088 Perturbed Loss 0.08416934788227082
+Loss 0.07191549751907587 Acc 0.9807309353351593 Perturbed Loss 0.08040361605584621
+Loss 0.06443526202812791 Acc 0.9774847149848938 Perturbed Loss 0.07363669630140066
+Loss 0.06501502076163888 Acc 0.9794600653648377 Perturbed Loss 0.07477482689544558
+Loss 0.0710074345767498 Acc 0.980900000333786 Perturbed Loss 0.08159015715122223
+Epoch 13.0 val loss 0.051964715123176575 val acc 0.9804617166519165
+Loss 0.0662073646299541 Acc 0.9789827609062195 Perturbed Loss 0.07365149641409516
+Loss 0.07834783963859081 Acc 0.9746320223808289 Perturbed Loss 0.08873178139328956
+Loss 0.06900992859154939 Acc 0.9798686480522156 Perturbed Loss 0.07813801560550929
+Loss 0.07261122725903987 Acc 0.9770515835285187 Perturbed Loss 0.08186273409053683
+Loss 0.072571613304317 Acc 0.977468181848526 Perturbed Loss 0.08017479538917542
+Loss 0.06038232943043113 Acc 0.9795747351646423 Perturbed Loss 0.07128476329147816
+Loss 0.06492326274514199 Acc 0.9810756802558899 Perturbed Loss 0.07303617473691702
+Loss 0.06078189015388489 Acc 0.9789858424663543 Perturbed Loss 0.06920228701084852
+Loss 0.06512327305972576 Acc 0.9808915233612061 Perturbed Loss 0.07306666068732738
+Loss 0.0673950644955039 Acc 0.9725257766246795 Perturbed Loss 0.08106982018798589
+Loss 0.07144245430827141 Acc 0.977436990737915 Perturbed Loss 0.08090231213718653
+Loss 0.07142986051738262 Acc 0.9737907683849335 Perturbed Loss 0.07892198078334331
+Loss 0.072950398363173 Acc 0.9800692665576934 Perturbed Loss 0.08287517612800002
+Loss 0.07527513835579157 Acc 0.9730129516124726 Perturbed Loss 0.0849951010942459
+Loss 0.06757864192128181 Acc 0.9797108316421509 Perturbed Loss 0.07497422412037849
+Epoch 14.0 val loss 0.05141669511795044 val acc 0.9804703593254089
+Loss 0.07487290139310061 Acc 0.9727219045162201 Perturbed Loss 0.08383999738842249
+Loss 0.07185347374528646 Acc 0.9767549562454224 Perturbed Loss 0.0846263489127159
+Loss 0.08143577359616756 Acc 0.9719820690155029 Perturbed Loss 0.09081919178366661
+Loss 0.07250537095591426 Acc 0.9778624951839447 Perturbed Loss 0.08184195470064878
+Loss 0.057494381163269284 Acc 0.9808027696609497 Perturbed Loss 0.06376116760075093
+Loss 0.06245125994551927 Acc 0.9801756238937378 Perturbed Loss 0.06934413095936179
+Loss 0.06670932688750326 Acc 0.9801425075531006 Perturbed Loss 0.07611471768468618
+Loss 0.0890018343552947 Acc 0.9785039162635804 Perturbed Loss 0.09908326677978038
+Loss 0.0791168437898159 Acc 0.9781805062294007 Perturbed Loss 0.08792362764477729
+Loss 0.0715492088906467 Acc 0.9789382171630859 Perturbed Loss 0.07986555274575949
+Loss 0.06523356042802333 Acc 0.983360675573349 Perturbed Loss 0.07158122448250652
+Loss 0.07053934805095195 Acc 0.9762842273712158 Perturbed Loss 0.08006882932037115
+Loss 0.06532589331269265 Acc 0.9799333131313324 Perturbed Loss 0.07549260035157204
+Loss 0.06405750002712012 Acc 0.9811741626262664 Perturbed Loss 0.07381950911134481
+Loss 0.07953690994530917 Acc 0.9756257116794587 Perturbed Loss 0.09010618835687638
+Epoch 15.0 val loss 0.051657531410455704 val acc 0.9804239273071289
+Loss 0.07052135096862912 Acc 0.9763229274749756 Perturbed Loss 0.0784662228450179
+Loss 0.07031690787523985 Acc 0.9765150070190429 Perturbed Loss 0.07777339275926351
+Loss 0.07451941262930632 Acc 0.9791679573059082 Perturbed Loss 0.08191650833934545
+Loss 0.06493025165051222 Acc 0.97965207695961 Perturbed Loss 0.07340552914887667
+Loss 0.06348395397886634 Acc 0.979541529417038 Perturbed Loss 0.07049832187592983
+Loss 0.07234749224036932 Acc 0.9805018031597137 Perturbed Loss 0.07962675087153911
+Loss 0.07799921046942472 Acc 0.978409743309021 Perturbed Loss 0.08499803315848112
+Loss 0.0797023256123066 Acc 0.9778488171100617 Perturbed Loss 0.08785056870430707
+Loss 0.06560216875746847 Acc 0.9792875730991364 Perturbed Loss 0.07553182750940322
+Loss 0.058132435400038956 Acc 0.9828085076808929 Perturbed Loss 0.0647516256570816
+Loss 0.0692657108232379 Acc 0.9777716720104217 Perturbed Loss 0.07767425801604987
+Loss 0.06790230900980532 Acc 0.9805255091190338 Perturbed Loss 0.07645039517432452
+Loss 0.06658605091273785 Acc 0.9773599624633789 Perturbed Loss 0.07567706916481257
+Loss 0.07027869179844856 Acc 0.9804641103744507 Perturbed Loss 0.08204995427280665
+Loss 0.061636676751077174 Acc 0.9838445234298706 Perturbed Loss 0.06894191985949874
+Epoch 16.0 val loss 0.051486264914274216 val acc 0.9804889559745789
+Loss 0.07322780897840858 Acc 0.9782319748401642 Perturbed Loss 0.08513625368475913
+Loss 0.07432178784161807 Acc 0.9809413456916809 Perturbed Loss 0.08141938146203756
+Loss 0.0655337312631309 Acc 0.9774954283237457 Perturbed Loss 0.07353409852832556
+Loss 0.07733780467882752 Acc 0.9766735577583313 Perturbed Loss 0.08823373187333346
+Loss 0.06673784378916026 Acc 0.9805257117748261 Perturbed Loss 0.07944624844938517
+Loss 0.06319724179804326 Acc 0.9782525479793549 Perturbed Loss 0.07159761190414429
+Loss 0.07361267209053039 Acc 0.9760010457038879 Perturbed Loss 0.08722136043012142
+Loss 0.0707005917467177 Acc 0.9802959156036377 Perturbed Loss 0.08044470228254795
+Loss 0.05574592337012291 Acc 0.9830646252632141 Perturbed Loss 0.06283583551645279
+Loss 0.0852740354090929 Acc 0.9729890000820159 Perturbed Loss 0.09366440176963806
+Loss 0.0679918485879898 Acc 0.9783328306674958 Perturbed Loss 0.07583981271833182
+Loss 0.07520230703055858 Acc 0.977493166923523 Perturbed Loss 0.08375995267182589
+Loss 0.07022436050698161 Acc 0.975102252960205 Perturbed Loss 0.07941514251753688
+Loss 0.0683890014514327 Acc 0.9766453468799591 Perturbed Loss 0.07793037988245487
+Loss 0.06930468028411269 Acc 0.9816155183315277 Perturbed Loss 0.07837667325511574
+Epoch 17.0 val loss 0.05187787115573883 val acc 0.9806454181671143
+Loss 0.07039079513400794 Acc 0.9796192026138306 Perturbed Loss 0.08147232934832573
+Loss 0.07368944711983204 Acc 0.9780271816253662 Perturbed Loss 0.08238255951553583
+Loss 0.06838681370019913 Acc 0.976516455411911 Perturbed Loss 0.07572760533541441
+Loss 0.06437818137928844 Acc 0.9805164706707 Perturbed Loss 0.07158218400552868
+Loss 0.0658940663933754 Acc 0.9805290269851684 Perturbed Loss 0.07308161191642285
+Loss 0.05741834452375769 Acc 0.9809210515022277 Perturbed Loss 0.0646850485354662
+Loss 0.06451643619686365 Acc 0.9776527106761932 Perturbed Loss 0.07346270084381104
+Loss 0.06453987810760736 Acc 0.9805537331104278 Perturbed Loss 0.07357653794810176
+Loss 0.06855994766578079 Acc 0.9798500156402588 Perturbed Loss 0.07594214424490929
+Loss 0.06847628623247147 Acc 0.9775015139579772 Perturbed Loss 0.07634134396910668
+Loss 0.06665944326668978 Acc 0.9753784358501434 Perturbed Loss 0.07622955821454525
+Loss 0.07820430852472782 Acc 0.9743087196350098 Perturbed Loss 0.08682236291468143
+Loss 0.06564866403117776 Acc 0.9785401666164398 Perturbed Loss 0.07711626831442117
+Loss 0.08307457346469165 Acc 0.9777449822425842 Perturbed Loss 0.09194247916340828
+Loss 0.0639542593061924 Acc 0.9778363227844238 Perturbed Loss 0.0706199617125094
+Epoch 18.0 val loss 0.051038797944784164 val acc 0.9806435108184814
+Loss 0.0707013290002942 Acc 0.975104923248291 Perturbed Loss 0.07754596825689078
+Loss 0.07471775826066733 Acc 0.9778188371658325 Perturbed Loss 0.08176466587930918
+Loss 0.07506777465343475 Acc 0.9773046636581421 Perturbed Loss 0.08405728943645954
+Loss 0.05989681851118803 Acc 0.9770332133769989 Perturbed Loss 0.06803419001400471
+Loss 0.06307042418047785 Acc 0.9819039213657379 Perturbed Loss 0.07018326167017222
+Loss 0.06773869588971138 Acc 0.975211888551712 Perturbed Loss 0.07572078142315149
+Loss 0.08911762196570634 Acc 0.9738667106628418 Perturbed Loss 0.09745619617402554
+Loss 0.06958071492612362 Acc 0.9780380058288575 Perturbed Loss 0.0778390478529036
+Loss 0.06374259196221828 Acc 0.979677517414093 Perturbed Loss 0.07017982417717576
+Loss 0.0654505369067192 Acc 0.9783480286598205 Perturbed Loss 0.07258541747927666
+Loss 0.07327231826260686 Acc 0.9778243136405945 Perturbed Loss 0.08131981007754803
+Loss 0.06310130875557661 Acc 0.9775537133216858 Perturbed Loss 0.07029225707054138
+Loss 0.06850693337619304 Acc 0.9789754259586334 Perturbed Loss 0.07534331526607276
+Loss 0.08025206964462996 Acc 0.9783610999584198 Perturbed Loss 0.08991667564958333
+Loss 0.06338861856609583 Acc 0.9811502206325531 Perturbed Loss 0.07098322145640851
+Epoch 19.0 val loss 0.05173804238438606 val acc 0.9804157614707947
+[19:51:12] INFO     `Trainer.fit` stopped: `max_epochs=20` reached.                  rank_zero.py:53
+Epoch 19/19 ━━━━━━━━━━━━━━━━━━━━━━━━━━ 750/750 0:03:45 • 0:00:00 3.36it/s train/loss: 0.063         
+                                                                          val_loss: 0.052           

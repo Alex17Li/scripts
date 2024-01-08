@@ -37,14 +37,15 @@ set -x
 # --lr_scheduler NONE
 # --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml \
 #  --warm_up_steps 0 \
-srun --kill-on-bad-exit python -m kore.scripts.seg_find_mislabled_data \
-    --warm_up_steps 20 \
-    --trainer.callbacks.tqdm false \
-    --trainer.logger.version $EXP
-
 
 srun --kill-on-bad-exit python -m kore.scripts.train_seg \
     --warm_up_steps 20 \
+    --config_path /home/alexli/git/scripts/kore_configs/gpu_seg.yml \
+    --ckpt_path $CKPT_PATH \
+    --optimizer AdamW \
+    --optimizer.lr 1e-3 \
+    --trainer.strategy.find_unused_parameters true \
+    --finetuning.skip_mismatched_layers true \
     --trainer.callbacks.tqdm false \
     --trainer.logger.version $EXP \
 
