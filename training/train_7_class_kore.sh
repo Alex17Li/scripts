@@ -19,7 +19,7 @@ export COLUMNS=100
 
 EXP=${SLURM_JOB_ID}
 # CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-18495/files/epoch=9-val_loss=0.069723.ckpt
-CKPT_PATH=/mnt/sandbox1/alex.li/wandb/run-18938/files/epoch=9-val_loss=0.066906.ckpt
+CKPT_PATH=/mnt/sandbox1/alex.li/run-19271/files/epoch=172-val_loss=0.090414.ckpt
 
 # CONFIG_PATH="scripts/kore_configs/harvest_seg_train.yml scripts/kore_configs/seg_gsam.yml \$CVML_DIR/koreconfigs/options/seg_no_dust_head.yml"
 
@@ -35,24 +35,30 @@ set -x
 
 # --optimizer AdamW \
 # --
-    # --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml \
+# --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml \
 #     --lr_scheduler EXP \
 #     --lr_scheduler.end_factor 1e-3 \
+#     --ckpt_path $CKPT_PATH \
 
 srun --kill-on-bad-exit python -m kore.scripts.train_seg \
-    --config_path /home/alexli/git/scripts/kore_configs/gpu_seg.yml \
-    --ckpt_path $CKPT_PATH \
     --run-id $EXP \
+    --warm_up_steps 20 \
     --optimizer AdamW \
-    --optimizer.lr 5e-2 \
-    --trainer.strategy.find_unused_parameters true \
-    --finetuning.skip_mismatched_layers true \
+    --optimizer.lr 1e-3 \
     --trainer.callbacks.tqdm false \
-    --trainer.enable_early_stopping false \
-    --model.model_params.structural_reparameterization_on_stem true \
-    --augmentation.cnp.humans.blend-mode VANILLA \
-    --augmentation.cnp.humans.depth_aware true \
-    --augmentation.cnp.humans.only_non_occluded false \
-    --augmentation.cnp.humans.jitter_object false \
-    --augmentation.cnp.humans.jitter_range 0.2 \
-    --augmentation.cnp.humans.sample_ratio 0.3
+    --trainer.precision 32 \
+    --trainer.enable_early_stopping false
+
+# srun --kill-on-bad-exit python -m kore.scripts.train_seg \
+#     --run-id $EXP \
+#     --lr_scheduler EXP \
+#     --lr_scheduler.end_factor 1e-3 \
+#     --ckpt_path $CKPT_PATH \
+#     --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml \
+#     --optimizer AdamW \
+#     --optimizer.lr 5e-2 \
+#     --trainer.callbacks.tqdm false \
+#     --trainer.precision 32 \
+#     --trainer.enable_early_stopping false \
+#     --trainer.max_epochs 300 \
+#     --model.model_params.structural_reparameterization_on_stem true

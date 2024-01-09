@@ -142,13 +142,15 @@
             "justMyCode": true
         },
         {
-            "name": "mislabled data kore gpu",
+            "name": "mislabled data kore harvest",
             "type": "python",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/seg_find_mislabeled_data.py",
             "console": "integratedTerminal",
             "args": [
-                "--config_path", "/home/${env:USER}/git/scripts/kore_configs/gpu_seg.yml",
+                "--run_id", "find_mislabled_data",
+                "--create_new_output_dir_if_nonempty", "false",
+                "--batch_size", "1",
             ],
             "justMyCode": true
         },
