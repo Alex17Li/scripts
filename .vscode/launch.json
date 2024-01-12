@@ -88,7 +88,7 @@
             "args": [
                 "--config_path", "/home/${env:USER}/git/scripts/kore_configs/harvest_seg_train_debug.yml",
                 // "/home/${env:USER}/git/scripts/kore_configs/seg_gsam.yml",
-                "--ckpt_path", "/mnt/sandbox1/alex.li/wandb/run-20231110_200223-16686/files/epoch=35-val_loss=0.113822.ckpt"
+                // "--ckpt_path", "/mnt/sandbox1/alex.li/wandb/run-20231110_200223-16686/files/epoch=35-val_loss=0.113822.ckpt"
             ],
             "justMyCode": true
         },
@@ -124,8 +124,9 @@
             "console": "integratedTerminal",
             "args": [
                 "--config_path", "/home/${env:USER}/git/JupiterCVML/kore/configs/options/seg_no_dust_head.yml", 
-                "/home/${env:USER}/git/JupiterCVML/kore/configs/options/halo_seg_prediction.yml",
                 "/home/${env:USER}/git/scripts/kore_configs/harvest_seg_prediction_debug.yml",            
+                "--ckpt_path", "/mnt/sandbox1/alex.li/models/19563.ckpt",
+                "--model.model_params.structural_reparameterization_on_stem", "true"
             ],
             "justMyCode": true
         },
@@ -151,6 +152,7 @@
                 "--run_id", "find_mislabled_data",
                 "--create_new_output_dir_if_nonempty", "false",
                 "--batch_size", "1",
+                "--data.train_set.csv_name", "one_image_sus_label.csv",
             ],
             "justMyCode": true
         },

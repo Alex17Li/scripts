@@ -1,9 +1,6 @@
 _type_: kore.configs.roots.training.SegTrainingConfig
 data:
   train_set:
-    csv_name: master_annotations_100.csv
+    csv_name: master_annotations.csv
     dataset_path: /data/jupiter/datasets/Jupiter_train_v5_11_20230508
 batch_size: 1
-weighted_sampling:
-  reverse_humans: 1.0
-  airborne_debris: 1.0

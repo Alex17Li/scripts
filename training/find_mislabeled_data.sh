@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=find_mislabled
+#SBATCH --job-name=find_mislabeled
 #SBATCH --output=/home/%u/logs/%A_%x
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:4

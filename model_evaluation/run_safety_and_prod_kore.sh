@@ -14,10 +14,8 @@ cd /home/$USER/git/JupiterCVML
 
 DUST_OUTPUT_PARAMS='{"dust_head_output":true}'
 LABEL_MAP_FILE=$CVML_PATH/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv 
-CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/wandb/run-19159/files/
-CHECKPOINT=last.ckpt
-CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/wandb/run-18938/files/
-CHECKPOINT=epoch=9-val_loss=0.066906.ckpt
+CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/models
+CHECKPOINT=19563.ckpt
 # CHECKPOINT_FULL_DIR=/data/jupiter/models/
 # CHECKPOINT=v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30.pth
 
@@ -36,10 +34,13 @@ do
         --inputs.label.label_map_file $LABEL_MAP_FILE \
         --ckpt_path $CHECKPOINT_FULL_PATH \
         --output_dir ${CHECKPOINT_FULL_DIR}/${DATASET} \
+        --model.model_params.structural_reparameterization_on_stem true \
         --metrics.use-depth-threshold \
         --states_to_save 'human_false_negative' \
-        --batch_size 32
-done
+        --batch_size 32 \
+        --predictor.precision '32'
+    done
+
 echo ----------------------------RUN_SAFETY_COMPLETE-----------------------------------
 
 PROD_DATASETS=("Jupiter_productivity_test_2023_v1_cleaned" "Jupiter_productivity_test_spring_2023_v2_cleaned" "Jupiter_productivity_airborne_debris_first_night")
@@ -52,12 +53,14 @@ do
         --data.test_set.dataset_path /data/jupiter/datasets/$DATASET \
         --inputs.label.label_map_file $LABEL_MAP_FILE \
         --ckpt_path $CHECKPOINT_FULL_PATH \
+        --model.model_params.structural_reparameterization_on_stem true \
         --output_dir ${CHECKPOINT_FULL_DIR}/${DATASET} \
         --states_to_save 'human_false_positive' \
         --metrics.run-productivity-metrics \
         --inputs.with_semantic_label false \
         --metrics.use-depth-threshold \
-        --batch_size 32
+        --batch_size 32 \
+        --predictor.precision '32'
 done
 
 echo --------------------------RUN_PRODUCTIVITY_COMPLETE-------------------------------
@@ -72,8 +75,10 @@ do
         --data.test_set.dataset_path /data/jupiter/datasets/${DATASET} \
         --inputs.label.label_map_file $LABEL_MAP_FILE \
         --inputs.label.label_map_file_iq $CVML_PATH/europa/base/src/europa/dl/config/label_maps/binary_dust.csv \
+        --model.model_params.structural_reparameterization_on_stem true \
         --ckpt_path  ${CHECKPOINT_FULL_PATH} \
         --output-dir ${CHECKPOINT_FULL_DIR}/${DATASET}_labeled \
+        --predictor.precision '32' \
         --batch-size 32;
 done
 
