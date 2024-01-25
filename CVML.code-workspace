@@ -4,14 +4,13 @@
 			"name": "git/JupiterCVML",
 			"path": "../JupiterCVML"
 		},
-
 		{
 			"name": "git/scripts",
 			"path": "."
 		},
 		{
 			"name": "git",
-			"path": "../"
+			"path": ".."
 		},
 		{
 			"name": "logs",
@@ -19,7 +18,11 @@
 		},
 		{
 			"name": "sandbox",
-			"path": "/mnt/sandbox1/alex.li"
+			"path": "../../../../mnt/sandbox1/alex.li"
+		},
+		{
+			"name": "data",
+			"path": "../../../../data/jupiter/alex.li"
 		}
 	],
 	"settings": {

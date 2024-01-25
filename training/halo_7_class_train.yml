@@ -1,0 +1,30 @@
+%YAML 1.2
+---
+_type_: kore.configs.roots.training.SegTrainingConfig
+augmentation:
+  albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_halo.yml
+data:
+  train_set:
+    csv: master_annotations_40k.csv
+    dataset_path: /data2/jupiter/datasets/halo_rgb_stereo_train_v6_1
+  validation_set_ratio: 0.05
+  validation_set: null
+inputs:
+  input_mode: RECTIFIED_RGB
+loss:
+  prodl:
+    depth_thresh: -1 # No depth for rectified RGB`
+optimizer:
+  _type_: kore.configs.third_party.optimizer_config.AdamWConfig
+  lr: 1e-3
+lr_scheduler:
+  _type_: kore.configs.third_party.lr_scheduler_config.CosineAnnealingLRConfig
+trainer:
+  enable_early_stopping: false
+  max_epochs: 50
+  precision: 32
+  logger:
+    _type_: kore.configs.third_party.logger_config.WandbLoggerConfig
+    notes: Fine tune seg model for halo
+run_id: halo_seg_kore_7cls
+output_dir: /mnt/sandbox1/$USER/train_halo/$RUN_ID

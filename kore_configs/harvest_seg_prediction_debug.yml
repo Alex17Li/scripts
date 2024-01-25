@@ -2,7 +2,7 @@ _type_: kore.configs.roots.prediction.SegPredictionConfig
 batch_size: 1
 data:
   test_set:
-    csv_name: master_annotations.csv
+    csv: master_annotations.csv
     # dataset_path: /data/jupiter/datasets/halo_vehicles_on_path_test_v6_1/
     dataset_path: /data/jupiter/datasets/humans_on_path_test_set_2023_v15_anno
 ckpt_path: /mnt/sandbox1/pooja.mehta/jupiter/models/pmehta_2023/rgb_baseline_sample_a_v3_birds_driveable_train_v6_0_1130/pmehta_2023_val_bestmodel.pth

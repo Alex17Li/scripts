@@ -5,6 +5,6 @@ predictor:
 batch_size: 32
 data:
   test_set:
-    csv_name: master_annotations_subset.csv
+    csv: master_annotations_subset.csv
     dataset_path: /home/avinashraju/BRT/data/Jupiter_train_v5_11_subset_1
     num_workers: 24

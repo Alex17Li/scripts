@@ -123,10 +123,11 @@
             "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/predict_seg.py",
             "console": "integratedTerminal",
             "args": [
-                "--config_path", "/home/${env:USER}/git/JupiterCVML/kore/configs/options/seg_no_dust_head.yml", 
+                "--config_path", "/home/alex.li/git/scripts/training/halo_7_class_pred.yml", 
                 "/home/${env:USER}/git/scripts/kore_configs/harvest_seg_prediction_debug.yml",            
-                "--ckpt_path", "/mnt/sandbox1/alex.li/models/19563.ckpt",
-                "--model.model_params.structural_reparameterization_on_stem", "true"
+                "--ckpt_path", "/mnt/sandbox1/alex.li/train_halo/20676_r2_rgb_bigdecay_biglr/checkpoints/epoch=49-val_loss=0.069474.ckpt",
+                // "--metrics.run-productivity-metrics",
+                "--inputs.with_semantic_label", "false",
             ],
             "justMyCode": true
         },
@@ -166,7 +167,7 @@
                 "--run_id", "find_mislabeled_data",
                 "--create_new_output_dir_if_nonempty", "false",
                 "--batch_size", "1",
-                "--data.train_set.csv_name", "one_image_sus_label.csv",
+                "--data.train_set.csv", "one_image_sus_label.csv",
             ],
             "justMyCode": true
         },

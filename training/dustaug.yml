@@ -1,0 +1,20 @@
+%YAML 1.2
+---
+_type_: kore.configs.roots.training.SegTrainingConfig
+augmentation:
+  dust:
+    use: true
+    exp_id: 1
+    p: 0.05
+    dust_percent: [0.2, 0.4]
+    wind_direction: [left, right, away]
+    min_error: 0.0
+    max_error: [0.1, 0.4]
+    blending_technique: 2
+    op_time_weights:
+    pod_weights: {front: 0.05, left: 0.05, right: 0.05, rear: 0.0, implement: 0.0}
+    ignore_human: false
+    ignore_vehicle: false
+    only_human: true
+    stalk_p: 0.0
+    nl_p: 0.0

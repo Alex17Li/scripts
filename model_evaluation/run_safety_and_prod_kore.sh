@@ -1,11 +1,12 @@
 #!/bin/bash
-#SBATCH --job-name=kore_rev1_test
+#SBATCH --job-name=rev1_eval
 #SBATCH --output=/home/%u/logs/%A_%x
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:2
 #SBATCH --ntasks-per-node=2
 #SBATCH --cpus-per-gpu=6
 #SBATCH --time=10:00:00
+#SBATCH --mem-per-gpu=40G
 
 # Setup environment variables
 source /home/alex.li/.bashrc
@@ -14,8 +15,8 @@ cd /home/$USER/git/JupiterCVML
 
 DUST_OUTPUT_PARAMS='{"dust_head_output":true}'
 LABEL_MAP_FILE=$CVML_PATH/europa/base/src/europa/dl/config/label_maps/seven_class_train.csv 
-CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/models
-CHECKPOINT=19563.ckpt
+CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/train_rev1/20446/checkpoints
+CHECKPOINT=epoch=49-val_loss=0.091303.ckpt
 # CHECKPOINT_FULL_DIR=/data/jupiter/models/
 # CHECKPOINT=v188_58d_rak_local_fine_tversky11_sum_image_normT_prod5_airdyn_r3a8_s30.pth
 
@@ -29,7 +30,7 @@ for DATASET in ${SAFETY_DATASETS[@]}
 do
     echo ----------------------------RUN ON ${DATASET}-----------------------------------
     srun --kill-on-bad-exit python -m kore.scripts.predict_seg \
-        --data.test_set.csv_name master_annotations.csv \
+        --data.test_set.csv master_annotations.csv \
         --data.test_set.dataset_path /data/jupiter/datasets/$DATASET \
         --inputs.label.label_map_file $LABEL_MAP_FILE \
         --ckpt_path $CHECKPOINT_FULL_PATH \
@@ -49,7 +50,7 @@ for DATASET in ${PROD_DATASETS[@]}
 do
     echo ----------------------------RUN ON ${DATASET}-----------------------------------
     srun --kill-on-bad-exit python -m kore.scripts.predict_seg \
-        --data.test_set.csv_name master_annotations.csv \
+        --data.test_set.csv master_annotations.csv \
         --data.test_set.dataset_path /data/jupiter/datasets/$DATASET \
         --inputs.label.label_map_file $LABEL_MAP_FILE \
         --ckpt_path $CHECKPOINT_FULL_PATH \
@@ -71,7 +72,7 @@ do
 
     echo ----------------------------RUN ON ${DATASET} labeled ----------------------------
     srun --kill-on-bad-exit python -m kore.scripts.predict_seg \
-        --data.test_set.csv_name master_annotations_labeled.csv \
+        --data.test_set.csv master_annotations_labeled.csv \
         --data.test_set.dataset_path /data/jupiter/datasets/${DATASET} \
         --inputs.label.label_map_file $LABEL_MAP_FILE \
         --inputs.label.label_map_file_iq $CVML_PATH/europa/base/src/europa/dl/config/label_maps/binary_dust.csv \

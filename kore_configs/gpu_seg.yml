@@ -2,7 +2,7 @@ _type_: kore.configs.roots.training.SegTrainingConfig
 batch_size: 4
 data:
   train_set:
-    csv_name: master_annotations_4k.csv
+    csv: master_annotations_4k.csv
     dataset_path: /home/alexli/data/Jupiter_train_v5_11/
     dataset_name: Jupiter_train_v5_11
   validation_set: null
