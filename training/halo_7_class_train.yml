@@ -11,6 +11,7 @@ data:
   validation_set: null
 inputs:
   input_mode: RECTIFIED_RGB
+  input_shape: [512, 640]
 loss:
   prodl:
     depth_thresh: -1 # No depth for rectified RGB`

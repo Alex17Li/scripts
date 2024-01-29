@@ -86,7 +86,8 @@
             "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/train_seg.py",
             "console": "integratedTerminal",
             "args": [
-                "--config_path", "/home/${env:USER}/git/scripts/kore_configs/harvest_seg_train_debug.yml",
+                "--config_path", "/home/alex.li/git/scripts/training/halo_7_class_train.yml", "/home/alex.li/git/scripts/training/dustaug.yml",
+                // "--config_path", "/home/${env:USER}/git/scripts/kore_configs/harvest_seg_train_debug.yml",
                 // "/home/${env:USER}/git/scripts/kore_configs/seg_gsam.yml",
                 // "--ckpt_path", "/mnt/sandbox1/alex.li/wandb/run-20231110_200223-16686/files/epoch=35-val_loss=0.113822.ckpt"
             ],
@@ -100,7 +101,7 @@
             "console": "integratedTerminal",
             "args": [
                 "--config_path", "/home/${env:USER}/git/scripts/kore_configs/gpu_seg.yml",
-                // "/home/${env:USER}/git/scripts/kore_configs/seg_gsam.yml"
+
             ],
             "justMyCode": true
         },

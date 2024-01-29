@@ -35,7 +35,7 @@ srun --kill-on-bad-exit python -m kore.scripts.train_seg \
     --optimizer.weight_decay 1e-3 \
     --config_path /home/alex.li/git/scripts/training/halo_7_class_train.yml /home/alex.li/git/scripts/training/dustaug.yml \
     --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_halo.yml \
-    --augmentation.use_cutmix false \
+    --augmentation.use_cutmix true \
     --trainer.precision 16-mixed \
     --optimizer.lr 1e-3 \
     --run_id ${EXP}_r2_rgb_40k_dust \

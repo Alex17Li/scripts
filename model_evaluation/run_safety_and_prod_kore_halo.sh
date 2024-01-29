@@ -12,11 +12,7 @@
 source /home/alex.li/.bashrc
 
 cd /home/$USER/git/JupiterCVML
-
-# DUST_OUTPUT_PARAMS='{"dust_head_output":false}'
 DUST_OUTPUT_PARAMS='{"dust_seg_output":true}'
-
-# LABEL_MAP_FILE=\$EUROPA_DIR/dl/config/label_maps/eight_class_train_dust_light_as_sky_birds_as_driveable.csv
 LABEL_MAP_FILE=\$EUROPA_DIR/dl/config/label_maps/seven_class_train.csv
 # CHECKPOINT_FULL_DIR=/mnt/sandbox1/alex.li/wandb/run-17680/files/
 # CHECKPOINT=last.ckpt
@@ -42,9 +38,9 @@ srun --kill-on-bad-exit python -m kore.scripts.predict_seg \
     --data.test_set.csv master_annotations.csv \
     --data.test_set.dataset_path /data/jupiter/datasets/halo_vehicles_on_path_test_v6_1 \
     --ckpt_path $CHECKPOINT_FULL_PATH \
-    --metrics.gt_stop_classes_to_consider 'Vehicles' \
+    --metrics.gt_stop_classes_to_consider 'Vehicles' 'Humans' \
     --output_dir /mnt/sandbox1/alex.li/introspection/$OUTPUT_MODEL_NAME/halo_vehicles_on_path_test_v6_1 \
-    --states_to_save 'vehicle_false_negative'
+    --states_to_save 'false_negative'
 srun --kill-on-bad-exit python -m kore.scripts.predict_seg \
     --config_path /home/alex.li/git/scripts/training/halo_7_class_pred.yml \
     --data.test_set.csv master_annotations.csv \
