@@ -2,16 +2,24 @@ _type_: kore.configs.roots.training.SegTrainingConfig
 batch_size: 4
 data:
   train_set:
-    csv: master_annotations_4k.csv
-    dataset_path: /home/alexli/data/Jupiter_train_v5_11/
-    dataset_name: Jupiter_train_v5_11
+    csv: master_annotations_1k.csv
+    dataset_path: /mnt/datasets/halo_rgb_stereo_train_v6_1
+    dataset_name: halo_rgb_stereo_train_v6_1
   validation_set: null
   validation_set_ratio: .25
 trainer:
   max_epochs: 2
-  # logger:
-  #   _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
-output_dir: '/home/alexli/logs/data/$RUN_ID'
-run_id: my_test_run
+  logger:
+    _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
+num_log_images: 0
+output_dir: /mnt/alex.li/train_seg/$RUN_ID
+run_id: my_test_run_1
 # ckpt_path: /home/alexli/logs/data/epoch=99-val_loss=0.096904.ckpt
-# warm_up_steps: 100
+warm_up_steps: 100
+# augmentation:
+  # albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml 
+  # dust:
+  #   use: true
+
+# WITH cutmix time GPU: 1.25 min
+# WITHOUT cutmix time GPU: 1.02 min
