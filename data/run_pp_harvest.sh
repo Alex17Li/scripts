@@ -3,8 +3,7 @@
 #SBATCH --output=/home/%u/logs/%j_%x.batch.txt
 #SBATCH --error=/home/%u/logs/%j_%x.batch.txt
 #SBATCH --nodes=1
-#SBATCH --exclusive
-#SBATCH --ntasks-per-node=8
+#SBATCH --ntasks-per-node=4
 #SBATCH --gpus-per-task=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem-per-gpu=48000
@@ -18,7 +17,7 @@
 #   redo-depth: keep ocal results, delete PP artifacts, and restart depth inference
 #   existing: continue running PP with the current partitioning and partial results
 DATA_FOLDER=/data/jupiter/datasets
-DATASET_NAME=halo_images_for_train_implement_dust_puddle_small
+DATASET_NAME=Jupiter_20231121_HHH2_1800_1830
 JUPITERCVML_DIR=~/git/JupiterCVML
 RESUME_MODE=existing
 
