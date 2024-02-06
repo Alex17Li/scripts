@@ -60,7 +60,7 @@ then
     DOWNLOAD_DATASET_CMD="python3 $EUROPA_DIR/dl/dataset/download.py"
     PARITION_DATASET_CMD="python3 $EUROPA_DIR/dl/dataset/pack_perception/partition_dataset.py"
 else
-    DOWNLOAD_DATASET_CMD=/data2/jupiter/download_ds
+    DOWNLOAD_DATASET_CMD=/data2/jupiter/jupiter_npz_model_training_kore_jup_tolerations
     PARITION_DATASET_CMD=/data2/jupiter/partition_dataset
 fi
 
