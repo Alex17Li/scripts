@@ -34,11 +34,12 @@ set -x
 # --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml \
 
 srun --kill-on-bad-exit python -m kore.scripts.train_seg \
-    --trainer.precision "16-mixed" \
+    --trainer.precision 16 \
     --trainer.enable_early_stopping false \
     --model.model_params.structural_reparameterization_on_stem true \
+    --model.model_params.use_highres_downsampling true \
     --output_dir /mnt/sandbox1/$USER/train_rev1/\$RUN_ID \
-    --run-id ${EXP}_rev1
+    --run-id ${EXP}_rev1_downsampling
 
 #     --data.validation_set.csv v6_2_overlap_with_test_geohash_bag_vat_ids.csv \
 #     --data.validation_set.dataset_path /data2/jupiter/datasets/Jupiter_train_v6_2 \

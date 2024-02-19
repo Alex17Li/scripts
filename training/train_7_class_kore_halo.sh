@@ -31,16 +31,26 @@ set -x
     # --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_halo.yml \
 
 # /home/alex.li/git/scripts/training/dustaug.yml
+# srun --kill-on-bad-exit python -m kore.scripts.train_seg \
+#     --optimizer.weight_decay 1e-3 \
+#     --config_path /home/alex.li/git/scripts/training/halo_7_class_train.yml /home/alex.li/git/scripts/training/dustaug.yml \
+#     --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_halo.yml \
+#     --augmentation.use_cutmix true \
+#     --trainer.precision 16-mixed \
+#     --optimizer.lr 1e-3 \
+#     --run_id ${EXP}_r2_rgb_40k_dust \
+#     --output_dir /mnt/sandbox1/$USER/train_halo/$RUN_ID \
+#     --trainer.max_epochs 100
+
+#  /home/alex.li/git/scripts/training/dustaug.yml \
 srun --kill-on-bad-exit python -m kore.scripts.train_seg \
-    --optimizer.weight_decay 1e-3 \
-    --config_path /home/alex.li/git/scripts/training/halo_7_class_train.yml /home/alex.li/git/scripts/training/dustaug.yml \
-    --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_halo.yml \
-    --augmentation.use_cutmix true \
     --trainer.precision 16-mixed \
-    --optimizer.lr 1e-3 \
-    --run_id ${EXP}_r2_rgb_40k_dust \
-    --output_dir /mnt/sandbox1/$USER/train_halo/$RUN_ID \
-    --trainer.max_epochs 100
+    --optimizer.weight_decay 1e-3 \
+    --config_path /home/alex.li/git/scripts/training/halo_7_class_train.yml \
+    --trainer.enable_early_stopping false \
+    --output_dir /mnt/sandbox1/$USER/train_halo/\$RUN_ID \
+    --run-id ${EXP}_reproduce_ben
+    # --model.model_params.use_highres_downsampling true \
 
 # srun --kill-on-bad-exit python -m kore.scripts.train_seg \
 #     --config_path \$CVML_DIR/kore/configs/options/no_val_set.yml \

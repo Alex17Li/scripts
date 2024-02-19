@@ -17,7 +17,11 @@
 #   redo-depth: keep ocal results, delete PP artifacts, and restart depth inference
 #   existing: continue running PP with the current partitioning and partial results
 DATA_FOLDER=/data/jupiter/datasets
-DATASET_NAME=Jupiter_20231121_HHH2_1800_1830
+DATASET_NAME=Jupiter_20231019_HHH6_1615_1700
+# Jupiter_20231026_HHH8_1515_1545 # 22307
+# Jupiter_20230926_HHH1_1815_1845 # 22308
+# Jupiter_20230814_HHH1_1415_1445 # 22311
+# Jupiter_20230825_HHH1_1730_1800 # 22310
 JUPITERCVML_DIR=~/git/JupiterCVML
 RESUME_MODE=existing
 
@@ -41,7 +45,7 @@ conda activate /mnt/sandbox1/anirudh.vegesana/conda_envs/pp/
 # This command is needed for halo_kf for now. It will no longer be a
 # dependency in the future, but is included here to avoid issues for now:
 pip install --user numpy-quaternion
-
+    
 # Set important environmental variables
 export BRT_ENV=prod
 export AWS_DEFAULT_REGION=us-west-2

@@ -4,3 +4,6 @@ data:
   train_set:
     csv: 642ba9506651c8d5688518e0_master_annotations_ppcutnpastecolumns.csv
     dataset_path: /data/jupiter/datasets/Jupiter_train_v5_11_20230508
+augmentations:
+  cnp:
+    use: false
