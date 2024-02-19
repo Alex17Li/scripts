@@ -8,7 +8,7 @@
             "program": "${file}",
             "console": "internalConsole",
             "internalConsoleOptions": "openOnSessionStart",
-            "justMyCode": true
+            "justMyCode": false
         },
         {
             "name": "Predictor",
@@ -103,6 +103,17 @@
             "args": [
                 "--config_path", "/home/${env:USER}/git/scripts/kore_configs/gpu_seg.yml",
 
+            ],
+            "justMyCode": true
+        },
+        {
+            "name": "Trainer kore gpu ben comparison",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/train_seg.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--config_path", "/home/${env:USER}/git/JupiterCVML/kore/configs/defaults/halo_seg_training_params.yml", "/home/${env:USER}/git/JupiterCVML/kore/configs/options/halo_seg_train_ben_params.yml", "/home/${env:USER}/git/scripts/kore_configs/2el_debug.yml",
             ],
             "justMyCode": true
         },

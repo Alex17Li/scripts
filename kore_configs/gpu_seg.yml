@@ -1,25 +1,39 @@
 _type_: kore.configs.roots.training.SegTrainingConfig
-batch_size: 4
+batch_size: 8
 data:
   train_set:
     csv: master_annotations_1k.csv
     dataset_path: /mnt/datasets/halo_rgb_stereo_train_v6_1
     dataset_name: halo_rgb_stereo_train_v6_1
   validation_set: null
-  validation_set_ratio: .25
+  validation_set_ratio: .1
 trainer:
-  max_epochs: 2
+  max_epochs: 30
   logger:
     _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
 num_log_images: 0
 output_dir: /mnt/alex.li/train_seg/$RUN_ID
 run_id: my_test_run_1
-# ckpt_path: /home/alexli/logs/data/epoch=99-val_loss=0.096904.ckpt
 warm_up_steps: 100
-# augmentation:
-  # albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml 
-  # dust:
-  #   use: true
+augmentation:
+  cnp:
+    use: false
+model:
+  _type_: kore.configs.tasks.semantic_segmentation.model_config.BRTHighResnetConfig
+  add_softmax_layer: false
+  half_res_output: false
+  is_training: true
+  output_intermediate_embeddings: false
+loss:
+  hardsoft_iq: null
+inputs:
+  label:
+    label_map_file: $EUROPA_DIR/dl/config/label_maps/seven_class_train.csv
+    label_map_file_iq: null
 
+# albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml 
+# dust:
+#   use: true
+# ckpt_path: /home/alexli/logs/data/epoch=99-val_loss=0.096904.ckpt
 # WITH cutmix time GPU: 1.25 min
 # WITHOUT cutmix time GPU: 1.02 min

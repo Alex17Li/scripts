@@ -1,0 +1,31 @@
+_type_: kore.configs.roots.training.SegTrainingConfig
+batch_size: 2
+data:
+  train_set:
+    csv: master_annotations_2.csv
+    dataset_path: /mnt/datasets/halo_rgb_stereo_train_v6_1
+    dataset_name: halo_rgb_stereo_train_v6_1
+  validation_set:
+    csv: master_annotations_2_val.csv
+    absolute_csv: false
+    dataset_path: /mnt/datasets/halo_rgb_stereo_train_v6_1
+    dataset_name: halo_rgb_stereo_train_v6_1
+  validation_set_ratio: 0
+trainer:
+  max_epochs: 2
+  num_sanity_val_steps: 0
+  precision: "32"
+  logger:
+    _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
+augmentation:
+  albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_resize.yml 
+
+num_log_images: 0
+output_dir: /mnt/alex.li/train_seg/$RUN_ID
+run_id: my_test_run_1
+ckpt_path: /home/alexli/logs/data/bc_sandbox_2023_val_bestmodel.pth
+# dust:
+#   use: true
+# ckpt_path: /home/alexli/logs/data/epoch=99-val_loss=0.096904.ckpt
+# WITH cutmix time GPU: 1.25 min
+# WITHOUT cutmix time GPU: 1.02 min
