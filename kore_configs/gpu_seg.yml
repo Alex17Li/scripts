@@ -9,6 +9,7 @@ data:
   validation_set_ratio: .1
 trainer:
   max_epochs: 30
+  log_every_n_steps: 3
   logger:
     _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
 num_log_images: 0
@@ -18,18 +19,18 @@ warm_up_steps: 100
 augmentation:
   cnp:
     use: false
-model:
-  _type_: kore.configs.tasks.semantic_segmentation.model_config.BRTHighResnetConfig
-  add_softmax_layer: false
-  half_res_output: false
-  is_training: true
-  output_intermediate_embeddings: false
-loss:
-  hardsoft_iq: null
+# model:
+#   _type_: kore.configs.tasks.semantic_segmentation.model_config.BRTHighResnetConfig
+#   add_softmax_layer: false
+#   half_res_output: false
+#   is_training: true
+#   output_intermediate_embeddings: false
+# loss:
+#   hardsoft_iq: null
 inputs:
   label:
     label_map_file: $EUROPA_DIR/dl/config/label_maps/seven_class_train.csv
-    label_map_file_iq: null
+    # label_map_file_iq: null
 
 # albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml 
 # dust:
