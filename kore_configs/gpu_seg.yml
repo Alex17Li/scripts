@@ -8,6 +8,7 @@ data:
   validation_set: null
   validation_set_ratio: .1
 trainer:
+  precision: 16-mixed
   max_epochs: 30
   log_every_n_steps: 3
   logger:
