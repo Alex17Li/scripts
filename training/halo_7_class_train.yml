@@ -2,7 +2,7 @@
 ---
 _type_: kore.configs.roots.training.SegTrainingConfig
 augmentation:
-  albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_halo.yml
+  albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg.yml
 data:
   train_set:
     csv: master_annotations_40k.csv

@@ -1,6 +1,6 @@
 #!/bin/bash
-#SBATCH --job-name=😇🏋seg
-#SBATCH --output=/home/%u/logs/%A_%x
+#SBATCH --job-name=halo_train_seg
+#SBATCH --output=/mnt/sandbox1/%u/logs/%A_%x
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:4
 #SBATCH --ntasks-per-node=4
@@ -31,27 +31,37 @@ set -x
     # --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_halo.yml \
 
 # /home/alex.li/git/scripts/training/dustaug.yml
-# srun --kill-on-bad-exit python -m kore.scripts.train_seg \
-#     --optimizer.weight_decay 1e-3 \
-#     --config_path /home/alex.li/git/scripts/training/halo_7_class_train.yml /home/alex.li/git/scripts/training/dustaug.yml \
-#     --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_halo.yml \
-#     --augmentation.use_cutmix true \
-#     --trainer.precision 16-mixed \
-#     --optimizer.lr 1e-3 \
-#     --run_id ${EXP}_r2_rgb_40k_dust \
-#     --output_dir /mnt/sandbox1/$USER/train_halo/$RUN_ID \
-#     --trainer.max_epochs 100
-
-#  /home/alex.li/git/scripts/training/dustaug.yml \
 srun --kill-on-bad-exit python -m kore.scripts.train_seg \
-    --trainer.precision 16-mixed \
     --optimizer.weight_decay 1e-3 \
-    --config_path /home/alex.li/git/scripts/training/halo_7_class_train.yml \
-    --trainer.enable_early_stopping false \
-    --output_dir /mnt/sandbox1/$USER/train_halo/\$RUN_ID \
-    --run-id ${EXP}_reproduce_ben
-    # --model.model_params.use_highres_downsampling true \
+    --config_path /home/alex.li/git/scripts/training/halo_7_class_train.yml /home/alex.li/git/scripts/training/dustaug.yml \
+    --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg.yml \
+    --trainer.precision "16-mixed" \
+    --optimizer.lr 1e-3 \
+    --run_id ${EXP}_smoothsoftlosstrain \
+    --output_dir /mnt/sandbox1/$USER/train_halo/$RUN_ID \
+    --inputs.label.half_res_output False \
+    --trainer.max_epochs 20 \
+    --loss.msl_weight 1.0 \
+    --loss.prodl_weight 0.0 \
+    --loss.tv_weight 1.0 \
+    --loss.hardsoft_iq_weight 1.0 \
+    --inputs.label.label_smoothing_sigma 0
 
+#  /home/alex.li/git/scripts/training/dustaug.yml \s
+# srun --kill-on-bad-exit python -m kore.scripts.train_seg \
+#     --trainer.precision 16-mixed \
+#     --optimizer.weight_decay 1e-3 \
+#     --config_path /home/alex.li/git/scripts/training/halo_seg_train_ben_params.yml \
+#     --trainer.enable_early_stopping false \
+#     --output_dir /mnt/sandbox1/$USER/train_halo/\$RUN_ID \
+#     --model.model_params.use_highres_downsampling true \
+#     --inputs.input-shape 1024 1280 \
+#     --run-id ${EXP}_highres \
+#     --data.train_set.csv master_annotations_dedup_clean_ocal_20240208_50k_intersection.csv \
+#     --data.train_set.dataset_path /data2/jupiter/datasets/halo_rgb_stereo_train_v6_2_full_res/
+
+# --data.train_set.dataset_path /data2/jupiter/datasets/halo_rgb_stereo_train_v6_2 \
+# --data.train_set.dataset_path /data2/jupiter/datasets/halo_rgb_stereo_train_v6_2_768 \
 # srun --kill-on-bad-exit python -m kore.scripts.train_seg \
 #     --config_path \$CVML_DIR/kore/configs/options/no_val_set.yml \
 #     --data.validation_set_ratio 0.05 \

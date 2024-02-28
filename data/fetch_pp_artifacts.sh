@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=fetch_pp_artifacts
-#SBATCH --output=/home/%u/logs/%A_%x.txt
+#SBATCH --output=/mnt/sandbox1/%u/logs/%A_%x.txt
 #SBATCH --partition=cpu
 #SBATCH --ntasks=1
 

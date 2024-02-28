@@ -2,7 +2,7 @@
 #SBATCH --job-name=download_data
 #SBATCH --partition=cpu
 #SBATCH --mem-per-cpu=4G
-#SBATCH --output=/home/%u/logs/%A_%x.txt
+#SBATCH --output=/mnt/sandbox1/%u/logs/%A_%x.txt
 #SBATCH --ntasks=1
 
 source /home/${USER}/.bashrc

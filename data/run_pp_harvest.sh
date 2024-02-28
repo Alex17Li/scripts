@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=pack_perception
-#SBATCH --output=/home/%u/logs/%j_%x.batch.txt
-#SBATCH --error=/home/%u/logs/%j_%x.batch.txt
+#SBATCH --output=/mnt/sandbox1/%u/logs/%j_%x.batch.txt
+#SBATCH --error=/mnt/sandbox1/%u/logs/%j_%x.batch.txt
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
 #SBATCH --gpus-per-task=1
@@ -165,8 +165,8 @@ fi
 
 # For Halo (MUST BE RUN WITH THE GIT BRANCH halo_kf)
 srun --kill-on-bad-exit \
-    --output=/home/%u/logs/%j_%x.batch.txt \
-    --error=/home/%u/logs/%j_%x.batch.txt \
+    --output=/mnt/sandbox1/%u/logs/%j_%x.batch.txt \
+    --error=/mnt/sandbox1/%u/logs/%j_%x.batch.txt \
     --unbuffered \
 singularity run \
     --nv --bind /data,/data2$_ADDITIONAL_BINDS \

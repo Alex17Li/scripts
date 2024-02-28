@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=model_pos
-#SBATCH --output=/home/%u/logs/%A_%x.txt
+#SBATCH --output=/mnt/sandbox1/%u/logs/%A_%x.txt
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
 #SBATCH --ntasks-per-node=1

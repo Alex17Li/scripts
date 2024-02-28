@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=rev1_eval
-#SBATCH --output=/home/%u/logs/%A_%x
+#SBATCH --output=/mnt/sandbox1/%u/logs/%A_%x
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:2
 #SBATCH --ntasks-per-node=2

@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=find_mislabeled
-#SBATCH --output=/home/%u/logs/%A_%x
+#SBATCH --output=/mnt/sandbox1/%u/logs/%A_%x
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:4
 #SBATCH --ntasks-per-node=4
@@ -30,4 +30,4 @@ srun --kill-on-bad-exit python -m kore.scripts.seg_find_mislabeled_data \
     --trainer.callbacks.tqdm false \
     --loss_only true \
     --save_triage_images true \
-    --triage_loss_thresholds 0.5 0.65 0.8
+    --triage_loss_thresholds .001 .0025 .005 .01 .025 .5

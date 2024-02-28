@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=r2_train_seg
-#SBATCH --output=/home/%u/logs/%A_%x
+#SBATCH --output=/mnt/sandbox1/%u/logs/%A_%x
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:4
 #SBATCH --ntasks-per-node=4
@@ -11,7 +11,7 @@
 source /home/$USER/.bashrc
 conda activate cvml
 
-cd /home/$USER/git/JupiterCVML
+cd /mnt/sandbox1/$USER/
 
 export NCCL_NSOCKS_PERTHREAD=4
 export NCCL_SOCKET_NTHREADS=2
@@ -32,7 +32,7 @@ set -x
     # --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_halo.yml \
 
 # /home/alex.li/git/scripts/training/dustaug.yml
-# srun --kill-on-bad-exit python -m kore.scripts.train_seg \
+# srun --kill-on-bad-exit python /home/$USER/git/JupiterCVML/kore/scripts/train_seg.py \
 #     --optimizer.weight_decay 1e-3 \
 #     --config_path /home/alex.li/git/scripts/training/halo_7_class_train.yml /home/alex.li/git/scripts/training/dustaug.yml \
 #     --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_halo.yml \
@@ -44,7 +44,7 @@ set -x
 #     --trainer.max_epochs 100
 
 #  /home/alex.li/git/scripts/training/dustaug.yml \
-# srun --kill-on-bad-exit python -m kore.scripts.train_seg \
+# srun --kill-on-bad-exit python /home/$USER/git/JupiterCVML/kore/scripts/train_seg.py \
 #     --trainer.precision 16-mixed \
 #     --optimizer.weight_decay 1e-3 \
 #     --config_path /home/alex.li/git/scripts/training/halo_7_class_train.yml\
@@ -52,19 +52,18 @@ set -x
 #     --output_dir /mnt/sandbox1/$USER/train_rev1/\$RUN_ID \
 #     --run-id ${EXP}_re2_downsampling_40k
     # --model.model_params.use_highres_downsampling true \
-srun --kill-on-bad-exit python -m kore.scripts.train_seg \
-    --config_path kore/configs/defaults/halo_seg_training_params.yml kore/configs/options/halo_seg_train_ben_params.yml \
+srun --kill-on-bad-exit python /home/$USER/git/JupiterCVML/kore/scripts/train_seg.py \
+    --config_path /home/$USER/git/JupiterCVML/kore/configs/defaults/halo_seg_training_params.yml /home/alex.li/git/scripts/training/halo_seg_train_ben_params.yml \
     --data.train_set.csv master_annotations_dedup.csv \
     --group driveable_terrain_model \
-    --trainer.precision "16-mixed" \
-    --optimizer.lr 4e-3 \
+    --optimizer.lr 1e-3 \
     --optimizer.weight_decay 1e-3 \
-    --batch_size 72 \
-    --model.bn_momentum 1e-1 \
     --ckpt_path /mnt/sandbox1/ben.cline/output/bc_sandbox_2023/cls_dust_light_as_sky_512_640_rgb_no_human_augs_2/bc_sandbox_2023_val_bestmodel.pth \
-    --trainer.sync_batchnorm True \
-    --run-id ${EXP}_ben_compare
-# srun --kill-on-bad-exit python -m kore.scripts.train_seg \
+    --run-id ${EXP}_label_resize \
+    --inputs.label.label_smoothing 0 \
+    --inputs.label.label_smoothing_sigma 0.0
+# 
+# srun --kill-on-bad-exit python /home/$USER/git/JupiterCVML/kore/scripts/train_seg.py \
 #     --config_path \$CVML_DIR/kore/configs/options/no_val_set.yml \
 #     --data.validation_set_ratio 0.05 \
 #     --ckpt_path /data/jupiter/alex.li/models/19803_rev1_base_params.ckpt \
@@ -81,7 +80,7 @@ srun --kill-on-bad-exit python -m kore.scripts.train_seg \
 #     --trainer.precision 32 \
 #     --output_dir /mnt/sandbox1/$USER/train_halo/\$RUN_ID
 
-# srun --kill-on-bad-exit python -m kore.scripts.train_seg \
+# srun --kill-on-bad-exit python /home/$USER/git/JupiterCVML/kore/scripts/train_seg.py \
 #     --config_path \$CVML_DIR/kore/configs/options/no_val_set.yml \
 #     --data.validation_set_ratio 0.05 \
 #     --ckpt_path /data/jupiter/alex.li/models/19803_rev1_base_params.ckpt \

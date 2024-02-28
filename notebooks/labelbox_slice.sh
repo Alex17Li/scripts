@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=labelbox_slice
-#SBATCH --output=/home/%u/logs/%A_%x.txt
+#SBATCH --output=/mnt/sandbox1/%u/logs/%A_%x.txt
 #SBATCH --partition=cpu
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1

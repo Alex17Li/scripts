@@ -13,10 +13,6 @@
 			"path": ".."
 		},
 		{
-			"name": "logs",
-			"path": "../../logs"
-		},
-		{
 			"name": "sandbox",
 			"path": "../../../../mnt/sandbox1/alex.li"
 		},

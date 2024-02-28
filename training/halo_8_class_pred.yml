@@ -21,5 +21,3 @@ metrics:
   depth_thresholds: {'T_side': .25, 'T_front': .25, 'T_rear': .3, 'I': .25}
   pixel_thresholds: {'halo_side': 72, 'halo_front': 72, 'halo_rear': 72, 'halo_implement': 72}
   merge_stop_class_confidence_threshold: -1
-predictor:
-  precision: "64"

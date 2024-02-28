@@ -1,6 +1,12 @@
 _type_: kore.configs.roots.training.SegTrainingConfig
-data:
-  train_set:
-    csv: master_annotations.csv
-    dataset_path: /data/jupiter/datasets/Jupiter_train_v5_11_20230508
 batch_size: 1
+augmentation:
+  cnp:
+    use: false
+inputs:
+  input_mode: RGBD
+  label:
+    half_res_output: true
+trainer:
+  logger:
+    _type_: kore.configs.third_party.logger_config.DummyLoggerConfig

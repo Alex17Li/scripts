@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=onnx_convert
-#SBATCH --output=/home/%u/logs/%A_%x
+#SBATCH --output=/mnt/sandbox1/%u/logs/%A_%x
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --partition=cpu
