@@ -59,10 +59,7 @@ srun --kill-on-bad-exit python /home/$USER/git/JupiterCVML/kore/scripts/train_se
     --optimizer.lr 1e-3 \
     --optimizer.weight_decay 1e-3 \
     --ckpt_path /mnt/sandbox1/ben.cline/output/bc_sandbox_2023/cls_dust_light_as_sky_512_640_rgb_no_human_augs_2/bc_sandbox_2023_val_bestmodel.pth \
-    --run-id ${EXP}_label_resize \
-    --inputs.label.label_smoothing 0 \
-    --inputs.label.label_smoothing_sigma 0.0
-# 
+    --run-id ${EXP}_ben_compare
 # srun --kill-on-bad-exit python /home/$USER/git/JupiterCVML/kore/scripts/train_seg.py \
 #     --config_path \$CVML_DIR/kore/configs/options/no_val_set.yml \
 #     --data.validation_set_ratio 0.05 \
