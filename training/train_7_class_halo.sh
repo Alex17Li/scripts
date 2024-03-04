@@ -25,7 +25,7 @@ export PL_GLOBAL_SEED=304
 export COLUMNS=100
 
 EXP=${SLURM_JOB_ID}
-
+RUN_ID=${EXP}_smoothsoftlosstrain_sigmap5
 set -x
     # --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment_halo.yml \
     # --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg_halo.yml \
@@ -33,19 +33,17 @@ set -x
 # /home/alex.li/git/scripts/training/dustaug.yml
 srun --kill-on-bad-exit python -m kore.scripts.train_seg \
     --optimizer.weight_decay 1e-3 \
-    --config_path /home/alex.li/git/scripts/training/halo_7_class_train.yml /home/alex.li/git/scripts/training/dustaug.yml \
+    --config_path /home/alex.li/git/scripts/training/halo_7_class_train.yml \
     --augmentation.albumentation_transform_path \$CVML_DIR/kore/configs/data/albumentations/seg.yml \
     --trainer.precision "16-mixed" \
     --optimizer.lr 1e-3 \
-    --run_id ${EXP}_smoothsoftlosstrain \
-    --output_dir /mnt/sandbox1/$USER/train_halo/$RUN_ID \
-    --inputs.label.half_res_output False \
-    --trainer.max_epochs 20 \
-    --loss.msl_weight 1.0 \
-    --loss.prodl_weight 0.0 \
-    --loss.tv_weight 1.0 \
-    --loss.hardsoft_iq_weight 1.0 \
-    --inputs.label.label_smoothing_sigma 0
+    --run_id ${RUN_ID} \
+    --output_dir /mnt/sandbox1/$USER/train_halo/\$RUN_ID \
+    --trainer.max_epochs 50 \
+    --inputs.label.half_res_output True \
+    --inputs.label.label_smoothing_sigma 0.5 \
+    --inputs.label.label_smoothing_iq_sigma 3 \
+
 
 #  /home/alex.li/git/scripts/training/dustaug.yml \s
 # srun --kill-on-bad-exit python -m kore.scripts.train_seg \
@@ -95,3 +93,5 @@ srun --kill-on-bad-exit python -m kore.scripts.train_seg \
 #     --trainer.enable_early_stopping false \
 #     --trainer.precision 32 \
 #     --output_dir /mnt/sandbox1/$USER/train_halo/\$RUN_ID
+
+cp /mnt/sandbox1/$USER/train_halo/$RUN_ID/checkpoints/last.ckpt /data/jupiter/alex.li/models/$RUN_ID.ckpt

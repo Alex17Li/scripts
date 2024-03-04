@@ -16,8 +16,8 @@
 #   redo-ocal: delete ocal results and restart all of PP
 #   redo-depth: keep ocal results, delete PP artifacts, and restart depth inference
 #   existing: continue running PP with the current partitioning and partial results
-DATA_FOLDER=/data/jupiter/datasets
-DATASET_NAME=Jupiter_20231019_HHH6_1615_1700
+DATA_FOLDER=/data2/jupiter/datasets
+DATASET_NAME=halo_productivity_combined
 # Jupiter_20231026_HHH8_1515_1545 # 22307
 # Jupiter_20230926_HHH1_1815_1845 # 22308
 # Jupiter_20230814_HHH1_1415_1445 # 22311
@@ -178,9 +178,14 @@ python3 -m dl.dataset.pack_perception.ml_pack_perception \
     --batch-size 24 --multiprocess-workers 48 --pandarallel-workers 48 --gpu 0 \
     --models 512,768=ml_512x768_v3_full_rgb_halo_depth_10062023.ckpt \
              512,640=ml_512x640_v3_full_rgb_halo_depth_10062023.ckpt \
+             1024,1536=ml_512x768_v3_full_rgb_halo_depth_10062023.ckpt \
+             1024,1280=ml_512x640_v3_full_rgb_halo_depth_10062023.ckpt \
+             768,1152=ml_512x768_v3_full_rgb_halo_depth_10062023.ckpt \
+             768,960=ml_512x640_v3_full_rgb_halo_depth_10062023.ckpt \
     --model-type full --max-disp 384 \
     --run-oc \
-    --image-only
+    --image-only \
+    --full-res
 
 # Combine the partitions back into the master_annotations.csv
 $PARITION_DATASET_CMD \

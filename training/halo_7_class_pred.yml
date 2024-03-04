@@ -6,8 +6,8 @@ model:
   dust:
     dust_seg_output: true
 inputs:
-  input_mode: RECTIFIED_RGB
   input_shape: [512, 640]
+  input_mode: RECTIFIED_RGB
   label:
     dust_mask: ""
     label_map_file: $EUROPA_DIR/dl/config/label_maps/seven_class_train.csv

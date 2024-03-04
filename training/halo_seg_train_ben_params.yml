@@ -1,6 +1,6 @@
 augmentation:
-  # albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml
-  albumentation_transform_path: /home/alex.li/git/scripts/training/ben_albumentations.yml
+  albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml
+  # albumentation_transform_path: /home/alex.li/git/scripts/training/ben_albumentations.yml
   cnp:
     use: false
 data:

@@ -53,7 +53,7 @@ set -x
 #     --run-id ${EXP}_re2_downsampling_40k
     # --model.model_params.use_highres_downsampling true \
 srun --kill-on-bad-exit python /home/$USER/git/JupiterCVML/kore/scripts/train_seg.py \
-    --config_path /home/$USER/git/JupiterCVML/kore/configs/defaults/halo_seg_training_params.yml /home/alex.li/git/scripts/training/halo_seg_train_ben_params.yml \
+    --config_path /home/$USER/git/JupiterCVML/kore/configs/defaults/halo_seg_training_params.yml /home/alex.li/git/scripts/training/dustaug.yml /home/alex.li/git/scripts/training/halo_seg_train_ben_params.yml \
     --data.train_set.csv master_annotations_dedup.csv \
     --group driveable_terrain_model \
     --optimizer.lr 1e-3 \

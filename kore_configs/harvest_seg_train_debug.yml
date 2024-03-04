@@ -5,8 +5,6 @@ augmentation:
     use: false
 inputs:
   input_mode: RGBD
-  label:
-    half_res_output: true
 trainer:
   logger:
     _type_: kore.configs.third_party.logger_config.DummyLoggerConfig

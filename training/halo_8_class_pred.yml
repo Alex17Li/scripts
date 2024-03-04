@@ -5,7 +5,6 @@ model:
   _type_: kore.configs.tasks.semantic_segmentation.model_config.BRTResnetPyramidLite12Config
   dust:
     dust_seg_output: false
-  is_training: false
 inputs:
   input_shape: [512, 640]
   input_mode: RECTIFIED_RGB
@@ -13,7 +12,7 @@ inputs:
     dust_mask: ""
     label_map_file: $EUROPA_DIR/dl/config/label_maps/eight_class_train_dust_light_as_sky_birds_as_driveable_new_classes.csv
     label_map_file_iq: null
-run_id: halo_seg_kore_ben_8cls
+run_id: halo_seg_kore_8cls
 output_dir: /mnt/sandbox1/$USER/train_halo/$RUN_ID
 skip_mismatched_layers: true
 metrics:
