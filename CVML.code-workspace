@@ -41,6 +41,7 @@
 			"/**/*.png": true,
 			"/**/__pycache__": true,
 			"/**/.git": true,
+			"/**/miniconda/**": true,
 			"/mnt/sandbox1": true
 			},
 		"python.analysis.exclude": [
@@ -52,6 +53,7 @@
 			"/**/*.png",
 			"/**/__pycache__",
 			"/**/.git",
+			"/**/miniconda/**",
 			"/mnt/sandbox1"
 			// "/**git/scripts",
 			// "/**git/JupiterScripts",
