@@ -28,13 +28,11 @@ EXP=${SLURM_JOB_ID}
 
 set -x
 python /home/$USER/git/JupiterCVML/kore/scripts/train_seg.py \
-    --config_path /home/$USER/git/JupiterCVML/kore/configs/defaults/halo_seg_training_params.yml /home/alex.li/git/scripts/training/dustaug.yml /home/alex.li/git/scripts/training/halo_seg_train_ben_params.yml \
-    --data.train_set.csv master_annotations_dedup.csv \
-    --group driveable_terrain_model \
-    --optimizer.lr 1e-3 \
-    --optimizer.weight_decay 1e-3 \
+    --config_path /home/$USER/git/JupiterCVML/kore/configs/defaults/halo_seg_training_params.yml /home/alex.li/git/scripts/training/halo_seg_train_ben_params.yml \
     --ckpt_path /mnt/sandbox1/ben.cline/output/bc_sandbox_2023/cls_dust_light_as_sky_512_640_rgb_no_human_augs_2/bc_sandbox_2023_val_bestmodel.pth \
     --run-id ${EXP}_dp \
     --trainer.use_brt_trainer \
     --batch_size 72 \
     --trainer.precision 32 \
+    --trainer.num_sanity_val_steps 2 \
+    
