@@ -1,6 +1,6 @@
 augmentation:
-  albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml
-  # albumentation_transform_path: /home/alex.li/git/scripts/training/ben_albumentations.yml
+  # albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml
+  albumentation_transform_path: /home/alex.li/git/scripts/training/ben_albumentations.yml
   cnp:
     use: false
 data:
@@ -12,9 +12,9 @@ data:
     dataset_path: /data2/jupiter/datasets/halo_rgb_stereo_train_v6_1
     absolute_csv: False
 batch_size: 32
-# inputs:
-#   label:
-#     half_res_output: true
+inputs:
+  label:
+    half_res_output: true
 loss:
   msl:
     alpha: [4.0,1.0,1.0,1.0,5.0,4.0,1.0,1.0]
@@ -28,8 +28,6 @@ loss:
   prodl:
     prob_thresh: -1.0
   prodl_weight: 7.0
-  # prodl_weight: 0.0
-
 optimizer:
   _type_: kore.configs.third_party.optimizer_config.AdamWConfig
   lr: 1e-3

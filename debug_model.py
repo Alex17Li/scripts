@@ -4,6 +4,7 @@ import torch
 
 from dl import EUROPA_DIR
 from dl.dataset.datamodes.npz.rgbd import RGBDNPZ
+from dl.dataset.datamodes.npz.rectifiedrgb import RectifiedRGBNPZ
 from dl.utils.colors import OutputType
 from kore.configs.data.input_data_config import SegInputConfig
 from kore.configs.tasks.semantic_segmentation.loss_config import (

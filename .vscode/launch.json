@@ -87,10 +87,10 @@
             "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/train_seg.py",
             "console": "integratedTerminal",
             "args": [
-                "--config_path", "/home/alex.li/git/scripts/training/halo_7_class_train.yml",// "/home/alex.li/git/scripts/training/dustaug.yml",
+                "--config_path", "/home/$USER/git/JupiterCVML/kore/configs/defaults/halo_seg_training_params.yml",// "/home/alex.li/git/scripts/training/dustaug.yml",
+                "/home/alex.li/git/scripts/training/halo_seg_train_ben_params.yml",
                 "/home/${env:USER}/git/scripts/kore_configs/harvest_seg_train_debug.yml",
-                // "/home/${env:USER}/git/scripts/kore_configs/seg_gsam.yml",
-                // "--ckpt_path", "/mnt/sandbox1/alex.li/wandb/run-20231110_200223-16686/files/epoch=35-val_loss=0.113822.ckpt"
+                "--ckpt_path", "/mnt/sandbox1/ben.cline/output/bc_sandbox_2023/cls_dust_light_as_sky_512_640_rgb_no_human_augs_2/bc_sandbox_2023_val_bestmodel.pth"
             ],
             "justMyCode": true
         },

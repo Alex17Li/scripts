@@ -3,8 +3,8 @@ batch_size: 1
 augmentation:
   cnp:
     use: false
-inputs:
-  input_mode: RGBD
 trainer:
   logger:
     _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
+  use_brt_trainer: True
+  precision: "32"
