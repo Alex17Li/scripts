@@ -6,5 +6,4 @@ augmentation:
 trainer:
   logger:
     _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
-  use_brt_trainer: True
   precision: "32"

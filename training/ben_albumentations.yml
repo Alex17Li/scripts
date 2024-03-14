@@ -8,11 +8,6 @@ transform:
   keypoint_params: null
   p: 1.0
   transforms:
-  - __class_fullname__: RandomCrop
-    always_apply: true
-    height: !height
-    width: !width
-    p: 1.0
   - __class_fullname__: HorizontalFlip
     always_apply: false
     p: 0.5
@@ -58,6 +53,9 @@ transform:
       - 1.25
       p: 0.25
       per_channel: true
+    - __class_fullname__: kore.configs.data.custom_augmentations.StableGammaAugment
+      always_apply: false
+      p: 0.25
     - __class_fullname__: RGBShift
       always_apply: false
       b_shift_limit:
@@ -90,3 +88,8 @@ transform:
     - -0.2
     - 0.2
     value: 0.0
+  - __class_fullname__: RandomCrop
+    always_apply: true
+    height: !height
+    width: !width
+    p: 1.0

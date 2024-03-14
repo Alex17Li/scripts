@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=brthighresnet
+#SBATCH --job-name=lite12_512
 #SBATCH --output=/mnt/sandbox1/%u/logs/%A_%x
 #SBATCH --ntasks=1
 #SBATCH --gres=gpu:4
@@ -14,11 +14,11 @@
 source /home/alex.li/.bashrc
 conda activate highreseuropa
 
-RUN_ID="brthighresnet"
+RUN_ID="brtresnet12_512"
 
 DATA_DIR="/data2/jupiter/datasets"
-# DATASET="halo_rgb_stereo_train_v6_2"
-DATASET="halo_rgb_stereo_train_v6_2_full_res"
+DATASET="halo_rgb_stereo_train_v6_2"
+# DATASET="halo_rgb_stereo_train_v6_2_full_res"
 # DATASET="halo_rgb_stereo_train_v6_2_768"
 
 EXP_NAME="bc_sandbox_2024"
@@ -35,9 +35,10 @@ OUTPUT_DIR=${SNAPSHOT_DIR}/${EXP_NAME}/${RUN_ID}
 
 # M 2.3
 # --model-params '{"version": "timm/repvit_m2_3.dist_450e_in1k", "fixed_size_aux_output": false, "upsample_mode": "nearest", "in_features": [[4, 80], [8, 160], [16, 320], [32, 640]]}' \
-# 'repvit_lite12' 'brthighresnet' 'brtresnetnus'
+# 'repvit_lite12' 'brthighresnet' 'brtresnetnus' 'brtresnetpyramid_lite12'
 # BRT model params
 # --model-params '{"num_block_layers":2, "upsample_mode": "bilinear", "widening_factor": 2, "activation": "hardswish"}' \
+# --model-params '{"num_block_layers":2, "upsample_mode": "nearest", "widening_factor": 2, "activation": "relu"}' \
 
 cd ~/git/JupiterCVML/europa/base/src/europa
 python dl/scripts/trainer.py \
@@ -54,22 +55,22 @@ python dl/scripts/trainer.py \
     --input-mode rectifiedRGB \
     --early-stop-patience 100 \
     --input-dims 3 \
-    --batch-size 48 \
+    --batch-size 72 \
     --num-workers 28 \
     --epochs 100 \
     --tqdm \
     --save-pred-every 2500000 \
     --num-steps 20000000 \
-    --model brthighresnet \
+    --model brtresnetpyramid_lite12 \
     --val-csv dl/config/val_ids/halo_rgb_stereo_train_v6_2_val_by_geohash_6_for_50k_subset.csv \
-    --notes "Highresnet training run" \
+    --notes "resnet12 training run" \
     --human-augmentation "{\"use\": false}" \
     --hard-sampling '{"use": false, "warmup_epochs": 0, "min_pix_count": 200, "gamma": 1.0, "multiplier": 7.0, "safety_max_weight": 30.0, "productivity": true, "depth_threshold": 0.3, "max_area_denominator": 2000, "productivity_max_weight": 30.0, "use_max_weights": false, "running_weight": 0.5}' \
     --normalization-params '{"policy": "tonemap", "alpha": 0.25, "beta": 0.9, "gamma": 0.9, "eps": 1e-6}' \
     --lr-scheduler-name cosinelr \
     --lr-scheduler-parameters '{"steplr_step_size": 7, "steplr_gamma": 0.1, "cosinelr_T_max": 100, "cosinelr_eta_min": 1e-6, "cycliclr_base_lr": 1e-5, "cycliclr_max_lr": 1e-3, "cycliclr_step_size_epoch": 2, "cycliclr_mode": "exp_range", "cycliclr_gamma": 0.97}' \
     --weight-decay 0.001 \
-    --model-params '{"num_block_layers":2, "upsample_mode": "nearest", "widening_factor": 2, "activation": "hardswish"}' \
+    --model-params '{"num_block_layers":2, "upsample_mode": "nearest", "widening_factor": 2, "activation": "relu"}' \
     --use-albumentation-transform \
     --loss tvmsl \
     --focalloss-parameters '{"alpha":[4.0,0.01,1.0,0.01,5.0,10.0,1.0,1.0,1.0], "gamma":2.0, "normalize_class_weights": false}' \
@@ -78,7 +79,7 @@ python dl/scripts/trainer.py \
     --learning-rate 1e-3 \
     --fine-tune-lr 0 \
     --num-classes 9 \
-    --crop-transform-str "[[\"imgaug.augmenters.CropToFixedSize\", {\"width\": 1200, \"height\": 1024, 'position': 'uniform'}]]" \
+    --crop-transform-str "[[\"imgaug.augmenters.CropToFixedSize\", {\"width\": 640, \"height\": 512, 'position': 'uniform'}]]" \
     --weighted-sampling '""' \
-    --input-size '1024,1200'
+    --input-size '512,640'
 

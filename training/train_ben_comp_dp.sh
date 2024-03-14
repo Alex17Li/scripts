@@ -33,6 +33,4 @@ python /home/$USER/git/JupiterCVML/kore/scripts/train_seg.py \
     --run-id ${EXP}_dp \
     --trainer.use_brt_trainer \
     --batch_size 72 \
-    --trainer.precision 32 \
     --trainer.num_sanity_val_steps 2 \
-    

@@ -1,0 +1,40 @@
+class_name,train_id,category_name
+Unlabeled,255,Unlabeled
+Tilled field,0,Driveable
+Untilled field,0,Driveable
+Road,0,Driveable
+Roadside Buffer,0,Driveable
+Utility pole,1,Non-driveable
+Trees,3,Trees_Weeds
+Sky,2,Sky
+Immovable Objects,1,Non-driveable
+Buildings,1,Non-driveable
+Tractors or Vehicles,6,Vehicles
+Humans,5,Humans
+Animals,1,Non-driveable
+Ignore,2,Sky
+implement,4,Implement
+sweep,4,Implement
+harrow_tine,4,Implement
+basket,4,Implement
+basket_marker,4,Implement
+Ego Tractor,4,Implement
+Implement_hitch,4,Implement
+Dust and light artifacts,2,Sky
+Heavy Dust,2,Sky
+Light Artifacts,2,Sky
+Tall Weeds,0,Driveable
+Birds,7,Birds
+Airborne Debris,2,Sky
+Cotton Debris,0,Driveable
+Tile-Inlet,1,Non-driveable
+Object Lights,1,Non-driveable
+Flooded Area,1,Non-driveable
+Ego Mirror Housing,4,Implement
+Ego Reflective Surface,4,Implement
+Grain,3,Trees_Weeds
+Unharvested Field,3,Trees_Weeds
+Combine,6,Vehicles
+Grain Cart,6,Vehicles
+Semi,6,Vehicles
+implement_interior,255,Unlabeled

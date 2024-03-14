@@ -10,7 +10,8 @@ inputs:
   input_mode: RECTIFIED_RGB
   label:
     dust_mask: ""
-    label_map_file: $EUROPA_DIR/dl/config/label_maps/eight_class_train_dust_light_as_sky_birds_as_driveable_new_classes.csv
+    # label_map_file: $EUROPA_DIR/dl/config/label_maps/eight_class_train_dust_light_as_sky_birds_as_driveable_new_classes.csv
+    label_map_file: /home/alex.li/git/scripts/training/eight_class_train_dust_light_as_sky_birds_as_driveable_new_classes.csv
     label_map_file_iq: null
 run_id: halo_seg_kore_8cls
 output_dir: /mnt/sandbox1/$USER/train_halo/$RUN_ID

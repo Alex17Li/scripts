@@ -1,0 +1,22 @@
+%YAML 1.2
+---
+_type_: kore.configs.roots.prediction.SegPredictionConfig
+model:
+  _type_: kore.configs.tasks.semantic_segmentation.model_config.BRTResnetPyramidLite12Config
+  dust:
+    dust_seg_output: false
+inputs:
+  input_shape: [512, 640]
+  input_mode: RECTIFIED_RGB
+  label:
+    dust_mask: ""
+    label_map_file: /home/alex.li/git/scripts/training/label_map_nine_class_birds_as_birds.csv
+    label_map_file_iq: null
+run_id: halo_seg_kore_9cls
+output_dir: /mnt/sandbox1/$USER/train_halo/$RUN_ID
+skip_mismatched_layers: true
+metrics:
+  use_depth_threshold: true
+  depth_thresholds: {'T_side': .25, 'T_front': .25, 'T_rear': .3, 'I': .25}
+  pixel_thresholds: {'halo_side': 72, 'halo_front': 72, 'halo_rear': 72, 'halo_implement': 72}
+  merge_stop_class_confidence_threshold: -1

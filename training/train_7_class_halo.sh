@@ -40,9 +40,9 @@ srun --kill-on-bad-exit python -m kore.scripts.train_seg \
     --run_id ${RUN_ID} \
     --output_dir /mnt/sandbox1/$USER/train_halo/\$RUN_ID \
     --trainer.max_epochs 50 \
-    --inputs.label.half_res_output True \
-    --inputs.label.label_smoothing_sigma 0.5 \
-    --inputs.label.label_smoothing_iq_sigma 3 \
+    --inputs.label.half_res_output False \
+    --inputs.label.label_smoothing_sigma 0.3 \
+    --inputs.label.label_smoothing_iq_sigma 2 \
 
 
 #  /home/alex.li/git/scripts/training/dustaug.yml \s

@@ -1,0 +1,20 @@
+%YAML 1.2
+---
+inputs:
+  label:
+    label_map_file: /home/alex.li/git/scripts/training/label_map_eight_class_birds_as_birds_segdusthead.csv
+    label_map_file_iq: $EUROPA_DIR/dl/config/label_maps/binary_dust.csv
+model:
+  _type_: kore.configs.tasks.semantic_segmentation.model_config.BRTResnetPyramidLite12Config
+  dust:
+    dust_seg_output: True
+loss:
+  hardsoft_iq:
+     class_weight: [0.2, 1.0]
+  hardsoft_iq_weight: 1.0
+  tv:
+    fp_weight: [0.6,0.3,0.6,0.6,0.6,0.7,0.3,0.6]
+    fn_weight: [0.7,0.007,0.4,0.004,2,7,0.7,0.4]
+    class_weight: [1,2,1,1,2,2,5,1]
+  msl:
+    alpha: [4,0.01,1,0.01,5,10,1,1]

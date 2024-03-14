@@ -1,7 +1,10 @@
 augmentation:
   # albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml
   albumentation_transform_path: /home/alex.li/git/scripts/training/ben_albumentations.yml
+  # albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_resize.yml
   cnp:
+    use: false
+  dust:
     use: false
 data:
   train_set:
@@ -11,29 +14,49 @@ data:
     csv: master_anno_val.csv
     dataset_path: /data2/jupiter/datasets/halo_rgb_stereo_train_v6_1
     absolute_csv: False
-batch_size: 32
+# data:
+#   train_set:
+#     csv: master_annotations_dedup_clean_ocal_20240208_50k_intersection_okaudit.csv
+#     dataset_path: /data2/jupiter/datasets/halo_rgb_stereo_train_v6_2
+#   validation_set:
+#     csv: halo_rgb_stereo_train_v6_2_val_by_geohash_6_for_50k_subset_okaudit.csv
+#     dataset_path: /data2/jupiter/datasets/halo_rgb_stereo_train_v6_2
+#     absolute_csv: False
+batch_size: 18
 inputs:
   label:
-    half_res_output: true
+    label_map_file: /home/alex.li/git/scripts/training/eight_class_train_dust_light_as_sky_birds_as_driveable_new_classes.csv
+    # label_map_file: /home/alex.li/git/scripts/training/label_map_nine_class_birds_as_birds.csv
+  # label:
+  #   half_res_output: true
 loss:
   msl:
     alpha: [4.0,1.0,1.0,1.0,5.0,4.0,1.0,1.0]
+    # alpha: [4,0.01,1,0.01,5,10,1,1,1]
     epsilon: 1e-6
+    normalize_ignore: False
   msl_weight: 18.0
+  # msl_weight: 23.02
   tv:
     fp_weight:    [0.6,0.3,0.6,0.6,0.6,0.7,0.3,0.6]
     fn_weight:    [0.7,0.7,0.4,0.4,2.0,2.8,0.7,0.4]
     class_weight: [1.0,2.0,1.0,1.0,2.0,2.0,5.0,1.0]
+    # fp_weight:    [0.6,0.3,0.6,0.6,0.6,0.7,0.3,0.6,0.6]
+    # fn_weight:    [0.7,0.007,0.4,0.004,2,7,0.7,0.4,0.4]
+    # class_weight: [1,2,1,1,2,2,5,1,1]
+    image_wise: True
   tv_weight: 1.0
   prodl:
+    normalize_ignore: False
     prob_thresh: -1.0
   prodl_weight: 7.0
 optimizer:
   _type_: kore.configs.third_party.optimizer_config.AdamWConfig
   lr: 1e-3
   weight_decay: 1e-3
+  epsilon: 1e-8
 trainer:
-  max_epochs: 70
+  max_epochs: 50
   enable_early_stopping: false
   precision: "16-mixed"
 model:
@@ -41,6 +64,7 @@ model:
   half_res_output: true
 lr_scheduler:
   _type_: kore.configs.third_party.lr_scheduler_config.CosineAnnealingLRConfig
+  # _type_: kore.configs.third_party.lr_scheduler_config.ConstantLRConfig
 upload_epoch_ckpts: true
 warm_up_steps: 0
 weighted_sampling: {airborne_debris: 1.0, birds: 1.0, day_vehicles: 1.0, humans: 1.0,
