@@ -6,7 +6,6 @@
 #SBATCH --ntasks-per-node=4
 #SBATCH --cpus-per-gpu=8
 #SBATCH --time=150:00:00
-#SBATCH --exclude=stc01sppamxnl004
 #SBATCH --mem-per-gpu=60G
 source /home/$USER/.bashrc
 conda activate cvml

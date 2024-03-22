@@ -2,7 +2,7 @@ _type_: kore.configs.roots.training.SegTrainingConfig
 batch_size: 8
 data:
   train_set:
-    csv: master_annotations_1k.csv
+    csv: master_annotations_10k.csv
     dataset_path: /mnt/datasets/halo_rgb_stereo_train_v6_1
     dataset_name: halo_rgb_stereo_train_v6_1
   validation_set: null
@@ -13,16 +13,22 @@ trainer:
   log_every_n_steps: 30
   # logger:
   #   _type_: kore.configs.third_party.logger_config.DummyLoggerConfig
-num_log_images: 0
+num_log_images: 100
+
 output_dir: /home/alexli/train_seg/$RUN_ID
-run_id: my_test_run_2
+run_id: my_test_run_cutmix_10
 warm_up_steps: 0
 augmentation:
   cnp:
     use: false
-finetuning:
-  enable: false
-  skip_mismatched_layers: true
+  albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml 
+  # albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg.yml 
+  cutmix:
+    apply_p: 1.0
+
+# finetuning:
+#   enable: false
+#   skip_mismatched_layers: true
 # model:
 #   _type_: kore.configs.tasks.semantic_segmentation.model_config.BRTHighResnetConfig
 #   add_softmax_layer: false
@@ -33,10 +39,23 @@ finetuning:
 #   label:
 #     label_map_file: $EUROPA_DIR/dl/config/label_maps/seven_class_train.csv
 #     label_map_file_iq: null
-ckpt_path: /mnt/alex.li/train_seg/my_test_run_1/checkpoints/epoch=4-v1.ckpt
-# albumentation_transform_path: $CVML_DIR/kore/configs/data/albumentations/seg_trivialaugment.yml 
+# ckpt_path: /mnt/alex.li/train_seg/my_test_run_1/checkpoints/epoch=4-v1.ckpt
 # dust:
 #   use: true
-# ckpt_path: /home/alexli/logs/data/epoch=99-val_loss=0.096904.ckpt
-# WITH cutmix time GPU: 1.25 min
-# WITHOUT cutmix time GPU: 1.02 min
+ckpt_path: /home/alexli/logs/data/epoch=99-val_loss=0.096904.ckpt
+optimizer:
+  _type_: kore.configs.third_party.optimizer_config.AdamWConfig
+  lr: 0.001
+  weight_decay: 0.0001
+# finetuning:
+#   skip_mismatched_layers: true
+#   enable: true
+#   fine_tune_lr: 5e-5
+# ckpt_path: /home/li.yu/exps/driveable_terrain_model/openimages_v7_0203/checkpoint_brt_compatible.pth
+# ckpt_path: null
+# model:
+#   _type_: kore.configs.tasks.semantic_segmentation.model_config.NextViTSmallConfig
+#   add_softmax_layer: false
+#   half_res_output: false
+#   is_training: true
+#   output_intermediate_embeddings: false

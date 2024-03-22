@@ -9,6 +9,10 @@
 			"path": "."
 		},
 		{
+			"name": "brt",
+			"path": "../brt"
+		},
+		{
 			"name": "git",
 			"path": ".."
 		},

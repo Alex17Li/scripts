@@ -103,9 +103,7 @@
             "args": [
                 // "--config_path", "/home/alexli/git/scripts/training/halo_7_class_train.yml", 
                 "--config_path", "/home/$USER/git/JupiterCVML/kore/configs/defaults/halo_seg_training_params.yml",// "/home/alex.li/git/scripts/training/dustaug.yml",
-                "/home/${env:USER}/git/scripts/training/halo_seg_train_ben_params.yml", "/home/${env:USER}/git/scripts/kore_configs/gpu_seg.yml",
-                "--trainer.use-brt-trainer", "true",
-
+                "/home/alexli/git/JupiterCVML/kore/configs/options/highres_experiments_training_params.yml", "/home/${env:USER}/git/scripts/kore_configs/gpu_seg.yml",
             ],
             "justMyCode": true
         },
