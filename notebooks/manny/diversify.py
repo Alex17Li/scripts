@@ -6,6 +6,7 @@ from brtdevkit.data import Dataset
 from pathlib import Path
 import torch
 import clip
+import sys
 from PIL import Image
 from torch.utils.data import Dataset as torchDataset, DataLoader
 import torchvision.transforms as T
@@ -248,4 +249,7 @@ def diversify_dataset(dsetname:str, n_images_final: int, kind: str):
     # imageids_to_dataset(image_ids=imids, dataset_name=f"{dsetname}_diverse_{n_images_final}", dataset_description=desc, dataset_kind=kind, production_dataset=False)
 
 if __name__ == "__main__":
-    diversify_dataset("dynamic_manny_in_dust_raw", 12000, Dataset.KIND_IMAGE)
+    dset_name = sys.argv[1]
+    n_images = int(sys.argv[2])
+    print(f"Running diversify on {dset_name}. Target images {n_images}")
+    diversify_dataset(dset_name, 12000, Dataset.KIND_IMAGE)

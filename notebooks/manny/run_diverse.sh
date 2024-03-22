@@ -10,4 +10,4 @@
 
 source /home/alex.li/.bashrc
 conda activate cvml
-python /home/alex.li/git/scripts/notebooks/manny/diversify.py
+python /home/alex.li/git/scripts/notebooks/manny/diversify.py labelbox_import_tire_tracks_100k 30000

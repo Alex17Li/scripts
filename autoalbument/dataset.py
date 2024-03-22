@@ -1,9 +1,5 @@
 import torch.utils.data
-import pandas as pd
-
-from dl.config.label_map_helper import LabelMapHelper
-from dl.dataset.farm_field import DriveableTerrainDataset
-from dl.utils.config import INPUT_MODE_RECTIFIEDRGB
+import logging
 from kore.configs.data.dataset_config import SegTestDataConfig, SegDatasetConfig
 from kore.configs.data.input_data_config import SegInputConfig, InputMode
 
@@ -43,11 +39,10 @@ class SearchDataset(torch.utils.data.Dataset):
         batch = self.dataset[index]
         image = batch['left']
         mask = batch['label']
-        print(image.shape)
-        print(mask.shape)
-        print(image.dtype)
-        print(mask.dtype)
-        assert False
+        logging.error(image.shape)
+        logging.error(mask.shape)
+        logging.error(image.dtype)
+        logging.error(mask.dtype)
         if self.transform is not None:
             transformed = self.transform(image=image, mask=mask)
             image = transformed["image"]

@@ -8,27 +8,17 @@ augmentation:
     use: false
 data:
   train_set:
-    csv: master_annotations_dedup.csv
-    dataset_path: /data2/jupiter/datasets/halo_rgb_stereo_train_v6_1
+    csv: master_annotations_dedup_clean_ocal_20240208_50k_intersection_okaudit.csv
+    dataset_path: /data2/jupiter/datasets/halo_rgb_stereo_train_v6_2
   validation_set:
-    csv: master_anno_val.csv
-    dataset_path: /data2/jupiter/datasets/halo_rgb_stereo_train_v6_1
+    csv: halo_rgb_stereo_train_v6_2_val_by_geohash_6_for_50k_subset_okaudit.csv
+    dataset_path: /data2/jupiter/datasets/halo_rgb_stereo_train_v6_2
     absolute_csv: False
-# data:
-#   train_set:
-#     csv: master_annotations_dedup_clean_ocal_20240208_50k_intersection_okaudit.csv
-#     dataset_path: /data2/jupiter/datasets/halo_rgb_stereo_train_v6_2
-#   validation_set:
-#     csv: halo_rgb_stereo_train_v6_2_val_by_geohash_6_for_50k_subset_okaudit.csv
-#     dataset_path: /data2/jupiter/datasets/halo_rgb_stereo_train_v6_2
-#     absolute_csv: False
 batch_size: 18
 inputs:
   label:
     label_map_file: /home/alex.li/git/scripts/training/eight_class_train_dust_light_as_sky_birds_as_driveable_new_classes.csv
-    # label_map_file: /home/alex.li/git/scripts/training/label_map_nine_class_birds_as_birds.csv
-  # label:
-  #   half_res_output: true
+    #   half_res_output: true
 loss:
   msl:
     alpha: [4.0,1.0,1.0,1.0,5.0,4.0,1.0,1.0]

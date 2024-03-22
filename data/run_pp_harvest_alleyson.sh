@@ -6,9 +6,12 @@
 #SBATCH --ntasks-per-node=4
 #SBATCH --gpus-per-task=1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem-per-gpu=48000
+#SBATCH --mem-per-gpu=96000
 #SBATCH --requeue
 
+# TODO: In the line above, replace {USER} with your username.
+# If you wish, change the number of tasks per node, but using 8 GPUs is
+# probably the most optimal.
 
 # TODO: Change the data folder and dataset that you are trying to run PP on
 # Possible values for RESUME_MODE:
@@ -17,12 +20,7 @@
 #   redo-depth: keep ocal results, delete PP artifacts, and restart depth inference
 #   existing: continue running PP with the current partitioning and partial results
 DATA_FOLDER=/data2/jupiter/datasets
-DATASET_NAME=on_path_aft_humans_night_2024_rev2_v2
-# DATASET_NAME=halo_vehicles_driving_through_dust_images_nodust_reserved_stereo
-# Jupiter_20231026_HHH8_1515_1545 # 22307
-# Jupiter_20230926_HHH1_1815_1845 # 22308
-# Jupiter_20230814_HHH1_1415_1445 # 22311
-# Jupiter_20230825_HHH1_1730_1800 # 22310
+DATASET_NAME=halo_productivity_combined_no_mislocalization
 JUPITERCVML_DIR=~/git/JupiterCVML
 RESUME_MODE=existing
 
@@ -46,13 +44,16 @@ conda activate /mnt/sandbox1/anirudh.vegesana/conda_envs/pp/
 # This command is needed for halo_kf for now. It will no longer be a
 # dependency in the future, but is included here to avoid issues for now:
 pip install --user numpy-quaternion
-    
+
 # Set important environmental variables
 export BRT_ENV=prod
+export AWS_PROFILE=jupiter_prod_engineer-425642425116
 export AWS_DEFAULT_REGION=us-west-2
 export CUDA_DEVICE_ORDER=PCI_BUS_ID
 export WANDB_MODE=offline
 export PYTHONUNBUFFERED=1
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+export SRUN_CPUS_PER_TASK=$SLURM_CPUS_PER_TASK
 
 # Get useful locations inside of JupiterCVML if the variable is set
 if [ -n "$JUPITERCVML_DIR" ]
@@ -65,21 +66,18 @@ then
     DOWNLOAD_DATASET_CMD="python3 $EUROPA_DIR/dl/dataset/download.py"
     PARITION_DATASET_CMD="python3 $EUROPA_DIR/dl/dataset/pack_perception/partition_dataset.py"
 else
-    DOWNLOAD_DATASET_CMD=/data2/jupiter/jupiter_npz_model_training_kore_jup_tolerations
+    DOWNLOAD_DATASET_CMD=/data2/jupiter/download_ds
     PARITION_DATASET_CMD=/data2/jupiter/partition_dataset
 fi
 
 DATA=$DATA_FOLDER/$DATASET_NAME
 NUM_PARTITIONS=$SLURM_NTASKS
 
-# Download the dataset.
-if [ ! -f "$DATA" ]
-then
-    $DOWNLOAD_DATASET_CMD $DATASET_NAME -d $DATA_FOLDER
-fi
+echo Data folder: $DATA
 
 # Download supporting ocal data.
-if [ ! -f "$DATA/online_calibration_data/images" ]
+# TODO: Remove this if statement if not using ocal.
+if [ ! -d "$DATA/online_calibration_data/images" ]
 then
     mkdir -p $DATA/online_calibration_data/images
 
@@ -119,7 +117,7 @@ then
         $DATA/master_annotations.csv
 elif [ "$RESUME_MODE" = "existing" ]
 then
-    if [ -f "$DATA/partitions" ]
+    if [ -d "$DATA/partitions" ]
     then
         echo Resuming existing PP run.
     else
@@ -134,13 +132,13 @@ set -e
 mkdir -p $DATA/processed
 
 # Copy the calibration data into the right place if it isn't there already.
-if [ -n "$JUPITERCVML_DIR" -a ! -f "$DATA/processed/calibration" ]
+if [ -n "$JUPITERCVML_DIR" -a ! -d "$DATA/processed/calibration" ]
 then
     cp -r $FILES_DIR/calibration $DATA/processed/
 fi
 
 # Parition the dataset.
-if [ ! -f "$DATA/partitions" ]
+if [ ! -d "$DATA/partitions" ]
 then
     $PARITION_DATASET_CMD \
         --dataset-folder $DATA \
@@ -161,28 +159,28 @@ fi
 # TODO: Choose the appropriate command and modify to your tastes/needs
 # MOST IMPORTANTLY divide the batch size (and maybe workers) to prevent
 # OOMs.
+# This includes dividing the batch size by 4 if you are using a full
+# resolution model.
 # Also, delete the code segment above that downloads ocal data if you
 # Are not running ocal.
 
 # For Halo (MUST BE RUN WITH THE GIT BRANCH halo_kf)
-srun --kill-on-bad-exit \
-    --output=/mnt/sandbox1/%u/logs/%j_%x.batch.txt \
-    --error=/mnt/sandbox1/%u/logs/%j_%x.batch.txt \
+srun \
+    --output=/mnt/sandbox1/%u/logs/%j_%x.%t.txt \
+    --error=/mnt/sandbox1/%u/logs/%j_%x.%t.txt \
     --unbuffered \
 singularity run \
     --nv --bind /data,/data2$_ADDITIONAL_BINDS \
-    /data2/jupiter/singularity/jupiter-pack-perception/libs_halo_kf-cvml_master.sif \
+    /data2/jupiter/singularity/jupiter-pack-perception/main.sif \
 python3 -m dl.dataset.pack_perception.ml_pack_perception \
     --data-dir $DATA/partitions/\$SLURM_PROCID --csv-path \\\$DATA_DIR/annotations.csv \
     --calib-tracker-csv /files/calibration/motec_calibration_tracker_2019.csv \
     --cam-calibration-path /files/calibration --ignore-slurm-variables \
-    --batch-size 24 --multiprocess-workers 24 --pandarallel-workers 24 --gpu 0 \
+    --batch-size 24 --multiprocess-workers 36 --pandarallel-workers 48 --gpu 0 --dataloader-workers 6 \
     --models 512,768=depth_full_finetuned_512x768_Jan25_2024_fixed.ptp \
              512,640=depth_full_finetuned_512x640_Jan25_2024_fixed.ptp \
-    --model-type full --max-disp 384 \
     --run-oc \
-    # --image-only \
-    # --full-res \
+    --backend adk --debayer alleysson --image-only
 
 # Combine the partitions back into the master_annotations.csv
 $PARITION_DATASET_CMD \

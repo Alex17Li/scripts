@@ -10,7 +10,8 @@ inputs:
   input_mode: RECTIFIED_RGB
   label:
     dust_mask: ""
-    label_map_file: /home/alex.li/git/scripts/training/label_map_nine_class_birds_as_birds.csv
+    # label_map_file: /home/alex.li/git/scripts/training/label_map_nine_class_birds_as_birds.csv
+    label_map_file: /home/alex.li/git/JupiterCVML/europa/base/src/europa/dl/config/label_maps/label_map_nine_class_birds_as_birds.csv
     label_map_file_iq: null
 run_id: halo_seg_kore_9cls
 output_dir: /mnt/sandbox1/$USER/train_halo/$RUN_ID

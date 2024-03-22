@@ -1,0 +1,17 @@
+model:
+  _type_: kore.configs.tasks.semantic_segmentation.model_config.NextViTSmallConfig
+  model_params: 
+    model_size: small
+    in_features: [[4, 256], [8, 256], [16, 256], [32, 256]]
+optimizer:
+  _type_: kore.configs.third_party.optimizer_config.AdamWConfig
+  lr: 1e-3
+  weight_decay: .001
+finetuning:
+  skip_mismatched_layers: true
+  enable: true
+  fine_tune_lr: 5e-5
+warm_up_steps: 1000
+trainer:
+  precision: '32'
+ckpt_path: /data/jupiter/li.yu/exps/driveable_terrain_model/openimages_v7_0203/checkpoint_brt_compatible.pth
