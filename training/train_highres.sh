@@ -40,9 +40,10 @@ set -x
 #     --batch_size 18 \
 #     --run-id ${EXP}_highres_segdust
 
-DSET_PATH=/data2/jupiter/datasets/halo_rgb_stereo_train_v6_2/
 srun --kill-on-bad-exit python /home/$USER/git/JupiterCVML/kore/scripts/train_seg.py \
-    --config_path \$CVML_DIR/kore/configs/defaults/halo_seg_training_params.yml \$CVML_DIR/kore/configs/options/highres_experiments_training_params.yml \
+    --config_path \$CVML_DIR/kore/configs/defaults/halo_seg_training_params.yml \$CVML_DIR/kore/configs/options/highres_experiments_training_params.yml \$CVML_DIR/kore/configs/options/better_seg.yml \
     --batch_size 18 \
-    --run-id ${EXP}_cutmix_half \
-    --augmentation.cutmix.apply_p 0.5
+    --data.train_set.csv master_annotations_dedup_clean_20240206_okaudit.csv \
+    --log_level 10 \
+    --run-id ${EXP}_lite12_upgrade_all_6_2 \
+    --augmentation.cnp.preparer.num_workers 8

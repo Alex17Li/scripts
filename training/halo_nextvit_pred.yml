@@ -2,15 +2,16 @@
 ---
 _type_: kore.configs.roots.prediction.SegPredictionConfig
 model:
-  _type_: kore.configs.tasks.semantic_segmentation.model_config.BRTResnetPyramidLite12Config
-  dust:
-    dust_seg_output: false
+  _type_: kore.configs.tasks.semantic_segmentation.model_config.NextViTSmallConfig
+  model_params: 
+    model_size: small
+    in_features: [[4, 256], [8, 256], [16, 256], [32, 256]]
 inputs:
   input_shape: [512, 640]
   input_mode: RECTIFIED_RGB
   label:
     dust_mask: ""
-    label_map_file: /home/alex.li/git/JupiterCVML/europa/base/src/europa/dl/config/label_maps/label_map_nine_class_birds_as_birds.csv
+    label_map_file: $CVML_DIR/europa/base/src/europa/dl/config/label_maps/label_map_nine_class_birds_as_birds.csv
     label_map_file_iq: null
 run_id: halo_seg_kore_9cls
 output_dir: /mnt/sandbox1/$USER/train_halo/$RUN_ID

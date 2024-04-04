@@ -34,6 +34,15 @@
 			// black formatter
 			"editor.defaultFormatter":  "ms-python.black-formatter",
 		},
+		"search.exclude": {
+			"package*.*": true,
+			"**/.git": true,
+			"**/false_positive": true,
+			"**/false_negative": true,
+			"**/true_positive": true,
+			"**/true_negative": true,
+			"**/output_visualization": true,
+		  },
 		// increase speed by ignoring non-code files
 		"files.watcherExclude": {
 			"/**/logs": true,
@@ -46,7 +55,7 @@
 			"/**/__pycache__": true,
 			"/**/.git": true,
 			"/**/miniconda/**": true,
-			"/mnt/sandbox1": true
+			"/mnt/sandbox1/**": true
 			},
 		"python.analysis.exclude": [
 			"/**/logs/**",
@@ -58,7 +67,7 @@
 			"/**/__pycache__",
 			"/**/.git",
 			"/**/miniconda/**",
-			"/mnt/sandbox1"
+			"/mnt/sandbox1/**"
 			// "/**git/scripts",
 			// "/**git/JupiterScripts",
 			// "/**git/mesa-kubeflow",

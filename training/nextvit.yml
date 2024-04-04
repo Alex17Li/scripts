@@ -10,7 +10,7 @@ optimizer:
 finetuning:
   skip_mismatched_layers: true
   enable: true
-  fine_tune_lr: 5e-5
+  fine_tune_lr: 2e-4
 warm_up_steps: 1000
 trainer:
   precision: '32'
