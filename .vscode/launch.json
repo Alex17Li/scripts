@@ -3,7 +3,7 @@
     "configurations": [
         {
             "name": "Python: Current File",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "internalConsole",
@@ -12,7 +12,7 @@
         },
         {
             "name": "Predictor",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa/dl/scripts/predictor_pl.py",
             "console": "internalConsole",
@@ -43,7 +43,7 @@
         },
         {
             "name": "Trainer",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/europa/base/src/europa/dl/scripts/trainer.py",
             "console": "internalConsole",
@@ -82,7 +82,7 @@
         },
         {
             "name": "Trainer kore harvest",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/train_seg.py",
             "console": "integratedTerminal",
@@ -96,7 +96,7 @@
         },
         {
             "name": "Trainer kore gpu",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/train_seg.py",
             "console": "integratedTerminal",
@@ -109,7 +109,7 @@
         },
         {
             "name": "Trainer kore gpu ben comparison",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/train_seg.py",
             "console": "integratedTerminal",
@@ -120,7 +120,7 @@
         },
         {
             "name": "Predictor kore gpu",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/predict_seg.py",
             "console": "integratedTerminal",
@@ -132,7 +132,7 @@
         },
         {
             "name": "Predictor kore harvest",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/predict_seg.py",
             "console": "integratedTerminal",
@@ -148,7 +148,7 @@
 
         {
             "name": "Trainer kore depth",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/train_depth.py",
             "console": "integratedTerminal",
@@ -159,7 +159,7 @@
         },
         {
             "name": "mislabeled data kore gpu",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/seg_find_mislabeled_data.py",
             "console": "integratedTerminal",
@@ -173,7 +173,7 @@
         },
         {
             "name": "mislabeled data kore harvest",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterCVML/kore/scripts/seg_find_mislabeled_data.py",
             "console": "integratedTerminal",
@@ -188,7 +188,7 @@
 
         {
             "name": "EmbeddedMetrics",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "/home/${env:USER}/git/JupiterScripts/apps/embedded_metrics/embedded_metrics.py",
             "cwd": "/home/${env:USER}/git/JupiterScripts/apps/embedded_metrics/",

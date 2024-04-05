@@ -9,8 +9,8 @@
 			"path": "."
 		},
 		{
-			"name": "brt",
-			"path": "../brt"
+			"name": "brt/autonomy/jupiter",
+			"path": "../brt/autonomy/jupiter"
 		},
 		{
 			"name": "git",
@@ -22,7 +22,8 @@
 		},
 		{
 			"name": "data",
-			"path": "../../../../data/jupiter/alex.li"
+			// "path": "../../../../data/jupiter/alex.li"
+			"path": "../../data"
 		}
 	],
 	"settings": {
@@ -73,8 +74,11 @@
 			// "/**git/mesa-kubeflow",
 			// "/**git/JupiterEmbedded",
 		],
-		"terminal.integrated.env.linux": {
-			"COMPUTER_NAME": "gpu"
-		}
+		"python.analysis.extraPaths": [
+			"/home/alexli/git/brt/bazel-bin"
+		],
+		"files.associations": {
+			"*.tcc": "cpp"
+		},
 	},
 }
