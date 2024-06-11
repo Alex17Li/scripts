@@ -27,13 +27,38 @@
 		}
 	],
 	"settings": {
-		"extensions.experimental.affinity": {
-			"asvetliakov.vscode-neovim": 1
-		},
-		"python.formatting.provider": "black",
+		// "extensions.experimental.affinity": {
+		// 	"asvetliakov.vscode-neovim": 1
+		// },
 		"[python]":  {
 			// black formatter
 			"editor.defaultFormatter":  "ms-python.black-formatter",
+		},
+		"python.analysis.exclude": [
+			"git/scripts/**/*.py",
+			"git/brt/autonomy/dune/**/*.py",
+			"brt/autonomy/evergreen/**/*.py",
+			"git/brt/autonomy/exacmples/**/*.py",
+			"git/brt/autonomy/forestry/**/*.py",
+			"git/brt/autonomy/mercury/**/*.py",
+			"git/brt/autonomy/mesa/**/*.py",
+			"git/brt/autonomy/synthdatagen/**/*.py",
+			"git/brt/third_party/**/*.py",
+			"git/mesa-kubeflow/**/*.py",
+			"git/miniconda/**/*.py",
+		],
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/Thumbs.db": true,
+			"**/logs/**": true,
+			"**/wandb/**": true,
+			"**/__pycache__": true,
+			"**/miniconda/**": true,
+			// "/mnt/sandbox1/**": true,
 		},
 		"search.exclude": {
 			"package*.*": true,
@@ -43,7 +68,10 @@
 			"**/true_positive": true,
 			"**/true_negative": true,
 			"**/output_visualization": true,
-		  },
+			"**/*.png": true,
+			"**/*.csv": true,
+			"**/*.code-search": true,
+		},
 		// increase speed by ignoring non-code files
 		"files.watcherExclude": {
 			"/**/logs": true,
@@ -57,26 +85,7 @@
 			"/**/.git": true,
 			"/**/miniconda/**": true,
 			"/mnt/sandbox1/**": true
-			},
-		"python.analysis.exclude": [
-			"/**/logs/**",
-			"/**/data/**",
-			"/**/wandb/**",
-			"/**/*.csv",
-			"/**/*.ipynb",
-			"/**/*.png",
-			"/**/__pycache__",
-			"/**/.git",
-			"/**/miniconda/**",
-			"/mnt/sandbox1/**"
-			// "/**git/scripts",
-			// "/**git/JupiterScripts",
-			// "/**git/mesa-kubeflow",
-			// "/**git/JupiterEmbedded",
-		],
-		"python.analysis.extraPaths": [
-			"/home/alexli/git/brt/bazel-bin"
-		],
+		},
 		"files.associations": {
 			"*.tcc": "cpp",
 			"*.ipp": "cpp",
@@ -177,7 +186,17 @@
 			"__split_buffer": "cpp",
 			"__tree": "cpp",
 			"queue": "cpp",
-			"stack": "cpp"
+			"stack": "cpp",
+			"__functional_base": "cpp",
+			"geometry": "cpp",
+			"__node_handle": "cpp",
+			"*.expression": "cpp",
+			"alignedvector3": "cpp",
+			"fft": "cpp",
+			"__config": "cpp",
+			"cuchar": "cpp",
+			"filesystem": "cpp",
+			"adolcforward": "cpp"
 		},
 	},
 }

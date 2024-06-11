@@ -188,3 +188,4 @@ $PARITION_DATASET_CMD \
     --partitions-folder $DATA/partitions \
     --num-partitions $NUM_PARTITIONS \
     combine
+
